@@ -154,7 +154,6 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="fwd.h" />
     <ClInclude Include="headers\Array.h" />
-    <ClInclude Include="headers\ArrayShape.h" />
     <ClInclude Include="headers\Matrix.h" />
     <ClInclude Include="headers\Vector.h" />
     <ClInclude Include="LinearAlgebra.h" />

@@ -4,11 +4,11 @@
 
 namespace MathLib {
 	namespace LinearAlgebra {
-
-		class ArrayShape;
-
 		template<typename T, const unsigned N>
 		class Array;
+
+		template<typename T, const unsigned N, const unsigned ...Ns>
+		class MultiArray;
 
 		template<typename T, const unsigned N>
 		class Vector;

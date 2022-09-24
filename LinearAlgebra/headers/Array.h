@@ -10,7 +10,6 @@ namespace MathLib {
 		template<typename T, const unsigned N>
 		class Array : public Stringable{
 		protected:
-			ArrayShape shape = ArrayShape(N);			
 			const unsigned int size = N;
 			T body[N] = {};
 
@@ -25,10 +24,6 @@ namespace MathLib {
 
 			const unsigned int Size() const {
 				return size;
-			}
-
-			ArrayShape Shape() const {
-				return shape;
 			}
 
 			const unsigned int Rank() const {
@@ -58,33 +53,27 @@ namespace MathLib {
 			}
 
 			const T& operator[](int i) const {
-				if (i < 0 || i >= N || shape.Rank() > 1) {
+				if (i < 0 || i >= N) {
 					throw Exceptions::InvalidTensorAccess();
 				}
 				return body[i];
 			}
 
 			T& operator[](int i) {
-				if (i < 0 || i >= N || shape.Rank() > 1) {
+				if (i < 0 || i >= N) {
 					throw Exceptions::InvalidTensorAccess();
 				}
 				return body[i];
 			}
 
 			const T& At(std::initializer_list<const unsigned int> shape_list) const {
-				ArrayShape target = ArrayShape(shape_list);
-				const unsigned int i = shape.GetTargetIndex(target);
+				const unsigned int i = shape_list.begin();
 				return body[i];
 			}			
 			
 			T& At(std::initializer_list<const unsigned int> shape_list) {
-				ArrayShape target = ArrayShape(shape_list);
-				const unsigned int i = shape.GetTargetIndex(target);
+				const unsigned int i = shape_list.begin();
 				return body[i];
-			}
-
-			void Reshape(std::initializer_list<const unsigned int> shape_list) {
-				shape = ArrayShape(shape_list);
 			}
 
 			const bool operator==(const Array& other) const noexcept{
@@ -216,6 +205,33 @@ namespace MathLib {
 				result += "\n";
 				return result;
 			}
+		};
+	
+		template<typename T, const unsigned N, const unsigned ...Ns>
+		class MultiArray : public Array<Array<T, Ns...>, N> {
+		private:
+			
+		public:
+
+			using Array::Array;
+			using Array::Map;
+			using Array::MapInplace;
+			using Array::operator+;
+			using Array::operator+=;
+			using Array::operator-;
+			using Array::operator-=;
+			using Array::operator*;
+			using Array::operator*=;
+			using Array::operator/;
+			using Array::operator/=;
+
+			using Array::operator==;
+			using Array::operator!=;
+			using Array::operator=;
+			using Array::operator[];
+
+			using Array::Rank;
+			using Array::Size;
 		};
 	}
 }

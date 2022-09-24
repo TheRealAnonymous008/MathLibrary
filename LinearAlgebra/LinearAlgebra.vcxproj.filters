@@ -36,9 +36,6 @@
     <ClInclude Include="headers\Vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\ArrayShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

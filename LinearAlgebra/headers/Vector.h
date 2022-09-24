@@ -15,8 +15,6 @@ namespace MathLib {
 			using Array<T, N>::operator-;
 			using Array<T, N>::operator-=;
 
-			using Array::Reshape;
-
 			const Vector& operator*(const T& c) const {
 				Vector<T, N>* result = new Vector<T, N>();
 
