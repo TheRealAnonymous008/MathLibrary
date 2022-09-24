@@ -26,10 +26,6 @@ namespace MathLib {
 				return size;
 			}
 
-			const unsigned int Rank() const {
-				return shape.Rank();
-			}
-
 			Array(std::initializer_list<T> list) {
 				int i = 0;
 				for (auto itr = list.begin(); itr != list.end(); ++itr) {
@@ -212,7 +208,6 @@ namespace MathLib {
 		private:
 			
 		public:
-
 			using Array::Array;
 			using Array::Map;
 			using Array::MapInplace;
@@ -230,7 +225,6 @@ namespace MathLib {
 			using Array::operator=;
 			using Array::operator[];
 
-			using Array::Rank;
 			using Array::Size;
 		};
 	}
