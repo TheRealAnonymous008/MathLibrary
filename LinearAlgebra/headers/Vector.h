@@ -5,15 +5,18 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 		template<typename T, const unsigned N>
-		class Vector : public MultiArray<T, N> {
+		class Vector : public Array<T, N> {
 		public:
-			using MultiArray<T, N>::MultiArray;
+			using Array<T, N>::Array;
 
-			using MultiArray<T, N>::operator=;
-			using MultiArray<T, N>::operator+;
-			using MultiArray<T, N>::operator+=;
-			using MultiArray<T, N>::operator-;
-			using MultiArray<T, N>::operator-=;
+			using Array<T, N>::operator=;
+			using Array<T, N>::operator+;
+			using Array<T, N>::operator+=;
+			using Array<T, N>::operator-;
+			using Array<T, N>::operator-=;
+
+			using Array::operator==;
+			using Array::operator!=;
 
 			const Vector& operator*(const T& c) const {
 				Vector<T, N>* result = new Vector<T, N>();

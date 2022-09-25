@@ -7,11 +7,12 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned N>
+		template<typename T, const unsigned ...Ns>
 		class Array : public Stringable{
 		protected:
-			static const unsigned size = N;
-			T body[N] = {};
+			static const unsigned size = ArrayShape<Ns...>::Size();
+			ArrayShape<Ns...> shape = ArrayShape<Ns...>();
+			T body[size] = {};
 
 		public:
 			Array() {
@@ -23,7 +24,7 @@ namespace MathLib {
 			}
 
 			static constexpr unsigned Size() {
-				return N;
+				return size;
 			}
 
 			Array(std::initializer_list<T> list) {
@@ -43,40 +44,40 @@ namespace MathLib {
 			}
 
 			void operator=(const Array& other) {
-				for (int i = 0; i < N; ++i) {
-					body[i] = other[i];
+				for (int i = 0; i < size; ++i) {
+					body[i] = other.body[i];
 				}
 			}
 
 			const T& operator[](int i) const {
-				if (i < 0 || i >= N) {
+				if (i < 0 || i >= size || shape.Rank() != 1) {
 					throw Exceptions::InvalidTensorAccess();
 				}
 				return body[i];
 			}
 
 			T& operator[](int i) {
-				if (i < 0 || i >= N) {
+				if (i < 0 || i >= size || shape.Rank() != 1) {
 					throw Exceptions::InvalidTensorAccess();
 				}
 				return body[i];
 			}
 
-			const T& At(std::initializer_list<const unsigned int> shape_list) const {
-				const unsigned int i = shape_list.begin();
+			const T& At(std::initializer_list<const unsigned> list) const {
+				const unsigned int i = shape.Index(list);
 				return body[i];
 			}			
 			
-			T& At(std::initializer_list<const unsigned int> shape_list) {
-				const unsigned int i = shape_list.begin();
+			T& At(std::initializer_list<const unsigned> list) {
+				const unsigned int i = shape.Index(list);
 				return body[i];
 			}
 
 			const bool operator==(const Array& other) const noexcept{
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					if (other[i] != this->body[i])
+				for (int i = 0; i < size; ++i) {
+					if (other.body[i] != this->body[i])
 						return false;
 				}
 				return true;
@@ -85,55 +86,55 @@ namespace MathLib {
 			const bool operator!=(const Array& other) const noexcept{
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					if (other[i] != this->body[i])
+				for (int i = 0; i < size; ++i) {
+					if (other.body[i] != this->body[i])
 						return true;
 				}
 				return false;
 			}
 
 			const Array& operator+(const Array& other) const {
-				Array<T, N>* result = new Array<T, N>();
+				Array<T, Ns...>* result = new Array<T, Ns...>();
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					(*result)[i] = this->body[i] + other[i];
+				for (int i = 0; i < size; ++i) {
+					result->body[i] = this->body[i] + other.body[i];
 				}
 
 				return *result;
 			}
 			const Array& operator-(const Array& other) const {
-				Array<T, N>* result = new Array<T, N>();
+				Array<T, Ns...>* result = new Array<T, Ns...>();
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					(*result)[i] = this->body[i] - other[i];
+				for (int i = 0; i < size; ++i) {
+					result->body[i] = this->body[i] - other.body[i];
 				}
 
 				return *result;
 			}
 
 			const Array& operator*(const Array& other) const {
-				Array<T, N>* result = new Array<T, N>();
+				Array<T, Ns...>* result = new Array<T, Ns...>();
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					(*result)[i] = this->body[i] * other[i];
+				for (int i = 0; i < size; ++i) {
+					result->body[i] = this->body[i] * other.body[i];
 				}
 
 				return *result;
 			}
 
 			const Array& operator/(const Array& other) const {
-				Array<T, N>* result = new Array<T, N>();
+				Array<T, Ns...>* result = new Array<T, Ns...>();
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
+				for (int i = 0; i < size; ++i) {
 					if (other[i] == 0) {
 						throw Exceptions::DivideByZero();
 					}
 
-					(*result)[i] = this->body[i] / other[i];
+					result->body[i] = this->body[i] / other.body[i];
 				}
 
 				return *result;
@@ -142,40 +143,40 @@ namespace MathLib {
 			void operator+=(const Array& other) {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					body[i] += other[i];
+				for (int i = 0; i < size; ++i) {
+					body[i] += other.body[i];
 				}
 			}
 
 			void operator-=(const Array& other) {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					body[i] -= other[i];
+				for (int i = 0; i < size; ++i) {
+					body[i] -= other.body[i];
 				}
 			}
 
 			void operator*=(const Array& other) {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					body[i] *= other[i];
+				for (int i = 0; i < size; ++i) {
+					body[i] *= other.body[i];
 				}
 			}
 
 			void operator/=(const Array& other) {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					body[i] /= other[i];
+				for (int i = 0; i < size; ++i) {
+					body[i] /= other.body[i];
 				}
 			}
 
 			const Array& Map(const std::function< T(T)>& lambda) {
-				Array<T, N>* result = new Array<T, N>();
+				Array<T, Ns...>* result = new Array<T, Ns...>();
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
+				for (int i = 0; i < size; ++i) {
 					(*result)[i] = lambda(body[i]);
 				}
 
@@ -184,7 +185,7 @@ namespace MathLib {
 			void MapInplace(const std::function< T(T)>& lambda) {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
+				for (int i = 0; i < size; ++i) {
 					body[i] = lambda(body[i]);
 				}
 			}
@@ -192,77 +193,14 @@ namespace MathLib {
 			std::string ToString() override {
 				std::string result = "";
 
-				for (int i = 0; i < N - 1; ++i) {
+				for (int i = 0; i < size - 1; ++i) {
 					result += Stringify(body[i]) + " ";
 				}
-				if (N - 1 >= 0)
-					result += Stringify(body[N - 1]);
+				if (size - 1 >= 0)
+					result += Stringify(body[size - 1]);
 
 				result += "\n";
 				return result;
-			}
-		};
-	
-#define UNKNOWN_SIZE -1
-
-		template<typename T, const unsigned N, const unsigned ...Ns>
-		class MultiArray : public Array<MultiArray<T, Ns...>, N> {
-		protected:
-			using Array::body;
-			static const unsigned size = N * Array<T, Ns...>::Size();
-
-		public:
-
-			using Array::Array;
-			using Array::Map;
-			using Array::MapInplace;
-			using Array::operator+;
-			using Array::operator+=;
-			using Array::operator-;
-			using Array::operator-=;
-			using Array::operator*;
-			using Array::operator*=;
-			using Array::operator/;
-			using Array::operator/=;
-
-			using Array::operator==;
-			using Array::operator!=;
-			using Array::operator=;
-			using Array::operator[];
-
-			constexpr unsigned int Size() {
-				return size;
-			}
-			
-			const MultiArray<T, size>& Flatten(){
-				MultiArray<T, size>* flattened = new MultiArray<T, size>();
-
-				unsigned idx = 0;
-				for (unsigned i = 0; i < N; ++i) {
-					auto sub = body[i].Flatten();
-					for (unsigned j = 0; j < sub.Size(); ++j) {
-						(*flattened)[idx] = sub[j];
-						++idx;
-					}
-				}
-
-				return *flattened;
-			}
-			
-		};
-	
-		template<typename T, const unsigned N>
-		class MultiArray<T, N> : public Array<T, N>{
-		private:
-
-		public:
-			using Array::Array;
-			using Array::operator=;
-
-			const MultiArray<T, size>& Flatten() {
-				MultiArray<T, N>* result = new MultiArray<T, N>();
-				(*result) = (*this);
-				return *result;
 			}
 		};
 	}

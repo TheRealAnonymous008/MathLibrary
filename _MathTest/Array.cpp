@@ -200,23 +200,3 @@ TEST(ArrayOps, StringOpPass) {
 
 	ASSERT_TRUE(C == A + B);
 }
-
-TEST(ArrayShape, Flatten) {
-	MultiArray<int, 5> V = {
-		0, 1, 2, 3, 4
-	};
-
-	auto W = V.Flatten();
-	ASSERT_TRUE(W == V);
-
-	MultiArray<int, 5, 4> M = {
-		{0, 1, 2, 3},
-		{4, 5, 6, 7},
-		{8, 9, 0, 1},
-		{2, 3, 4, 5},
-		{6, 7, 8, 9}
-	};
-
-	auto N = M.Flatten();
-	std::cout << N.ToString();
-}
