@@ -17,6 +17,7 @@ namespace MathLib {
 
 			using Array::operator==;
 			using Array::operator!=;
+
 			using Array::At;
 
 			const T Dot(const Vector& other) const {

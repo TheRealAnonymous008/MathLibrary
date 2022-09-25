@@ -132,6 +132,19 @@ TEST(MatrixOps, ScalarMultiplication) {
 }
 
 TEST(MatVecMultiplication, Test1) {
-	
+	Matrix<int, 3, 4> A = {
+		1, 2, 3, 0,
+		4, 5, 6, -1,
+		7, 8, 9, -2
+	};
 
+	Vector<int, 4> x = {
+		0, 0, 0, 1
+	};
+
+	Vector<int, 3> y{
+		0, -1, -2
+	};
+
+	ASSERT_TRUE(A * x == y);
 }
