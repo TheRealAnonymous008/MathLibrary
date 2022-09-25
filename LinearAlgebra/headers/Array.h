@@ -10,7 +10,7 @@ namespace MathLib {
 		template<typename T, const unsigned N>
 		class Array : public Stringable{
 		protected:
-			const unsigned int size = N;
+			static const unsigned size = N;
 			T body[N] = {};
 
 		public:
@@ -22,8 +22,8 @@ namespace MathLib {
 
 			}
 
-			const unsigned int Size() const {
-				return size;
+			static constexpr unsigned Size() {
+				return N;
 			}
 
 			Array(std::initializer_list<T> list) {
@@ -189,6 +189,12 @@ namespace MathLib {
 				}
 			}
 
+			const Array& Flatten() {
+				Array<T, N>* result = new Array<T, N>();
+				(*result) = (*this);
+				return *result;
+			}
+
 			std::string ToString() override {
 				std::string result = "";
 
@@ -203,11 +209,16 @@ namespace MathLib {
 			}
 		};
 	
+#define UNKNOWN_SIZE -1
+
 		template<typename T, const unsigned N, const unsigned ...Ns>
-		class MultiArray : public Array<Array<T, Ns...>, N> {
-		private:
-			
+		class MultiArray : public Array<MultiArray<T, Ns...>, N> {
+		protected:
+			using Array::body;
+			static const unsigned size = N * Array<T, Ns...>::Size();
+
 		public:
+
 			using Array::Array;
 			using Array::Map;
 			using Array::MapInplace;
@@ -225,7 +236,35 @@ namespace MathLib {
 			using Array::operator=;
 			using Array::operator[];
 
-			using Array::Size;
+			constexpr unsigned int Size() {
+				return size;
+			}
+			
+			const MultiArray<T, size>& Flatten(){
+				MultiArray<T, size> flattened;
+
+				unsigned idx = 0;
+				for (unsigned i = 0; i < N; ++i) {
+					auto sub = body[i].Flatten();
+					for (idx; idx < sub.Size(); ++idx) {
+						flattened[idx] = sub[idx];
+						++idx;
+					}
+				}
+
+				return flattened;
+			}
+			
+		};
+	
+		template<typename T, const unsigned N>
+		class MultiArray<T, N> : public Array<T, N>{
+		private:
+
+		public:
+			using Array::Array;
+			using Array::operator=;
+			using Array::Flatten;
 		};
 	}
 }

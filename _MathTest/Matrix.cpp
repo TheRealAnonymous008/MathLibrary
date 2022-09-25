@@ -81,7 +81,7 @@ TEST(MatrixTranspose, Transpose1) {
 		{0, -1, -2}
 	};
 
-
+	ASSERT_TRUE(A.Size() == B.Size() && A.Size() == 12);
 
 	ASSERT_TRUE(A.Transpose() == B);
 	ASSERT_TRUE(A.Transpose().Transpose() == A);

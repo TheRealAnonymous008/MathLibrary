@@ -201,23 +201,22 @@ TEST(ArrayOps, StringOpPass) {
 	ASSERT_TRUE(C == A + B);
 }
 
-TEST(ArrayShape, BasicShapeReshape) {
-	Array<int, 1000> A;
-	
-	for (int i = 0; i < 1000; ++i) {
-		A[i] = i + 1;
-	}
+TEST(ArrayShape, Flatten) {
+	MultiArray<int, 5> V = {
+		0, 1, 2, 3, 4
+	};
 
-	//ASSERT_TRUE(A.Rank() == 1);
+	auto W = V.Flatten();
+	ASSERT_TRUE(W == V);
 
-	//A.Reshape({ 100, 10 });
-	//ASSERT_TRUE(A.Rank() == 2);
-	//ASSERT_THROW(A[100], MathLib::Exceptions::InvalidTensorAccess);
+	MultiArray<int, 5, 4> M = {
+		{0, 1, 2, 3},
+		{4, 5, 6, 7},
+		{8, 9, 0, 1},
+		{2, 3, 4, 5},
+		{6, 7, 8, 9}
+	};
 
-	//ASSERT_TRUE(A.At({ 0, 0 }) == 1);
-	//ASSERT_TRUE(A.At({ 10, 5 }) == 106);
-	//ASSERT_TRUE(A.At({ 7, 2 }) == 73);
-	//ASSERT_TRUE(A.At({ 99, 9 }) == 1000);
-
-	//ASSERT_THROW(A.At({ 100, 100 }), MathLib::Exceptions::InvalidTensorAccess);
+	auto N = M.Flatten();
+	std::cout << N.ToString();
 }
