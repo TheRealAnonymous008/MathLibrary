@@ -200,3 +200,18 @@ TEST(ArrayOps, StringOpPass) {
 
 	ASSERT_TRUE(C == A + B);
 }
+
+TEST(ArrayShape, Reshape) {
+	Array<int, 100> test;
+
+	ASSERT_THROW(test.Reshape<200>(), MathLib::Exceptions::InvalidTensorReshape);
+
+	test.Reshape<20, 5>();
+	ASSERT_TRUE(test.Rank() == 2);
+
+	test.Reshape<5, 5, 2, 2, 1>();
+	ASSERT_TRUE(test.Rank() == 5);
+
+	test.Reshape<100>();
+	ASSERT_TRUE(test.Rank() == 1);
+}

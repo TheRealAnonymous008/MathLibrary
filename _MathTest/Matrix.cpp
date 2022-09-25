@@ -126,10 +126,9 @@ TEST(MatrixOps, ScalarMultiplication) {
 		14, 16, 18, -4
 	};
 	
-	/*
 	ASSERT_TRUE(2 * A == A * 2);
 	ASSERT_TRUE(2 * A == B);
-	ASSERT_TRUE(B / 2 == A);*/
+	ASSERT_TRUE(B / 2 == A);
 }
 
 TEST(MatVecMultiplication, Test1) {

@@ -19,55 +19,6 @@ namespace MathLib {
 			using Array::operator!=;
 			using Array::At;
 
-			const Vector& operator*(const T& c) const {
-				Vector<T, N>* result = new Vector<T, N>();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					(*result)[i] = this->body[i] * c;
-				}
-
-				return *result;
-			}
-
-			friend const Vector<T, N>& operator*(T c, Vector<T, N> v) {
-				return v * c;
-			}
-
-			const Vector& operator/(const T& c) const {
-				if (c == 0) {
-					throw Exceptions::DivideByZero();
-				}
-
-				Vector<T, N>* result = new Vector<T, N>();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					(*result)[i] = this->body[i] / c;
-				}
-
-				return *result;
-			}
-
-			void operator*=(const T& c) {
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					body[i] *= c;
-				}
-			}
-
-			void operator/=(const T& c) {
-				if (c == 0) {
-					throw Exceptions::DivideByZero();
-				}
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < N; ++i) {
-					body[i] /= c;
-				}
-			}
-
 			const T Dot(const Vector& other) const {
 				T result = 0;
 				for (int i = 0; i < N; ++i) {

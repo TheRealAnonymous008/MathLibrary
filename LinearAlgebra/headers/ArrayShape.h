@@ -2,8 +2,13 @@
 
 namespace MathLib {
 	namespace LinearAlgebra {
+		class ArrayShapeBase {
+		public:
+			virtual unsigned GetRank() const = 0;
+		};
+
 		template<const unsigned N, const unsigned ...Ns>
-		class ArrayShape<N, Ns...> {
+		class ArrayShape<N, Ns...> : public ArrayShapeBase{
 
 		public:
 			constexpr static unsigned Size() {
@@ -22,10 +27,14 @@ namespace MathLib {
 				
 				return *itr * Size() / N + ArrayShape<Ns...>::Index(list, from + 1);
 			}
+
+			unsigned GetRank() const override {
+				return Rank();
+			}
 		};
 
 		template<const unsigned N>
-		class ArrayShape<N> {
+		class ArrayShape<N> : public ArrayShapeBase {
 		public:
 			constexpr static unsigned Size() noexcept{
 				return N;
@@ -41,6 +50,10 @@ namespace MathLib {
 					throw Exceptions::InvalidTensorAccess();
 				}
 				return *itr;
+			}
+
+			unsigned GetRank() const override {
+				return 1;
 			}
 		};
 	}
