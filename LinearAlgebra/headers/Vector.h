@@ -17,6 +17,7 @@ namespace MathLib {
 
 			using Array::operator==;
 			using Array::operator!=;
+			using Array::At;
 
 			const Vector& operator*(const T& c) const {
 				Vector<T, N>* result = new Vector<T, N>();

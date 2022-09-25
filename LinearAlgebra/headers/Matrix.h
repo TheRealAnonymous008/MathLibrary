@@ -21,6 +21,8 @@ namespace MathLib {
 			using Array::operator==;
 			using Array::operator!=;
 
+			using Array::At;
+
 			Matrix<T, Columns, Rows> Transpose() const noexcept{
 				Matrix<T, Columns, Rows> transpose;
 				

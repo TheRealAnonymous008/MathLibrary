@@ -8,6 +8,9 @@ namespace MathLib {
 		template<const unsigned ...Ns>
 		class ArrayShape;
 
+		template<typename T, const unsigned N>
+		class ArrayBase;
+
 		template<typename T, const unsigned ...Ns>
 		class Array;
 
