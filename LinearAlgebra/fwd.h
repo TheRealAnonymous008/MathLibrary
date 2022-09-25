@@ -4,6 +4,7 @@
 
 namespace MathLib {
 	namespace LinearAlgebra {
+
 		template<typename T, const unsigned N>
 		class Array;
 

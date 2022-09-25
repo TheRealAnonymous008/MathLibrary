@@ -189,12 +189,6 @@ namespace MathLib {
 				}
 			}
 
-			const Array& Flatten() {
-				Array<T, N>* result = new Array<T, N>();
-				(*result) = (*this);
-				return *result;
-			}
-
 			std::string ToString() override {
 				std::string result = "";
 
@@ -241,18 +235,18 @@ namespace MathLib {
 			}
 			
 			const MultiArray<T, size>& Flatten(){
-				MultiArray<T, size> flattened;
+				MultiArray<T, size>* flattened = new MultiArray<T, size>();
 
 				unsigned idx = 0;
 				for (unsigned i = 0; i < N; ++i) {
 					auto sub = body[i].Flatten();
-					for (idx; idx < sub.Size(); ++idx) {
-						flattened[idx] = sub[idx];
+					for (unsigned j = 0; j < sub.Size(); ++j) {
+						(*flattened)[idx] = sub[j];
 						++idx;
 					}
 				}
 
-				return flattened;
+				return *flattened;
 			}
 			
 		};
@@ -264,7 +258,12 @@ namespace MathLib {
 		public:
 			using Array::Array;
 			using Array::operator=;
-			using Array::Flatten;
+
+			const MultiArray<T, size>& Flatten() {
+				MultiArray<T, N>* result = new MultiArray<T, N>();
+				(*result) = (*this);
+				return *result;
+			}
 		};
 	}
 }
