@@ -157,6 +157,7 @@
     <ClInclude Include="headers\ArrayBase.h" />
     <ClInclude Include="headers\ArrayShape.h" />
     <ClInclude Include="headers\Matrix.h" />
+    <ClInclude Include="headers\MatrixMultiplication.h" />
     <ClInclude Include="headers\Vector.h" />
     <ClInclude Include="LinearAlgebra.h" />
     <ClInclude Include="pch.h" />

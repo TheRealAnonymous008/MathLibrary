@@ -148,3 +148,25 @@ TEST(MatVecMultiplication, Test1) {
 
 	ASSERT_TRUE(A * x == y);
 }
+
+TEST(MatMatMultiplication, Test1) {
+	Matrix<int, 4, 4> A = {
+	1, 2, 3, 0,
+	4, 5, 6, -1,
+	7, 8, 9, -2,
+	-3, -4, 0, 0
+	};
+
+	auto B = A.Transpose();
+	A* B;
+}
+
+TEST(MatMatMultiplication, Test2) {
+	Matrix<int, 2, 2> A = {
+		1, 2,
+		4, 5
+	};
+
+	auto B = A.Transpose();
+	A* B;
+}

@@ -1,14 +1,16 @@
 #pragma once
 
 #include "../fwd.h"
+#include <array>
 
 namespace MathLib {
 	namespace LinearAlgebra {
+
 		template<typename T, const unsigned N>
 		class ArrayBase : public Stringable {
 		protected:
 			static const unsigned size = ArrayShape<N>::Size();
-			T body[size] = {};
+			std::array<T, size> body = {};
 			ArrayShape<N> shape = ArrayShape<N>();
 
 		public:
@@ -26,14 +28,14 @@ namespace MathLib {
 
 			ArrayBase(const ArrayBase& other) {
 				for (int i = 0; i < size; ++i) {
-					body[i] = other.body[i];
+					this->body[i] = other.body[i];
 				}
 			}
 
 			ArrayBase(std::initializer_list<T> list) {
 				int i = 0;
 				for (auto itr = list.begin(); itr != list.end(); ++itr) {
-					body[i] = *itr;
+					this->body[i] = *itr;
 					++i;
 				}
 			}
@@ -41,14 +43,14 @@ namespace MathLib {
 			void operator=(const std::initializer_list<T>& list) {
 				int i = 0;
 				for (auto itr = list.begin(); itr != list.end(); ++itr) {
-					body[i] = *itr;
+					this->body[i] = *itr;
 					++i;
 				}
 			}
 
 			void operator=(const ArrayBase& other) {
 				for (int i = 0; i < size; ++i) {
-					body[i] = other.body[i];
+					this->body[i] = other.body[i];
 				}
 			}
 
