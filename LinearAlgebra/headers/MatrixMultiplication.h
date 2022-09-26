@@ -12,9 +12,8 @@ namespace MathLib {
 
 			Matrix<T, M / 2, P / 2>* a = new Matrix<T, M / 2, P / 2>();
 			Matrix<T, P / 2, N / 2>* b = new Matrix<T, P / 2, N / 2>();
-
 			
-			auto c = *a * *b;
+			Matrix<T, M / 2, N / 2> c = *a * *b;
 
 			return *C;
 		}

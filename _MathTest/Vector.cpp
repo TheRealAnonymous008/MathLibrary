@@ -3,6 +3,19 @@
 
 using namespace MathLib::LinearAlgebra;
 
+TEST(VectorOps, MultiAdd) {
+	using Vector5i = Vector<int, 5>;
+	Vector5i v1 = { 1, 2, 3, 4, 5 };
+	Vector5i v2 = { 2, -1, 0, -2, -1 };
+	Vector5i v3 = { 0, 0, -4, -3, 3 };
+
+	Vector5i w = Vector5i(v1 + v2 + v3);
+	Array<int, 5> x = Array<int, 5>(v1 + v2 + v3);
+
+	ASSERT_TRUE(w == x);
+	ASSERT_TRUE(w == Vector5i({3, 1, -1, -1, 7}));
+}
+
 TEST(VectorOps, ScalarMultiplication1) {
 	const unsigned int N = 100;
 	Vector<float, N> v;

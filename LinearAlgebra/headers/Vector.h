@@ -4,6 +4,7 @@
 
 namespace MathLib {
 	namespace LinearAlgebra {
+
 		template<typename T, const unsigned N>
 		class Vector : public Array<T, N> {
 		public:
@@ -19,6 +20,16 @@ namespace MathLib {
 			using Array::operator!=;
 
 			using Array::At;
+
+			Vector() {
+
+			}
+
+			explicit Vector(const ArrayBase& base) {
+				for (int i = 0; i < base.size; ++i) {
+					this->body[i] = base[i];
+				}
+			}
 
 			const T Dot(const Vector& other) const {
 				T result = 0;

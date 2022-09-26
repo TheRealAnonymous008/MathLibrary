@@ -138,23 +138,58 @@ TEST(MatVecMultiplication, Test1) {
 		7, 8, 9, -2
 	};
 
-	Vector<int, 4> x = {
-		0, 0, 0, 1
+	Vector<int, 4> x1 = {	0, 0, 0, 1	};
+	Vector<int, 3> y1 = {	0, -1, -2	};
+
+	Vector<int, 4> x2 = {	1, 2, 3, 4	};
+	Vector<int, 3> y2 = {	14, 28, 42	};
+
+
+	ASSERT_TRUE(A * x1 == y1);
+	ASSERT_TRUE(A * x2 == y2);
+
+	using Vector4i = Vector<int, 4>;
+	ASSERT_TRUE(A * Vector4i(x1 + x2) == y1 + y2);
+	ASSERT_TRUE(A * Vector4i(4 * x1) == 4 * y1);
+	ASSERT_TRUE(A * Vector4i(2 * x1 - 3 * x2) == 2 * y1 - 3 * y2);
+}
+
+TEST(MatVecMultiplication, Test2) {
+	using Matrix100i = SquareMatrix<int, 10>;
+	Matrix100i A = {
+		1, 0, 0, 4, -1, 2, 3, 0, 2, 0,
+		0, 1, 2, -2, 1, 0, 0, 1, -1, 2,
+		3, -3, 1, 0, 2, 1, 1, 0, 0, 0,
+		0, 0, 0, 1, 1, 0, 0, 0, 1, 0,
+		4, 2, -4, 5, 1, 0, -3, 1, 4, 2,
+		3, 1, 4, 1, 2, 5, 7, 0, 0, 1,
+		2, 7, -2, 1, -1, 1, -1, 0, 2, 3,
+		0, 0, 0, 0, 4, -2, -2, -5, 1, 2,
+		0, 0, 1, 2, -1, -2, 3, 1, 1, 2,
+		5, 6, 1, -6, 9, -1, 0, 0, 1, 0
 	};
 
-	Vector<int, 3> y{
-		0, -1, -2
-	};
+	using Vector10i = Vector<int, 10>;
 
-	ASSERT_TRUE(A * x == y);
+	Vector10i x1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	Vector10i y1 = { 63, 24, 23, 18, 64, 120, 56, -17, 52, 44 };
+
+	Vector10i x2 = { 1, -1, 2, -2, 3, -3, 4, -4, 5, -5 };
+	Vector10i y2 = { 6, -9, 15, 6, -19, 22, -26, 25, 4, 48 };
+
+	ASSERT_TRUE(A * x1 == y1);
+	ASSERT_TRUE(A * x2 == y2);
+	ASSERT_TRUE(A * Vector10i(5*x1 - 7*x2) == 5*y1 - 7*y2);
+	ASSERT_TRUE(A * Vector10i(-17*x1 + 13*x2) == -17*y1 + 13*y2);
+	ASSERT_TRUE(A * Vector10i(301*x1 + 404*x2) == Matrix100i(301 * A) * x1 + Matrix100i(404 * A) * x2);
 }
 
 TEST(MatMatMultiplication, Test1) {
 	Matrix<int, 4, 4> A = {
-	1, 2, 3, 0,
-	4, 5, 6, -1,
-	7, 8, 9, -2,
-	-3, -4, 0, 0
+		1, 2, 3, 0,
+		4, 5, 6, -1,
+		7, 8, 9, -2,
+		-3, -4, 0, 0
 	};
 
 	auto B = A.Transpose();

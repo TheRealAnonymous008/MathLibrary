@@ -28,6 +28,16 @@ namespace MathLib {
 
 			using Array::At;
 
+			Matrix() {
+
+			}
+
+			explicit Matrix(const ArrayBase& base) {
+				for (int i = 0; i < base.size; ++i) {
+					this->body[i] = base[i];
+				}
+			}
+
 			Matrix<T, Columns, Rows> Transpose() const noexcept{
 				Matrix<T, Columns, Rows> transpose;
 

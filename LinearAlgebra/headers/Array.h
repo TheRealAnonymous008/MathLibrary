@@ -27,6 +27,16 @@ namespace MathLib {
 
 			using ArrayBase::operator==;
 			using ArrayBase::operator!=;
+			
+			Array() {
+
+			}
+
+			explicit Array(const ArrayBase& base) {
+				for (int i = 0; i < base.size; ++i) {
+					this->body[i] = base[i];
+				}
+			}
 
 			const T& At(std::initializer_list<const unsigned> list) const {
 				const unsigned int i = ArrayShape<Ns...>::Index(list);
