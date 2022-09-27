@@ -201,7 +201,7 @@ TEST(ArrayOps, StringOpPass) {
 	ASSERT_TRUE(C == A + B);
 }
 
-TEST(ArrayShape, Reshape) {
+TEST(ArrayShape, Reshape1) {
 	Array<int, 100> test;
 
 	ASSERT_THROW(test.Reshape<200>(), MathLib::Exceptions::InvalidTensorReshape);
@@ -214,4 +214,30 @@ TEST(ArrayShape, Reshape) {
 
 	test.Reshape<100>();
 	ASSERT_TRUE(test.Rank() == 1);
+}
+
+TEST(ArrayShape, Reshape2) {
+	Array<int, 100> M;
+	for (int i = 0; i < 100; ++i) {
+		M[i] = i;
+	}
+
+	M.Reshape<10, 10>();
+
+	ASSERT_TRUE(M.At({ 4, 4 }) == 44);
+	ASSERT_TRUE(M.At({ 1, 2 }) == 12);
+	ASSERT_TRUE(M.At({ 6, 7 }) == 67);
+
+	M.Reshape<2, 5, 5, 2>();
+
+	ASSERT_TRUE(M.At({1 ,2, 3, 1}) == 77);
+}
+
+TEST(ArraySlice, Slice) {
+	Array<int, 100> M;
+	for (int i = 0; i < 100; ++i) {
+		M[i] = i;
+	}
+
+	M.Reshape<10, 10>();
 }

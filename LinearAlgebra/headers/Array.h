@@ -39,17 +39,13 @@ namespace MathLib {
 			}
 
 			const T& At(std::initializer_list<const unsigned> list) const {
-				const unsigned int i = ArrayShape<Ns...>::Index(list);
+				const unsigned int i = shape->GetIndex(list);
 				return body[i];
 			}
 
 			T& At(std::initializer_list<const unsigned> list) {
-				const unsigned int i = ArrayShape<Ns...>::Index(list);
+				const unsigned int i = shape->GetIndex(list);
 				return body[i];
-			}
-
-			const unsigned Rank() const {
-				return shape->GetRank();
 			}
 
 			template <const unsigned ... Xs>
@@ -58,7 +54,25 @@ namespace MathLib {
 					throw MathLib::Exceptions::InvalidTensorReshape();
 				}
 				shape = new ArrayShape<Xs...>();
+			}
 
+			template <const unsigned ... SliceSize>
+			const Array<T, SliceSize...>& Slice(std::initializer_list<const unsigned> offset) {
+				Array<T, SliceSize...>* result = new Array<T, SliceSize...>();
+				std::tuple<const unsigned> tup = std::make_tuple(SliceSize...);
+
+				for (int i = 0; i < std::tuple_size(tup); ++i) {
+					unsigned size_idx = std::get<i>(tup);
+					for (int j = 0; j < 12; ++j) {
+						size_idx++;
+					}
+				}
+
+				return *result;
+			}
+
+			const unsigned Rank() const {
+				return shape->GetRank();
 			}
 
 			const Array& operator*(const T& c) const {

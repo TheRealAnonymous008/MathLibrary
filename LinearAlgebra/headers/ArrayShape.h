@@ -5,6 +5,7 @@ namespace MathLib {
 		class ArrayShapeBase {
 		public:
 			virtual unsigned GetRank() const = 0;
+			virtual unsigned GetIndex(const std::initializer_list<const unsigned>& list, const unsigned from = 0) const = 0;
 		};
 
 		template<const unsigned N, const unsigned ...Ns>
@@ -19,7 +20,7 @@ namespace MathLib {
 				return 1 + ArrayShape<Ns...>::Rank();
 			}
 
-			static unsigned Index(const std::initializer_list<const unsigned>& list, const unsigned from = 0){
+			constexpr static unsigned Index(const std::initializer_list<const unsigned>& list, const unsigned from = 0){
 				auto itr = list.begin() + from;
 				if (N < 0 || *itr >= N) {
 					throw Exceptions::InvalidTensorAccess();
@@ -30,6 +31,10 @@ namespace MathLib {
 
 			unsigned GetRank() const override {
 				return Rank();
+			}
+
+			unsigned GetIndex(const std::initializer_list<const unsigned>& list, const unsigned from = 0) const override {
+				return Index(list, from);
 			}
 		};
 
@@ -44,7 +49,7 @@ namespace MathLib {
 				return 1;
 			}
 
-			static unsigned Index(const std::initializer_list<const unsigned> list, const unsigned from = 0) {
+			constexpr static unsigned Index(const std::initializer_list<const unsigned> list, const unsigned from = 0) {
 				auto itr = list.begin() + from;
 				if (N < 0 || *itr >= N) {
 					throw Exceptions::InvalidTensorAccess();
@@ -54,6 +59,10 @@ namespace MathLib {
 
 			unsigned GetRank() const override {
 				return 1;
+			}
+
+			unsigned GetIndex(const std::initializer_list<const unsigned>& list, const unsigned from = 0) const override {
+				return Index(list, from);
 			}
 		};
 	}
