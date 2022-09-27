@@ -199,6 +199,7 @@ namespace MathLib {
 				result += "\n";
 				return result;
 			}
+
 		};
 	}
 }

@@ -27,6 +27,7 @@ namespace MathLib {
 			using Array::operator/=;
 
 			using Array::At;
+			using Array::ToString;
 
 			Matrix() {
 

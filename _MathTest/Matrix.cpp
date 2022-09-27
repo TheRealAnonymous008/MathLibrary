@@ -185,6 +185,9 @@ TEST(MatVecMultiplication, Test2) {
 }
 
 TEST(MatMatMultiplication, Test1) {
+	using Matrix4x4i = Matrix<int, 4, 4>;
+	using Matrix3x3i = Matrix<int, 3, 3>;
+
 	Matrix<int, 4, 4> A = {
 		1, 2, 3, 0,
 		4, 5, 6, -1,
@@ -192,11 +195,59 @@ TEST(MatMatMultiplication, Test1) {
 		-3, -4, 0, 0
 	};
 
-	auto B = A.Transpose();
-	A* B;
+	Matrix4x4i AT = A.Transpose();
+
+	ASSERT_TRUE(A * AT == Matrix4x4i({
+		14, 32, 50, -11,
+		32, 78, 124, -32,
+		50, 124, 198, -53,
+		-11, -32, -53, 25
+	}));
+
+
+	ASSERT_TRUE(AT * A == Matrix4x4i({
+		75, 90, 90, -18,
+		90, 109, 108, -21,
+		90, 108, 126, -24,
+		-18, -21, -24, 5
+	}));
 }
 
 TEST(MatMatMultiplication, Test2) {
+	using Matrix4x3i = Matrix<int, 4, 3>;
+	using Matrix3x4i = Matrix<int, 3, 4>;
+
+	using Matrix4x4i = Matrix<int, 4, 4>;
+	using Matrix3x3i = Matrix<int, 3, 3>;
+
+	Matrix<int, 4, 3> A = {
+		1, 2, 4, 
+		-1, 0, 1,
+		-3, 5, 2,
+		7, -11, 8
+	};
+
+	Matrix<int, 3, 4> B = {
+		0, -4, 3, 2,
+		7, -2, 1, 1,
+		-2, 8, 13, 5
+	};
+
+	ASSERT_TRUE(A * B == Matrix4x4i({
+		6, 24, 57, 24,
+		-2, 12, 10, 3,
+		31, 18, 22, 9,
+		-93, 58, 114, 43
+	}));
+
+	ASSERT_TRUE(B * A == Matrix3x3i({
+		9, -7, 18,
+		13, 8, 36,
+		-14, 6, 66
+	}));
+}
+
+TEST(MatMatMultiplication, Test3) {
 	Matrix<int, 2, 2> A = {
 		1, 2,
 		4, 5
