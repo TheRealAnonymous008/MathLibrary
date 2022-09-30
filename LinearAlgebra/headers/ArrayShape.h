@@ -45,6 +45,10 @@ namespace MathLib {
 					upper = u;
 				}
 
+				int GetIndex(unsigned u) const{
+					return lower + u;
+				}
+
 				const unsigned Size() const {
 					return size;
 				}
@@ -58,7 +62,7 @@ namespace MathLib {
 				}
 
 				bool IsInRange(const unsigned idx) const {
-					return idx >= lower && idx < upper;
+					return idx >= lower && idx <= upper;
 				}
 			};
 		}
@@ -113,20 +117,23 @@ namespace MathLib {
 
 				for (unsigned i = 0; i < rank - 1; ++i) {
 					itr = list.begin() + i;
-					if (*itr < 0 || *itr >= dims[i].Size()) {
+					int shindex = dims[i].GetIndex(*itr);
+
+					if (*itr < 0 || shindex >= dims[i].Size()) {
 						throw Exceptions::InvalidTensorAccess();
 					}
-					if (!dims[i].IsInRange(*itr)) {
+					if (!dims[i].IsInRange(shindex)) {
 						return OUT_OF_SHAPE;
 					}
-					idx += *itr * dims[i].SliceSize();
+					idx += shindex * dims[i].SliceSize();
 				}
 
 				itr++;
-				if (!dims[rank - 1].IsInRange(*itr))
+				int shindex = dims[rank - 1].GetIndex(*itr);
+				if (!dims[rank - 1].IsInRange(shindex))
 					return -1;
 
-				idx += *itr;
+				idx += shindex;
 				return idx;
 			}
 
