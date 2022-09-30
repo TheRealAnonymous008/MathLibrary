@@ -39,6 +39,14 @@ namespace MathLib {
 				}
 			}
 
+			Array(Array* other) {
+				if (this == other)
+					return;
+				for (int i = 0; i < other->size; ++i) {
+					this->body[i] = other->At({ i });
+				}
+			}
+
 			const T& At(std::initializer_list<const unsigned> list) const {
 				const int i = shape->Index(list);
 				if (i == OUT_OF_SHAPE) {
@@ -119,6 +127,8 @@ namespace MathLib {
 					body[i] /= c;
 				}
 			}
+
+			
 		};
 	}
 }

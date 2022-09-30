@@ -131,6 +131,43 @@ TEST(MatrixOps, ScalarMultiplication) {
 	ASSERT_TRUE(B / 2 == A);
 }
 
+TEST(MatBlock, Blocking) {
+	using Matrix100i = SquareMatrix<int, 10>;
+	Matrix100i A = {
+	1, 0, 0, 4, -1, 2, 3, 0, 2, 0,
+	0, 1, 2, -2, 1, 0, 0, 1, -1, 2,
+	3, -3, 1, 0, 2, 1, 1, 0, 0, 0,
+	0, 0, 0, 1, 1, 0, 0, 0, 1, 0,
+	4, 2, -4, 5, 1, 0, -3, 1, 4, 2,
+	3, 1, 4, 1, 2, 5, 7, 0, 0, 1,
+	2, 7, -2, 1, -1, 1, -1, 0, 2, 3,
+	0, 0, 0, 0, 4, -2, -2, -5, 1, 2,
+	0, 0, 1, 2, -1, -2, 3, 1, 1, 2,
+	5, 6, 1, -6, 9, -1, 0, 0, 1, 0
+	};
+
+	auto A1 = A.Slice<5, 5>(0, 0);
+	Matrix<int, 5, 5> t_A1 = {
+		1, 0, 0, 4, -1,
+		0, 1, 2, -2, 1,
+		3, -3, 1, 0, 2,
+		0, 0, 0, 1, 1,
+		4, 2, -4, 5, 1
+	};
+
+	ASSERT_TRUE(*A1 == t_A1);
+
+	auto A2 = A.Slice<4, 3>(3, 4);
+	Matrix<int, 4, 3> t_A2 = {
+		1, 0, 0, 
+		1, 0, -3,
+		2, 5, 7,
+		-1, 1, -1
+	};
+
+	ASSERT_TRUE(*A2 == t_A2);
+}
+
 TEST(MatVecMultiplication, Test1) {
 	Matrix<int, 3, 4> A = {
 		1, 2, 3, 0,
@@ -197,7 +234,7 @@ TEST(MatMatMultiplication, Test1) {
 
 	Matrix4x4i AT = A.Transpose();
 
-	ASSERT_TRUE(A * AT == Matrix4x4i({
+	ASSERT_TRUE(MatrixMultiply(A, AT)== Matrix4x4i({
 		14, 32, 50, -11,
 		32, 78, 124, -32,
 		50, 124, 198, -53,
@@ -205,7 +242,7 @@ TEST(MatMatMultiplication, Test1) {
 	}));
 
 
-	ASSERT_TRUE(AT * A == Matrix4x4i({
+	ASSERT_TRUE(MatrixMultiply(AT, A) == Matrix4x4i({
 		75, 90, 90, -18,
 		90, 109, 108, -21,
 		90, 108, 126, -24,
@@ -233,26 +270,38 @@ TEST(MatMatMultiplication, Test2) {
 		-2, 8, 13, 5
 	};
 
-	ASSERT_TRUE(A * B == Matrix4x4i({
+	ASSERT_TRUE(MatrixMultiply(A, B) == Matrix4x4i({
 		6, 24, 57, 24,
 		-2, 12, 10, 3,
 		31, 18, 22, 9,
 		-93, 58, 114, 43
 	}));
 
-	ASSERT_TRUE(B * A == Matrix3x3i({
+	ASSERT_TRUE(MatrixMultiply(B, A) == Matrix3x3i({
 		9, -7, 18,
 		13, 8, 36,
 		-14, 6, 66
 	}));
 }
 
-TEST(MatMatMultiplication, Test3) {
-	Matrix<int, 2, 2> A = {
-		1, 2,
-		4, 5
-	};
+TEST(MatMatMultiplication, Strassen1) {
+	const unsigned N = 8;
+	auto *A = new Matrix<int, N, N>();
+	auto *B = new Matrix<int, N, N>();
 
-	auto B = A.Transpose();
-	A* B;
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j < N; ++j) {
+			A->At({ i, j }) = i + j;
+			B->At({ i, j }) = j - i;
+		}
+	}
+
+	auto C = StrassenMatMul(*A, *B);
+
+	int t1 = 0;
+	for (unsigned k = 0; k < N; ++k) {
+		t1 += A->At({ 3, k }) * B->At({ k, 4 });
+	}
+
+	ASSERT_TRUE(t1 == C.At({ 3, 4 }));
 }
