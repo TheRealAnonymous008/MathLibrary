@@ -89,7 +89,7 @@ namespace MathLib {
 
 				size = currsize;
 
-				for (int i = 0; i < rank; ++i) {
+				for (unsigned i = 0; i < rank; ++i) {
 					currsize /= dims[i].Size();
 					dims[i].SetSliceSize(currsize);
 				}
@@ -117,7 +117,7 @@ namespace MathLib {
 
 				for (unsigned i = 0; i < rank - 1; ++i) {
 					itr = list.begin() + i;
-					int shindex = dims[i].GetIndex(*itr);
+					unsigned shindex = dims[i].GetIndex(*itr);
 
 					if (*itr < 0 || shindex >= dims[i].Size()) {
 						throw Exceptions::InvalidTensorAccess();

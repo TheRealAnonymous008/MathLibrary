@@ -246,14 +246,14 @@ TEST(ArraySlice, Slice) {
 	
 	ASSERT_TRUE(M.At({ 4, 4 }) == 44);
 	ASSERT_TRUE(M.At({ 1, 2 }) == 12);
-	ASSERT_TRUE(M.AtOrDefault({ 6, 7 }) == 0);
-	ASSERT_TRUE(M.AtOrDefault({ 9, 1 }) == 0);
-	ASSERT_TRUE(M.AtOrDefault({ 2, 8 }) == 0);
+	ASSERT_TRUE(M.At({ 6, 7 }) == 0);
+	ASSERT_TRUE(M.At({ 9, 1 }) == 0);
+	ASSERT_TRUE(M.At({ 2, 8 }) == 0);
 
 	M.Slice({ 4, 4 }, { 7, 6 });
 	ASSERT_TRUE(M.At({ 0, 0 }) == 44);
 	ASSERT_TRUE(M.At({ 2, 1 }) == 65);
-	ASSERT_TRUE(M.AtOrDefault({ 3, 2 }) == 76);
-	ASSERT_TRUE(M.AtOrDefault({ 4, 2 }) == 0);
+	ASSERT_TRUE(M.At({ 3, 2 }) == 76);
+	ASSERT_TRUE(M.At({ 4, 2 }) == 0);
 
 }

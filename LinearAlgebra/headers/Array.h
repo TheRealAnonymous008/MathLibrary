@@ -12,6 +12,7 @@ namespace MathLib {
 		class Array : public ArrayBase<T, detail::SizeClass<Ns...>::Size()> {
 		protected:
 			ArrayShape* shape = new ArrayShape({Ns...});
+			T sentinel = T();
 
 		public:
 			using ArrayBase::ArrayBase;
@@ -41,7 +42,7 @@ namespace MathLib {
 			const T& At(std::initializer_list<const unsigned> list) const {
 				const int i = shape->Index(list);
 				if (i == OUT_OF_SHAPE) {
-					throw Exceptions::InvalidTensorAccess();
+					return sentinel;
 				}
 				return body[i];
 			}
@@ -49,15 +50,7 @@ namespace MathLib {
 			T& At(std::initializer_list<const unsigned> list) {
 				const int i = shape->Index(list);
 				if (i == OUT_OF_SHAPE) {
-					throw Exceptions::InvalidTensorAccess();
-				}
-				return body[i];
-			}
-
-			T AtOrDefault(std::initializer_list<const unsigned> list, T def = 0) {
-				const int i = shape->Index(list);
-				if (i == OUT_OF_SHAPE) {
-					return def;
+					return sentinel;
 				}
 				return body[i];
 			}
