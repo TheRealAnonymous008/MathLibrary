@@ -5,7 +5,6 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<const unsigned ...Ns>
 		class ArrayShape;
 
 		template<typename T, const unsigned N>

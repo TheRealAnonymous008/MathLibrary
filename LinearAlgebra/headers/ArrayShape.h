@@ -1,68 +1,151 @@
 #include "../fwd.h"
+#include <vector>
+
+#ifndef OUT_OF_SHAPE
+#define OUT_OF_SHAPE -1
+#endif 
 
 namespace MathLib {
 	namespace LinearAlgebra {
-		class ArrayShapeBase {
-		public:
-			virtual unsigned GetRank() const = 0;
-			virtual unsigned GetIndex(const std::initializer_list<const unsigned>& list, const unsigned from = 0) const = 0;
-		};
 
-		template<const unsigned N, const unsigned ...Ns>
-		class ArrayShape<N, Ns...> : public ArrayShapeBase{
+		namespace detail {
+			template<const unsigned N, const unsigned ...Ns>
+			struct SizeClass {
+				constexpr unsigned static Size() {
+					return N * SizeClass<Ns...>::Size();
+				}
+			};
+
+			template<const unsigned N>
+			struct SizeClass<N> {
+				constexpr unsigned static Size() {
+					return N;
+				}
+			};
+
+			class SliceInformation {
+			private:
+				unsigned lower = 0;
+				unsigned upper = 0;
+				unsigned size;
+				unsigned sliceSize = 1;
+
+			public:
+				SliceInformation(unsigned N) {
+					SetLower(0);
+					SetUpper(N);
+					size = N;
+				}
+
+				void SetLower(unsigned l) {
+					lower = l;
+				}
+
+				void SetUpper(unsigned u) {
+					upper = u;
+				}
+
+				const unsigned Size() const {
+					return size;
+				}
+
+				const unsigned SliceSize() const {
+					return sliceSize;
+				}
+
+				void SetSliceSize(unsigned s) {
+					sliceSize = s;
+				}
+
+				bool IsInRange(const unsigned idx) const {
+					return idx >= lower && idx < upper;
+				}
+			};
+		}
+
+		using namespace detail;
+		class ArrayShape{
+		private:
+			std::vector<SliceInformation> dims = std::vector<SliceInformation>();
+			unsigned rank = 1;
+			unsigned size = 0;
+
 
 		public:
-			constexpr static unsigned Size() {
-				return N * ArrayShape<Ns...>::Size();
+			ArrayShape(std::initializer_list<const unsigned> ns) {
+				rank = (unsigned) ns.size();
+
+				int currsize = 1;
+
+				for (unsigned i = 0; i < rank; ++i) {
+					auto* itr = ns.begin() + i;
+					dims.push_back(SliceInformation(*itr));
+					currsize *= *itr;
+				}
+
+				size = currsize;
+
+				for (int i = 0; i < rank; ++i) {
+					currsize /= dims[i].Size();
+					dims[i].SetSliceSize(currsize);
+				}
+			}
+
+			~ArrayShape() {
+
+			}
+
+			const unsigned Size() const {
+				return size;
 			}			
 			
-			constexpr static const unsigned Rank() {
-				return 1 + ArrayShape<Ns...>::Rank();
+			const unsigned Rank() const {
+				return rank;
 			}
 
-			constexpr static unsigned Index(const std::initializer_list<const unsigned>& list, const unsigned from = 0){
-				auto itr = list.begin() + from;
-				if (N < 0 || *itr >= N) {
+			const int Index(const std::initializer_list<const unsigned>& list) const{
+				if (list.size() != rank) {
 					throw Exceptions::InvalidTensorAccess();
 				}
+
+				unsigned idx = 0;
+				auto itr = list.begin();
+
+				for (unsigned i = 0; i < rank - 1; ++i) {
+					itr = list.begin() + i;
+					if (*itr < 0 || *itr >= dims[i].Size()) {
+						throw Exceptions::InvalidTensorAccess();
+					}
+					if (!dims[i].IsInRange(*itr)) {
+						return OUT_OF_SHAPE;
+					}
+					idx += *itr * dims[i].SliceSize();
+				}
+
+				itr++;
+				if (!dims[rank - 1].IsInRange(*itr))
+					return -1;
+
+				idx += *itr;
+				return idx;
+			}
+
+			void Slice(const std::initializer_list<const unsigned>& lower, const std::initializer_list<const unsigned>& upper) {
 				
-				return *itr * Size() / N + ArrayShape<Ns...>::Index(list, from + 1);
-			}
+				if (lower.size() != rank || upper.size() != rank)
+					throw Exceptions::InvalidTensorSlice();
 
-			unsigned GetRank() const override {
-				return Rank();
-			}
+				for (unsigned i = 0; i < rank; ++i) {
+					auto litr = lower.begin() + i;
+					auto uitr = upper.begin() + i;
 
-			unsigned GetIndex(const std::initializer_list<const unsigned>& list, const unsigned from = 0) const override {
-				return Index(list, from);
-			}
-		};
+					if (*litr >= *uitr || *litr < 0 || *uitr >= dims[i].Size()) {
+						throw Exceptions::InvalidTensorSlice();
+					}
 
-		template<const unsigned N>
-		class ArrayShape<N> : public ArrayShapeBase {
-		public:
-			constexpr static unsigned Size() noexcept{
-				return N;
-			}
-
-			constexpr static const unsigned Rank() {
-				return 1;
-			}
-
-			constexpr static unsigned Index(const std::initializer_list<const unsigned> list, const unsigned from = 0) {
-				auto itr = list.begin() + from;
-				if (N < 0 || *itr >= N) {
-					throw Exceptions::InvalidTensorAccess();
+					dims[i].SetLower(*litr);
+					dims[i].SetUpper(*uitr);
 				}
-				return *itr;
-			}
-
-			unsigned GetRank() const override {
-				return 1;
-			}
-
-			unsigned GetIndex(const std::initializer_list<const unsigned>& list, const unsigned from = 0) const override {
-				return Index(list, from);
 			}
 		};
 	}

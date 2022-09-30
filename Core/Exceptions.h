@@ -25,5 +25,12 @@ namespace MathLib {
 				return "Cannot Reshape this array.";
 			}
 		};
+
+		class InvalidTensorSlice : public std::exception {
+		public:
+			std::string what() {
+				return "Slice parameters are in bad form.";
+			}
+		};
 	}
 }

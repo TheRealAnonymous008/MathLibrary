@@ -9,9 +9,9 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		template<typename T, const unsigned ...Ns>
-		class Array : public ArrayBase<T, ArrayShape<Ns...>::Size()> {
+		class Array : public ArrayBase<T, detail::SizeClass<Ns...>::Size()> {
 		protected:
-			ArrayShapeBase* shape = new ArrayShape<Ns...>();
+			ArrayShape* shape = new ArrayShape({Ns...});
 
 		public:
 			using ArrayBase::ArrayBase;
@@ -39,40 +39,43 @@ namespace MathLib {
 			}
 
 			const T& At(std::initializer_list<const unsigned> list) const {
-				const unsigned int i = shape->GetIndex(list);
+				const int i = shape->Index(list);
+				if (i == OUT_OF_SHAPE) {
+					throw Exceptions::InvalidTensorAccess();
+				}
 				return body[i];
 			}
 
 			T& At(std::initializer_list<const unsigned> list) {
-				const unsigned int i = shape->GetIndex(list);
+				const int i = shape->Index(list);
+				if (i == OUT_OF_SHAPE) {
+					throw Exceptions::InvalidTensorAccess();
+				}
+				return body[i];
+			}
+
+			T AtOrDefault(std::initializer_list<const unsigned> list, T def = 0) {
+				const int i = shape->Index(list);
+				if (i == OUT_OF_SHAPE) {
+					return def;
+				}
 				return body[i];
 			}
 
 			template <const unsigned ... Xs>
 			void Reshape() {
-				if (ArrayShape<Xs...>::Size() != size) {
+				if (detail::SizeClass<Xs...>::Size() != size) {
 					throw MathLib::Exceptions::InvalidTensorReshape();
 				}
-				shape = new ArrayShape<Xs...>();
+				shape = new ArrayShape({ Xs... });
 			}
 
-			template <const unsigned ... SliceSize>
-			const Array<T, SliceSize...>& Slice(std::initializer_list<const unsigned> offset) {
-				Array<T, SliceSize...>* result = new Array<T, SliceSize...>();
-				std::tuple<const unsigned> tup = std::make_tuple(SliceSize...);
-
-				for (int i = 0; i < std::tuple_size(tup); ++i) {
-					unsigned size_idx = std::get<i>(tup);
-					for (int j = 0; j < 12; ++j) {
-						size_idx++;
-					}
-				}
-
-				return *result;
+			void Slice(std::initializer_list<const unsigned> lower, std::initializer_list<const unsigned> upper) {
+				shape->Slice(lower, upper);
 			}
 
 			const unsigned Rank() const {
-				return shape->GetRank();
+				return shape->Rank();
 			}
 
 			const Array& operator*(const T& c) const {

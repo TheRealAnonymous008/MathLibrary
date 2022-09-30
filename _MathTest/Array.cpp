@@ -153,7 +153,7 @@ TEST(ArrayOps, DivideByZero) {
 }
 
 TEST(ArrayOps, BigArithmetic) {
-	const unsigned int N = 10000000;
+	const unsigned int N = 1000 * 1000 ;
 	Array<int, N>* A = new Array<int, N>();
 	Array<int, N>* B = new Array<int, N>();
 	Array<int, N>* C = new Array<int, N>();
@@ -240,4 +240,14 @@ TEST(ArraySlice, Slice) {
 	}
 
 	M.Reshape<10, 10>();
+
+
+	M.Slice({ 0, 0 }, { 5, 5 });
+	
+	ASSERT_TRUE(M.At({ 4, 4 }) == 44);
+	ASSERT_TRUE(M.At({ 1, 2 }) == 12);
+	ASSERT_TRUE(M.AtOrDefault({ 6, 7 }) == 0);
+	ASSERT_TRUE(M.AtOrDefault({ 9, 1 }) == 0);
+	ASSERT_TRUE(M.AtOrDefault({ 2, 8 }) == 0);
+
 }

@@ -7,17 +7,17 @@ TEST(MatrixInit, BasicInitilizer01) {
 	ASSERT_TRUE(matrix.rows == 2);
 	ASSERT_TRUE(matrix.columns == 3);
 }
-
-TEST(MatrixInit, BasicInitializer02) {
-	Matrix<int, 100, 100>* matrix = new Matrix<int, 100, 100>();
-
-	for (unsigned int i = 0; i < 100; ++i) {
-		for (unsigned int j = 0; j < 100; ++j) {
-			auto k = matrix->At({ i, j });
-			ASSERT_TRUE(k == 0);
-		}
-	}
-}
+//
+//TEST(MatrixInit, BasicInitializer02) {
+//	Matrix<int, 100, 100>* matrix = new Matrix<int, 100, 100>();
+//
+//	for (unsigned int i = 0; i < 100; ++i) {
+//		for (unsigned int j = 0; j < 100; ++j) {
+//			auto k = matrix->At({ i, j });
+//			ASSERT_TRUE(k == 0);
+//		}
+//	}
+//}
 
 TEST(MatrixInit, SquareMatrixInitializer) {
 	SquareMatrix<int, 20> matrix;

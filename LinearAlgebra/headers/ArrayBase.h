@@ -9,9 +9,9 @@ namespace MathLib {
 		template<typename T, const unsigned N>
 		class ArrayBase : public Stringable {
 		protected:
-			static const int size = ArrayShape<N>::Size();
+			static const int size = N;
 			std::array<T, size> body = {};
-			ArrayShape<N> shape = ArrayShape<N>();
+			ArrayShape* shape = new ArrayShape({ N });
 
 		public:
 			ArrayBase() {
