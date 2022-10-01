@@ -17,10 +17,7 @@
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Linear Algebra">
-      <UniqueIdentifier>{3e1a26a9-5821-49df-844c-2a0250dcfe74}</UniqueIdentifier>
+      <UniqueIdentifier>{2a25d876-184c-47d9-b2f4-f22035b21c76}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>
