@@ -285,7 +285,36 @@ TEST(MatMatMultiplication, Test2) {
 }
 
 TEST(MatMatMultiplication, Strassen1) {
-	const unsigned N = 8;
+	using Matrix4x4i = Matrix<int, 4, 4>;
+	using Matrix3x3i = Matrix<int, 3, 3>;
+
+	Matrix<int, 4, 4> A = {
+		1, 2, 3, 0,
+		4, 5, 6, -1,
+		7, 8, 9, -2,
+		-3, -4, 0, 0
+	};
+
+	Matrix4x4i AT = A.Transpose();
+
+	ASSERT_TRUE(StrassenMatMul(A, AT) == Matrix4x4i({
+		14, 32, 50, -11,
+		32, 78, 124, -32,
+		50, 124, 198, -53,
+		-11, -32, -53, 25
+		}));
+
+
+	ASSERT_TRUE(StrassenMatMul(AT, A) == Matrix4x4i({
+		75, 90, 90, -18,
+		90, 109, 108, -21,
+		90, 108, 126, -24,
+		-18, -21, -24, 5
+		}));
+}
+
+TEST(MatMatMultiplication, Strassen2) {
+	const unsigned N = 100;
 	auto *A = new Matrix<int, N, N>();
 	auto *B = new Matrix<int, N, N>();
 

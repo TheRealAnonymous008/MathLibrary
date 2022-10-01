@@ -53,20 +53,33 @@ namespace MathLib {
 			BBlock* B21 = B.Slice<PHalf, NHalf>(PHalf, 0);
 			BBlock* B22 = B.Slice<PHalf, NHalf>(PHalf, NHalf);
 
+			// Helpers
 			CBlock u = MatrixMultiply(	ABlock(*A21 - *A11),		BBlock(*B12 - *B22));
 			CBlock v = MatrixMultiply(	ABlock(*A21 + *A22),		BBlock(*B12 - *B11));
-			CBlock w = MatrixMultiply(	ABlock(*A21 + *A22 - *A11), BBlock(*B11 + *B22 - *B12));
+			CBlock z = MatrixMultiply(*A11, *B11);
+			ABlock w0 = ABlock(*A21 + *A22 - *A11);
+			ABlock w1 = BBlock(*B11 + *B22 - *B12);
+			CBlock w = CBlock(z + MatrixMultiply(w0, w1));
 
 			// C blocks
-			CBlock C11 = CBlock(MatrixMultiply(*A11, *B11) + MatrixMultiply(*A12, *B12));
-			CBlock C12 = CBlock(w + u +		MatrixMultiply(*A22 , BBlock(*B21 + *B12 - *B11 - *B22)));
-			CBlock C21 = CBlock((w + v +	MatrixMultiply(ABlock(*A11 + *A12 - *A21 - *A22) , *B22)));
+			CBlock C11 = CBlock(z + MatrixMultiply(*A12, *B21));
+			CBlock C12 = CBlock((w + v +	MatrixMultiply(ABlock(*A11 + *A12 - *A21 - *A22) , *B22)));
+			CBlock C21 = CBlock(w + u +		MatrixMultiply(*A22 , BBlock(*B21 + *B12 - *B11 - *B22)));
 			CBlock C22 = CBlock(w + u + v);
 
 			C->AddBlock(0, 0,			C11);
 			C->AddBlock(0, NHalf,		C12);
 			C->AddBlock(MHalf, 0,		C21);
 			C->AddBlock(MHalf, NHalf,	C22);
+
+			delete A11;
+			delete A12;
+			delete A21;
+			delete A22;
+			delete B11;
+			delete B12;
+			delete B21;
+			delete B22;
 
 			return *C;
 		}
