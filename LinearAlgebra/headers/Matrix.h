@@ -55,19 +55,19 @@ namespace MathLib {
 			}
 
 			template<const unsigned SliceRows, const unsigned SliceCols>
-			Matrix<T, SliceRows, SliceCols>* Slice(const unsigned rowOffset, const unsigned colOffset) const{
-				Matrix<T, SliceRows, SliceCols>* slice = new Matrix<T, SliceRows, SliceCols>();
+			const Matrix<T, SliceRows, SliceCols>& Slice(const unsigned rowOffset, const unsigned colOffset) const{
+				Matrix<T, SliceRows, SliceCols> *slice = new Matrix<T, SliceRows, SliceCols>();
 				
 				for (unsigned i = 0; i < SliceRows && i + rowOffset < Rows; ++i) {
 					for (unsigned j = 0; j < SliceCols && j + colOffset < Columns; ++j) {
 						slice->At({ i, j }) = this->At({ i + rowOffset, j + colOffset });
 					}
 				}
-				return slice;
+				return *slice;
 			}
 
 			template<const unsigned BlockRows, const unsigned BlockCols>
-			void AddBlock(const unsigned rowOffset, const unsigned colOffset, Matrix<T, BlockRows, BlockCols> block) {
+			void AddBlock(const unsigned rowOffset, const unsigned colOffset, const Matrix<T, BlockRows, BlockCols>& block) {
 				for (unsigned i = 0; i < block.rows && i + rowOffset < Rows; ++i) {
 					for (unsigned j = 0; j < block.columns && j  + colOffset < Columns; ++j) {
 						this->At({ i + rowOffset, j + colOffset }) = block.At({ i, j });

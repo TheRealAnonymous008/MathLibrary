@@ -42,44 +42,46 @@ namespace MathLib {
 			using CBlock = Matrix<T, MHalf, NHalf>;
 
 			// A blocks
-			ABlock* A11 = A.Slice<MHalf, PHalf>(0, 0);
-			ABlock* A12 = A.Slice<MHalf, PHalf>(0, PHalf);
-			ABlock* A21 = A.Slice<MHalf, PHalf>(MHalf, 0);
-			ABlock* A22 = A.Slice<MHalf, PHalf>(MHalf, PHalf);
+			const ABlock& A11 = A.Slice<MHalf, PHalf>(0, 0);
+			const ABlock& A12 = A.Slice<MHalf, PHalf>(0, PHalf);
+			const ABlock& A21 = A.Slice<MHalf, PHalf>(MHalf, 0);
+			const ABlock& A22 = A.Slice<MHalf, PHalf>(MHalf, PHalf);
 
 			// B blocks
-			BBlock* B11 = B.Slice<PHalf, NHalf>(0, 0);
-			BBlock* B12 = B.Slice<PHalf, NHalf>(0, NHalf);
-			BBlock* B21 = B.Slice<PHalf, NHalf>(PHalf, 0);
-			BBlock* B22 = B.Slice<PHalf, NHalf>(PHalf, NHalf);
+			const BBlock& B11 = B.Slice<PHalf, NHalf>(0, 0);
+			const BBlock& B12 = B.Slice<PHalf, NHalf>(0, NHalf);
+			const BBlock& B21 = B.Slice<PHalf, NHalf>(PHalf, 0);
+			const BBlock& B22 = B.Slice<PHalf, NHalf>(PHalf, NHalf);
 
 			// Helpers
-			CBlock u = MatrixMultiply(	ABlock(*A21 - *A11),		BBlock(*B12 - *B22));
-			CBlock v = MatrixMultiply(	ABlock(*A21 + *A22),		BBlock(*B12 - *B11));
-			CBlock z = MatrixMultiply(*A11, *B11);
-			ABlock w0 = ABlock(*A21 + *A22 - *A11);
-			ABlock w1 = BBlock(*B11 + *B22 - *B12);
-			CBlock w = CBlock(z + MatrixMultiply(w0, w1));
+			const CBlock& u = *(new CBlock(MatrixMultiply(	ABlock(A21 - A11),		BBlock(B12 - B22))));
+			const CBlock& v = *(new CBlock(MatrixMultiply(	ABlock(A21 + A22),		BBlock(B12 - B11))));
+			const CBlock& z = *(new CBlock(MatrixMultiply(A11, B11)));
+
+			const ABlock& w0 = ABlock(A21 + A22 - A11);
+			const ABlock& w1 = BBlock(B11 + B22 - B12);
+			const CBlock& w = *(new CBlock(z + MatrixMultiply(w0, w1)));
 
 			// C blocks
-			CBlock C11 = CBlock(z + MatrixMultiply(*A12, *B21));
-			CBlock C12 = CBlock((w + v +	MatrixMultiply(ABlock(*A11 + *A12 - *A21 - *A22) , *B22)));
-			CBlock C21 = CBlock(w + u +		MatrixMultiply(*A22 , BBlock(*B21 + *B12 - *B11 - *B22)));
-			CBlock C22 = CBlock(w + u + v);
+			const CBlock& C11 = *(new CBlock(z + MatrixMultiply(A12, B21)));
+			const CBlock& C12 = *(new CBlock((w + v +	MatrixMultiply(ABlock(A11 + A12 - A21 - A22) , B22))));
+			const CBlock& C21 = *(new CBlock(w + u +		MatrixMultiply(A22 , BBlock(B21 + B12 - B11 - B22))));
+			const CBlock& C22 = *(new CBlock(w + u + v));
 
 			C->AddBlock(0, 0,			C11);
 			C->AddBlock(0, NHalf,		C12);
 			C->AddBlock(MHalf, 0,		C21);
 			C->AddBlock(MHalf, NHalf,	C22);
 
-			delete A11;
-			delete A12;
-			delete A21;
-			delete A22;
-			delete B11;
-			delete B12;
-			delete B21;
-			delete B22;
+			delete& u;
+			delete& v;
+			delete& z;
+			delete& w;
+			delete& C11;
+			delete& C12;
+			delete& C21;
+			delete& C22;
+
 
 			return *C;
 		}

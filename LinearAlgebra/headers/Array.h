@@ -42,7 +42,7 @@ namespace MathLib {
 			Array(Array* other) {
 				if (this == other)
 					return;
-				for (int i = 0; i < other->size; ++i) {
+				for (unsigned i = 0; i < other->size; ++i) {
 					this->body[i] = other->At({ i });
 				}
 			}

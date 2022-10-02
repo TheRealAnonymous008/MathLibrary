@@ -7,17 +7,17 @@ TEST(MatrixInit, BasicInitilizer01) {
 	ASSERT_TRUE(matrix.rows == 2);
 	ASSERT_TRUE(matrix.columns == 3);
 }
-//
-//TEST(MatrixInit, BasicInitializer02) {
-//	Matrix<int, 100, 100>* matrix = new Matrix<int, 100, 100>();
-//
-//	for (unsigned int i = 0; i < 100; ++i) {
-//		for (unsigned int j = 0; j < 100; ++j) {
-//			auto k = matrix->At({ i, j });
-//			ASSERT_TRUE(k == 0);
-//		}
-//	}
-//}
+
+TEST(MatrixInit, BasicInitializer02) {
+	Matrix<int, 100, 100>* matrix = new Matrix<int, 100, 100>();
+
+	for (unsigned int i = 0; i < 100; ++i) {
+		for (unsigned int j = 0; j < 100; ++j) {
+			auto k = matrix->At({ i, j });
+			ASSERT_TRUE(k == 0);
+		}
+	}
+}
 
 TEST(MatrixInit, SquareMatrixInitializer) {
 	SquareMatrix<int, 20> matrix;
@@ -146,7 +146,7 @@ TEST(MatBlock, Blocking) {
 	5, 6, 1, -6, 9, -1, 0, 0, 1, 0
 	};
 
-	auto A1 = A.Slice<5, 5>(0, 0);
+	const Matrix<int, 5, 5>& A1 = A.Slice<5, 5>(0, 0);
 	Matrix<int, 5, 5> t_A1 = {
 		1, 0, 0, 4, -1,
 		0, 1, 2, -2, 1,
@@ -155,9 +155,9 @@ TEST(MatBlock, Blocking) {
 		4, 2, -4, 5, 1
 	};
 
-	ASSERT_TRUE(*A1 == t_A1);
+	ASSERT_TRUE(A1 == t_A1);
 
-	auto A2 = A.Slice<4, 3>(3, 4);
+	const Matrix<int, 4, 3>& A2 = A.Slice<4, 3>(3, 4);
 	Matrix<int, 4, 3> t_A2 = {
 		1, 0, 0, 
 		1, 0, -3,
@@ -165,7 +165,7 @@ TEST(MatBlock, Blocking) {
 		-1, 1, -1
 	};
 
-	ASSERT_TRUE(*A2 == t_A2);
+	ASSERT_TRUE(A2 == t_A2);
 }
 
 TEST(MatVecMultiplication, Test1) {
@@ -314,7 +314,7 @@ TEST(MatMatMultiplication, Strassen1) {
 }
 
 TEST(MatMatMultiplication, Strassen2) {
-	const unsigned N = 100;
+	const unsigned N = 200;
 	auto *A = new Matrix<int, N, N>();
 	auto *B = new Matrix<int, N, N>();
 
@@ -325,7 +325,7 @@ TEST(MatMatMultiplication, Strassen2) {
 		}
 	}
 
-	auto C = StrassenMatMul(*A, *B);
+	const Matrix<int, N, N>& C = StrassenMatMul(*A, *B);
 
 	int t1 = 0;
 	for (unsigned k = 0; k < N; ++k) {
