@@ -10,7 +10,7 @@ namespace MathLib {
 		class ArrayBase : public Stringable {
 		protected:
 			static const int size = N;
-			std::array<T, size> body = {};
+			std::array<T, size> body = *(new std::array<T, size>());
 			ArrayShape* shape = new ArrayShape({ N });
 
 		public:
@@ -88,54 +88,6 @@ namespace MathLib {
 				return false;
 			}
 
-			const ArrayBase& operator+(const ArrayBase& other) const {
-				ArrayBase* result = new ArrayBase();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < size; ++i) {
-					result->body[i] = this->body[i] + other.body[i];
-				}
-
-				return *result;
-			}
-
-			const ArrayBase& operator-(const ArrayBase& other) const {
-				ArrayBase* result = new ArrayBase();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < size; ++i) {
-					result->body[i] = this->body[i] - other.body[i];
-				}
-
-				return *result;
-			}
-
-			const ArrayBase& operator*(const ArrayBase& other) const {
-				ArrayBase* result = new ArrayBase();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < size; ++i) {
-					result->body[i] = this->body[i] * other.body[i];
-				}
-
-				return *result;
-			}
-
-			const ArrayBase& operator/(const ArrayBase& other) const {
-				ArrayBase* result = new ArrayBase();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < size; ++i) {
-					if (other[i] == 0) {
-						throw Exceptions::DivideByZero();
-					}
-
-					result->body[i] = this->body[i] / other.body[i];
-				}
-
-				return *result;
-			}
-
 			void operator+=(const ArrayBase& other) {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
@@ -190,7 +142,7 @@ namespace MathLib {
 			std::string ToString() override {
 				std::string result = "";
 
-				for (int i = 0; i < size - 1; ++i) {
+				for (unsigned i = 0; i < size - 1; ++i) {
 					result += Stringify(body[i]) + " ";
 				}
 				if (size - 1 >= 0)

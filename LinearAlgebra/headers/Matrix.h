@@ -12,21 +12,7 @@ namespace MathLib {
 			const int columns = Columns;
 
 			using Array::Array;
-			using Array::operator=;
-			using Array::operator+;
-			using Array::operator+=;
-			using Array::operator-;
-			using Array::operator-=;
 
-			using Array::operator==;
-			using Array::operator!=;
-
-			using Array::operator*;
-			using Array::operator*=;
-			using Array::operator/;
-			using Array::operator/=;
-
-			using Array::At;
 			using Array::ToString;
 			using Array::Reshape;
 
@@ -40,6 +26,56 @@ namespace MathLib {
 				}
 			}
 
+			const Matrix& operator+(const Matrix & other) const {
+				Matrix* result = new Matrix();
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
+				for (int i = 0; i < size; ++i) {
+					result->body[i] = this->body[i] + other.body[i];
+				}
+
+				return *result;
+			}
+			const Matrix& operator-(const Matrix& other) const {
+				Matrix* result = new Matrix();
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
+				for (int i = 0; i < size; ++i) {
+					result->body[i] = this->body[i] - other.body[i];
+				}
+
+				return *result;
+			}
+
+			const Matrix& operator*(const T& c) const {
+				Matrix* result = new Matrix();
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
+				for (int i = 0; i < size; ++i) {
+					(*result)[i] = this->body[i] * c;
+				}
+
+				return *result;
+			}
+
+			friend const Matrix& operator*(T c, Matrix v) {
+				return v * c;
+			}
+
+			const Matrix& operator/(const T& c) const {
+				if (c == 0) {
+					throw Exceptions::DivideByZero();
+				}
+
+				Matrix* result = new Matrix();
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
+				for (int i = 0; i < size; ++i) {
+					(*result)[i] = this->body[i] / c;
+				}
+
+				return *result;
+			}
 			Matrix<T, Columns, Rows> Transpose() const noexcept{
 				Matrix<T, Columns, Rows> transpose;
 

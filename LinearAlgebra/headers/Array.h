@@ -17,13 +17,9 @@ namespace MathLib {
 		public:
 			using ArrayBase::ArrayBase;
 			using ArrayBase::operator=;
-			using ArrayBase::operator+;
 			using ArrayBase::operator+=;
-			using ArrayBase::operator-;
 			using ArrayBase::operator-=;
-			using ArrayBase::operator*;
 			using ArrayBase::operator*=;
-			using ArrayBase::operator/;
 			using ArrayBase::operator/=;
 
 			using ArrayBase::operator==;
@@ -77,6 +73,53 @@ namespace MathLib {
 
 			const unsigned Rank() const {
 				return shape->Rank();
+			}
+
+			const Array& operator+(const Array& other) const {
+				Array* result = new Array();
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
+				for (int i = 0; i < size; ++i) {
+					result->body[i] = this->body[i] + other.body[i];
+				}
+
+				return *result;
+			}
+			const Array& operator-(const Array& other) const {
+				Array* result = new Array();
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
+				for (int i = 0; i < size; ++i) {
+					result->body[i] = this->body[i] - other.body[i];
+				}
+
+				return *result;
+			}
+
+			const Array& operator*(const Array& other) const {
+				Array* result = new Array();
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
+				for (int i = 0; i < size; ++i) {
+					result->body[i] = this->body[i] * other.body[i];
+				}
+
+				return *result;
+			}
+
+			const Array& operator/(const Array& other) const {
+				Array* result = new Array();
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
+				for (int i = 0; i < size; ++i) {
+					if (other[i] == 0) {
+						throw Exceptions::DivideByZero();
+					}
+
+					result->body[i] = this->body[i] / other.body[i];
+				}
+
+				return *result;
 			}
 
 			const Array& operator*(const T& c) const {
