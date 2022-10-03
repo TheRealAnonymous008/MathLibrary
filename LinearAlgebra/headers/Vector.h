@@ -25,12 +25,6 @@ namespace MathLib {
 
 			}
 
-			explicit Vector(const ArrayBase& base) {
-				for (int i = 0; i < base.size; ++i) {
-					this->body[i] = base[i];
-				}
-			}
-
 			const T Dot(const Vector& other) const {
 				T result = 0;
 				for (int i = 0; i < N; ++i) {

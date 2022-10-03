@@ -59,36 +59,71 @@ namespace MathLib {
 			const BBlock& B22 = B.Slice<PHalf, NHalf>(PHalf, NHalf);
 
 			// Helpers
-			const CBlock* u = new CBlock(MatrixMultiply(	(A21 - A11),	(B12 - B22)));
-			const CBlock* v = new CBlock(MatrixMultiply(	(A21 + A22),	(B12 - B11)));
+			auto& x = A21 + A22;
+
+			const auto& u0 = A21 - A11;
+			const auto& u1 = B12 - B22;
+			const CBlock* u = new CBlock(MatrixMultiply(	u0,		u1));
+			delete& u0; delete& u1;
+
+			const auto& v0 = B12 - B11;
+			const CBlock* v = new CBlock(MatrixMultiply(	x,	v0));
+			delete& v0;
+
 			const CBlock* z = new CBlock(MatrixMultiply(	A11, B11  ));
 
-			const ABlock& w0 = A21 + A22 - A11;
-			const ABlock& w1 = B11 + B22 - B12;
+			const auto& w0 = x - A11;
+			delete & x;
+
+			const auto& w10 = B11 + B22;
+			const auto& w1 = w10 - B12;
+			delete& w10;
+
 			const CBlock* w2 = new CBlock(MatrixMultiply(w0, w1));
+			delete& w0; 
+			delete& w1;
+
 			const CBlock& w = *z + *w2;
 			delete w2;
 
 			// C blocks
-			const auto* C11_m = new CBlock(MatrixMultiply(A12, B21));
-			const CBlock& C11 = *z + *C11_m;
+			const auto& C11_m = new CBlock(MatrixMultiply(A12, B21));
+			const auto& C11 = *z + *C11_m;
 			delete C11_m;
 			C->AddBlock(0, 0,			C11);
+			delete& C11;	delete z;
 
-			const CBlock& C22 = w + *u + *v;
+			const auto& x0 = w + *u;
+			const CBlock& C22 =x0 + *v;
 			C->AddBlock(MHalf, NHalf, C22);
+			delete& x0;  delete& C22;
 
-			const auto* C21_m = new CBlock(MatrixMultiply(A22, (B21 + B12 - B11 - B22)));
-			const CBlock& C21 = w + *u + *C21_m;
+			const auto& b0 = B21 + B12;
+			const auto& b1 = b0 - B11;
+			const auto& b2 = b1 - B22;
+			delete& b0;	delete& b1;
+
+			const auto* C21_m = new CBlock(MatrixMultiply(A22, b2));
+			const auto& C21_s = w + *u;
+			const CBlock& C21 = C21_s + *C21_m;
 			C->AddBlock(MHalf, 0, C21);
-			delete u;
-			delete C21_m;
+			delete u;	delete C21_m;
+			delete& C21;	delete& b2;		delete& C21_s;
 			
-			const auto* C12_m = new CBlock(MatrixMultiply((A11 + A12 - A21 - A22), B22));
-			const CBlock& C12 = w + *v +	*C12_m;
+			const auto& a0 = A11 + A12;
+			const auto& a1 = a0 - A21;
+			const auto& a2 = a1 - A22;
+			delete& a0;	delete& a1;
+
+			const auto* C12_m = new CBlock(MatrixMultiply(a2, B22));
+			const auto& C12_s = w + *v;
+			const CBlock& C12 = C12_s +	*C12_m;
 			C->AddBlock(0, NHalf,		C12);
-			delete v;
-			delete C12_m;
+			delete v;	delete C12_m;
+			delete& C12;	delete& a2;		delete& C12_s;
+
+			delete& A11; delete& A12; delete& A21; delete& A22;
+			delete& B11; delete& B12; delete& B21; delete& B22;
 
 			return *C;
 		}

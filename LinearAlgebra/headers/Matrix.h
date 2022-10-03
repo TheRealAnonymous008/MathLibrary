@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../fwd.h"
+#include <utility>
 
 namespace MathLib {
 	namespace LinearAlgebra {
@@ -17,13 +18,31 @@ namespace MathLib {
 			using Array::Reshape;
 
 			Matrix() {
-
+			
 			}
 
-			explicit Matrix(const ArrayBase& base) {
-				for (int i = 0; i < base.size; ++i) {
-					this->body[i] = base[i];
+			Matrix(const Matrix& other) {
+				for (unsigned i = 0; i < other.rows; ++i) {
+					for (unsigned j = 0; j < other.columns; ++j) {
+						this->At({ i, j }) = other.At({ i, j });
+					}
 				}
+			}
+
+			Matrix(const Matrix&& other) {
+				this->body = std::move(other.body);
+			}
+
+			Matrix& operator=(const Matrix& other) {
+				for (unsigned i = 0; i < size; ++i) {
+					this->body[i] = other.body[i];
+				}
+
+				return *this;
+			}
+
+			Matrix& operator=(const Matrix&& other) {
+				this->body = std::move(other.body);
 			}
 
 			const Matrix& operator+(const Matrix & other) const {

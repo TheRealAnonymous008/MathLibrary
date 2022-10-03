@@ -10,7 +10,7 @@ namespace MathLib {
 		class ArrayBase : public Stringable {
 		protected:
 			static const int size = N;
-			std::array<T, size> body = *(new std::array<T, size>());
+			std::array<T, size>& body = *(new std::array<T, size>());
 			ArrayShape* shape = new ArrayShape({ N });
 
 		public:
@@ -19,7 +19,8 @@ namespace MathLib {
 			}
 
 			~ArrayBase() {
-
+				delete shape;
+				delete &body;
 			}
 
 			static constexpr unsigned Size() {

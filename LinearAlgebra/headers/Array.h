@@ -158,16 +158,17 @@ namespace MathLib {
 				return *result;
 			}
 
-			void operator*=(const T& c) {
+			const Array& operator*=(const T& c) {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
 
 					body[i] *= c;
 				}
+				return *this;
 			}
 
-			void operator/=(const T& c) {
+			const Array& operator/=(const T& c) {
 				if (c == 0) {
 					throw Exceptions::DivideByZero();
 				}
@@ -177,6 +178,8 @@ namespace MathLib {
 
 					body[i] /= c;
 				}
+
+				return *this;
 			}
 
 			
