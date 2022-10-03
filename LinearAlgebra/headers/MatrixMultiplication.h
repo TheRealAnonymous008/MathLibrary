@@ -19,8 +19,13 @@ namespace MathLib {
 		const Matrix<T, M, N>& ClassicMatMul(const Matrix<T, M, P>& A, const Matrix<T, P, N>& B) {
 			Matrix<T, M, N>* C = new Matrix<T, M, N>();
 
+#pragma loop(hint_parallel(PARALLEL_THREADS))
 			for (unsigned i = 0; i < M; ++i) {
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (unsigned j = 0; j < N; ++j) {
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
 					for (unsigned k = 0; k < P; ++k) {
 						C->At({ i, j }) += A.At({ i, k }) * B.At({ k, j });
 					}

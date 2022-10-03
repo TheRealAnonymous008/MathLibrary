@@ -31,6 +31,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					result->body[i] = this->body[i] + other.body[i];
 				}
 
@@ -41,6 +42,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					result->body[i] = this->body[i] - other.body[i];
 				}
 
@@ -52,6 +54,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					(*result)[i] = this->body[i] * c;
 				}
 
@@ -71,6 +74,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					(*result)[i] = this->body[i] / c;
 				}
 
@@ -81,8 +85,10 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (unsigned int i = 0; i < Rows; ++i) {
+
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 					for (unsigned int j = 0; j < Columns; ++j) {
+
 						transpose.At({ j, i }) = this->At({ i, j });
 					}
 				}
@@ -93,9 +99,13 @@ namespace MathLib {
 			template<const unsigned SliceRows, const unsigned SliceCols>
 			const Matrix<T, SliceRows, SliceCols>& Slice(const unsigned rowOffset, const unsigned colOffset) const{
 				Matrix<T, SliceRows, SliceCols> *slice = new Matrix<T, SliceRows, SliceCols>();
-				
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (unsigned i = 0; i < SliceRows && i + rowOffset < Rows; ++i) {
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
 					for (unsigned j = 0; j < SliceCols && j + colOffset < Columns; ++j) {
+
 						slice->At({ i, j }) = this->At({ i + rowOffset, j + colOffset });
 					}
 				}
@@ -116,8 +126,10 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (unsigned i = 0; i < Rows; ++i) {
+
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 					for (unsigned j = 0; j < Columns; ++j) {
+
 						(*res)[i] += v[j] * this->At({ i, j });
 					}
 				}

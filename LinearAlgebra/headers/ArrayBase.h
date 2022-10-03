@@ -72,6 +72,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					if (other.body[i] != this->body[i])
 						return false;
 				}
@@ -82,6 +83,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					if (other.body[i] != this->body[i])
 						return true;
 				}
@@ -92,6 +94,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					body[i] += other.body[i];
 				}
 			}
@@ -100,6 +103,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					body[i] -= other.body[i];
 				}
 			}
@@ -116,6 +120,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					body[i] /= other.body[i];
 				}
 			}
@@ -125,6 +130,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					(*result)[i] = lambda(body[i]);
 				}
 
@@ -135,6 +141,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					body[i] = lambda(body[i]);
 				}
 			}

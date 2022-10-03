@@ -80,6 +80,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					result->body[i] = this->body[i] + other.body[i];
 				}
 
@@ -90,6 +91,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					result->body[i] = this->body[i] - other.body[i];
 				}
 
@@ -101,6 +103,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					result->body[i] = this->body[i] * other.body[i];
 				}
 
@@ -112,6 +115,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					if (other[i] == 0) {
 						throw Exceptions::DivideByZero();
 					}
@@ -127,6 +131,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					(*result)[i] = this->body[i] * c;
 				}
 
@@ -146,6 +151,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					(*result)[i] = this->body[i] / c;
 				}
 
@@ -156,6 +162,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					body[i] *= c;
 				}
 			}
@@ -167,6 +174,7 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
+
 					body[i] /= c;
 				}
 			}
