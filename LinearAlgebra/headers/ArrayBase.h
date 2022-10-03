@@ -147,7 +147,7 @@ namespace MathLib {
 				}
 			}
 
-			std::string ToString() override {
+			std::string ToString() const override {
 				std::string result = "";
 
 				for (unsigned i = 0; i < size - 1; ++i) {

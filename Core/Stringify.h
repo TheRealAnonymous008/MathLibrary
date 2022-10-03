@@ -8,7 +8,7 @@ namespace MathLib {
 
 	class Stringable {
 	public:
-		virtual std::string ToString() = 0;
+		virtual std::string ToString() const = 0;
 	};
 
 	template<

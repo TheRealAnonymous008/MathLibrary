@@ -9,8 +9,8 @@ namespace MathLib {
 		template<typename T, const unsigned Rows, const unsigned Columns>
 		class Matrix : public Array<T, Rows, Columns>{
 		public:
-			const int rows = Rows;
-			const int columns = Columns;
+			const unsigned rows = Rows;
+			const unsigned columns = Columns;
 
 			using Array::Array;
 
@@ -29,7 +29,7 @@ namespace MathLib {
 				}
 			}
 
-			Matrix(const Matrix&& other) {
+			Matrix(const Matrix&& other) noexcept{
 				this->body = std::move(other.body);
 			}
 
