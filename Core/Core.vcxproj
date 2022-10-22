@@ -22,7 +22,6 @@
     <ClInclude Include="Core.h" />
     <ClInclude Include="Directives.h" />
     <ClInclude Include="Exceptions.h" />
-    <ClInclude Include="Expression.h" />
     <ClInclude Include="Stringify.h" />
     <ClInclude Include="Template.h" />
   </ItemGroup>
