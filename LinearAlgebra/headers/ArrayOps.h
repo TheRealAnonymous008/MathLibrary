@@ -25,7 +25,7 @@ namespace MathLib {
 				}
 
 				const Array<T, Ns...>& Get() {
-					return std::move(*result)
+					return std::move(*result);
 				}
 			};
 

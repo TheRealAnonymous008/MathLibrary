@@ -12,7 +12,7 @@ namespace MathLib {
 		template<typename T, const unsigned ...Ns>
 		class Array : public ArrayBase<T, detail::SizeClass<Ns...>::Size()> {
 		protected:
-			ArrayShape* shape = new ArrayShape({Ns...});
+			ArrayShape shape = ArrayShape({Ns...});
 			T sentinel = T();
 
 		public:
@@ -45,7 +45,7 @@ namespace MathLib {
 			}
 
 			const T& At(std::initializer_list<const unsigned> list) const {
-				const int i = shape->Index(list);
+				const int i = shape.Index(list);
 				if (i == OUT_OF_SHAPE) {
 					return sentinel;
 				}
@@ -53,7 +53,7 @@ namespace MathLib {
 			}
 
 			T& At(std::initializer_list<const unsigned> list) {
-				const int i = shape->Index(list);
+				const int i = shape.Index(list);
 				if (i == OUT_OF_SHAPE) {
 					return sentinel;
 				}
@@ -67,16 +67,15 @@ namespace MathLib {
 				if (detail::SizeClass<Xs...>::Size() != size) {
 					throw MathLib::Exceptions::InvalidTensorReshape();
 				}
-				delete shape;
-				shape = new ArrayShape({ Xs... });
+				shape = ArrayShape({ Xs... });
 			}
 
 			void Slice(std::initializer_list<const unsigned> lower, std::initializer_list<const unsigned> upper) {
-				shape->Slice(lower, upper);
+				shape.Slice(lower, upper);
 			}
 
 			const unsigned Rank() const {
-				return shape->Rank();
+				return shape.Rank();
 			}
 
 			const Array& operator+(const Array& other) const {
