@@ -73,7 +73,6 @@ namespace MathLib {
 
 #pragma loop(hint_parallel(PARALLEL_THREADS))
 				for (int i = 0; i < size; ++i) {
-
 					if (other.body[i] != this->body[i])
 						return false;
 				}

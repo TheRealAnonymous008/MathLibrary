@@ -314,7 +314,7 @@ TEST(MatMatMultiplication, Strassen1) {
 }
 
 TEST(MatMatMultiplication, Strassen2) {
-	const unsigned N = 1024;
+	const unsigned N = 200;
 	auto *A = new Matrix<int, N, N>();
 	auto *B = new Matrix<int, N, N>();
 

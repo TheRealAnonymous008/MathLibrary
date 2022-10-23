@@ -152,24 +152,24 @@ TEST(ArrayOps, DivideByZero) {
 	ASSERT_THROW(A / B, MathLib::Exceptions::DivideByZero);
 }
 
-TEST(ArrayOps, BigArithmetic) {
-	const unsigned int N = 1000 * 1000 ;
-	Array<int, N>* A = new Array<int, N>();
-	Array<int, N>* B = new Array<int, N>();
-	Array<int, N>* C = new Array<int, N>();
-
-	for (int i = 0; i < N; ++i) {
-		(*A)[i] = 2 * i + 1;
-		(*B)[i] = i - 1;
-		(*C)[i] = (*A)[i] + (*B)[i];
-	}
-
-	ASSERT_TRUE(*C == *A + *B);
-
-	delete A;
-	delete B;
-	delete C;
-}
+//TEST(ArrayOps, BigArithmetic) {
+//	const unsigned int N = 1000 * 1000 ;
+//	Array<int, N>* A = new Array<int, N>();
+//	Array<int, N>* B = new Array<int, N>();
+//	Array<int, N>* C = new Array<int, N>();
+//
+//	for (int i = 0; i < N; ++i) {
+//		(*A)[i] = 2 * i + 1;
+//		(*B)[i] = i - 1;
+//		(*C)[i] = (*A)[i] + (*B)[i];
+//	}
+//
+//	ASSERT_TRUE(*C == *A + *B);
+//
+//	delete A;
+//	delete B;
+//	delete C;
+//}
 
 TEST(ArrayOps, MapFunction) {
 	const unsigned int N = 1000;

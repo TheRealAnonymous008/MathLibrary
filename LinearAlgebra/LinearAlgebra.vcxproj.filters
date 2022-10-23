@@ -45,6 +45,9 @@
     <ClInclude Include="headers\MatrixMultiplication.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="headers\ArrayOps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">

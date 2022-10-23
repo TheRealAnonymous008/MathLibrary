@@ -4,6 +4,7 @@
 #include <string>
 #include "../fwd.h"
 #include "ArrayBase.h"
+#include "ArrayOps.h"
 
 namespace MathLib {
 	namespace LinearAlgebra {
@@ -59,11 +60,14 @@ namespace MathLib {
 				return body[i];
 			}
 
+
+
 			template <const unsigned ... Xs>
 			void Reshape() {
 				if (detail::SizeClass<Xs...>::Size() != size) {
 					throw MathLib::Exceptions::InvalidTensorReshape();
 				}
+				delete shape;
 				shape = new ArrayShape({ Xs... });
 			}
 
@@ -76,16 +80,9 @@ namespace MathLib {
 			}
 
 			const Array& operator+(const Array& other) const {
-				Array* result = new Array();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < size; ++i) {
-
-					result->body[i] = this->body[i] + other.body[i];
-				}
-
-				return *result;
+				return ArrayAddition<T, Ns...>(*this, other).Get();
 			}
+
 			const Array& operator-(const Array& other) const {
 				Array* result = new Array();
 
