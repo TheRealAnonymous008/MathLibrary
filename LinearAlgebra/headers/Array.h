@@ -83,55 +83,19 @@ namespace MathLib {
 			}
 
 			const Array& operator-(const Array& other) const {
-				Array* result = new Array();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < size; ++i) {
-
-					result->body[i] = this->body[i] - other.body[i];
-				}
-
-				return *result;
+				return ArraySubtraction<T, Ns...>(*this, other).Get();
 			}
 
 			const Array& operator*(const Array& other) const {
-				Array* result = new Array();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < size; ++i) {
-
-					result->body[i] = this->body[i] * other.body[i];
-				}
-
-				return *result;
+				return ArrayMultiplication<T, Ns...>(*this, other).Get();
 			}
 
 			const Array& operator/(const Array& other) const {
-				Array* result = new Array();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < size; ++i) {
-
-					if (other[i] == 0) {
-						throw Exceptions::DivideByZero();
-					}
-
-					result->body[i] = this->body[i] / other.body[i];
-				}
-
-				return *result;
+				return ArrayDivision<T, Ns...>(*this, other).Get();
 			}
 
 			const Array& operator*(const T& c) const {
-				Array* result = new Array();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < size; ++i) {
-
-					(*result)[i] = this->body[i] * c;
-				}
-
-				return *result;
+				return ArrayScalarProduct<T, Ns...>(*this, c).Get();
 			}
 
 			friend const Array& operator*(T c, Array v) {
@@ -139,19 +103,7 @@ namespace MathLib {
 			}
 
 			const Array& operator/(const T& c) const {
-				if (c == 0) {
-					throw Exceptions::DivideByZero();
-				}
-
-				Array* result = new Array();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-				for (int i = 0; i < size; ++i) {
-
-					(*result)[i] = this->body[i] / c;
-				}
-
-				return *result;
+				return ArrayScalarQuotient<T, Ns...>(*this, c).Get();
 			}
 
 			const Array& operator*=(const T& c) {

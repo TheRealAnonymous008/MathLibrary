@@ -19,7 +19,7 @@ namespace MathLib {
 			}
 
 			~ArrayBase() {
-				delete &body;
+
 			}
 
 			static constexpr unsigned Size() {
