@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "gtest/gtest.h"
-
-#include "../Core/Core.h"
+#include "../Common/Core.h"
 #include "../LinearAlgebra/LinearAlgebra.h"
+
+#include "gtest/gtest.h"

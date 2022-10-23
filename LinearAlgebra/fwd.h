@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Core/Core.h"
+#include "../Common/Core.h"
 
 namespace MathLib {
 	namespace LinearAlgebra {

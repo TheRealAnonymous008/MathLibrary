@@ -12,25 +12,20 @@ namespace MathLib {
 				const Array<T, Ns...>& lhs;
 				const Array<T, Ns...>& rhs;
 
-				Array<T, Ns...>* Evaluate() {
-					Array<T, Ns...>* result = new Array<T, Ns...>();
-
-#pragma loop(hint_parallel(PARALLEL_THREADS))
-					for (unsigned i = 0; i < result->Size(); ++i) {
-
-						result->At({ i }) = lhs.At({ i }) + rhs.At({ i });
-					}
-
-					return result;
-				}
+				Array<T, Ns...>* result;
 
 			public:
 				ArrayAddition(const Array<T, Ns...>& lhs, const Array<T, Ns...>& rhs) : lhs(lhs), rhs(rhs){
-					Evaluate();
+					result = new Array<T, Ns...>();
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
+					for (unsigned i = 0; i < result->Size(); ++i) {
+						(*result)[i] = lhs[i] + rhs[i];
+					}
 				}
 
-				Array<T, Ns...> Get() {
-					return *Evaluate();
+				const Array<T, Ns...>& Get() {
+					return std::move(*result)
 				}
 			};
 

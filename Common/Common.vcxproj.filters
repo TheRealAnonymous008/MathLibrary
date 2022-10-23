@@ -15,22 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Exceptions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Directives.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Template.h">
+    <ClInclude Include="Exceptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lazy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Stringify.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Lazy.h">
+    <ClInclude Include="Template.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

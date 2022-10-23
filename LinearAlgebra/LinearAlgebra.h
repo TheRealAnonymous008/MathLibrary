@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Core/Directives.h"
+#include "../Common/Directives.h"
 
 #include "headers/ArrayShape.h"
 #include "headers/Array.h"
