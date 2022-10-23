@@ -12,7 +12,6 @@ namespace MathLib {
 
 			using Array<T, N>::operator=;
 			using Array<T, N>::operator+=;
-			using Array<T, N>::operator-;
 			using Array<T, N>::operator-=;
 
 			using Array::operator==;
@@ -36,7 +35,18 @@ namespace MathLib {
 				return *result;
 			}
 
-			// TODO: Add all vector arithmetic methods here
+			const Vector& operator-(const Vector& other) const {
+				Vector* result = new Vector();
+
+#pragma loop(hint_parallel(PARALLEL_THREADS))
+				for (int i = 0; i < size; ++i) {
+
+					result->body[i] = this->body[i] - other.body[i];
+				}
+
+				return *result;
+			}
+
 
 			const T Dot(const Vector& other) const {
 				T result = 0;
