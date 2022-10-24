@@ -312,7 +312,7 @@ TEST(MatVec, MatVecEager) {
 		-15, -17, 8, 12
 	};
 
-	Vector<int, 4> y = (A * x).Evaluate<4>();
+	Vector<int, 4> y = (A * x).Evaluate();
 
 	ASSERT_EQ(y, z);
 

@@ -12,11 +12,11 @@ namespace MathLib {
 				return  static_cast<E const&>(*this).At(r, c);
 			}
 
-			unsigned Rows() const {
+			constexpr unsigned Rows() const {
 				return  static_cast<E const&>(*this).Rows();
 			}
 
-			unsigned Columns() const {
+			constexpr unsigned Columns() const {
 				return  static_cast<E const&>(*this).Columns();
 			}
 

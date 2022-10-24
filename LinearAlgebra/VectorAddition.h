@@ -25,7 +25,7 @@ namespace MathLib {
 					return lhs[i] + rhs[i];
 				}
 
-				unsigned Size() const {
+				constexpr unsigned Size() const {
 					return  rhs.Size();
 				}
 

@@ -25,11 +25,11 @@ namespace MathLib {
 					return  mat.At(r, c) / k;
 				}
 
-				unsigned Rows() const {
+				constexpr unsigned Rows() const {
 					return  mat.Rows();
 				}
 
-				unsigned Columns() const {
+				constexpr unsigned Columns() const {
 					return  mat.Columns();
 				}
 

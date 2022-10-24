@@ -24,11 +24,11 @@ namespace MathLib {
 					return  lhs.At(r, c) + rhs.At(r, c);
 				}
 
-				unsigned Rows() const {
+				constexpr unsigned Rows() const {
 					return  rhs.Rows();
 				}
 
-				unsigned Columns() const {
+				constexpr unsigned Columns() const {
 					return  rhs.Columns();
 				}
 

@@ -23,7 +23,7 @@ namespace MathLib {
 					return vec[i] * c;
 				}
 
-				unsigned Size() const {
+				constexpr unsigned Size() const {
 					return  vec.Size();
 				}
 

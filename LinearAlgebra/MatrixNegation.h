@@ -21,11 +21,11 @@ namespace MathLib {
 					return  -expr.At(r, c);
 				}
 
-				unsigned Rows() const {
+				constexpr unsigned Rows() const {
 					return  expr.Rows();
 				}
 
-				unsigned Columns() const {
+				constexpr unsigned Columns() const {
 					return  expr.Columns();
 				}
 

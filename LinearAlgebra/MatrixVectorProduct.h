@@ -30,15 +30,14 @@ namespace MathLib {
 					return sum;
 				}
 
-				unsigned Size() const {
+				constexpr unsigned Size() const {
 					return lhs.Rows();
 				}
 
-				template<const unsigned M>
-				Vector<T, M> Evaluate() {
+				auto Evaluate() {
 					delete result;
 
-					Vector<T, M> *tmp = new Vector<T, M>();
+					Vector<T, Size()>* tmp = new Vector<T, Size()>();
 
 					for (unsigned i = 0; i < Size(); ++i) {
 						for (unsigned k = 0; k < rhs.Size(); ++k) {
