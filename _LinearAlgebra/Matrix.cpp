@@ -160,3 +160,77 @@ TEST(MatrixOps, BigOps) {
 		}
 	}
 }
+
+TEST(MatrixOps, ScalarProduct) {
+	Matrix<int, 4, 4> M = {
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+		{9, 10, 11, 12},
+		{13, 14, 15, 16}
+	};
+
+	Matrix<int, 4, 4> P= 4 * M;
+
+	for (unsigned i = 0; i < 4; ++i) {
+		for (unsigned j = 0; j < 4; ++j) {
+			ASSERT_EQ(P.At(i, j), 4 * M.At(i, j));
+		}
+	}
+}
+
+
+TEST(MatrixOps, ScalarQuotient) {
+	Matrix<float, 4, 4> M = {
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+		{9, 10, 11, 12},
+		{13, 14, 15, 16}
+	};
+
+	Matrix<float, 4, 4> P =  M / 3.0f;
+
+	for (unsigned i = 0; i < 4; ++i) {
+		for (unsigned j = 0; j < 4; ++j) {
+			ASSERT_FLOAT_EQ(P.At(i, j), M.At(i, j) / 3.0f);
+		}
+	}
+}
+
+TEST(MatrixOps, MultiOps) {
+	Matrix<int, 4, 4> M = {
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+		{9, 10, 11, 12},
+		{13, 14, 15, 16}
+	};
+
+	Matrix<int, 4, 4> N = {
+		{-1, 2, -3, 0},
+		{4, 8, -2, 4},
+		{-5, 1, 4, 5},
+		{0, 6, -5, 5},
+	};
+
+	Matrix<int, 4, 4> P = {
+		{-3, 4, 6, 0},
+		{-2, 4, -2, -4},
+		{-1, 13, 7, 1},
+		{7, 12, 0, 0},
+	};
+
+	ASSERT_EQ(10 * (M + P), 10 * M + 10 * P);
+	ASSERT_EQ((3 * M + 4 * N) + 5 * P, 3 * M + (4 * N + 5 * P));
+
+	Matrix<int, 4, 4> R = -M + 2 * N + P;
+
+	for (unsigned i = 0; i < 4; ++i) {
+		for (unsigned j = 0; j < 4; ++j) {
+			ASSERT_EQ(R.At(i, j), -M.At(i, j) + 2 * N.At(i, j) + P.At(i, j));
+		}
+	}
+}
+
+TEST(MatrixOps, SelfAssignment) {
+
+
+}

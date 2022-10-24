@@ -10,7 +10,7 @@ namespace MathLib {
 		template<typename T, const unsigned _Rows, const unsigned _Columns>
 		class Matrix : public MatrixExpression<T, Matrix<T, _Rows, _Columns>>{
 		private:
-			std::vector<std::vector<T>> body = std::vector<std::vector<T>>(_Rows, std::vector<int>(_Columns));
+			std::vector<std::vector<T>> body = std::vector<std::vector<T>>(_Rows, std::vector<T>(_Columns));
 
 		public:
 			Matrix() {

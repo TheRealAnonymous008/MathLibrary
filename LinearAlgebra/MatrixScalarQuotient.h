@@ -36,12 +36,7 @@ namespace MathLib {
 		using namespace detail;
 
 		template<typename T, typename M>
-		MatrixScalarQuotient<T, M> operator*(const MatrixExpression<T, M>& vec, const T& c) {
-			return MatrixScalarQuotient<T, M>(*static_cast<const M*>(&vec), *static_cast<const T*>(&c));
-		}
-
-		template<typename T, typename M>
-		MatrixScalarQuotient<T, M> operator*(const T& c, const MatrixExpression<T, M>& vec) {
+		MatrixScalarQuotient<T, M> operator/(const MatrixExpression<T, M>& vec, const T& c) {
 			return MatrixScalarQuotient<T, M>(*static_cast<const M*>(&vec), *static_cast<const T*>(&c));
 		}
 	}

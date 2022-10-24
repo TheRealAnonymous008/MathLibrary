@@ -34,13 +34,13 @@ namespace MathLib {
 		using namespace detail;
 
 		template<typename T, typename M>
-		MatrixScalarProduct<T, M> operator*(const MatrixExpression<T, M>& vec, const T& c) {
-			return MatrixScalarProduct<T, M>(*static_cast<const M*>(&vec), *static_cast<const T*>(&c));
+		MatrixScalarProduct<T, M> operator*(const MatrixExpression<T, M>& mat, const T& c) {
+			return MatrixScalarProduct<T, M>(*static_cast<const M*>(&mat), *static_cast<const T*>(&c));
 		}
 
 		template<typename T, typename M>
-		MatrixScalarProduct<T, M> operator*(const T& c, const MatrixExpression<T, M>& vec) {
-			return MatrixScalarProduct<T, M>(*static_cast<const M*>(&vec), *static_cast<const T*>(&c));
+		MatrixScalarProduct<T, M> operator*(const T& c, const MatrixExpression<T, M>& mat) {
+			return MatrixScalarProduct<T, M>(*static_cast<const M*>(&mat), *static_cast<const T*>(&c));
 		}
 	}
 }
