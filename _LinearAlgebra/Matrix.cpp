@@ -295,3 +295,25 @@ TEST(MatEager, MatrixEager) {
 		}
 	}
 }
+
+TEST(MatVec, MatVecEager) {
+	Matrix<int, 4, 3> A = {
+		{2, -3, 1},
+		{1, -2, -3},
+		{0, 0, 4},
+		{1, 3, -1}
+	};
+
+	Vector<int, 3> x = {
+		-1, 5, 2
+	};
+
+	Vector<int, 4> z = {
+		-15, -17, 8, 12
+	};
+
+	Vector<int, 4> y = (A * x).Evaluate<4>();
+
+	ASSERT_EQ(y, z);
+
+}
