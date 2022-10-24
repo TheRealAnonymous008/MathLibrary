@@ -136,6 +136,8 @@
     <ClInclude Include="VectorAddition.h" />
     <ClInclude Include="VectorExpression.h" />
     <ClInclude Include="VectorNegation.h" />
+    <ClInclude Include="VectorScalarProduct.h" />
+    <ClInclude Include="VectorScalarQuotient.h" />
     <ClInclude Include="VectorSubtraction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

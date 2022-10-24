@@ -1,0 +1,42 @@
+#pragma once
+#include "fwd.h"
+#include "Exceptions.h"
+
+namespace MathLib {
+	namespace LinearAlgebra {
+
+		namespace detail {
+			template<typename T, typename V>
+			class VectorScalarProduct : public VectorExpression<T, VectorScalarProduct<T, V>> {
+			private:
+				const V& vec;
+				const T& c;
+
+			public:
+				VectorScalarProduct(const V& vec, const T& c) : vec(vec), c(c) {
+
+				}
+
+				T operator[](size_t i) const {
+					return vec[i] * c;
+				}
+
+				size_t Size() const {
+					return  vec.Size();
+				}
+			};
+		}
+
+		using namespace detail;
+
+		template<typename T, typename V>
+		VectorScalarProduct<T, V> operator*(const VectorExpression<T, V>& vec, const T& c) {
+			return VectorScalarProduct<T, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
+		}
+
+		template<typename T, typename V>
+		VectorScalarProduct<T, V> operator*(const T& c, const VectorExpression<T, V>& vec) {
+			return VectorScalarProduct<T, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
+		}
+	}
+}

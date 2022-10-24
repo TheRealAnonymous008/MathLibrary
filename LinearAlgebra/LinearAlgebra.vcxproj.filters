@@ -51,5 +51,11 @@
     <ClInclude Include="VecOps.h">
       <Filter>Header Files\Core Headers</Filter>
     </ClInclude>
+    <ClInclude Include="VectorScalarProduct.h">
+      <Filter>Header Files\VectorOperations</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorScalarQuotient.h">
+      <Filter>Header Files\VectorOperations</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

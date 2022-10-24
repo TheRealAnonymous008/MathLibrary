@@ -19,5 +19,12 @@ namespace MathLib {
 				return "Tried to perform a binary operation on tensors of different sizes.";
 			}
 		};
+
+		class DivisionByZero : public std::exception {
+		public:
+			std::string what() {
+				return "Tried to divide by zero.";
+			}
+		};
 	}
 }

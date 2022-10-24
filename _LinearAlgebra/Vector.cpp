@@ -94,3 +94,19 @@ TEST(VectorOperations, BigOps) {
 		ASSERT_TRUE(x[i] == (i + 1) * (i + 1));
 	}
 }
+
+TEST(VectorOperations, ScalarProduct) {
+	Vector<int, 10> v1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+	ASSERT_TRUE(2 * v1 == v1 + v1);
+	ASSERT_TRUE(v1 * 2 == 2 * v1);
+}
+
+
+TEST(VectorOperations, ScalarQuotient) {
+	Vector<int, 10> v1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	Vector<int, 10> v2 = { 3, 6, 9, 12, 15, 18, 21, 24, 27, 30};
+
+	ASSERT_TRUE(( 2 * v1 ) / 2 == v1);
+	ASSERT_TRUE(v2 / 3 == v1);
+}
