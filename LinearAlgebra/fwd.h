@@ -11,5 +11,8 @@ namespace MathLib {
 
 		template<typename T, typename E>
 		class VectorExpression;
+
+		template<typename T, typename E>
+		class MatrixExpression;
 	}
 }

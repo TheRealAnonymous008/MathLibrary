@@ -10,7 +10,7 @@ namespace MathLib {
 		private:
 
 		public:
-			T operator[](size_t i) const {
+			T operator[](const unsigned& i) const {
 				return  static_cast<E const&>(*this)[i];
 			}
 
@@ -24,7 +24,7 @@ namespace MathLib {
 			if (lhs.Size() != rhs.Size())
 				return false;
 
-			for (size_t i = 0; i < lhs.Size(); ++i) {
+			for (unsigned i = 0; i < lhs.Size(); ++i) {
 				if (lhs[i] != rhs[i])
 					return false;
 			}
@@ -36,7 +36,7 @@ namespace MathLib {
 			if (lhs.Size() != rhs.Size())
 				return false;
 
-			for (size_t i = 0; i < lhs.Size(); ++i) {
+			for (unsigned i = 0; i < lhs.Size(); ++i) {
 				if (lhs[i] != rhs[i])
 					return true;
 			}

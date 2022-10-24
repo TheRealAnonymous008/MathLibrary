@@ -23,7 +23,7 @@ namespace MathLib {
 			}
 
 			Vector(const std::initializer_list<T>& list) {
-				size_t i = 0;
+				unsigned i = 0;
 				for (T obj : list) {
 					body[i] = obj;
 					++i;
@@ -31,7 +31,7 @@ namespace MathLib {
 			}
 
 			void operator=(const std::initializer_list<T>& list) {
-				size_t i = 0;
+				unsigned i = 0;
 				for (T obj : list) {
 					body[i] = obj;
 					++i;
@@ -40,14 +40,14 @@ namespace MathLib {
 
 			template<typename E>
 			Vector(const VectorExpression<T, E>& expr) {
-				for (size_t i = 0; i < Size(); ++i) {
+				for (unsigned i = 0; i < Size(); ++i) {
 					body[i] = expr[i];
 				}
 			}
 
 			template<typename E>
 			void operator=(const VectorExpression<T, E>& expr) {
-				for (size_t i = 0; i < Size(); ++i) {
+				for (unsigned i = 0; i < Size(); ++i) {
 					body[i] = expr[i];
 				}
 			}
@@ -71,7 +71,7 @@ namespace MathLib {
 
 			template<typename E>
 			Vector& operator+=(const VectorExpression<T, E>& expr) {
-				for (size_t i = 0; i < Size(); ++i) {
+				for (unsigned i = 0; i < Size(); ++i) {
 					body[i] += expr[i];
 				}
 				return *this;
@@ -79,14 +79,14 @@ namespace MathLib {
 
 			template<typename E>
 			Vector& operator-=(const VectorExpression<T, E>& expr) {
-				for (size_t i = 0; i < Size(); ++i) {
+				for (unsigned i = 0; i < Size(); ++i) {
 					body[i] -= expr[i];
 				}
 				return *this;
 			}
 
 			Vector& operator*=(const T& c) {
-				for (size_t i = 0; i < Size(); ++i) {
+				for (unsigned i = 0; i < Size(); ++i) {
 					body[i] *= c;
 				}
 				return *this;
@@ -96,7 +96,7 @@ namespace MathLib {
 				if (c == 0)
 					throw DivisionByZero();
 
-				for (size_t i = 0; i < Size(); ++i) {
+				for (unsigned i = 0; i < Size(); ++i) {
 					body[i] /= c;
 				}
 				return *this;

@@ -19,6 +19,9 @@
     <Filter Include="Header Files\Core Headers">
       <UniqueIdentifier>{fd2c51f3-a34d-440f-a5c9-f7d6c1d29515}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\MatrixOperations">
+      <UniqueIdentifier>{284f37e0-3167-4c20-9963-8efa7dee5896}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Matrix.h">
@@ -62,6 +65,15 @@
     </ClInclude>
     <ClInclude Include="EuclideanNorm.h">
       <Filter>Header Files\VectorOperations</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixAddition.h">
+      <Filter>Header Files\MatrixOperations</Filter>
+    </ClInclude>
+    <ClInclude Include="MatOps.h">
+      <Filter>Header Files\Core Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixExpression.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

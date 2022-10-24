@@ -6,13 +6,20 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned Rows, const unsigned Columns>
+		template<typename T, const unsigned _Rows, const unsigned _Columns>
 		class Matrix {
 		private:
-			T body[Rows][Columns];
+			std::vector<std::vector<T>> body = std::vector<std::vector<T>>(_Rows, std::vector<int>(_Columns));
 
 		public:
-			Matrix() { }
+			Matrix() {
+				
+			}
+
+			~Matrix() {
+
+			}
+
 			Matrix(const std::initializer_list<std::initializer_list<T>>& list) {
 				int i = 0;
 				for (auto x : list) {
@@ -26,15 +33,28 @@ namespace MathLib {
 			}
 
 			constexpr unsigned Size() {
-				return Rows * Columns;
+				return _Rows * _Columns;
 			}
 
 			constexpr unsigned Rows() { 
-				return Rows; 
+				return _Rows;
 			}
 
 			constexpr unsigned Columns() {
-				return Columns;
+				return _Columns;
+			}
+
+			T& At(const unsigned& r, const unsigned& c) {
+				if (r >= Rows() || r < 0 || c >= Columns() || c < 0)
+					throw InvalidAccess();
+				return body[r][c];
+			}
+
+			T operator[](size_t i) const {
+				if (r >= Rows() || r < 0 || c >= Columns() || c < 0)
+					throw InvalidAccess();
+
+				return body[i];
 			}
 		};
 
