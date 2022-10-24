@@ -17,6 +17,11 @@ namespace MathLib {
 			unsigned Size() const {
 				return  static_cast<E const&>(*this).Size();
 			}
+
+			template<typename Result>
+			Result Evaluate() {
+				return static_cast<E const&>(*this).Evaluate();
+			}
 		};
 
 		template<typename T, typename LHS, typename RHS>

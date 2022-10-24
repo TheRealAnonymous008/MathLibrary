@@ -12,6 +12,8 @@ namespace MathLib {
 				const LHS& lhs;
 				const RHS& rhs;
 
+				RHS* result = nullptr;
+
 			public:
 				VectorSubtraction(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					if (lhs.Size() != rhs.Size()) {
@@ -25,6 +27,17 @@ namespace MathLib {
 
 				unsigned Size() const {
 					return  rhs.Size();
+				}
+
+				RHS Evaluate() {
+					delete result;
+					result = new RHS();
+
+					for (unsigned i = 0; i < Size(); ++i) {
+						(*result)[i] = lhs[i] - rhs[i];
+					}
+
+					return *result;
 				}
 			};
 		}

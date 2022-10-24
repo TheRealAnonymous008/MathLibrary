@@ -6,31 +6,43 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, typename LHS>
-			class VectorNegation : public VectorExpression<T, VectorNegation<T, LHS>> {
+			template<typename T, typename V>
+			class VectorNegation : public VectorExpression<T, VectorNegation<T, V>> {
 			private:
-				const LHS& lhs;
+				const V& vec;
+				V* result = nullptr;
 
 			public:
-				VectorNegation(const LHS& lhs) : lhs(lhs) {
+				VectorNegation(const V& vec) : vec(vec) {
 
 				}
 
 				T operator[](const unsigned& i) const {
-					return -lhs[i];
+					return -vec[i];
 				}
 
 				unsigned Size() const {
-					return  lhs.Size();
+					return  vec.Size();
+				}
+
+				V Evaluate() {
+					delete result;
+					result = new V();
+
+					for (unsigned i = 0; i < Size(); ++i) {
+						(*result)[i] = -vec[i];
+					}
+
+					return *result;
 				}
 			};
 		}
 
 		
 
-		template<typename T, typename LHS>
-		detail::VectorNegation<T, LHS> operator-(const VectorExpression<T, LHS>& lhs) {
-			return detail::VectorNegation<T, LHS>(*static_cast<const LHS*>(&lhs));
+		template<typename T, typename V>
+		detail::VectorNegation<T, V> operator-(const VectorExpression<T, V>& vec) {
+			return detail::VectorNegation<T, V>(*static_cast<const V*>(&vec));
 		}
 
 	}

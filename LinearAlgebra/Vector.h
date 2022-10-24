@@ -108,6 +108,10 @@ namespace MathLib {
 				}
 				return *this;
 			}
+
+			const Vector& Evaluate() {
+				return *this;
+			}
 		};
 	}
 }

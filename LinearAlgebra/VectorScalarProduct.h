@@ -12,6 +12,8 @@ namespace MathLib {
 				const V& vec;
 				const T& c;
 
+				V* result = nullptr;
+
 			public:
 				VectorScalarProduct(const V& vec, const T& c) : vec(vec), c(c) {
 
@@ -23,6 +25,17 @@ namespace MathLib {
 
 				unsigned Size() const {
 					return  vec.Size();
+				}
+
+				V Evaluate() {
+					delete result;
+					result = new V();
+
+					for (unsigned i = 0; i < Size(); ++i) {
+						(*result)[i] = vec[i] * c;
+					}
+
+					return *result;
 				}
 			};
 		}
