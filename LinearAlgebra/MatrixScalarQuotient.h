@@ -12,6 +12,8 @@ namespace MathLib {
 				const M& mat;
 				const T& k;
 
+				M* result;
+
 			public:
 				MatrixScalarQuotient(const M& mat, const T& k) : mat(mat), k(k) {
 					if (k == 0) {
@@ -29,6 +31,19 @@ namespace MathLib {
 
 				unsigned Columns() const {
 					return  mat.Columns();
+				}
+
+				M Evaluate() {
+					delete result;
+					result = new M();
+
+					for (unsigned i = 0; i < Rows(); ++i) {
+						for (unsigned j = 0; j < Columns(); ++j) {
+							result->At(i, j) = mat.At(i, j) / c;
+						}
+					}
+
+					return *result;
 				}
 			};
 		}

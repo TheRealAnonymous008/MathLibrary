@@ -33,7 +33,6 @@ namespace MathLib {
 				}
 
 				RHS Evaluate() {
-					delete result;
 					result = new RHS();
 
 					for (unsigned i = 0; i < Rows(); ++i) {

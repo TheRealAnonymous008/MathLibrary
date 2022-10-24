@@ -10,6 +10,7 @@ namespace MathLib {
 			class MatrixNegation : public MatrixExpression<T, MatrixNegation<T, E>> {
 			private:
 				const E& expr;
+				E* result;
 
 			public:
 				MatrixNegation(const E& expr) : expr(expr) {
@@ -26,6 +27,19 @@ namespace MathLib {
 
 				unsigned Columns() const {
 					return  expr.Columns();
+				}
+
+				E Evaluate() {
+					delete result;
+					result = new E();
+
+					for (unsigned i = 0; i < Rows(); ++i) {
+						for (unsigned j = 0; j < Columns(); ++j) {
+							result->At(i, j) = lhs.At(i, j) + rhs.At(i, j);
+						}
+					}
+
+					return *result;
 				}
 			};
 		}
