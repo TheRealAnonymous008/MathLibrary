@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{6d839920-9084-4865-b568-460439b6dc33}</ProjectGuid>
-    <RootNamespace>LinearAlgebra</RootNamespace>
+    <ProjectGuid>{a6b11dc3-cd2a-4023-8d87-3fb3fe4f23ec}</ProjectGuid>
+    <RootNamespace>Common</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -128,32 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Core.h" />
-    <ClInclude Include="DotProduct.h" />
-    <ClInclude Include="EuclideanNorm.h" />
-    <ClInclude Include="Exceptions.h" />
-    <ClInclude Include="fwd.h" />
-    <ClInclude Include="MatOps.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="MatrixAddition.h" />
-    <ClInclude Include="MatrixExpression.h" />
-    <ClInclude Include="MatrixNegation.h" />
-    <ClInclude Include="MatrixScalarProduct.h" />
-    <ClInclude Include="MatrixScalarQuotient.h" />
-    <ClInclude Include="MatrixSubtraction.h" />
-    <ClInclude Include="MatrixVectorProduct.h" />
-    <ClInclude Include="VecOps.h" />
-    <ClInclude Include="Vector.h" />
-    <ClInclude Include="VectorAddition.h" />
-    <ClInclude Include="VectorExpression.h" />
-    <ClInclude Include="VectorNegation.h" />
-    <ClInclude Include="VectorScalarProduct.h" />
-    <ClInclude Include="VectorScalarQuotient.h" />
-    <ClInclude Include="VectorSubtraction.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.vcxproj">
-      <Project>{a6b11dc3-cd2a-4023-8d87-3fb3fe4f23ec}</Project>
-    </ProjectReference>
+    <ClInclude Include="Expression.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
