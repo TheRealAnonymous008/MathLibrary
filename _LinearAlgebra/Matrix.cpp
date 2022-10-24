@@ -1,5 +1,6 @@
 #include "pch.h"
 
+using namespace MathLib;
 using namespace MathLib::LinearAlgebra;
 
 TEST(MatrixInit, MatContructor) {
@@ -267,4 +268,30 @@ TEST(MatVec, MatrixVectorProduct) {
 
 	ASSERT_EQ(y, z);
 	
+}
+
+TEST(MatEager, MatrixEager) {
+	Matrix<int, 4, 4> M = {
+	{1, 2, 3, 4},
+	{5, 6, 7, 8},
+	{9, 10, 11, 12},
+	{13, 14, 15, 16}
+	};
+
+	Matrix<int, 4, 4> N = {
+		{-1, 2, -3, 0},
+		{4, 8, -2, 4},
+		{-5, 1, 4, 5},
+		{0, 6, -5, 5},
+	};
+
+	Matrix<int, 4, 4> P = (M + N).Evaluate();
+	Matrix<int, 4, 4> Q = (M + N).Evaluate() - M;
+
+	for (unsigned i = 0; i < 4; ++i) {
+		for (unsigned j = 0; j < 4; ++j) {
+			ASSERT_EQ(P.At(i, j), M.At(i, j) + N.At(i, j));
+			ASSERT_EQ(Q.At(i, j), P.At(i, j) - M.At(i, j));
+		}
+	}
 }

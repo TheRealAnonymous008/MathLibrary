@@ -19,6 +19,11 @@ namespace MathLib {
 			unsigned Columns() const {
 				return  static_cast<E const&>(*this).Columns();
 			}
+
+			template<typename Result>
+			Result Evaluate() {
+				return static_cast<E const&>(*this).Evaluate();
+			}
 		};
 
 		template<typename T, typename LHS, typename RHS>

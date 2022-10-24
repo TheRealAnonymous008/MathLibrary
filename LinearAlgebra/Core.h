@@ -1,4 +1,5 @@
 #pragma once
+#include "../Common/Core.h"
 
 #include "Vector.h"
 #include "Matrix.h"

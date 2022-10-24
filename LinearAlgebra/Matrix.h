@@ -7,7 +7,7 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned _Rows, const unsigned _Columns>
+		template<typename T, typename const unsigned _Rows, const unsigned _Columns>
 		class Matrix : public MatrixExpression<T, Matrix<T, _Rows, _Columns>>{
 		private:
 			std::vector<std::vector<T>> body = std::vector<std::vector<T>>(_Rows, std::vector<T>(_Columns));
@@ -69,9 +69,7 @@ namespace MathLib {
 						body[i][j] = expr.At(i, j);
 					}
 				}
-			}
-
-			
+			}			
 
 			constexpr unsigned Size() const{
 				return _Rows * _Columns;
@@ -139,6 +137,10 @@ namespace MathLib {
 					}
 				}
 				return *this;
+			}
+
+			const Matrix& Evaluate() {
+				return (*this);
 			}
 		};
 

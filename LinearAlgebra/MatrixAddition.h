@@ -11,6 +11,7 @@ namespace MathLib {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
+				RHS* result = nullptr;
 
 			public:
 				MatrixAddition(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
@@ -30,6 +31,19 @@ namespace MathLib {
 				unsigned Columns() const {
 					return  rhs.Columns();
 				}
+
+				RHS Evaluate() {
+					delete result;
+					result = new RHS();
+
+					for (unsigned i = 0; i < Rows(); ++i) {
+						for (unsigned j = 0; j < Columns(); ++j) {
+							result->At(i, j) = lhs.At(i, j) + rhs.At(i, j);
+						}
+					}
+
+					return *result;
+				}
 			};
 		}
 
@@ -37,6 +51,5 @@ namespace MathLib {
 		detail::MatrixAddition<T, LHS, RHS> operator+(const MatrixExpression<T, LHS>& lhs, const MatrixExpression<T, RHS>& rhs) {
 			return detail::MatrixAddition<T, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
-
 	}
 }
