@@ -35,7 +35,7 @@ TEST(VectorOperations, Addition) {
 
 	Vector<int, 10> v = v1 + v2;
 
-	for (size_t i = 0; i < 10; ++i) {
+	for (unsigned i = 0; i < 10; ++i) {
 		ASSERT_EQ(v[i] , v1[i] + v2[i]);
 	}
 }
@@ -47,7 +47,7 @@ TEST(VectorOperations, MultiAdd) {
 
 	Vector<int, 10> v = v1 + v2 + v3;
 
-	for (size_t i = 0; i < 10; ++i) {
+	for (unsigned i = 0; i < 10; ++i) {
 		ASSERT_EQ(v[i], v1[i] + v2[i] + v3[i]);
 	}
 
@@ -62,7 +62,7 @@ TEST(VectorOperations, MatrixSubtraction) {
 
 	Vector<int, 10> v = v1 - v2;
 
-	for (size_t i = 0; i < 10; ++i) {
+	for (unsigned i = 0; i < 10; ++i) {
 		ASSERT_EQ(v[i] , v1[i] - v2[i]);
 	}
 }
@@ -72,7 +72,7 @@ TEST(VectorOperations, MatrixNegation) {
 
 	Vector<int, 10> v = -v1;
 
-	for (size_t i = 0; i < 10; ++i) {
+	for (unsigned i = 0; i < 10; ++i) {
 		ASSERT_EQ(v[i] , -v1[i]);
 	}
 }

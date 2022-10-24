@@ -59,17 +59,17 @@ namespace MathLib {
 				}
 			}
 
-			constexpr size_t Size() const {
+			constexpr unsigned Size() const {
 				return N;
 			}
 
-			T& operator[](size_t i) {
+			T& operator[](unsigned i) {
 				if (i >= Size() || i < 0)
 					throw InvalidAccess();
 				return body[i];
 			}
 
-			T operator[](size_t i) const{
+			T operator[](unsigned i) const{
 				if (i >= Size() || i < 0)
 					throw InvalidAccess();
 
