@@ -57,5 +57,11 @@
     <ClInclude Include="VectorScalarQuotient.h">
       <Filter>Header Files\VectorOperations</Filter>
     </ClInclude>
+    <ClInclude Include="DotProduct.h">
+      <Filter>Header Files\VectorOperations</Filter>
+    </ClInclude>
+    <ClInclude Include="EuclideanNorm.h">
+      <Filter>Header Files\VectorOperations</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

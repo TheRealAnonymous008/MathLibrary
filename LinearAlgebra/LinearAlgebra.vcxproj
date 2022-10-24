@@ -128,6 +128,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Core.h" />
+    <ClInclude Include="DotProduct.h" />
+    <ClInclude Include="EuclideanNorm.h" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="fwd.h" />
     <ClInclude Include="Matrix.h" />
