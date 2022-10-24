@@ -52,7 +52,7 @@ namespace MathLib {
 				}
 			}
 
-			constexpr size_t Size() const{
+			constexpr size_t Size() const {
 				return N;
 			}
 
@@ -67,6 +67,39 @@ namespace MathLib {
 					throw InvalidAccess();
 
 				return body[i];
+			}
+
+			template<typename E>
+			Vector& operator+=(const VectorExpression<T, E>& expr) {
+				for (size_t i = 0; i < Size(); ++i) {
+					body[i] += expr[i];
+				}
+				return *this;
+			}
+
+			template<typename E>
+			Vector& operator-=(const VectorExpression<T, E>& expr) {
+				for (size_t i = 0; i < Size(); ++i) {
+					body[i] -= expr[i];
+				}
+				return *this;
+			}
+
+			Vector& operator*=(const T& c) {
+				for (size_t i = 0; i < Size(); ++i) {
+					body[i] *= c;
+				}
+				return *this;
+			}
+
+			Vector& operator/=(const T& c) {
+				if (c == 0)
+					throw DivisionByZero();
+
+				for (size_t i = 0; i < Size(); ++i) {
+					body[i] /= c;
+				}
+				return *this;
 			}
 		};
 	}

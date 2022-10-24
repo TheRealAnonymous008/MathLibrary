@@ -110,3 +110,32 @@ TEST(VectorOperations, ScalarQuotient) {
 	ASSERT_TRUE(( 2 * v1 ) / 2 == v1);
 	ASSERT_TRUE(v2 / 3 == v1);
 }
+
+TEST(VectorOperations, MultiOps) {
+	Vector<int, 10> v1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	Vector<int, 10> v2 = { -1, -2, 3, 0, 1, 0, 4, -7, 2, 9 };
+
+	Vector<int, 10> x1 = 10 * (v1 + v2);
+	Vector<int, 10> x2 = 10 * v1 + 10 * v2;
+
+	ASSERT_TRUE(x1 == x2);
+
+	Vector<int, 10> y1 = 5 * v1 + 4 * v2;
+	Vector<int, 10> y2 = -2 * v1 + 3 * v2;
+	Vector<int, 10> y3 = 3 * v1 + 7 * v2;
+
+	ASSERT_TRUE(y1 + y2 == y3);
+
+}
+
+TEST(VectorOperations, SelfAssignment) {
+	Vector<int, 10> v1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	Vector<int, 10> v2 = v1;
+
+	v1 += v2;
+	ASSERT_TRUE(2 * v2 == v1);
+
+	v1 -= v2;
+	ASSERT_TRUE(v1 == v2);
+
+}
