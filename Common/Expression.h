@@ -1,14 +1,13 @@
 #pragma once
 
 namespace MathLib {
-	template<typename Expr>
+	template<typename Result, typename Expr>
 	class Expression {
 	private:
 
 	public:
-		template<typename Result>
 		Result Evaluate() {
-			return static<Expr const&>(*this).Evaluate();
+			return static_cast<Expr const&>(*this).Evaluate();
 		}
 	};
 }
