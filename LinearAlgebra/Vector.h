@@ -40,6 +40,9 @@ namespace MathLib {
 
 			template<typename E>
 			Vector(const VectorExpression<T, E>& expr) {
+				if (expr.Size() != Size()) {
+					throw DimensionError();;
+				}
 				for (unsigned i = 0; i < Size(); ++i) {
 					body[i] = expr[i];
 				}
@@ -47,6 +50,10 @@ namespace MathLib {
 
 			template<typename E>
 			void operator=(const VectorExpression<T, E>& expr) {
+				if (expr.Size() != Size()) {
+					throw DimensionError();;
+				}
+
 				for (unsigned i = 0; i < Size(); ++i) {
 					body[i] = expr[i];
 				}

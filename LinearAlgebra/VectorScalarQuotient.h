@@ -19,11 +19,11 @@ namespace MathLib {
 					}
 				}
 
-				T operator[](size_t i) const {
+				T operator[](const unsigned& i) const {
 					return vec[i] / c;
 				}
 
-				size_t Size() const {
+				unsigned Size() const {
 					return  vec.Size();
 				}
 			};

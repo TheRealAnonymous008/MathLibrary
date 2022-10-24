@@ -1,13 +1,14 @@
 #pragma once
 #include <initializer_list>
 #include "fwd.h"
+#include "Exceptions.h"
 
 
 namespace MathLib {
 	namespace LinearAlgebra {
 
 		template<typename T, const unsigned _Rows, const unsigned _Columns>
-		class Matrix {
+		class Matrix : public MatrixExpression<T, Matrix<T, _Rows, _Columns>>{
 		private:
 			std::vector<std::vector<T>> body = std::vector<std::vector<T>>(_Rows, std::vector<int>(_Columns));
 
@@ -21,9 +22,9 @@ namespace MathLib {
 			}
 
 			Matrix(const std::initializer_list<std::initializer_list<T>>& list) {
-				int i = 0;
+				unsigned i = 0;
 				for (auto x : list) {
-					int j = 0;
+					unsigned j = 0;
 					for (auto y : x) {
 						body[i][j] = y;
 						++j;
@@ -32,15 +33,55 @@ namespace MathLib {
 				}
 			}
 
-			constexpr unsigned Size() {
+			void operator=(const std::initializer_list<std::initializer_list<T>>& list) {
+				unsigned i = 0;
+				for (auto x : list) {
+					unsigned j = 0;
+					for (auto y : x) {
+						body[i][j] = y;
+						++j;
+					}
+					++i;
+				}
+			}
+
+			template<typename E>
+			Matrix(const MatrixExpression<T, E>& expr) {
+				if (expr.Rows() != Rows() || expr.Columns() != Columns()) {
+					throw DimensionError();;
+				}
+
+				for (unsigned i = 0; i < _Rows; ++i) {
+					for (unsigned j = 0; j < _Columns; ++j) {
+						body[i][j] = expr.At(i, j);
+					}
+				}
+			}
+
+			template<typename E>
+			void operator=(const MatrixExpression<T, E>& expr) {
+				if (expr.Rows() != Rows() || expr.Columns() != Columns()) {
+					throw DimensionError();;
+				}
+
+				for (unsigned i = 0; i < _Rows; ++i) {
+					for (unsigned j = 0; j < _Columns; ++j) {
+						body[i][j] = expr.At(i, j);
+					}
+				}
+			}
+
+			
+
+			constexpr unsigned Size() const{
 				return _Rows * _Columns;
 			}
 
-			constexpr unsigned Rows() { 
+			constexpr unsigned Rows() const{ 
 				return _Rows;
 			}
 
-			constexpr unsigned Columns() {
+			constexpr unsigned Columns() const{
 				return _Columns;
 			}
 
@@ -50,11 +91,11 @@ namespace MathLib {
 				return body[r][c];
 			}
 
-			T operator[](size_t i) const {
+			T At(const unsigned& r, const unsigned& c) const {
 				if (r >= Rows() || r < 0 || c >= Columns() || c < 0)
 					throw InvalidAccess();
 
-				return body[i];
+				return body[r][c];
 			}
 		};
 

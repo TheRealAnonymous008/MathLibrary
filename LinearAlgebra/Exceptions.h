@@ -20,6 +20,13 @@ namespace MathLib {
 			}
 		};
 
+		class DimensionError : public std::exception {
+		public:
+			std::string what() {
+				return "Tried to assign to a tensor of different dimensions.";
+			}
+		};
+
 		class DivisionByZero : public std::exception {
 		public:
 			std::string what() {

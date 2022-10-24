@@ -75,5 +75,17 @@
     <ClInclude Include="MatrixExpression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MatrixSubtraction.h">
+      <Filter>Header Files\MatrixOperations</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixNegation.h">
+      <Filter>Header Files\MatrixOperations</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixScalarProduct.h">
+      <Filter>Header Files\MatrixOperations</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixScalarQuotient.h">
+      <Filter>Header Files\MatrixOperations</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

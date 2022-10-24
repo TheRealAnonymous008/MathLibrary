@@ -14,7 +14,7 @@ namespace MathLib {
 				return  static_cast<E const&>(*this)[i];
 			}
 
-			size_t Size() const {
+			unsigned Size() const {
 				return  static_cast<E const&>(*this).Size();
 			}
 		};
