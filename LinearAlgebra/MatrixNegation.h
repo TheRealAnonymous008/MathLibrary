@@ -29,17 +29,16 @@ namespace MathLib {
 					return  expr.Columns();
 				}
 
-				E Evaluate() {
-					delete result;
-					result = new E();
+				E Evaluate() const{
+					E result;
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
-							result->At(i, j) = lhs.At(i, j) + rhs.At(i, j);
+							result.At(i, j) = lhs.At(i, j) + rhs.At(i, j);
 						}
 					}
 
-					return *result;
+					return result;
 				}
 			};
 		}

@@ -10,7 +10,6 @@ namespace MathLib {
 			class VectorNegation : public VectorExpression<T, VectorNegation<T, V>> {
 			private:
 				const V& vec;
-				V* result = nullptr;
 
 			public:
 				VectorNegation(const V& vec) : vec(vec) {
@@ -25,15 +24,14 @@ namespace MathLib {
 					return  vec.Size();
 				}
 
-				V Evaluate() {
-					delete result;
-					result = new V();
+				V Evaluate() const{
+					V result;
 
 					for (unsigned i = 0; i < Size(); ++i) {
-						(*result)[i] = -vec[i];
+						(result)[i] = -vec[i];
 					}
 
-					return *result;
+					return result;
 				}
 			};
 		}

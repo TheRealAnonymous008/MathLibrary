@@ -19,7 +19,7 @@ namespace MathLib {
 			}
 
 			template<typename Result>
-			Result Evaluate() {
+			Result Evaluate() const{
 				return static_cast<E const&>(*this).Evaluate();
 			}
 		};

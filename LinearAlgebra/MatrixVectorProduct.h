@@ -12,8 +12,6 @@ namespace MathLib {
 				const LHS& lhs;
 				const RHS& rhs;
 
-				void* result = nullptr;
-
 
 			public:
 				MatrixVectorProduct(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
@@ -36,20 +34,16 @@ namespace MathLib {
 				}
 
 				template<typename Result>
-				Result Evaluate() {
-					delete result;
-
-					auto tmp = new Result();
+				Result Evaluate() const{
+					Result result;
 
 					for (unsigned i = 0; i < Size(); ++i) {
 						for (unsigned k = 0; k < rhs.Size(); ++k) {
-							(*tmp)[i] += lhs.At(i, k) * rhs[k];
+							(result)[i] += lhs.At(i, k) * rhs[k];
 						}
 					}
 
-					result = tmp;
-
-					return *tmp;
+					return result;
 				}
 			};
 		}

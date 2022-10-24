@@ -11,7 +11,6 @@ namespace MathLib {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
-				RHS* result = nullptr;
 
 			public:
 				MatrixAddition(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
@@ -32,16 +31,16 @@ namespace MathLib {
 					return  rhs.Columns();
 				}
 
-				RHS Evaluate() {
-					result = new RHS();
+				RHS Evaluate() const{
+					RHS result;
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
-							result->At(i, j) = lhs.At(i, j) + rhs.At(i, j);
+							result.At(i, j) = lhs.At(i, j) + rhs.At(i, j);
 						}
 					}
 
-					return *result;
+					return result;
 				}
 			};
 		}

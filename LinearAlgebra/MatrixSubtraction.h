@@ -32,8 +32,8 @@ namespace MathLib {
 					return  rhs.Columns();
 				}
 
-				RHS Evaluate() {
-					result = new RHS();
+				RHS Evaluate() const{
+					RHS result;
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
@@ -41,7 +41,7 @@ namespace MathLib {
 						}
 					}
 
-					return *result;
+					return result;
 				}
 			};
 		}
