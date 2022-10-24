@@ -31,7 +31,11 @@ namespace MathLib {
 					return  rhs.Columns();
 				}
 
-				RHS Evaluate() const{
+				template<typename Result>
+				Result Evaluate() const;
+
+				template<>
+				RHS Evaluate<RHS>() const{
 					RHS result;
 
 					for (unsigned i = 0; i < Rows(); ++i) {

@@ -31,12 +31,16 @@ namespace MathLib {
 					return  mat.Columns();
 				}
 
-				M Evaluate() const{
+				template<typename Result>
+				Result Evaluate() const;
+
+				template<>
+				M Evaluate<M>() const{
 					M result;
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
-							result.At(i, j) = mat.At(i, j) / c;
+							result.At(i, j) = mat.At(i, j) / k;
 						}
 					}
 

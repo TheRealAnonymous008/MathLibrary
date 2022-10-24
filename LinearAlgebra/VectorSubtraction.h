@@ -27,7 +27,11 @@ namespace MathLib {
 					return  rhs.Size();
 				}
 
-				RHS Evaluate() const{
+				template<typename Result>
+				Result Evaluate() const;
+				
+				template<>
+				RHS Evaluate<RHS>() const {
 					RHS result;
 
 					for (unsigned i = 0; i < Size(); ++i) {

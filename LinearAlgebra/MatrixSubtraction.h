@@ -32,12 +32,16 @@ namespace MathLib {
 					return  rhs.Columns();
 				}
 
-				RHS Evaluate() const{
+				template<typename Result>
+				Result Evaluate() const;
+
+				template<>
+				RHS Evaluate<RHS>() const{
 					RHS result;
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
-							result->At(i, j) = lhs.At(i, j) - rhs.At(i, j);
+							result.At(i, j) = lhs.At(i, j) - rhs.At(i, j);
 						}
 					}
 

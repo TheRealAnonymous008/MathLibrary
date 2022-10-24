@@ -285,13 +285,15 @@ TEST(MatEager, MatrixEager) {
 		{0, 6, -5, 5},
 	};
 
-	Matrix<int, 4, 4> P = (M + N).Evaluate();
-	Matrix<int, 4, 4> Q = (M + N).Evaluate() - M;
+	Matrix<int, 4, 4> P = (M + N).Evaluate<Matrix<int, 4, 4>>();
+	Matrix<int, 4, 4> Q = (M + N).Evaluate<Matrix<int, 4, 4>>() - M;
+	Matrix<int, 4, 4> R = (P + Q + M).Evaluate<Matrix<int, 4, 4>>();
 
 	for (unsigned i = 0; i < 4; ++i) {
 		for (unsigned j = 0; j < 4; ++j) {
 			ASSERT_EQ(P.At(i, j), M.At(i, j) + N.At(i, j));
 			ASSERT_EQ(Q.At(i, j), P.At(i, j) - M.At(i, j));
+			ASSERT_EQ(R.At(i, j), P.At(i, j) + Q.At(i, j) + M.At(i, j));
 		}
 	}
 }

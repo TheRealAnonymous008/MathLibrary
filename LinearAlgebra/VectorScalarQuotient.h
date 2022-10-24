@@ -27,7 +27,11 @@ namespace MathLib {
 					return  vec.Size();
 				}
 
-				V Evaluate() const{
+				template<typename Result>
+				Result Evaluate() const;
+				
+				template<>
+				V Evaluate<V>() const {
 					V result;
 
 					for (unsigned i = 0; i < Size(); ++i) {
