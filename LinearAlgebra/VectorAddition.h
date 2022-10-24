@@ -29,11 +29,11 @@ namespace MathLib {
 			};
 		}
 
-		using namespace detail;
+		
 
 		template<typename T, typename LHS, typename RHS>
-		VectorAddition<T, LHS, RHS> operator+(const VectorExpression<T, LHS>& lhs, const VectorExpression<T, RHS>& rhs) {
-			return VectorAddition<T, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::VectorAddition<T, LHS, RHS> operator+(const VectorExpression<T, LHS>& lhs, const VectorExpression<T, RHS>& rhs) {
+			return detail::VectorAddition<T, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

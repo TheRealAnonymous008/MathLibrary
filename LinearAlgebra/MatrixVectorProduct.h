@@ -34,11 +34,11 @@ namespace MathLib {
 			};
 		}
 
-		using namespace detail;
+		
 
 		template<typename T, typename LHS, typename RHS>
-		MatrixVectorProduct<T, LHS, RHS> operator*(const MatrixExpression<T, LHS>& lhs, const VectorExpression<T, RHS>& rhs) {
-			return MatrixVectorProduct<T, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::MatrixVectorProduct<T, LHS, RHS> operator*(const MatrixExpression<T, LHS>& lhs, const VectorExpression<T, RHS>& rhs) {
+			return detail::MatrixVectorProduct<T, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

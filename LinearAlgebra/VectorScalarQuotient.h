@@ -29,11 +29,11 @@ namespace MathLib {
 			};
 		}
 
-		using namespace detail;
+		
 
 		template<typename T, typename V>
-		VectorScalarQuotient<T, V> operator/(const VectorExpression<T, V>& vec, const T& c) {
-			return VectorScalarQuotient<T, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
+		detail::VectorScalarQuotient<T, V> operator/(const VectorExpression<T, V>& vec, const T& c) {
+			return detail::VectorScalarQuotient<T, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
 		}
 
 	}

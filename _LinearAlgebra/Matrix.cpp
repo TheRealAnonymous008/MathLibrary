@@ -263,12 +263,8 @@ TEST(MatVec, MatrixVectorProduct) {
 		-15, -17, 8, 12
 	};
 
-	auto y = A * x;
-
-	for (int i = 0; i < 3; ++i) {
-		std::cout << y[i];
-	}
+	Vector<int, 4> y = A * x;
 
 	ASSERT_EQ(y, z);
-
+	
 }

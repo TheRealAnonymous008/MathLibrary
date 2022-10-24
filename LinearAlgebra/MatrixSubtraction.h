@@ -33,11 +33,11 @@ namespace MathLib {
 			};
 		}
 
-		using namespace detail;
+		
 
 		template<typename T, typename LHS, typename RHS>
-		MatrixSubtraction<T, LHS, RHS> operator-(const MatrixExpression<T, LHS>& lhs, const MatrixExpression<T, RHS>& rhs) {
-			return MatrixSubtraction<T, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::MatrixSubtraction<T, LHS, RHS> operator-(const MatrixExpression<T, LHS>& lhs, const MatrixExpression<T, RHS>& rhs) {
+			return detail::MatrixSubtraction<T, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

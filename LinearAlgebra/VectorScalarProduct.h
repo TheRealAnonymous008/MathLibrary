@@ -27,16 +27,16 @@ namespace MathLib {
 			};
 		}
 
-		using namespace detail;
+		
 
 		template<typename T, typename V>
-		VectorScalarProduct<T, V> operator*(const VectorExpression<T, V>& vec, const T& c) {
-			return VectorScalarProduct<T, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
+		detail::VectorScalarProduct<T, V> operator*(const VectorExpression<T, V>& vec, const T& c) {
+			return detail::VectorScalarProduct<T, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
 		}
 
 		template<typename T, typename V>
-		VectorScalarProduct<T, V> operator*(const T& c, const VectorExpression<T, V>& vec) {
-			return VectorScalarProduct<T, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
+		detail::VectorScalarProduct<T, V> operator*(const T& c, const VectorExpression<T, V>& vec) {
+			return detail::VectorScalarProduct<T, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
 		}
 	}
 }

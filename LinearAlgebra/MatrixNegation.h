@@ -30,11 +30,9 @@ namespace MathLib {
 			};
 		}
 
-		using namespace detail;
-
 		template<typename T, typename E>
-		MatrixNegation<T, E> operator-(const MatrixExpression<T, E>& expr) {
-			return MatrixNegation<T, E>(*static_cast<const E*>(&expr));
+		detail::MatrixNegation<T, E> operator-(const MatrixExpression<T, E>& expr) {
+			return detail::MatrixNegation<T, E>(*static_cast<const E*>(&expr));
 		}
 
 	}

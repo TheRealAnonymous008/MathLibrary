@@ -26,11 +26,11 @@ namespace MathLib {
 			};
 		}
 
-		using namespace detail;
+		
 
 		template<typename T, typename LHS>
-		VectorNegation<T, LHS> operator-(const VectorExpression<T, LHS>& lhs) {
-			return VectorNegation<T, LHS>(*static_cast<const LHS*>(&lhs));
+		detail::VectorNegation<T, LHS> operator-(const VectorExpression<T, LHS>& lhs) {
+			return detail::VectorNegation<T, LHS>(*static_cast<const LHS*>(&lhs));
 		}
 
 	}
