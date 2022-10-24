@@ -87,5 +87,8 @@
     <ClInclude Include="MatrixScalarQuotient.h">
       <Filter>Header Files\MatrixOperations</Filter>
     </ClInclude>
+    <ClInclude Include="MatrixVectorProduct.h">
+      <Filter>Header Files\MatrixOperations</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

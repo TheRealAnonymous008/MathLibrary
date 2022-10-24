@@ -231,6 +231,44 @@ TEST(MatrixOps, MultiOps) {
 }
 
 TEST(MatrixOps, SelfAssignment) {
+	Matrix<int, 4, 4> M = {
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+		{9, 10, 11, 12},
+		{13, 14, 15, 16}
+	};
 
+	Matrix<int, 4, 4> N = M;
+
+	M += N;
+	ASSERT_EQ(2 * N, M);
+
+	M -= N;
+	ASSERT_EQ(M, N);
+}
+
+TEST(MatVec, MatrixVectorProduct) {
+	Matrix<int, 4, 3> A = {
+		{2, -3, 1},
+		{1, -2, -3},
+		{0, 0, 4},
+		{1, 3, -1}
+	};
+
+	Vector<int, 3> x = {
+		-1, 5, 2
+	};
+
+	Vector<int, 4> z = {
+		-15, -17, 8, 12
+	};
+
+	auto y = A * x;
+
+	for (int i = 0; i < 3; ++i) {
+		std::cout << y[i];
+	}
+
+	ASSERT_EQ(y, z);
 
 }

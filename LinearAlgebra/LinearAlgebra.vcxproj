@@ -140,6 +140,7 @@
     <ClInclude Include="MatrixScalarProduct.h" />
     <ClInclude Include="MatrixScalarQuotient.h" />
     <ClInclude Include="MatrixSubtraction.h" />
+    <ClInclude Include="MatrixVectorProduct.h" />
     <ClInclude Include="VecOps.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="VectorAddition.h" />

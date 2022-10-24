@@ -20,6 +20,13 @@ namespace MathLib {
 			}
 		};
 
+		class InvalidTensorProduct : public std::exception {
+		public:
+			std::string what() {
+				return "Tried to multiply two tensors with non-matching dimension.";
+			}
+		};
+
 		class DimensionError : public std::exception {
 		public:
 			std::string what() {

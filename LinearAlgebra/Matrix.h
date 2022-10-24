@@ -97,6 +97,48 @@ namespace MathLib {
 
 				return body[r][c];
 			}
+
+
+			template<typename E>
+			Matrix& operator+=(const MatrixExpression<T, E>& expr) {
+				for (unsigned i = 0; i < Rows(); ++i) {
+					for (unsigned j = 0; j < Columns(); ++j) {
+						body[i][j] += expr.At(i, j);
+					}
+				}
+				return *this;
+			}
+
+			template<typename E>
+			Matrix& operator-=(const MatrixExpression<T, E>& expr) {
+				for (unsigned i = 0; i < Rows(); ++i) {
+					for (unsigned j = 0; j < Columns(); ++j) {
+						body[i][j] -= expr.At(i, j);
+					}
+				}
+				return *this;
+			}
+
+			Matrix& operator*=(const T& c) {
+				for (unsigned i = 0; i < Rows(); ++i) {
+					for (unsigned j = 0; j < Columns(); ++j) {
+						body[i][j] *= c;
+					}
+				}
+				return *this;
+			}
+
+			Matrix& operator/=(const T& c) {
+				if (c == 0)
+					throw DivisionByZero();
+
+				for (unsigned i = 0; i < Rows(); ++i) {
+					for (unsigned j = 0; j < Columns(); ++j) {
+						body[i][j] /= c;
+					}
+				}
+				return *this;
+			}
 		};
 
 	}
