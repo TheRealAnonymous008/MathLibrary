@@ -14,6 +14,7 @@ namespace MathLib {
 
 				void* result = nullptr;
 
+
 			public:
 				MatrixVectorProduct(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					if (lhs.Columns() != rhs.Size()) {
@@ -30,14 +31,15 @@ namespace MathLib {
 					return sum;
 				}
 
-				constexpr unsigned Size() const {
+				constexpr unsigned  Size() const {
 					return lhs.Rows();
 				}
 
-				auto Evaluate() {
+				template<typename Result>
+				Result Evaluate() {
 					delete result;
 
-					Vector<T, Size()>* tmp = new Vector<T, Size()>();
+					auto tmp = new Result();
 
 					for (unsigned i = 0; i < Size(); ++i) {
 						for (unsigned k = 0; k < rhs.Size(); ++k) {
