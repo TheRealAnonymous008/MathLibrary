@@ -6,8 +6,9 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, typename E>
-			class MatrixNegation : public MatrixExpression<T, MatrixNegation<T, E>> {
+			template<typename T, const unsigned _Rows, const unsigned _Columns, typename E>
+			class MatrixNegation : public MatrixExpression<T, _Rows, _Columns, 
+				MatrixNegation<T, _Rows, _Columns, E>> {
 			private:
 				const E& expr;
 
@@ -28,10 +29,9 @@ namespace MathLib {
 					return  expr.Columns();
 				}
 
-				template<typename Q = T, const unsigned _Rows, const unsigned _Columns>
-				Matrix<Q, _Rows, _Columns> Evaluate() const {
+				auto Evaluate() const {
 
-					Matrix<Q, _Rows, _Columns> result;
+					Matrix<T, _Rows, _Columns> result;
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
@@ -44,9 +44,15 @@ namespace MathLib {
 			};
 		}
 
-		template<typename T, typename E>
-		detail::MatrixNegation<T, E> operator-(const MatrixExpression<T, E>& expr) {
-			return detail::MatrixNegation<T, E>(*static_cast<const E*>(&expr));
+		template<
+			typename T, 
+			const unsigned _Rows, const unsigned _Columns, 
+			typename E
+		>
+		detail::MatrixNegation<T, _Rows, _Columns, E> operator-(
+			const MatrixExpression<T, _Rows, _Columns, E>& expr) 
+		{
+			return detail::MatrixNegation<T, _Rows, _Columns, E>(*static_cast<const E*>(&expr));
 		}
 
 	}

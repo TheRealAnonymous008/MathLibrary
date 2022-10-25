@@ -6,8 +6,9 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, typename M>
-			class MatrixScalarQuotient : public MatrixExpression<T, MatrixScalarQuotient<T, M>> {
+			template<typename T, const unsigned _Rows, const unsigned _Columns, typename M>
+			class MatrixScalarQuotient : public MatrixExpression<T, _Rows, _Columns,
+				MatrixScalarQuotient<T, _Rows, _Columns, M>> {
 			private:
 				const M& mat;
 				const T& k;
@@ -31,10 +32,9 @@ namespace MathLib {
 					return  mat.Columns();
 				}
 
-				template<typename Q = T, const unsigned _Rows, const unsigned _Columns>
-				Matrix<Q, _Rows, _Columns> Evaluate() const{
+				auto Evaluate() const{
 
-					Matrix<Q, _Rows, _Columns> result;
+					Matrix<T, _Rows, _Columns> result;
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
@@ -47,9 +47,16 @@ namespace MathLib {
 			};
 		}
 
-		template<typename T, typename M>
-		detail::MatrixScalarQuotient<T, M> operator/(const MatrixExpression<T, M>& vec, const T& c) {
-			return detail::MatrixScalarQuotient<T, M>(*static_cast<const M*>(&vec), *static_cast<const T*>(&c));
+		template<
+			typename T, 
+			const unsigned _Rows, const unsigned _Columns, 
+			typename M
+		>
+		detail::MatrixScalarQuotient<T, _Rows, _Columns, M> operator/(
+			const MatrixExpression<T, _Rows, _Columns, M>& vec, 
+			const T& c) 
+		{
+			return detail::MatrixScalarQuotient<T, _Rows, _Columns, M>(*static_cast<const M*>(&vec), *static_cast<const T*>(&c));
 		}
 	}
 }

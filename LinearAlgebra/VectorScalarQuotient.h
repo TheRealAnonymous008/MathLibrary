@@ -6,8 +6,10 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, typename V>
-			class VectorScalarQuotient : public VectorExpression<T, VectorScalarQuotient<T, V>> {
+			template<typename T, const unsigned N, typename V>
+			class VectorScalarQuotient : public VectorExpression<T, N, 
+				VectorScalarQuotient<T, N, V>> 
+			{
 			private:
 				const V& vec;
 				const T& c;
@@ -27,10 +29,9 @@ namespace MathLib {
 					return  vec.Size();
 				}
 
-				template<typename Q = T, const unsigned N>
-				Vector<Q, N> Evaluate() const{
+				auto Evaluate() const{
 
-					Vector<Q, N> result;
+					Vector<T, N> result;
 
 					for (unsigned i = 0; i < Size(); ++i) {
 						result[i] = vec[i] / c;
@@ -43,9 +44,16 @@ namespace MathLib {
 
 		
 
-		template<typename T, typename V>
-		detail::VectorScalarQuotient<T, V> operator/(const VectorExpression<T, V>& vec, const T& c) {
-			return detail::VectorScalarQuotient<T, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
+		template<
+			typename T, 
+			const unsigned N, 
+			typename V
+		>
+		detail::VectorScalarQuotient<T, N, V> operator/(
+			const VectorExpression<T, N, V>& vec, 
+			const T& c) 
+		{
+			return detail::VectorScalarQuotient<T, N, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
 		}
 
 	}

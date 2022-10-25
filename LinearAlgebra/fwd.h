@@ -12,10 +12,10 @@ namespace MathLib {
 		template<typename T, const unsigned Rows, const unsigned Columns>
 		class Matrix;
 
-		template<typename T, typename E>
+		template<typename T, const unsigned N, typename E>
 		class VectorExpression;
 
-		template<typename T, typename E>
+		template<typename T, const unsigned Rows, const unsigned Columns, typename E>
 		class MatrixExpression;
 	}
 }

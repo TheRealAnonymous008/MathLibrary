@@ -6,8 +6,9 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, typename M>
-			class MatrixScalarProduct : public MatrixExpression<T, MatrixScalarProduct<T, M>> {
+			template<typename T, const unsigned _Rows, const unsigned _Columns, typename M>
+			class MatrixScalarProduct : public MatrixExpression<T, _Rows, _Columns, 
+				MatrixScalarProduct<T, _Rows, _Columns, M>> {
 			private:
 				const M& mat;
 				const T& k;
@@ -29,10 +30,9 @@ namespace MathLib {
 					return  mat.Columns();
 				}
 
-				template<typename Q = T, const unsigned _Rows, const unsigned _Columns>
-				Matrix<Q, _Rows, _Columns> Evaluate() const{
+				auto Evaluate() const{
 
-					Matrix<Q, _Rows, _Columns> result;
+					Matrix<T, _Rows, _Columns> result;
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
@@ -47,14 +47,28 @@ namespace MathLib {
 
 		
 
-		template<typename T, typename M>
-		detail::MatrixScalarProduct<T, M> operator*(const MatrixExpression<T, M>& mat, const T& c) {
-			return detail::MatrixScalarProduct<T, M>(*static_cast<const M*>(&mat), *static_cast<const T*>(&c));
+		template<
+			typename T, 
+			const unsigned _Rows, const unsigned _Columns, 
+			typename M
+		>
+		detail::MatrixScalarProduct<T, _Rows, _Columns, M> operator*(
+			const MatrixExpression<T, _Rows, _Columns, M>& mat, 
+			const T& c) 
+		{
+			return detail::MatrixScalarProduct<T, _Rows, _Columns, M>(*static_cast<const M*>(&mat), *static_cast<const T*>(&c));
 		}
 
-		template<typename T, typename M>
-		detail::MatrixScalarProduct<T, M> operator*(const T& c, const MatrixExpression<T, M>& mat) {
-			return detail::MatrixScalarProduct<T, M>(*static_cast<const M*>(&mat), *static_cast<const T*>(&c));
+		template<
+			typename T, 
+			const unsigned _Rows, const unsigned _Columns, 
+			typename M
+		>
+		detail::MatrixScalarProduct<T, _Rows, _Columns, M> operator*(
+			const T& c, 
+			const MatrixExpression<T, _Rows, _Columns, M>& mat) 
+		{
+			return detail::MatrixScalarProduct<T, _Rows, _Columns, M>(*static_cast<const M*>(&mat), *static_cast<const T*>(&c));
 		}
 	}
 }

@@ -285,9 +285,9 @@ TEST(MatEager, MatrixEager) {
 		{0, 6, -5, 5},
 	};
 
-	Matrix<int, 4, 4> P = (M + N).Evaluate<int, 4, 4>();
-	Matrix<int, 4, 4> Q = (M + N).Evaluate<int, 4, 4>() - M;
-	Matrix<int, 4, 4> R = (P + Q + M).Evaluate<int, 4, 4>();
+	Matrix<int, 4, 4> P = (M + N).Evaluate();
+	Matrix<int, 4, 4> Q = (M + N).Evaluate() - M;
+	Matrix<int, 4, 4> R = (P + Q + M).Evaluate();
 
 	for (unsigned i = 0; i < 4; ++i) {
 		for (unsigned j = 0; j < 4; ++j) {
@@ -314,7 +314,7 @@ TEST(MatVec, MatVecEager) {
 		-15, -17, 8, 12
 	};
 
-	Vector<int, 4> y = (A * x).Evaluate<int, 4>();
+	Vector<int, 4> y = (A * x);
 
 	ASSERT_EQ(y, z);
 

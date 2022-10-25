@@ -6,8 +6,9 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, typename V>
-			class VectorScalarProduct : public VectorExpression<T, VectorScalarProduct<T, V>> {
+			template<typename T, const unsigned N, typename V>
+			class VectorScalarProduct : public VectorExpression<T, N, 
+				VectorScalarProduct<T, N, V>> {
 			private:
 				const V& vec;
 				const T& c;
@@ -25,10 +26,9 @@ namespace MathLib {
 					return  vec.Size();
 				}
 
-				template<typename Q = T, const unsigned N>
-				Vector<Q, N> Evaluate() const{
+				auto Evaluate() const{
 
-					Vector<Q, N> result;
+					Vector<T, N> result;
 
 					for (unsigned i = 0; i < Size(); ++i) {
 						result[i] = vec[i] * c;
@@ -41,14 +41,28 @@ namespace MathLib {
 
 		
 
-		template<typename T, typename V>
-		detail::VectorScalarProduct<T, V> operator*(const VectorExpression<T, V>& vec, const T& c) {
-			return detail::VectorScalarProduct<T, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
+		template<
+			typename T,
+			const unsigned N, 
+			typename V
+		>
+		detail::VectorScalarProduct<T, N, V> operator*(
+			const VectorExpression<T, N, V>& vec, 
+			const T& c) 
+		{
+			return detail::VectorScalarProduct<T, N, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
 		}
 
-		template<typename T, typename V>
-		detail::VectorScalarProduct<T, V> operator*(const T& c, const VectorExpression<T, V>& vec) {
-			return detail::VectorScalarProduct<T, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
+		template<
+			typename T, 
+			const unsigned N, 
+			typename V
+		>
+		detail::VectorScalarProduct<T, N, V> operator*(
+			const T& c, 
+			const VectorExpression<T, N, V>& vec) 
+		{
+			return detail::VectorScalarProduct<T, N, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
 		}
 	}
 }

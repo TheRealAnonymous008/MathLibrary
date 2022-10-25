@@ -6,8 +6,9 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, typename LHS, typename RHS>
-			class VectorAddition : public VectorExpression<T, VectorAddition<T, LHS, RHS>> {
+			template<typename T, const unsigned N, typename LHS, typename RHS>
+			class VectorAddition : public VectorExpression<T, N,
+				VectorAddition<T, N, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -27,10 +28,9 @@ namespace MathLib {
 					return  rhs.Size();
 				}
 
-				template<typename Q = T, const unsigned N>
-				Vector<Q, N> Evaluate() const{
+				auto Evaluate() const{
 
-					Vector<Q, N> result;
+					Vector<T, N> result;
 
 					for (unsigned i = 0; i < Size(); ++i) {
 						result[i] = lhs[i] + rhs[i];
@@ -43,9 +43,16 @@ namespace MathLib {
 
 		
 
-		template<typename T, typename LHS, typename RHS>
-		detail::VectorAddition<T, LHS, RHS> operator+(const VectorExpression<T, LHS>& lhs, const VectorExpression<T, RHS>& rhs) {
-			return detail::VectorAddition<T, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		template<
+			typename T, 
+			const unsigned N, 
+			typename LHS, typename RHS
+		>
+		detail::VectorAddition<T, N, LHS, RHS> operator+(
+			const VectorExpression<T, N, LHS>& lhs, 
+			const VectorExpression<T, N, RHS>& rhs) 
+		{
+			return detail::VectorAddition<T, N, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

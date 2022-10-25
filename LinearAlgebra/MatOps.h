@@ -7,6 +7,7 @@
 #include "MatrixScalarQuotient.h"
 
 #include "MatrixVectorProduct.h"
+#include "MatrixMultiplication.h"
 
 
 #include "Transpose.h"

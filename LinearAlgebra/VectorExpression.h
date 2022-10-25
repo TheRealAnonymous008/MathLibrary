@@ -5,7 +5,7 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, typename E>
+		template<typename T, const unsigned N, typename E>
 		class VectorExpression {
 		public:
 			T operator[](const unsigned& i) const {
@@ -16,14 +16,20 @@ namespace MathLib {
 				return  static_cast<E const&>(*this).Size();
 			}
 
-			template<typename Q = T, const unsigned N>
-			Vector<Q, N> Evaluate() const{
+			auto Evaluate() const{
 				return static_cast<E const&>(*this).Evaluate();
 			}
 		};
 
-		template<typename T, typename LHS, typename RHS>
-		bool operator==(const VectorExpression<T, LHS>& lhs, const VectorExpression<T, RHS>& rhs) {
+		template<
+			typename T, 
+			const unsigned N,
+			typename LHS, typename RHS
+		>
+		bool operator==(
+			const VectorExpression<T, N, LHS>& lhs, 
+			const VectorExpression<T, N, RHS>& rhs) 
+		{
 			if (lhs.Size() != rhs.Size())
 				return false;
 
@@ -34,8 +40,12 @@ namespace MathLib {
 			return true;
 		}
 
-		template<typename T, typename LHS, typename RHS>
-		bool operator!=(const VectorExpression<T, LHS>& lhs, const VectorExpression<T, RHS>& rhs) {
+		template<
+			typename T, 
+			const unsigned N,
+			typename LHS, typename RHS
+		>
+		bool operator!=(const VectorExpression<T, N, LHS>& lhs, const VectorExpression<T, N, RHS>& rhs) {
 			if (lhs.Size() != rhs.Size())
 				return false;
 

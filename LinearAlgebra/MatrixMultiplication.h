@@ -7,32 +7,40 @@ namespace MathLib {
 
 		namespace detail {
 			template<typename T, const unsigned _Rows, const unsigned _Columns, typename LHS, typename RHS>
-			class MatrixAddition : public MatrixExpression<T, _Rows, _Columns, 
-				MatrixAddition<T, _Rows, _Columns, LHS, RHS>> {
+			class MatrixMultiplication : public MatrixExpression<T, _Rows, _Columns, 
+				MatrixMultiplication<T, _Rows, _Columns, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
 
 			public:
-				MatrixAddition(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
-					if (lhs.Rows() != rhs.Rows() || lhs.Columns() != rhs.Columns()) {
-						throw InvalidBinaryOperation();
+				MatrixMultiplication(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+					if (lhs.Columns() != rhs.Rows()) {
+						throw InvalidTensorProduct();
 					}
 				}
 
 				T At(const unsigned& r, const unsigned& c) const {
-					return  lhs.At(r, c) + rhs.At(r, c);
+					T sum = T();
+
+					for (unsigned k = 0; k < lhs.Columns(); ++k) {
+						sum += lhs.At(r, k) * rhs.At(k, c);
+					}
+
+					return sum;
 				}
 
 				constexpr unsigned Rows() const {
-					return  rhs.Rows();
+					return  lhs.Rows();
 				}
 
 				constexpr unsigned Columns() const {
 					return  rhs.Columns();
 				}
 
-				auto Evaluate() const{
+				auto Evaluate() const {
+
+					// TODO: Implement this
 
 					Matrix<T, _Rows, _Columns> result;
 
@@ -48,15 +56,15 @@ namespace MathLib {
 		}
 
 		template<
-			typename T,
+			typename T, 
 			const unsigned _Rows, const unsigned _Columns, 
 			typename LHS, typename RHS
 		>
-		detail::MatrixAddition<T, _Rows, _Columns, LHS, RHS> operator+(
+		detail::MatrixMultiplication<T, _Rows, _Columns, LHS, RHS> operator*(
 			const MatrixExpression<T, _Rows, _Columns, LHS>& lhs, 
 			const MatrixExpression<T, _Rows, _Columns, RHS>& rhs) 
 		{
-			return detail::MatrixAddition<T, _Rows, _Columns, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+			return detail::MatrixMultiplication<T, _Rows, _Columns, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 	}
 }

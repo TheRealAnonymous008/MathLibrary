@@ -3,7 +3,7 @@
 
 namespace MathLib {
 	namespace LinearAlgebra {
-		template<typename T, typename E>
+		template<typename T, const unsigned Rows, const unsigned Columns, typename E>
 		class MatrixExpression {
 		public:
 			T At(const unsigned& r, const unsigned& c) const {
@@ -23,8 +23,15 @@ namespace MathLib {
 			}
 		};
 
-		template<typename T, typename LHS, typename RHS>
-		bool operator==(const MatrixExpression<T, LHS>& lhs, const MatrixExpression<T, RHS>& rhs) {
+		template<
+			typename T, 
+			const unsigned Rows, const unsigned Columns,
+			typename LHS, typename RHS
+		>
+		bool operator==(
+			const MatrixExpression<T, Rows, Columns, LHS>& lhs, 
+			const MatrixExpression<T, Rows, Columns, RHS>& rhs) 
+		{
 			if (lhs.Rows() != rhs.Rows()) 
 				return false;
 			if (lhs.Columns() != rhs.Columns())
@@ -39,8 +46,15 @@ namespace MathLib {
 			return true;
 		}
 
-		template<typename T, typename LHS, typename RHS>
-		bool operator!=(const MatrixExpression<T, LHS>& lhs, const MatrixExpression<T, RHS>& rhs) {
+		template<
+			typename T, 
+			const unsigned Rows, const unsigned Columns, 
+			typename LHS, typename RHS
+		>
+		bool operator!=(
+			const MatrixExpression<T, Rows, Columns, LHS>& lhs, 
+			const MatrixExpression<T, Rows, Columns, RHS>& rhs) 
+		{
 			if (lhs.Rows() != rhs.Rows())
 				return false;
 			if (lhs.Columns() != rhs.Columns())

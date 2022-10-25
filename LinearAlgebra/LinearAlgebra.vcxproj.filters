@@ -99,5 +99,8 @@
     <ClInclude Include="MatrixVectorProduct.h">
       <Filter>Header Files\VectorOperations</Filter>
     </ClInclude>
+    <ClInclude Include="MatrixMultiplication.h">
+      <Filter>Header Files\MatrixOperations</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

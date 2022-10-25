@@ -5,8 +5,10 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, typename Expr> 
-			class MatrixTranspose : public MatrixExpression<T, MatrixTranspose<T, Expr>> {
+			template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr>
+			class MatrixTranspose : public MatrixExpression<T, _Rows, _Columns, 
+				MatrixTranspose<T, _Rows, _Columns, Expr>> 
+			{
 			private:
 				const Expr& expr;
 
@@ -27,8 +29,7 @@ namespace MathLib {
 					return  expr.Rows();
 				}
 
-				template<const unsigned _Rows, const unsigned _Columns>
-				Matrix<T, _Rows, _Columns> Evaluate() const{
+				auto Evaluate() const{
 
 					Matrix<T, _Rows, _Columns> result;
 
@@ -43,9 +44,15 @@ namespace MathLib {
 			};
 		}
 
-		template<typename T, typename Expr>
-		detail::MatrixTranspose<T, Expr> Transpose(const MatrixExpression<T, Expr>& expr) {
-			return detail::MatrixTranspose<T, Expr>(*static_cast<const Expr*>(&expr));
+		template<
+			typename T,
+			const unsigned _Rows, const unsigned _Columns, 
+			typename Expr
+		>
+		detail::MatrixTranspose<T, _Rows, _Columns, Expr> Transpose(
+			const MatrixExpression<T, _Rows, _Columns, Expr>& expr) 
+		{
+			return detail::MatrixTranspose<T, _Rows, _Columns, Expr>(*static_cast<const Expr*>(&expr));
 		}
 
 	}

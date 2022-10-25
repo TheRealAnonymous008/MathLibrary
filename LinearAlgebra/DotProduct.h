@@ -5,8 +5,10 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, typename LHS, typename RHS>
-		T Dot(const VectorExpression<T, LHS>& lhs, const VectorExpression<T, RHS>& rhs) {
+		template<typename T, const unsigned N, typename LHS, typename RHS>
+		T Dot(
+			const VectorExpression<T, N, LHS>& lhs, 
+			const VectorExpression<T, N, RHS>& rhs) {
 			if (lhs.Size() != rhs.Size())
 				throw InvalidBinaryOperation();
 

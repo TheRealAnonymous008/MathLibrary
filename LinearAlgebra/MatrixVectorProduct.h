@@ -6,8 +6,13 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, typename LHS, typename RHS>
-			class MatrixVectorProduct : public VectorExpression<T, MatrixVectorProduct<T, LHS, RHS>> {
+			template<
+				typename T, 
+				const unsigned M, const unsigned K, const unsigned N, 
+				typename LHS, typename RHS
+			>
+			class MatrixVectorProduct : public VectorExpression<T, M,
+				MatrixVectorProduct<T, M, K, N, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -30,13 +35,12 @@ namespace MathLib {
 				}
 
 				constexpr unsigned Size() const {
-					return  lhs.Rows();
+					return M;
 				}
 
 
-				template<typename Q = T, const unsigned N> 
-				Vector<Q, N> Evaluate() const{
-					Vector<Q, N> result;
+				auto Evaluate() const{
+					Vector<T, M> result;
 
 					for (unsigned i = 0; i < Size(); ++i) {
 						for (unsigned k = 0; k < rhs.Size(); ++k) {
@@ -51,9 +55,16 @@ namespace MathLib {
 
 		
 
-		template<typename T, typename LHS, typename RHS>
-		detail::MatrixVectorProduct<T, LHS, RHS> operator*(const MatrixExpression<T, LHS>& lhs, const VectorExpression<T, RHS>& rhs) {
-			return detail::MatrixVectorProduct<T, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		template<
+			typename T, 
+			const unsigned M, const unsigned K, const unsigned N, 
+			typename LHS, typename RHS
+		>
+		detail::MatrixVectorProduct<T, M, K, N, LHS, RHS> operator*(
+			const MatrixExpression<T, M, K, LHS>& lhs, 
+			const VectorExpression<T, N, RHS>& rhs) 
+		{
+			return detail::MatrixVectorProduct<T, M, K, N, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}
