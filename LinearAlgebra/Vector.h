@@ -43,11 +43,9 @@ namespace MathLib {
 				if (expr.Size() != Size()) {
 					throw DimensionError();;
 				}
-				
-				Vector evaluated = expr.Evaluate<Vector>();
 
 				for (unsigned i = 0; i < Size(); ++i) {
-					body[i] = evaluated[i];
+					body[i] = expr[i];
 				}
 			}
 
@@ -57,10 +55,8 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
-				Vector evaluated = expr.Evaluate<Vector>();
-
 				for (unsigned i = 0; i < Size(); ++i) {
-					body[i] = evaluated[i];
+					body[i] = expr[i];
 				}
 			}
 

@@ -51,11 +51,9 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
-				Matrix evaluated = expr.Evaluate<Matrix>();
-
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
-						body[i][j] = evaluated.At(i, j);
+						body[i][j] = expr.At(i, j);
 					}
 				}
 			}
@@ -66,11 +64,9 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
-				Matrix evaluated = expr.Evaluate<Matrix>();
-
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
-						body[i][j] = evaluated.At(i, j);
+						body[i][j] = expr.At(i, j);
 					}
 				}
 			}			

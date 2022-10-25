@@ -5,7 +5,9 @@ namespace MathLib {
 	namespace LinearAlgebra {
 		template<typename T, typename E>
 		class MatrixExpression {
-		private:
+		protected:
+			std::vector<std::vector<T>> body;
+			bool isEvaluated = false;
 
 		public:
 			T At(const unsigned& r, const unsigned& c) const {
@@ -20,9 +22,12 @@ namespace MathLib {
 				return  static_cast<E const&>(*this).Columns();
 			}
 
-			template<typename Result>
-			Result Evaluate() const{
-				return static_cast<E const&>(*this).Evaluate<Result>();
+			const MatrixExpression& Evaluate() {
+				if (isEvaluated)
+					return static_cast<E const&>(*this);
+
+				isEvaluated = true;
+				return static_cast<E const&>(*this).Evaluate();
 			}
 		};
 

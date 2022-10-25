@@ -17,6 +17,9 @@ namespace MathLib {
 				}
 
 				T At(const unsigned& r, const unsigned& c) const {
+					if (isEvaluated) {
+						return body[r][c];
+					}
 					return  -expr.At(r, c);
 				}
 
@@ -28,20 +31,17 @@ namespace MathLib {
 					return  expr.Columns();
 				}
 
-				template<typename Result>
-				Result Evaluate() const;
+				const MatrixNegation& Evaluate() {
 
-				template<>
-				E Evaluate<E>() const {
-					E result;
+					body = std::vector<std::vector<T>>(Rows(), std::vector<T>(Columns()));
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
-							result.At(i, j) = -expr.At(i, j);
+							body[i][j] = -expr.At(i, j);
 						}
 					}
 
-					return result;
+					return *this;
 				}
 			};
 		}

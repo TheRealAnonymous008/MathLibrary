@@ -29,21 +29,22 @@ namespace MathLib {
 					return sum;
 				}
 
-				constexpr unsigned  Size() const {
-					return lhs.Rows();
+				constexpr unsigned Size() const {
+					return  lhs.Rows();
 				}
 
-				template<typename Result>
-				Result Evaluate() const{
-					Result result;
+
+				const MatrixVectorProduct& Evaluate() {
+
+					body = std::vector<T>(Size());
 
 					for (unsigned i = 0; i < Size(); ++i) {
 						for (unsigned k = 0; k < rhs.Size(); ++k) {
-							(result)[i] += lhs.At(i, k) * rhs[k];
+							(body)[i] += lhs.At(i, k) * rhs[k];
 						}
 					}
 
-					return result;
+					return *this;
 				}
 			};
 		}

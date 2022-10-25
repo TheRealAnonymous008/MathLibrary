@@ -27,20 +27,14 @@ namespace MathLib {
 					return  rhs.Size();
 				}
 
-				template<typename Result>
-				Result Evaluate() const {
-					return Result();
-				}
-				
-				template<>
-				RHS Evaluate<RHS>() const {
-					RHS result;
+				const VectorAddition& Evaluate() {
+					body = std::vector<T>(Size());
 
 					for (unsigned i = 0; i < Size(); ++i) {
-						(result)[i] = lhs[i] + rhs[i];
+						body[i] = lhs[i] + rhs[i];
 					}
 
-					return result;
+					return *this;
 				}
 			};
 		}

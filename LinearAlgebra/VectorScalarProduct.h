@@ -25,20 +25,15 @@ namespace MathLib {
 					return  vec.Size();
 				}
 
-				template<typename Result>
-				Result Evaluate() const {
-					return Result();
-				}
-				
-				template<>
-				V Evaluate<V>() const {
-					V result;
+				const VectorScalarProduct& Evaluate() {
+
+					body = std::vector<T>(Size());
 
 					for (unsigned i = 0; i < Size(); ++i) {
-						(result)[i] = vec[i] * c;
+						(body)[i] = vec[i] * c;
 					}
 
-					return result;
+					return *this;
 				}
 			};
 		}

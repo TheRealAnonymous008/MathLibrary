@@ -21,6 +21,10 @@ namespace MathLib {
 				}
 
 				T At(const unsigned& r, const unsigned& c) const {
+					if (isEvaluated) {
+						return body[r][c];
+					}
+
 					return  lhs.At(r, c) - rhs.At(r, c);
 				}
 
@@ -32,20 +36,17 @@ namespace MathLib {
 					return  rhs.Columns();
 				}
 
-				template<typename Result>
-				Result Evaluate() const;
+				const MatrixSubtraction& Evaluate() {
 
-				template<>
-				RHS Evaluate<RHS>() const{
-					RHS result;
+					body = std::vector<std::vector<T>>(Rows(), std::vector<T>(Columns()));
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
-							result.At(i, j) = lhs.At(i, j) - rhs.At(i, j);
+							body[i][j] = lhs.At(i, j) - rhs.At(i, j);
 						}
 					}
 
-					return result;
+					return *this;
 				}
 			};
 		}

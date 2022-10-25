@@ -27,18 +27,15 @@ namespace MathLib {
 					return  rhs.Size();
 				}
 
-				template<typename Result>
-				Result Evaluate() const;
-				
-				template<>
-				RHS Evaluate<RHS>() const {
-					RHS result;
+				const VectorSubtraction& Evaluate() {
+
+					body = std::vector<T>(Size());
 
 					for (unsigned i = 0; i < Size(); ++i) {
-						(result)[i] = lhs[i] - rhs[i];
+						(body)[i] = lhs[i] - rhs[i];
 					}
 
-					return result;
+					return *this;
 				}
 			};
 		}

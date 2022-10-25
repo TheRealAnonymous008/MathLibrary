@@ -9,6 +9,10 @@ namespace MathLib {
 		class VectorExpression {
 		private:
 
+		protected:
+			std::vector<T> body;
+			bool isEvaluated = false;
+
 		public:
 			T operator[](const unsigned& i) const {
 				return  static_cast<E const&>(*this)[i];
@@ -18,8 +22,11 @@ namespace MathLib {
 				return  static_cast<E const&>(*this).Size();
 			}
 
-			template<typename Result>
-			Result Evaluate() const{
+			const VectorExpression& Evaluate(){
+				if (isEvaluated)
+					return static_cast<E const&>(*this);
+
+				isEvaluated = true;
 				return static_cast<E const&>(*this).Evaluate<Result>();
 			}
 		};
