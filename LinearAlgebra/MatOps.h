@@ -10,3 +10,4 @@
 
 
 #include "Transpose.h"
+#include "Slice.h"

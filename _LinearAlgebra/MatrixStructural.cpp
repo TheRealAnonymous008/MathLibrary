@@ -38,3 +38,14 @@ TEST(MtatrixTranspose, TransposeWithOps) {
 	ASSERT_EQ(Transpose(3 * A) + Transpose(2 * B), Transpose(3 * A + 2 * B));
 
 }
+
+TEST(MtatrixTranspose, MatrixSlicing) {
+	Matrix<int, 10, 10> A;
+
+	for (unsigned i = 0; i < 10; ++i) {
+		for (unsigned j = 0; j < 10; ++j) {
+			A.At(i, j) = 10 * i + j;
+		}
+	}
+
+}

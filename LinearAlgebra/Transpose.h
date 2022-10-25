@@ -28,7 +28,7 @@ namespace MathLib {
 				}
 
 				template<const unsigned _Rows, const unsigned _Columns>
-				Matrix<T, _Rows, _Columns> Evaluate() {
+				Matrix<T, _Rows, _Columns> Evaluate() const{
 
 					Matrix<T, _Rows, _Columns> result;
 

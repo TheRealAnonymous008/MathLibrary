@@ -17,7 +17,7 @@ namespace MathLib {
 			}
 
 			template<typename Q = T, const unsigned N>
-			Vector<Q, N> Evaluate(){
+			Vector<Q, N> Evaluate() const{
 				return static_cast<E const&>(*this).Evaluate();
 			}
 		};

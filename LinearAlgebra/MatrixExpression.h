@@ -18,8 +18,7 @@ namespace MathLib {
 				return  static_cast<E const&>(*this).Columns();
 			}
 
-			template<typename Q = T, const unsigned _Rows, const unsigned _Columns>
-			Matrix<Q, _Rows, _Columns> Evaluate() const{
+			auto Evaluate() const{
 				return static_cast<E const&>(*this).Evaluate();
 			}
 		};

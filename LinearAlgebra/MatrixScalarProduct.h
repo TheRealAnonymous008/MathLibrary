@@ -30,7 +30,7 @@ namespace MathLib {
 				}
 
 				template<typename Q = T, const unsigned _Rows, const unsigned _Columns>
-				Matrix<Q, _Rows, _Columns> Evaluate(){
+				Matrix<Q, _Rows, _Columns> Evaluate() const{
 
 					Matrix<Q, _Rows, _Columns> result;
 
