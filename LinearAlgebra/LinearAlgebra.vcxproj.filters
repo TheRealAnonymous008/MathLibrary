@@ -90,8 +90,14 @@
     <ClInclude Include="MatrixScalarQuotient.h">
       <Filter>Header Files\MatrixOperations</Filter>
     </ClInclude>
+    <ClInclude Include="Transpose.h">
+      <Filter>Header Files\MatrixStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Slice.h">
+      <Filter>Header Files\MatrixStructure</Filter>
+    </ClInclude>
     <ClInclude Include="MatrixVectorProduct.h">
-      <Filter>Header Files\MatrixOperations</Filter>
+      <Filter>Header Files\VectorOperations</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

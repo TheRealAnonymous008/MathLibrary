@@ -21,6 +21,10 @@ namespace MathLib {
 				}
 
 				T operator[](const unsigned& i) const {
+					if (isEvaluated) {
+						return body[i];
+					}
+
 					T sum = T();
 
 					for (unsigned k = 0; k < rhs.Size(); ++k) {
@@ -43,7 +47,7 @@ namespace MathLib {
 							(body)[i] += lhs.At(i, k) * rhs[k];
 						}
 					}
-
+					this->isEvaluated = true;
 					return *this;
 				}
 			};
