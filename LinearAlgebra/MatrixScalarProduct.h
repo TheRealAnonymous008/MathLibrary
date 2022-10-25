@@ -18,10 +18,6 @@ namespace MathLib {
 				}
 
 				T At(const unsigned& r, const unsigned& c) const {
-					if (isEvaluated) {
-						return body[r][c];
-					}
-
 					return  mat.At(r, c) * k;
 				}
 
@@ -33,17 +29,18 @@ namespace MathLib {
 					return  mat.Columns();
 				}
 
-				const MatrixScalarProduct& Evaluate(){
+				template<const unsigned _Rows, const unsigned _Columns>
+				Matrix<T, _Rows, _Columns> Evaluate(){
 
-					body = std::vector<std::vector<T>>(Rows(), std::vector<T>(Columns()));
+					Matrix<T, _Rows, _Columns> result;
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
-							body[i][j] = mat.At(i, j) * k;
+							result.At(i, j) = mat.At(i, j) * k;
 						}
 					}
 
-					return *this;
+					return result;
 				}
 			};
 		}

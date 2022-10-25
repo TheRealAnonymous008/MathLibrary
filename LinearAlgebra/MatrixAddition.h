@@ -20,9 +20,6 @@ namespace MathLib {
 				}
 
 				T At(const unsigned& r, const unsigned& c) const {
-					if (isEvaluated) {
-						return body[r][c];
-					}
 					return  lhs.At(r, c) + rhs.At(r, c);
 				}
 
@@ -34,17 +31,18 @@ namespace MathLib {
 					return  rhs.Columns();
 				}
 
-				const MatrixAddition& Evaluate(){
+				template<const unsigned _Rows, const unsigned _Columns>
+				Matrix<T, _Rows, _Columns> Evaluate() const{
 
-					body = std::vector<std::vector<T>>(Rows(), std::vector<T>(Columns()));
+					Matrix<T, _Rows, _Columns> result;
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
-							body[i][j] = lhs.At(i, j) + rhs.At(i, j);
+							result.At(i, j) = lhs.At(i, j) + rhs.At(i, j);
 						}
 					}
 
-					return *this;
+					return result;
 				}
 			};
 		}
