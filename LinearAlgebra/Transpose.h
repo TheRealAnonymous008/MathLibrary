@@ -49,8 +49,9 @@ namespace MathLib {
 			const unsigned _Rows, const unsigned _Columns, 
 			typename Expr
 		>
+
 		detail::MatrixTranspose<T, _Rows, _Columns, Expr> Transpose(
-			const MatrixExpression<T, _Rows, _Columns, Expr>& expr) 
+			const MatrixExpression<T, _Columns, _Rows, Expr>& expr) 
 		{
 			return detail::MatrixTranspose<T, _Rows, _Columns, Expr>(*static_cast<const Expr*>(&expr));
 		}

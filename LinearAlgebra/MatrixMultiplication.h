@@ -60,6 +60,7 @@ namespace MathLib {
 			const unsigned _Rows, const unsigned _Columns, 
 			typename LHS, typename RHS
 		>
+
 		detail::MatrixMultiplication<T, _Rows, _Columns, LHS, RHS> operator*(
 			const MatrixExpression<T, _Rows, _Columns, LHS>& lhs, 
 			const MatrixExpression<T, _Rows, _Columns, RHS>& rhs) 

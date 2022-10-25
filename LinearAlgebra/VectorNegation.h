@@ -45,6 +45,7 @@ namespace MathLib {
 			const unsigned N, 
 			typename V
 		>
+
 		detail::VectorNegation<T, N, V> operator-(
 			const VectorExpression<T, N, V>& vec) 
 		{

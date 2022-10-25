@@ -60,6 +60,7 @@ namespace MathLib {
 			const unsigned M, const unsigned K, const unsigned N, 
 			typename LHS, typename RHS
 		>
+
 		detail::MatrixVectorProduct<T, M, K, N, LHS, RHS> operator*(
 			const MatrixExpression<T, M, K, LHS>& lhs, 
 			const VectorExpression<T, N, RHS>& rhs) 

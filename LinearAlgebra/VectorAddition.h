@@ -48,6 +48,7 @@ namespace MathLib {
 			const unsigned N, 
 			typename LHS, typename RHS
 		>
+
 		detail::VectorAddition<T, N, LHS, RHS> operator+(
 			const VectorExpression<T, N, LHS>& lhs, 
 			const VectorExpression<T, N, RHS>& rhs) 

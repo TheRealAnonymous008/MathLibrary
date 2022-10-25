@@ -22,11 +22,11 @@ namespace MathLib {
 				}
 
 				constexpr unsigned Rows() const {
-					return  expr.Rows();
+					return  _Rows;
 				}
 
 				constexpr unsigned Columns() const {
-					return  expr.Columns();
+					return  _Columns;
 				}
 
 				auto Evaluate() const {
@@ -49,6 +49,7 @@ namespace MathLib {
 			const unsigned _Rows, const unsigned _Columns, 
 			typename E
 		>
+
 		detail::MatrixNegation<T, _Rows, _Columns, E> operator-(
 			const MatrixExpression<T, _Rows, _Columns, E>& expr) 
 		{

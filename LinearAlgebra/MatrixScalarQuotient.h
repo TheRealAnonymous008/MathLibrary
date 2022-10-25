@@ -25,11 +25,11 @@ namespace MathLib {
 				}
 
 				constexpr unsigned Rows() const {
-					return  mat.Rows();
+					return  _Rows;
 				}
 
 				constexpr unsigned Columns() const {
-					return  mat.Columns();
+					return  _Columns;
 				}
 
 				auto Evaluate() const{
@@ -52,6 +52,7 @@ namespace MathLib {
 			const unsigned _Rows, const unsigned _Columns, 
 			typename M
 		>
+
 		detail::MatrixScalarQuotient<T, _Rows, _Columns, M> operator/(
 			const MatrixExpression<T, _Rows, _Columns, M>& vec, 
 			const T& c) 

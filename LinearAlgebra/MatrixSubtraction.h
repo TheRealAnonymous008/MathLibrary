@@ -26,11 +26,11 @@ namespace MathLib {
 				}
 
 				constexpr unsigned Rows() const {
-					return  rhs.Rows();
+					return  _Rows;
 				}
 
 				constexpr unsigned Columns() const {
-					return  rhs.Columns();
+					return  _Columns;
 				}
 
 				auto Evaluate() const {
@@ -54,6 +54,7 @@ namespace MathLib {
 			const unsigned _Rows, const unsigned _Columns, 
 			typename LHS, typename RHS
 		>
+
 		detail::MatrixSubtraction<T, _Rows, _Columns, LHS, RHS> operator-(
 			const MatrixExpression<T, _Rows, _Columns, LHS>& lhs, 
 			const MatrixExpression<T, _Rows, _Columns, RHS>& rhs) 

@@ -49,6 +49,7 @@ namespace MathLib {
 			const unsigned N, 
 			typename V
 		>
+
 		detail::VectorScalarQuotient<T, N, V> operator/(
 			const VectorExpression<T, N, V>& vec, 
 			const T& c) 

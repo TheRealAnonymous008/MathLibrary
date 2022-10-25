@@ -46,6 +46,7 @@ namespace MathLib {
 			const unsigned N, 
 			typename V
 		>
+
 		detail::VectorScalarProduct<T, N, V> operator*(
 			const VectorExpression<T, N, V>& vec, 
 			const T& c) 
@@ -58,6 +59,7 @@ namespace MathLib {
 			const unsigned N, 
 			typename V
 		>
+
 		detail::VectorScalarProduct<T, N, V> operator*(
 			const T& c, 
 			const VectorExpression<T, N, V>& vec) 
