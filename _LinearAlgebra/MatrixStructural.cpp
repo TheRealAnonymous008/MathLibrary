@@ -39,7 +39,7 @@ TEST(MtatrixTranspose, TransposeWithOps) {
 
 }
 
-TEST(MtatrixTranspose, MatrixSlicing) {
+TEST(MatrixSlicing, MatrixSlicing) {
 	Matrix<int, 10, 10> A;
 
 	for (unsigned i = 0; i < 10; ++i) {
