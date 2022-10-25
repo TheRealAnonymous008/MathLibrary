@@ -21,10 +21,6 @@ namespace MathLib {
 				}
 
 				T operator[](const unsigned& i) const {
-					if (isEvaluated) {
-						return body[i];
-					}
-
 					T sum = T();
 
 					for (unsigned k = 0; k < rhs.Size(); ++k) {
@@ -38,17 +34,17 @@ namespace MathLib {
 				}
 
 
-				const MatrixVectorProduct& Evaluate() {
-
-					body = std::vector<T>(Size());
+				template<typename Q = T, const unsigned N> 
+				Vector<Q, N> Evaluate() {
+					Vector<Q, N> result;
 
 					for (unsigned i = 0; i < Size(); ++i) {
 						for (unsigned k = 0; k < rhs.Size(); ++k) {
-							(body)[i] += lhs.At(i, k) * rhs[k];
+							result[i] += lhs.At(i, k) * rhs[k];
 						}
 					}
-					this->isEvaluated = true;
-					return *this;
+
+					return result;
 				}
 			};
 		}

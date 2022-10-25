@@ -31,7 +31,7 @@ namespace MathLib {
 					return  rhs.Columns();
 				}
 
-				template<const unsigned _Rows, const unsigned _Columns>
+				template<typename Q = T, const unsigned _Rows, const unsigned _Columns>
 				Matrix<T, _Rows, _Columns> Evaluate() const{
 
 					Matrix<T, _Rows, _Columns> result;

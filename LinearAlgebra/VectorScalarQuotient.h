@@ -27,15 +27,16 @@ namespace MathLib {
 					return  vec.Size();
 				}
 
-				const VectorScalarQuotient& Evaluate() {
+				template<typename Q = T, const unsigned N>
+				Vector<Q, N> Evaluate() {
 
-					body = std::vector<T>(Size());
+					Vector<Q, N> result;
 
 					for (unsigned i = 0; i < Size(); ++i) {
-						(body)[i] = vec[i] / c;
+						result[i] = vec[i] / c;
 					}
 
-					return *this;
+					return result;
 				}
 			};
 		}

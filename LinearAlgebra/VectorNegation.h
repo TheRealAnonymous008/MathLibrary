@@ -24,14 +24,16 @@ namespace MathLib {
 					return  vec.Size();
 				}
 				
-				const VectorNegation& Evaluate() {
-					body = std::vector<T>(Size());
+				template<typename Q = T, const unsigned N>
+				Vector<Q, N> Evaluate() {
+
+					Vector<Q, N> result;
 
 					for (unsigned i = 0; i < Size(); ++i) {
-						(body)[i] = -vec[i];
+						result[i] = -vec[i];
 					}
 
-					return *this;
+					return result;
 				}
 			};
 		}

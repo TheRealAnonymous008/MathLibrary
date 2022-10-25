@@ -28,10 +28,10 @@ namespace MathLib {
 					return  expr.Columns();
 				}
 
-				template<const unsigned _Rows, const unsigned _Columns>
-				Matrix<T, _Rows, _Columns> Evaluate() const {
+				template<typename Q = T, const unsigned _Rows, const unsigned _Columns>
+				Matrix<Q, _Rows, _Columns> Evaluate() const {
 
-					Matrix<T, _Rows, _Columns> result;
+					Matrix<Q, _Rows, _Columns> result;
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
