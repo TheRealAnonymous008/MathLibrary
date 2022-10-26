@@ -79,6 +79,7 @@ namespace MathLib {
 
 			template<typename E>
 			Vector& operator+=(const VectorExpression<T, N, E>& expr) {
+
 				for (unsigned i = 0; i < Size(); ++i) {
 					body[i] += expr[i];
 				}
@@ -87,6 +88,7 @@ namespace MathLib {
 
 			template<typename E>
 			Vector& operator-=(const VectorExpression<T, N, E>& expr) {
+
 				for (unsigned i = 0; i < Size(); ++i) {
 					body[i] -= expr[i];
 				}
@@ -110,7 +112,7 @@ namespace MathLib {
 				return *this;
 			}
 
-			const Vector& Evaluate() {
+			const Vector& Evaluate() const{
 				return *this;
 			}
 		};

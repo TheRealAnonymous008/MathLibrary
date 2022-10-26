@@ -50,8 +50,10 @@ TEST(VectorOperations, MultiAdd) {
 	for (unsigned i = 0; i < 10; ++i) {
 		ASSERT_EQ(v[i], v1[i] + v2[i] + v3[i]);
 	}
-
+	
 	ASSERT_EQ((v1 + v2) , (v2 + v1));
+
+	ASSERT_EQ((v1 + v2 + v3)[2] ,(v1 + v2)[2] + v3[2]);
 
 }
 

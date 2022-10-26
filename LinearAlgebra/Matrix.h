@@ -51,11 +51,9 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
-				auto evaluated = expr.Evaluate();
-
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
-						body[i][j] = evaluated.At(i, j);
+						body[i][j] = expr.At(i, j);
 					}
 				}
 			}
@@ -66,11 +64,9 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
-				auto evaluated = expr.Evaluate();
-
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
-						body[i][j] = evaluated.At(i, j);
+						body[i][j] = expr.At(i, j);
 					}
 				}
 			}			
@@ -103,6 +99,7 @@ namespace MathLib {
 
 			template<typename E>
 			Matrix& operator+=(const MatrixExpression<T, _Rows, _Columns, E>& expr) {
+
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
 						body[i][j] += expr.At(i, j);
@@ -114,6 +111,7 @@ namespace MathLib {
 
 			template<typename E>
 			Matrix& operator-=(const MatrixExpression<T, _Rows, _Columns,  E>& expr) {
+
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
 						body[i][j] -= expr.At(i, j);
@@ -143,7 +141,7 @@ namespace MathLib {
 				return *this;
 			}
 
-			const Matrix& Evaluate() {
+			const Matrix& Evaluate() const{
 				return (*this);
 			}
 		};
