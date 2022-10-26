@@ -5,6 +5,33 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
+		namespace implementation {
+			template<
+				typename T,
+				const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,
+				typename LHS, typename RHS>
+			const Matrix<T, _Rows, _Columns>& MatrixMultiply(
+				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
+				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
+			) {
+
+				Matrix<T, _Rows, _Columns> result;
+
+				for (unsigned i = 0; i < _Rows; ++i) {
+					for (unsigned j = 0; j < _Columns; ++j) {
+						for (unsigned k = 0; k < _Inner; ++k) {
+							result.At(i, j) = lhs.At(i, k) * rhs.At(K, J);
+						}
+					}
+				}
+
+				return result;
+			}
+
+		}
+
+
+
 		namespace detail {
 			template<typename T, const unsigned _Rows, const unsigned _Columns, typename LHS, typename RHS>
 			class MatrixMultiplication : public MatrixExpression<T, _Rows, _Columns, 
@@ -39,31 +66,20 @@ namespace MathLib {
 				}
 
 				auto Evaluate() const {
-
-					// TODO: Implement this
-
-					Matrix<T, _Rows, _Columns> result;
-
-					for (unsigned i = 0; i < Rows(); ++i) {
-						for (unsigned j = 0; j < Columns(); ++j) {
-							result.At(i, j) = lhs.At(i, j) + rhs.At(i, j);
-						}
-					}
-
-					return result;
+					return implementation::MatrixMultiply(lhs, rhs);
 				}
 			};
 		}
 
 		template<
 			typename T, 
-			const unsigned _Rows, const unsigned _Columns, 
+			const unsigned _Rows, const unsigned _Inner, const unsigned _Columns, 
 			typename LHS, typename RHS
 		>
 
 		detail::MatrixMultiplication<T, _Rows, _Columns, LHS, RHS> operator*(
-			const MatrixExpression<T, _Rows, _Columns, LHS>& lhs, 
-			const MatrixExpression<T, _Rows, _Columns, RHS>& rhs) 
+			const MatrixExpression<T, _Rows, _Inner, LHS>& lhs, 
+			const MatrixExpression<T, _Inner, _Columns, RHS>& rhs) 
 		{
 			return detail::MatrixMultiplication<T, _Rows, _Columns, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}

@@ -248,28 +248,6 @@ TEST(MatrixOps, SelfAssignment) {
 	ASSERT_EQ(M, N);
 }
 
-TEST(MatVec, MatrixVectorProduct) {
-	Matrix<int, 4, 3> A = {
-		{2, -3, 1},
-		{1, -2, -3},
-		{0, 0, 4},
-		{1, 3, -1}
-	};
-
-	Vector<int, 3> x = {
-		-1, 5, 2
-	};
-
-	Vector<int, 4> z = {
-		-15, -17, 8, 12
-	};
-
-	Vector<int, 4> y = A * x;
-
-	ASSERT_EQ(y, z);
-	
-}
-
 TEST(MatEager, MatrixEager) {
 	Matrix<int, 4, 4> M = {
 	{1, 2, 3, 4},
@@ -296,26 +274,4 @@ TEST(MatEager, MatrixEager) {
 			ASSERT_EQ(R.At(i, j), P.At(i, j) + Q.At(i, j) + M.At(i, j));
 		}
 	}
-}
-
-TEST(MatVec, MatVecEager) {
-	Matrix<int, 4, 3> A = {
-		{2, -3, 1},
-		{1, -2, -3},
-		{0, 0, 4},
-		{1, 3, -1}
-	};
-
-	Vector<int, 3> x = {
-		-1, 5, 2
-	};
-
-	Vector<int, 4> z = {
-		-15, -17, 8, 12
-	};
-
-	Vector<int, 4> y = (A * x).Evaluate();
-
-	ASSERT_EQ(y, z);
-
 }

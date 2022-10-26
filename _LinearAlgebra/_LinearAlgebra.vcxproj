@@ -38,6 +38,7 @@
   <ItemGroup>
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MatrixStructural.cpp" />
+    <ClCompile Include="Products.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
