@@ -38,7 +38,7 @@ namespace MathLib {
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
-							result.At(i, j) = mat.At(i, j) * k;
+							result.At(i, j) = mat.At(i, j) / k;
 						}
 					}
 

@@ -36,7 +36,7 @@ namespace MathLib {
 
 					for (unsigned i = 0; i < Rows(); ++i) {
 						for (unsigned j = 0; j < Columns(); ++j) {
-							result[i][j] = expr.At(i + row, j + column);
+							result.At(i, j) = expr.At(i + row, j + column);
 						}
 					}
 
