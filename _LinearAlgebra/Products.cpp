@@ -76,3 +76,18 @@ TEST(MatMat, MatrixMatrixProduct) {
 TEST(MatMat, MatrixProductWithArithmetic) {
 	// TO-DO Make a test case for this.
 }
+
+TEST(MatMlu, BigProduct) {
+
+	const unsigned int N = 1000;
+	SquareMatrix<int, N> *A = new SquareMatrix<int, N>();
+
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j < N; ++j) {
+			A->At(i, j) = i + j;
+		}
+	}
+
+	auto M = (* A * *A).Evaluate();
+
+}

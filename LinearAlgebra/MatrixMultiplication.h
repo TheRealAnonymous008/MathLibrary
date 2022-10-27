@@ -10,7 +10,21 @@ namespace MathLib {
 				typename T,
 				const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,
 				typename LHS, typename RHS>
+
 			const Matrix<T, _Rows, _Columns>& MatrixMultiply(
+				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
+				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
+			) {
+				return ElementaryMatrixMultiplication(*static_cast<const LHS*>(&lhs), 
+					*static_cast<const RHS*>(&rhs));
+			}
+
+			template<
+				typename T,
+				const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,
+				typename LHS, typename RHS>
+
+			const Matrix<T, _Rows, _Columns>& ElementaryMatrixMultiplication(
 				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
 			) {
@@ -20,7 +34,7 @@ namespace MathLib {
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
 						for (unsigned k = 0; k < _Inner; ++k) {
-							result.At(i, j) = lhs.At(i, k) * rhs.At(K, J);
+							result.At(i, j) = lhs.At(i, k) * rhs.At(k, j);
 						}
 					}
 				}
@@ -66,7 +80,7 @@ namespace MathLib {
 				}
 
 				auto Evaluate() const {
-					return implementation::MatrixMultiply(lhs, rhs);
+					return implementation::MatrixMultiply(lhs.Evaluate(), rhs.Evaluate());
 				}
 			};
 		}
