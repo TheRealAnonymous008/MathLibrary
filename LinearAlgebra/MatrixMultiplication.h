@@ -2,6 +2,8 @@
 #include "fwd.h"
 #include "Exceptions.h"
 
+#define STRASSEN_MATRIX_THRESHOLD 512
+
 namespace MathLib {
 	namespace LinearAlgebra {
 
@@ -15,6 +17,10 @@ namespace MathLib {
 				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
 			) {
+				if (_Rows > STRASSEN_MATRIX_THRESHOLD || _Columns > STRASSEN_MATRIX_THRESHOLD)
+					return StrassenMatrixMultiplication(*static_cast<const LHS*>(&lhs),
+						*static_cast<const RHS*>(&rhs));
+
 				return ElementaryMatrixMultiplication(*static_cast<const LHS*>(&lhs), 
 					*static_cast<const RHS*>(&rhs));
 			}
@@ -42,11 +48,25 @@ namespace MathLib {
 				return result;
 			}
 
+			template<
+				typename T,
+				const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,
+				typename LHS, typename RHS>
+
+			const Matrix<T, _Rows, _Columns>& StrassenMatrixMultiplication(
+				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
+				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
+			) {
+
+				// TODO:	Implement this.
+				return lhs.Evaluate();
+			}
 		}
 
 
 
 		namespace detail {
+
 			template<typename T, const unsigned _Rows, const unsigned _Columns, typename LHS, typename RHS>
 			class MatrixMultiplication : public MatrixExpression<T, _Rows, _Columns, 
 				MatrixMultiplication<T, _Rows, _Columns, LHS, RHS>> {

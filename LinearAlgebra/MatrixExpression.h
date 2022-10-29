@@ -3,23 +3,23 @@
 
 namespace MathLib {
 	namespace LinearAlgebra {
-		template<typename T, const unsigned Rows, const unsigned Columns, typename E>
+		template<typename T, const unsigned Rows, const unsigned Columns, typename Derived>
 		class MatrixExpression {
 		public:
 			T At(const unsigned& r, const unsigned& c) const {
-				return  static_cast<E const&>(*this).At(r, c);
+				return  static_cast<Derived const&>(*this).At(r, c);
 			}
 
 			constexpr unsigned Rows() const {
-				return  static_cast<E const&>(*this).Rows();
+				return  static_cast<Derived const&>(*this).Rows();
 			}
 
 			constexpr unsigned Columns() const {
-				return  static_cast<E const&>(*this).Columns();
+				return  static_cast<Derived const&>(*this).Columns();
 			}
 
 			auto Evaluate() const{
-				return static_cast<E const&>(*this).Evaluate();
+				return static_cast<Derived const&>(*this).Evaluate();
 			}
 		};
 

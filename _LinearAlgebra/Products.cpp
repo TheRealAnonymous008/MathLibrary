@@ -77,7 +77,7 @@ TEST(MatMat, MatrixProductWithArithmetic) {
 	// TO-DO Make a test case for this.
 }
 
-TEST(MatMlu, BigProduct) {
+TEST(MatMat, BigProduct) {
 
 	const unsigned int N = 1000;
 	SquareMatrix<int, N> *A = new SquareMatrix<int, N>();

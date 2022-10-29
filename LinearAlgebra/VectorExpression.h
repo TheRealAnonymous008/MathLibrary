@@ -5,19 +5,19 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned N, typename E>
+		template<typename T, const unsigned N, typename Derived>
 		class VectorExpression {
 		public:
 			T operator[](const unsigned& i) const {
-				return  static_cast<E const&>(*this)[i];
+				return  static_cast<Derived const&>(*this)[i];
 			}
 
 			constexpr unsigned Size() const {
-				return  static_cast<E const&>(*this).Size();
+				return  static_cast<Derived const&>(*this).Size();
 			}
 
 			auto Evaluate() const{
-				return static_cast<E const&>(*this).Evaluate();
+				return static_cast<Derived const&>(*this).Evaluate();
 			}
 		};
 
