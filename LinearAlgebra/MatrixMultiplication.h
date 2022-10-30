@@ -58,45 +58,56 @@ namespace MathLib {
 				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
 			) {
 				const unsigned halfRow = _Rows / 2 + _Rows % 2;
+				const unsigned halfInner = _Inner / 2 + _Inner% 2;
 				const unsigned halfColumn = _Columns / 2 + _Columns% 2;
 
-				auto A11 = PlaceBlock<halfRow, halfColumn>(Slice<halfRow, halfColumn>(lhs, 0, 0));
-				auto A12 = PlaceBlock<halfRow, halfColumn>(Slice<halfRow, halfColumn>(lhs, 0, halfColumn));
-				auto A21 = PlaceBlock<halfRow, halfColumn>(Slice<halfRow, halfColumn>(lhs, halfRow, 0));
-				auto A22 = PlaceBlock<halfRow, halfColumn>(Slice<halfRow, halfColumn>(lhs, halfRow, halfColumn));
+				using AMatrix = Matrix<T, halfRow, halfInner>;
+				using BMatrix = Matrix<T, halfInner, halfColumn>;
+				using CMatrix = Matrix<T, halfRow, halfColumn>;
 
-				auto B11 = PlaceBlock<halfRow, halfColumn>(Slice<halfRow, halfColumn>(rhs, 0, 0));
-				auto B12 = PlaceBlock<halfRow, halfColumn>(Slice<halfRow, halfColumn>(rhs, 0, halfColumn));
-				auto B21 = PlaceBlock<halfRow, halfColumn>(Slice<halfRow, halfColumn>(rhs, halfRow, 0));
-				auto B22 = PlaceBlock<halfRow, halfColumn>(Slice<halfRow, halfColumn>(rhs, halfRow, halfColumn));
+				AMatrix A11 = PlaceBlock<halfRow, halfInner>(Slice<halfRow, halfInner>(lhs, 0, 0));
+				AMatrix A12 = PlaceBlock<halfRow, halfInner>(Slice<halfRow, halfInner>(lhs, 0, halfColumn));
+				AMatrix A21 = PlaceBlock<halfRow, halfInner>(Slice<halfRow, halfInner>(lhs, halfRow, 0));
+				AMatrix A22 = PlaceBlock<halfRow, halfInner>(Slice<halfRow, halfInner>(lhs, halfRow, halfColumn));
 
-				auto S1 = A21 + A22;
-				auto S2 = S1 - A11;
-				auto S3 = A11 - A21;
-				auto S4 = A12 - S2;
+				BMatrix B11 = PlaceBlock<halfInner, halfColumn>(Slice<halfInner, halfColumn>(rhs, 0, 0));
+				BMatrix B12 = PlaceBlock<halfInner, halfColumn>(Slice<halfInner, halfColumn>(rhs, 0, halfColumn));
+				BMatrix B21 = PlaceBlock<halfInner, halfColumn>(Slice<halfInner, halfColumn>(rhs, halfRow, 0));
+				BMatrix B22 = PlaceBlock<halfInner, halfColumn>(Slice<halfInner, halfColumn>(rhs, halfRow, halfColumn));
 
-				auto T1 = B12 - B11;
-				auto T2 = B22 - T1;
-				auto T3 = B22 - B12;
-				auto T4 = T2 - B21;
+				AMatrix S1 = A21 + A22;
+				AMatrix S2 = S1 - A11;
+				AMatrix S3 = A11 - A21;
+				AMatrix S4 = A12 - S2;
 
-				auto R1 = MatrixMultiply(A11, B11);
-				auto R2 = MatrixMultiply(A12, B21);
-				auto R3 = MatrixMultiply(S4, B22);
-				auto R4 = MatrixMultiply(A22, T4);
-				auto R5 = MatrixMultiply(S1, T1);
-				auto R6 = MatrixMultiply(S2, T2);
-				auto R7 = MatrixMultiply(S3, T3);
+				BMatrix T1 = B12 - B11;
+				BMatrix T2 = B22 - T1;
+				BMatrix T3 = B22 - B12;
+				BMatrix T4 = T2 - B21;
 
-				auto C1 = R1 + R2;
-				auto C2 = R1 + R6;
-				auto C3 = C2 + R7;
-				auto C4 = C2 + R5;
-				auto C5 = C4 + R3;
-				auto C6 = C3 + R4;
-				auto C7 = R3 + R5;
+				CMatrix R1 = MatrixMultiply(A11, B11);
+				CMatrix R2 = MatrixMultiply(A12, B21);
+				CMatrix R3 = MatrixMultiply(S4, B22);
+				CMatrix R4 = MatrixMultiply(A22, T4);
+				CMatrix R5 = MatrixMultiply(S1, T1);
+				CMatrix R6 = MatrixMultiply(S2, T2);
+				CMatrix R7 = MatrixMultiply(S3, T3);
 
-				return lhs.Evaluate();
+				CMatrix C1 = R1 + R2;
+				CMatrix C2 = R1 + R6;
+				CMatrix C3 = C2 + R7;
+				CMatrix C4 = C2 + R5;
+				CMatrix C5 = C4 + R3;
+				CMatrix C6 = C3 + R4;
+				CMatrix C7 = R3 + R5;
+
+				Matrix<T, _Rows, _Columns> C;
+				PlaceBlock(C, C1, 0, 0);
+				PlaceBlock(C, C5, 0, halfColumn);
+				PlaceBlock(C, C6, halfRow, 0);
+				PlaceBlock(C, C7, halfRow, halfColumn);
+
+				return C;
 			}
 		}
 
