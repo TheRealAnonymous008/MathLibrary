@@ -68,7 +68,8 @@ TEST(MatMat, MatrixMatrixProduct) {
 		{-4, 3}
 	};
 
-	ASSERT_EQ(A * B, C);
+	ASSERT_EQ((A * B).Evaluate(), C);
+	ASSERT_EQ((A * B), C);
 	ASSERT_EQ(2 * A * B, 2 * C);
 	ASSERT_EQ(A * 3 * B, 3 * C);
 }
@@ -97,7 +98,7 @@ TEST(MatMat, Strassen) {
 		{12, 4},
 		{-4, 3}
 	};
-
+	
 	auto M = implementation::StrassenMatrixMultiplication(A, B);
 
 	ASSERT_EQ(M, C);
@@ -113,4 +114,7 @@ TEST(MatMat, BigProduct) {
 			A->At(i, j) = i + j;
 		}
 	}
+
+	auto M = ((*A) * (*A)).Evaluate();
+	
 }

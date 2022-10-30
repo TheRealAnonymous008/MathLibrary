@@ -40,7 +40,7 @@ namespace MathLib {
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
 						for (unsigned k = 0; k < _Inner; ++k) {
-							result.At(i, j) = lhs.At(i, k) * rhs.At(k, j);
+							result.At(i, j) += lhs.At(i, k) * rhs.At(k, j);
 						}
 					}
 				}
@@ -67,14 +67,14 @@ namespace MathLib {
 				using CMatrix = Matrix<T, halfRow, halfColumn>;
 
 				AMatrix A11 = PlaceBlock<halfRow, halfInner>(Slice<halfRow, halfInner>(lhs, 0, 0));
-				AMatrix A12 = PlaceBlock<halfRow, halfInner>(Slice<halfRow, _Inner - halfInner>(lhs, 0, halfColumn));
+				AMatrix A12 = PlaceBlock<halfRow, halfInner>(Slice<halfRow, _Inner - halfInner>(lhs, 0, halfInner));
 				AMatrix A21 = PlaceBlock<halfRow, halfInner>(Slice<_Rows - halfRow, halfInner>(lhs, halfRow, 0));
-				AMatrix A22 = PlaceBlock<halfRow, halfInner>(Slice<_Rows - halfRow, _Inner - halfInner>(lhs, halfRow, halfColumn));
+				AMatrix A22 = PlaceBlock<halfRow, halfInner>(Slice<_Rows - halfRow, _Inner - halfInner>(lhs, halfRow, halfInner));
 
 				BMatrix B11 = PlaceBlock<halfInner, halfColumn>(Slice<halfInner, halfColumn>(rhs, 0, 0));
 				BMatrix B12 = PlaceBlock<halfInner, halfColumn>(Slice<halfInner, _Columns - halfColumn>(rhs, 0, halfColumn));
-				BMatrix B21 = PlaceBlock<halfInner, halfColumn>(Slice<_Inner -halfInner, halfColumn>(rhs, halfRow, 0));
-				BMatrix B22 = PlaceBlock<halfInner, halfColumn>(Slice<_Inner -halfInner, _Columns - halfColumn>(rhs, halfRow, halfColumn));
+				BMatrix B21 = PlaceBlock<halfInner, halfColumn>(Slice<_Inner -halfInner, halfColumn>(rhs, halfInner, 0));
+				BMatrix B22 = PlaceBlock<halfInner, halfColumn>(Slice<_Inner -halfInner, _Columns - halfColumn>(rhs, halfInner, halfColumn));
 
 				AMatrix S1 = A21 + A22;
 				AMatrix S2 = S1 - A11;
@@ -99,10 +99,12 @@ namespace MathLib {
 				CMatrix C3 = C2 + R7;
 				CMatrix C4 = C2 + R5;
 				CMatrix C5 = C4 + R3;
-				CMatrix C6 = C3 + R4;
-				CMatrix C7 = R3 + R5;
+				CMatrix C6 = C3 - R4;
+				CMatrix C7 = C3 + R5;
+
 
 				Matrix<T, _Rows, _Columns> C;
+
 				PlaceBlock(C, C1, 0, 0);
 				PlaceBlock(C, C5, 0, halfColumn);
 				PlaceBlock(C, C6, halfRow, 0);

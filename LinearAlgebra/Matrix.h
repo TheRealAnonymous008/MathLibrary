@@ -144,6 +144,15 @@ namespace MathLib {
 			const Matrix& Evaluate() const{
 				return (*this);
 			}
+
+			void Log() const {
+				for (unsigned i = 0; i < _Rows; ++i) {
+					for (unsigned j = 0; j < _Columns; ++j) {
+						std::cout << this->At(i, j) << " ";
+					}
+					std::cout << "\n";
+				}
+			}
 		};
 
 		template<typename T, const unsigned N> 
