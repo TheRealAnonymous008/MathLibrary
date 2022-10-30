@@ -77,6 +77,32 @@ TEST(MatMat, MatrixProductWithArithmetic) {
 	// TO-DO Make a test case for this.
 }
 
+TEST(MatMat, Strassen) {
+	Matrix<int, 4, 3> A = {
+	{2, -3, 1},
+	{1, -2, -3},
+	{0, 0, 4},
+	{1, 3, -1}
+	};
+
+	Matrix<int, 3, 2> B = {
+		{2, 4},
+		{-1, 0},
+		{3, 1}
+	};
+
+	Matrix<int, 4, 2> C = {
+		{10, 9},
+		{-5, 1},
+		{12, 4},
+		{-4, 3}
+	};
+
+	auto M = implementation::StrassenMatrixMultiplication(A, B);
+
+	ASSERT_EQ(M, C);
+}
+
 TEST(MatMat, BigProduct) {
 
 	const unsigned int N = 1000;
@@ -87,7 +113,4 @@ TEST(MatMat, BigProduct) {
 			A->At(i, j) = i + j;
 		}
 	}
-
-	auto M = (* A * *A).Evaluate();
-
 }

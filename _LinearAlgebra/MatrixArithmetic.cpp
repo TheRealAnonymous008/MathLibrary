@@ -160,6 +160,7 @@ TEST(MatrixOps, BigOps) {
 			ASSERT_EQ(C.At(i, j), 6 *i + 2 * j);
 		}
 	}
+
 }
 
 TEST(MatrixOps, ScalarProduct) {

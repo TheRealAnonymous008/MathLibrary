@@ -13,7 +13,7 @@ namespace MathLib {
 				const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,
 				typename LHS, typename RHS>
 
-			const Matrix<T, _Rows, _Columns>& MatrixMultiply(
+			Matrix<T, _Rows, _Columns> MatrixMultiply(
 				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
 			) {
@@ -30,7 +30,7 @@ namespace MathLib {
 				const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,
 				typename LHS, typename RHS>
 
-			const Matrix<T, _Rows, _Columns>& ElementaryMatrixMultiplication(
+			Matrix<T, _Rows, _Columns> ElementaryMatrixMultiplication(
 				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
 			) {
@@ -53,7 +53,7 @@ namespace MathLib {
 				const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,
 				typename LHS, typename RHS>
 
-			const Matrix<T, _Rows, _Columns>& StrassenMatrixMultiplication(
+			Matrix<T, _Rows, _Columns> StrassenMatrixMultiplication(
 				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
 			) {
@@ -94,21 +94,21 @@ namespace MathLib {
 				CMatrix R6 = MatrixMultiply(S2, T2);
 				CMatrix R7 = MatrixMultiply(S3, T3);
 
-				//CMatrix C1 = R1 + R2;
-				//CMatrix C2 = R1 + R6;
-				//CMatrix C3 = C2 + R7;
-				//CMatrix C4 = C2 + R5;
-				//CMatrix C5 = C4 + R3;
-				//CMatrix C6 = C3 + R4;
-				//CMatrix C7 = R3 + R5;
+				CMatrix C1 = R1 + R2;
+				CMatrix C2 = R1 + R6;
+				CMatrix C3 = C2 + R7;
+				CMatrix C4 = C2 + R5;
+				CMatrix C5 = C4 + R3;
+				CMatrix C6 = C3 + R4;
+				CMatrix C7 = R3 + R5;
 
-				//Matrix<T, _Rows, _Columns> C;
-				//PlaceBlock(C, C1, 0, 0);
-				//PlaceBlock(C, C5, 0, halfColumn);
-				//PlaceBlock(C, C6, halfRow, 0);
-				//PlaceBlock(C, C7, halfRow, halfColumn);
+				Matrix<T, _Rows, _Columns> C;
+				PlaceBlock(C, C1, 0, 0);
+				PlaceBlock(C, C5, 0, halfColumn);
+				PlaceBlock(C, C6, halfRow, 0);
+				PlaceBlock(C, C7, halfRow, halfColumn);
 
-				return lhs.Evaluate();
+				return C;
 			}
 		}
 
