@@ -59,7 +59,7 @@ TEST(MatrixSlicing, MatrixSlicing) {
 	}
 }
 
-TEST(MatrixPadding, Pad) {
+TEST(MatrixBlocking, PadNoOffset) {
 	Matrix<int, 10, 10> A;
 
 	for (unsigned i = 0; i < 10; ++i) {
@@ -74,4 +74,46 @@ TEST(MatrixPadding, Pad) {
 	ASSERT_EQ(padded.At(19, 19), 0);
 	ASSERT_EQ(padded.At(4, 5), 45);
 	ASSERT_EQ(padded.At(1, 7), 17);
+}
+
+
+TEST(MatrixBlocking, PadWithOffset) {
+	Matrix<int, 10, 10> A;
+
+	for (unsigned i = 0; i < 10; ++i) {
+		for (unsigned j = 0; j < 10; ++j) {
+			A.At(i, j) = 10 * i + j;
+		}
+	}
+
+	Matrix<int, 20, 20> padded = PlaceBlock<20, 20>(A, 3, 2);
+
+	ASSERT_EQ(padded.At(1, 15), 0);
+	ASSERT_EQ(padded.At(19, 19), 0);
+	ASSERT_EQ(padded.At(2, 1), 0);
+	ASSERT_EQ(padded.At(7, 4), 42);
+	ASSERT_EQ(padded.At(4, 9), 17);
+}
+
+TEST(MatrixBlocking, BlockInsertion) {
+	Matrix<int, 10, 10> A;
+	for (unsigned i = 0; i < 10; ++i) {
+		for (unsigned j = 0; j < 10; ++j) {
+			A.At(i, j) = 1;
+		}
+	}
+
+	Matrix<int, 20, 20> B;
+	PlaceBlock(B, A);
+
+	for (unsigned i = 0; i < 20; ++i) {
+		for (unsigned j = 0; j < 20; ++j) {
+			if (i < 10 && j < 10) {
+				ASSERT_EQ(B.At(i, j), 1);
+			}
+			else {
+				ASSERT_EQ(B.At(i, j), 0);
+			}
+		}
+	}
 }
