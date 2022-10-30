@@ -12,3 +12,4 @@
 
 #include "Transpose.h"
 #include "Slice.h"
+#include "PlaceBlock.h"

@@ -58,3 +58,20 @@ TEST(MatrixSlicing, MatrixSlicing) {
 		}
 	}
 }
+
+TEST(MatrixPadding, Pad) {
+	Matrix<int, 10, 10> A;
+
+	for (unsigned i = 0; i < 10; ++i) {
+		for (unsigned j = 0; j < 10; ++j) {
+			A.At(i, j) = 10 * i + j;
+		}
+	}
+
+	Matrix<int, 20, 20> padded = PlaceBlock<20, 20>(A);
+
+	ASSERT_EQ(padded.At(1, 15), 0);
+	ASSERT_EQ(padded.At(19, 19), 0);
+	ASSERT_EQ(padded.At(4, 5), 45);
+	ASSERT_EQ(padded.At(1, 7), 17);
+}

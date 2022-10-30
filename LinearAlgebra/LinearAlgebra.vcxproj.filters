@@ -102,5 +102,8 @@
     <ClInclude Include="MatrixMultiplication.h">
       <Filter>Header Files\MatrixOperations</Filter>
     </ClInclude>
+    <ClInclude Include="PlaceBlock.h">
+      <Filter>Header Files\MatrixStructure</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
