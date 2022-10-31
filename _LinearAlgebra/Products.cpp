@@ -74,10 +74,6 @@ TEST(MatMat, MatrixMatrixProduct) {
 	ASSERT_EQ(A * 3 * B, 3 * C);
 }
 
-TEST(MatMat, MatrixProductWithArithmetic) {
-	// TO-DO Make a test case for this.
-}
-
 TEST(MatMat, Strassen) {
 	Matrix<int, 4, 3> A = {
 	{2, -3, 1},
@@ -106,7 +102,7 @@ TEST(MatMat, Strassen) {
 
 TEST(MatMat, BigProduct) {
 
-	const unsigned int N = 1000;
+	const unsigned int N = 515;
 	SquareMatrix<int, N> *A = new SquareMatrix<int, N>();
 
 	for (unsigned i = 0; i < N; ++i) {

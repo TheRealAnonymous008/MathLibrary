@@ -17,7 +17,7 @@ namespace MathLib {
 				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
 			) {
-				if (_Rows > STRASSEN_MATRIX_THRESHOLD || _Columns > STRASSEN_MATRIX_THRESHOLD)
+				if (_Rows > STRASSEN_MATRIX_THRESHOLD || _Columns > STRASSEN_MATRIX_THRESHOLD || _Inner > STRASSEN_MATRIX_THRESHOLD)
 					return StrassenMatrixMultiplication(*static_cast<const LHS*>(&lhs),
 						*static_cast<const RHS*>(&rhs));
 
@@ -57,7 +57,6 @@ namespace MathLib {
 				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
 			) {
-				
 				const unsigned halfRow = _Rows / 2 + _Rows % 2;
 				const unsigned halfInner = _Inner / 2 + _Inner% 2;
 				const unsigned halfColumn = _Columns / 2 + _Columns% 2;
@@ -70,7 +69,7 @@ namespace MathLib {
 				AMatrix A12 = PlaceBlock<halfRow, halfInner>(Slice<halfRow, _Inner - halfInner>(lhs, 0, halfInner));
 				AMatrix A21 = PlaceBlock<halfRow, halfInner>(Slice<_Rows - halfRow, halfInner>(lhs, halfRow, 0));
 				AMatrix A22 = PlaceBlock<halfRow, halfInner>(Slice<_Rows - halfRow, _Inner - halfInner>(lhs, halfRow, halfInner));
-
+				
 				BMatrix B11 = PlaceBlock<halfInner, halfColumn>(Slice<halfInner, halfColumn>(rhs, 0, 0));
 				BMatrix B12 = PlaceBlock<halfInner, halfColumn>(Slice<halfInner, _Columns - halfColumn>(rhs, 0, halfColumn));
 				BMatrix B21 = PlaceBlock<halfInner, halfColumn>(Slice<_Inner -halfInner, halfColumn>(rhs, halfInner, 0));
@@ -106,10 +105,10 @@ namespace MathLib {
 				Matrix<T, _Rows, _Columns> C;
 
 				PlaceBlock(C, C1, 0, 0);
-				PlaceBlock(C, C5, 0, halfColumn);
-				PlaceBlock(C, C6, halfRow, 0);
-				PlaceBlock(C, C7, halfRow, halfColumn);
-
+				PlaceBlock(C, C5, 0, _Columns - halfColumn);
+				PlaceBlock(C, C6, _Rows - halfRow, 0);
+				PlaceBlock(C, C7, _Rows - halfRow, _Columns - halfColumn);
+				
 				return C;
 			}
 		}
