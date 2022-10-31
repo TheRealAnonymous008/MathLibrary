@@ -10,7 +10,7 @@ namespace MathLib {
 		template<typename T, typename const unsigned _Rows, const unsigned _Columns>
 		class Matrix : public MatrixExpression<T, _Rows, _Columns, Matrix<T, _Rows, _Columns>>{
 		private:
-			std::vector<std::vector<T>> body = std::vector<std::vector<T>>(_Rows, std::vector<T>(_Columns));
+			std::vector<std::vector<T>>* body = new std::vector<std::vector<T>>(_Rows, std::vector<T>(_Columns));
 
 		public:
 			Matrix() {
@@ -26,7 +26,7 @@ namespace MathLib {
 				for (auto x : list) {
 					unsigned j = 0;
 					for (auto y : x) {
-						body[i][j] = y;
+						(*body)[i][j] = y;
 						++j;
 					}
 					++i;
@@ -38,10 +38,34 @@ namespace MathLib {
 				for (auto x : list) {
 					unsigned j = 0;
 					for (auto y : x) {
-						body[i][j] = y;
+						(*body)[i][j] = y;
 						++j;
 					}
 					++i;
+				}
+			}
+
+			Matrix(const Matrix& expr) {
+				if (expr.Rows() != Rows() || expr.Columns() != Columns()) {
+					throw DimensionError();;
+				}
+
+				for (unsigned i = 0; i < _Rows; ++i) {
+					for (unsigned j = 0; j < _Columns; ++j) {
+						(*body)[i][j] = expr.At(i, j);
+					}
+				}
+			}
+
+			void operator=(const Matrix& expr) {
+				if (expr.Rows() != Rows() || expr.Columns() != Columns()) {
+					throw DimensionError();;
+				}
+
+				for (unsigned i = 0; i < _Rows; ++i) {
+					for (unsigned j = 0; j < _Columns; ++j) {
+						(*body)[i][j] = expr.At(i, j);
+					}
 				}
 			}
 
@@ -53,7 +77,7 @@ namespace MathLib {
 
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
-						body[i][j] = expr.At(i, j);
+						(*body)[i][j] = expr.At(i, j);
 					}
 				}
 			}
@@ -66,7 +90,7 @@ namespace MathLib {
 
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
-						body[i][j] = expr.At(i, j);
+						(*body)[i][j] = expr.At(i, j);
 					}
 				}
 			}			
@@ -86,23 +110,23 @@ namespace MathLib {
 			T& At(const unsigned& r, const unsigned& c) {
 				if (r >= Rows() || r < 0 || c >= Columns() || c < 0)
 					throw InvalidAccess();
-				return body[r][c];
+				return (*body)[r][c];
 			}
 
 			T At(const unsigned& r, const unsigned& c) const {
 				if (r >= Rows() || r < 0 || c >= Columns() || c < 0)
 					throw InvalidAccess();
 
-				return body[r][c];
+				return (*body)[r][c];
 			}
 
 
 			template<typename E>
-			Matrix& operator+=(const MatrixExpression<T, _Rows, _Columns, E>& expr) {
-
+			const Matrix& operator+=(const MatrixExpression<T, _Rows, _Columns, E>& expr) {
+				
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
-						body[i][j] += expr.At(i, j);
+						(*body)[i][j] += expr.At(i, j);
 					}
 				}
 
@@ -110,32 +134,33 @@ namespace MathLib {
 			}
 
 			template<typename E>
-			Matrix& operator-=(const MatrixExpression<T, _Rows, _Columns,  E>& expr) {
+			const Matrix& operator-=(const MatrixExpression<T, _Rows, _Columns,  E>& expr) {
 
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
-						body[i][j] -= expr.At(i, j);
+						(*body)[i][j] -= expr.At(i, j);
 					}
 				}
 				return *this;
 			}
 
-			Matrix& operator*=(const T& c) {
+			const Matrix& operator*=(const T& c) {
+
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
-						body[i][j] *= c;
+						(*body)[i][j] *= c;
 					}
 				}
 				return *this;
 			}
 
-			Matrix& operator/=(const T& c) {
+			const Matrix& operator/=(const T& c) {
 				if (c == 0)
 					throw DivisionByZero();
 
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
-						body[i][j] /= c;
+						(*body)[i][j] /= c;
 					}
 				}
 				return *this;

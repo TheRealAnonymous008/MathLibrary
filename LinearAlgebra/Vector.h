@@ -11,7 +11,7 @@ namespace MathLib {
 		class Vector : public VectorExpression<T, N, Vector<T, N>>
 		{
 		private:
-			std::vector<T> body = std::vector<T>(N);
+			std::vector<T>* body = (new std::vector<T>(N));
 
 		public:
 			Vector() {
@@ -25,7 +25,7 @@ namespace MathLib {
 			Vector(const std::initializer_list<T>& list) {
 				unsigned i = 0;
 				for (T obj : list) {
-					body[i] = obj;
+					(*body)[i] = obj;
 					++i;
 				}
 			}
@@ -33,8 +33,28 @@ namespace MathLib {
 			void operator=(const std::initializer_list<T>& list) {
 				unsigned i = 0;
 				for (T obj : list) {
-					body[i] = obj;
+					(*body)[i] = obj;
 					++i;
+				}
+			}
+			
+			Vector(const Vector& expr) {
+				if (expr.Size() != Size()) {
+					throw DimensionError();;
+				}
+
+				for (unsigned i = 0; i < Size(); ++i) {
+					(*body)[i] = expr[i];
+				}
+			}
+
+			void operator=(const Vector& expr) {
+				if (expr.Size() != Size()) {
+					throw DimensionError();;
+				}
+
+				for (unsigned i = 0; i < Size(); ++i) {
+					(*body)[i] = expr[i];
 				}
 			}
 
@@ -45,7 +65,7 @@ namespace MathLib {
 				}
 
 				for (unsigned i = 0; i < Size(); ++i) {
-					body[i] = expr[i];
+					(*body)[i] = expr[i];
 				}
 			}
 
@@ -56,7 +76,7 @@ namespace MathLib {
 				}
 
 				for (unsigned i = 0; i < Size(); ++i) {
-					body[i] = expr[i];
+					(*body)[i] = expr[i];
 				}
 			}
 
@@ -67,37 +87,37 @@ namespace MathLib {
 			T& operator[](unsigned i) {
 				if (i >= Size() || i < 0)
 					throw InvalidAccess();
-				return body[i];
+				return (*body)[i];
 			}
 
 			T operator[](unsigned i) const{
 				if (i >= Size() || i < 0)
 					throw InvalidAccess();
 
-				return body[i];
+				return (*body)[i];
 			}
 
 			template<typename E>
 			Vector& operator+=(const VectorExpression<T, N, E>& expr) {
 
 				for (unsigned i = 0; i < Size(); ++i) {
-					body[i] += expr[i];
+					(*body)[i] += expr[i];
 				}
 				return *this;
 			}
 
 			template<typename E>
 			Vector& operator-=(const VectorExpression<T, N, E>& expr) {
-
+				
 				for (unsigned i = 0; i < Size(); ++i) {
-					body[i] -= expr[i];
+					(*body)[i] -= expr[i];
 				}
 				return *this;
 			}
 
 			Vector& operator*=(const T& c) {
 				for (unsigned i = 0; i < Size(); ++i) {
-					body[i] *= c;
+					(*body)[i] *= c;
 				}
 				return *this;
 			}
@@ -107,7 +127,7 @@ namespace MathLib {
 					throw DivisionByZero();
 
 				for (unsigned i = 0; i < Size(); ++i) {
-					body[i] /= c;
+					(*body)[i] /= c;
 				}
 				return *this;
 			}

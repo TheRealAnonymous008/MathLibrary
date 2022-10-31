@@ -106,7 +106,6 @@ TEST(MatMat, Strassen) {
 
 TEST(MatMat, BigProduct) {
 
-	// TODO: This causes stack overflow if we have a really big N.
 	const unsigned int N = 1000;
 	SquareMatrix<int, N> *A = new SquareMatrix<int, N>();
 

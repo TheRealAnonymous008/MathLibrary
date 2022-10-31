@@ -241,7 +241,7 @@ TEST(MatrixOps, SelfAssignment) {
 	};
 
 	Matrix<int, 4, 4> N = M;
-
+	
 	M += N;
 	ASSERT_EQ(2 * N, M);
 
