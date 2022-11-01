@@ -126,6 +126,40 @@ TEST(SquareMat, UpperMat) {
 		{0,   0,	0,		3.2},
 	};
 
+	SquareMatrix<double, 4> B = {
+		{0.7, -3.2,	0.2,	0},
+		{0,   1.4,	-1.1,	3.7},
+		{0,   0,	0,		0.9},
+		{0,   0,	0,		-1.2},
+	};
+
 	ASSERT_TRUE(IsUpper(A));
-	//ASSERT_TRUE(IsUpper(A + A));
+	ASSERT_TRUE(IsUpper(B));
+	ASSERT_TRUE(IsUpper(3.0 * A + 2.0 * B));
+
+	ASSERT_TRUE(IsLower(Transpose(A)));
+	ASSERT_TRUE(IsLower(Transpose(B)));
+}
+
+TEST(SquareMat, LowerMat) {
+	SquareMatrix<double, 4> A = {
+		{1.2,	0,		0,		0},
+		{-1.2,  0.2,	0,		0},
+		{3.4,   4.7,	4.1,	0},
+		{-0.2,  3.5,	0,		-1.4},
+	};
+
+	SquareMatrix<double, 4> B = {
+		{5.5,	0,		0,		0},
+		{-1.2,	-6.3,	0,		0},
+		{-1.4,	4.4,	9.2,	0},
+		{1.2,	0,		2.7,	1.2},
+	};
+
+	ASSERT_TRUE(IsLower(A));
+	ASSERT_TRUE(IsLower(B));
+	ASSERT_TRUE(IsLower(3.0 * A + 2.0 * B));
+
+	ASSERT_TRUE(IsUpper(Transpose(A)));
+	ASSERT_TRUE(IsUpper(Transpose(B)));
 }
