@@ -13,7 +13,8 @@ namespace MathLib {
 			if (lhs.Size() != rhs.Size())
 				throw InvalidBinaryOperation();
 
-			T dot = 0;
+			T dot = T();
+
 			for (unsigned i = 0; i < lhs.Size(); ++i) {
 				dot += lhs[i] * rhs[i];
 			}

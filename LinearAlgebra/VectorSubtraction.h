@@ -32,6 +32,7 @@ namespace MathLib {
 
 					Vector<T, N> result;
 
+					OPENMP_PARALLELIZE
 					for (unsigned i = 0; i < N; ++i) {
 						result[i] = lhs[i] - rhs[i];
 					}

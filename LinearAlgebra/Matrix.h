@@ -50,6 +50,7 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
 						(*body)[i][j] = expr.At(i, j);
@@ -62,6 +63,7 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
 						(*body)[i][j] = expr.At(i, j);
@@ -75,6 +77,7 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
 						(*body)[i][j] = expr.At(i, j);
@@ -88,6 +91,7 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
 						(*body)[i][j] = expr.At(i, j);
@@ -132,6 +136,7 @@ namespace MathLib {
 			template<typename E>
 			const Matrix& operator+=(const MatrixBase<T, _Rows, _Columns, E>& expr) {
 				
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
 						(*body)[i][j] += expr.At(i, j);
@@ -144,6 +149,7 @@ namespace MathLib {
 			template<typename E>
 			const Matrix& operator-=(const MatrixBase<T, _Rows, _Columns,  E>& expr) {
 
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
 						(*body)[i][j] -= expr.At(i, j);
@@ -154,6 +160,7 @@ namespace MathLib {
 
 			const Matrix& operator*=(const T& c) {
 
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
 						(*body)[i][j] *= c;
@@ -166,6 +173,7 @@ namespace MathLib {
 				if (c == 0)
 					throw DivisionByZero();
 
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
 						(*body)[i][j] /= c;

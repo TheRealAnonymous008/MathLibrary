@@ -45,6 +45,7 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Size(); ++i) {
 					(*body)[i] = expr[i];
 				}
@@ -55,6 +56,7 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Size(); ++i) {
 					(*body)[i] = expr[i];
 				}
@@ -66,6 +68,7 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Size(); ++i) {
 					(*body)[i] = expr[i];
 				}
@@ -102,6 +105,7 @@ namespace MathLib {
 			template<typename E>
 			Vector& operator+=(const VectorBase<T, N, E>& expr) {
 
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Size(); ++i) {
 					(*body)[i] += expr[i];
 				}
@@ -111,6 +115,7 @@ namespace MathLib {
 			template<typename E>
 			Vector& operator-=(const VectorBase<T, N, E>& expr) {
 				
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Size(); ++i) {
 					(*body)[i] -= expr[i];
 				}
@@ -118,6 +123,8 @@ namespace MathLib {
 			}
 
 			Vector& operator*=(const T& c) {
+
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Size(); ++i) {
 					(*body)[i] *= c;
 				}
@@ -128,6 +135,7 @@ namespace MathLib {
 				if (c == 0)
 					throw DivisionByZero();
 
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Size(); ++i) {
 					(*body)[i] /= c;
 				}

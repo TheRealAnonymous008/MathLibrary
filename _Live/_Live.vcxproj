@@ -127,8 +127,8 @@
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <OmitFramePointers>true</OmitFramePointers>
-      <AdditionalOptions>/openmp:llvm %(AdditionalOptions)</AdditionalOptions>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <AdditionalOptions>/openmp:llvm %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

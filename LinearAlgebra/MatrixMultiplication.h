@@ -6,6 +6,8 @@
 #include "Slice.h"
 
 #include <omp.h>
+#include <future>
+#include <thread>
 
 #define STRASSEN_MATRIX_THRESHOLD 512
 
@@ -45,7 +47,7 @@ namespace MathLib {
 
 				Matrix<T, _Rows, _Columns> result;
 
-OPENMP_PARALLELIZE
+				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned k = 0; k < _Inner; ++k) {
 						for (unsigned j = 0; j < _Columns; ++j) {
