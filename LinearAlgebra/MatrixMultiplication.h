@@ -123,9 +123,12 @@ namespace MathLib {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
+				const Matrix<T, _Rows, _Columns>& result;
 
 			public:
-				MatrixMultiplication(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				MatrixMultiplication(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs), 
+					result(implementation::MatrixMultiply(lhs.Evaluate(), rhs.Evaluate()))
+				{
 					if (lhs.Columns() != rhs.Rows()) {
 						throw InvalidTensorProduct();
 					}
@@ -150,7 +153,7 @@ namespace MathLib {
 				}
 
 				auto Evaluate() const {
-					return implementation::MatrixMultiply(lhs.Evaluate(), rhs.Evaluate());
+					return result;
 				}
 			};
 		}

@@ -119,7 +119,7 @@ TEST(MatrixBlocking, BlockInsertion) {
 }
 
 TEST(SquareMat, UpperMat) {
-	SquareMatrix<float, 4> A = {
+	SquareMatrix<double, 4> A = {
 		{1.2, 2.3,	3.4,	4.5},
 		{0,   1.2,	-2.1,	4.7},
 		{0,   0,	-6.1,	9.2},
@@ -127,4 +127,5 @@ TEST(SquareMat, UpperMat) {
 	};
 
 	ASSERT_TRUE(IsUpper(A));
+	//ASSERT_TRUE(IsUpper(A + A));
 }
