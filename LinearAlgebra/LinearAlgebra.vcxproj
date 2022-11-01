@@ -143,6 +143,7 @@
     <ClInclude Include="MatrixSubtraction.h" />
     <ClInclude Include="PlaceBlock.h" />
     <ClInclude Include="Slice.h" />
+    <ClInclude Include="SquareOps.h" />
     <ClInclude Include="Transpose.h" />
     <ClInclude Include="MatrixVectorProduct.h" />
     <ClInclude Include="VecOps.h" />

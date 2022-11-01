@@ -105,5 +105,8 @@
     <ClInclude Include="PlaceBlock.h">
       <Filter>Header Files\MatrixStructure</Filter>
     </ClInclude>
+    <ClInclude Include="SquareOps.h">
+      <Filter>Header Files\MatrixStructure</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

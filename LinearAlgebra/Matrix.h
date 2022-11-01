@@ -180,8 +180,5 @@ namespace MathLib {
 			}
 		};
 
-		template<typename T, const unsigned N> 
-		using SquareMatrix = Matrix<T, N, N>;
-
 	}
 }
