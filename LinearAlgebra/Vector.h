@@ -8,7 +8,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 		
 		template<typename T, const unsigned N>
-		class Vector : public VectorExpression<T, N, Vector<T, N>>
+		class Vector : public VectorBase<T, N, Vector<T, N>>
 		{
 		private:
 			std::vector<T>* body = (new std::vector<T>(N));
@@ -59,7 +59,7 @@ namespace MathLib {
 			}
 
 			template<typename E>
-			Vector(const VectorExpression<T, N, E>& expr) {
+			Vector(const VectorBase<T, N, E>& expr) {
 				if (expr.Size() != Size()) {
 					throw DimensionError();;
 				}
@@ -70,7 +70,7 @@ namespace MathLib {
 			}
 
 			template<typename E>
-			void operator=(const VectorExpression<T, N, E>& expr) {
+			void operator=(const VectorBase<T, N, E>& expr) {
 				if (expr.Size() != Size()) {
 					throw DimensionError();;
 				}
@@ -98,7 +98,7 @@ namespace MathLib {
 			}
 
 			template<typename E>
-			Vector& operator+=(const VectorExpression<T, N, E>& expr) {
+			Vector& operator+=(const VectorBase<T, N, E>& expr) {
 
 				for (unsigned i = 0; i < Size(); ++i) {
 					(*body)[i] += expr[i];
@@ -107,7 +107,7 @@ namespace MathLib {
 			}
 
 			template<typename E>
-			Vector& operator-=(const VectorExpression<T, N, E>& expr) {
+			Vector& operator-=(const VectorBase<T, N, E>& expr) {
 				
 				for (unsigned i = 0; i < Size(); ++i) {
 					(*body)[i] -= expr[i];

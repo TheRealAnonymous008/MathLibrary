@@ -11,7 +11,7 @@ namespace MathLib {
 				const unsigned M, const unsigned K, const unsigned N, 
 				typename LHS, typename RHS
 			>
-			class MatrixVectorProduct : public VectorExpression<T, M,
+			class MatrixVectorProduct : public VectorBase<T, M,
 				MatrixVectorProduct<T, M, K, N, LHS, RHS>> {
 			private:
 				const LHS& lhs;
@@ -62,8 +62,8 @@ namespace MathLib {
 		>
 
 		detail::MatrixVectorProduct<T, M, K, N, LHS, RHS> operator*(
-			const MatrixExpression<T, M, K, LHS>& lhs, 
-			const VectorExpression<T, N, RHS>& rhs) 
+			const MatrixBase<T, M, K, LHS>& lhs, 
+			const VectorBase<T, N, RHS>& rhs) 
 		{
 			return detail::MatrixVectorProduct<T, M, K, N, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}

@@ -7,7 +7,7 @@ namespace MathLib {
 
 		namespace detail {
 			template<typename T, const unsigned _Rows, const unsigned _Columns, typename E>
-			class MatrixNegation : public MatrixExpression<T, _Rows, _Columns, 
+			class MatrixNegation : public MatrixBase<T, _Rows, _Columns, 
 				MatrixNegation<T, _Rows, _Columns, E>> {
 			private:
 				const E& expr;
@@ -51,7 +51,7 @@ namespace MathLib {
 		>
 
 		detail::MatrixNegation<T, _Rows, _Columns, E> operator-(
-			const MatrixExpression<T, _Rows, _Columns, E>& expr) 
+			const MatrixBase<T, _Rows, _Columns, E>& expr) 
 		{
 			return detail::MatrixNegation<T, _Rows, _Columns, E>(*static_cast<const E*>(&expr));
 		}

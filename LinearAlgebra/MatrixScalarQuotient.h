@@ -7,7 +7,7 @@ namespace MathLib {
 
 		namespace detail {
 			template<typename T, const unsigned _Rows, const unsigned _Columns, typename M>
-			class MatrixScalarQuotient : public MatrixExpression<T, _Rows, _Columns,
+			class MatrixScalarQuotient : public MatrixBase<T, _Rows, _Columns,
 				MatrixScalarQuotient<T, _Rows, _Columns, M>> {
 			private:
 				const M& mat;
@@ -54,7 +54,7 @@ namespace MathLib {
 		>
 
 		detail::MatrixScalarQuotient<T, _Rows, _Columns, M> operator/(
-			const MatrixExpression<T, _Rows, _Columns, M>& vec, 
+			const MatrixBase<T, _Rows, _Columns, M>& vec, 
 			const T& c) 
 		{
 			return detail::MatrixScalarQuotient<T, _Rows, _Columns, M>(*static_cast<const M*>(&vec), *static_cast<const T*>(&c));

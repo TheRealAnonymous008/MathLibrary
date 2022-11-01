@@ -7,7 +7,7 @@ namespace MathLib {
 
 		namespace detail {
 			template<typename T, const unsigned N, typename V>
-			class VectorNegation : public VectorExpression<T, N, 
+			class VectorNegation : public VectorBase<T, N, 
 				VectorNegation<T, N, V>> {
 			private:
 				const V& vec;
@@ -47,7 +47,7 @@ namespace MathLib {
 		>
 
 		detail::VectorNegation<T, N, V> operator-(
-			const VectorExpression<T, N, V>& vec) 
+			const VectorBase<T, N, V>& vec) 
 		{
 			return detail::VectorNegation<T, N, V>(*static_cast<const V*>(&vec));
 		}

@@ -7,7 +7,7 @@ namespace MathLib {
 
 		namespace detail {
 			template<typename T, const unsigned N, typename V>
-			class VectorScalarProduct : public VectorExpression<T, N, 
+			class VectorScalarProduct : public VectorBase<T, N, 
 				VectorScalarProduct<T, N, V>> {
 			private:
 				const V& vec;
@@ -48,7 +48,7 @@ namespace MathLib {
 		>
 
 		detail::VectorScalarProduct<T, N, V> operator*(
-			const VectorExpression<T, N, V>& vec, 
+			const VectorBase<T, N, V>& vec, 
 			const T& c) 
 		{
 			return detail::VectorScalarProduct<T, N, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
@@ -62,7 +62,7 @@ namespace MathLib {
 
 		detail::VectorScalarProduct<T, N, V> operator*(
 			const T& c, 
-			const VectorExpression<T, N, V>& vec) 
+			const VectorBase<T, N, V>& vec) 
 		{
 			return detail::VectorScalarProduct<T, N, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
 		}

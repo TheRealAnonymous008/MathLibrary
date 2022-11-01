@@ -6,7 +6,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		template<typename T, const unsigned N, typename Derived>
-		class VectorExpression {
+		class VectorBase {
 		public:
 			T operator[](const unsigned& i) const {
 				return  static_cast<Derived const&>(*this)[i];
@@ -27,8 +27,8 @@ namespace MathLib {
 			typename LHS, typename RHS
 		>
 		bool operator==(
-			const VectorExpression<T, N, LHS>& lhs, 
-			const VectorExpression<T, N, RHS>& rhs) 
+			const VectorBase<T, N, LHS>& lhs, 
+			const VectorBase<T, N, RHS>& rhs) 
 		{
 			if (lhs.Size() != rhs.Size())
 				return false;
@@ -45,7 +45,7 @@ namespace MathLib {
 			const unsigned N,
 			typename LHS, typename RHS
 		>
-		bool operator!=(const VectorExpression<T, N, LHS>& lhs, const VectorExpression<T, N, RHS>& rhs) {
+		bool operator!=(const VectorBase<T, N, LHS>& lhs, const VectorBase<T, N, RHS>& rhs) {
 			if (lhs.Size() != rhs.Size())
 				return false;
 

@@ -6,7 +6,7 @@ namespace MathLib {
 
 		namespace detail {
 			template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr>
-			class MatrixTranspose : public MatrixExpression<T, _Rows, _Columns, 
+			class MatrixTranspose : public MatrixBase<T, _Rows, _Columns, 
 				MatrixTranspose<T, _Rows, _Columns, Expr>> 
 			{
 			private:
@@ -51,7 +51,7 @@ namespace MathLib {
 		>
 
 		detail::MatrixTranspose<T, _Rows, _Columns, Expr> Transpose(
-			const MatrixExpression<T, _Columns, _Rows, Expr>& expr) 
+			const MatrixBase<T, _Columns, _Rows, Expr>& expr) 
 		{
 			return detail::MatrixTranspose<T, _Rows, _Columns, Expr>(*static_cast<const Expr*>(&expr));
 		}

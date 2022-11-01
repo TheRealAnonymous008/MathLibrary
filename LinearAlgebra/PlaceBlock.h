@@ -9,7 +9,7 @@ namespace MathLib {
 			typename T, typename Expr,
 			const unsigned _Rows, const unsigned _Columns
 		>
-		Matrix<T, _NRows, _NCols> PlaceBlock(const MatrixExpression<T, _Rows, _Columns, Expr>& M,
+		Matrix<T, _NRows, _NCols> PlaceBlock(const MatrixBase<T, _Rows, _Columns, Expr>& M,
 			const unsigned x = 0,
 			const unsigned y = 0) {
 
@@ -29,7 +29,7 @@ namespace MathLib {
 			typename T, typename Expr,
 			const unsigned _Rows, const unsigned _Columns
 		>
-		void PlaceBlock(Matrix<T, _NRows, _NCols>& result, const MatrixExpression<T, _Rows, _Columns, Expr>& M,
+		void PlaceBlock(Matrix<T, _NRows, _NCols>& result, const MatrixBase<T, _Rows, _Columns, Expr>& M,
 			const unsigned x = 0,
 			const unsigned y = 0) {
 

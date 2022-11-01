@@ -10,7 +10,7 @@ namespace MathLib {
 		using SquareMatrix = Matrix<T, N, N>;
 
 		template<typename T, const unsigned N, typename Derived>
-		using SquareMatrixExpression = MatrixExpression<T, N, N, Derived>;
+		using SquareMatrixExpression = MatrixBase<T, N, N, Derived>;
 
 		template<typename T, const unsigned N, typename Exp>
 		bool IsUpper(const SquareMatrixExpression<T, N, Exp>& mat) {

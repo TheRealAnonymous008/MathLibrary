@@ -7,7 +7,7 @@ namespace MathLib {
 
 		namespace detail {
 			template<typename T, const unsigned N, typename LHS, typename RHS>
-			class VectorAddition : public VectorExpression<T, N,
+			class VectorAddition : public VectorBase<T, N,
 				VectorAddition<T, N, LHS, RHS>> {
 			private:
 				const LHS& lhs;
@@ -50,8 +50,8 @@ namespace MathLib {
 		>
 
 		detail::VectorAddition<T, N, LHS, RHS> operator+(
-			const VectorExpression<T, N, LHS>& lhs, 
-			const VectorExpression<T, N, RHS>& rhs) 
+			const VectorBase<T, N, LHS>& lhs, 
+			const VectorBase<T, N, RHS>& rhs) 
 		{
 			return detail::VectorAddition<T, N, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}

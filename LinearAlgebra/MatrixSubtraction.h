@@ -7,7 +7,7 @@ namespace MathLib {
 
 		namespace detail {
 			template<typename T, const unsigned _Rows, const unsigned _Columns, typename LHS, typename RHS>
-			class MatrixSubtraction : public MatrixExpression<T, _Rows, _Columns, 
+			class MatrixSubtraction : public MatrixBase<T, _Rows, _Columns, 
 				MatrixSubtraction<T, _Rows, _Columns, LHS, RHS>> {
 			private:
 				const LHS& lhs;
@@ -56,8 +56,8 @@ namespace MathLib {
 		>
 
 		detail::MatrixSubtraction<T, _Rows, _Columns, LHS, RHS> operator-(
-			const MatrixExpression<T, _Rows, _Columns, LHS>& lhs, 
-			const MatrixExpression<T, _Rows, _Columns, RHS>& rhs) 
+			const MatrixBase<T, _Rows, _Columns, LHS>& lhs, 
+			const MatrixBase<T, _Rows, _Columns, RHS>& rhs) 
 		{
 			return detail::MatrixSubtraction<T, _Rows, _Columns, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}

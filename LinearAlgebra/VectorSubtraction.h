@@ -7,7 +7,7 @@ namespace MathLib {
 
 		namespace detail {
 			template<typename T, const unsigned N, typename LHS, typename RHS>
-			class VectorSubtraction : public VectorExpression<T, N,
+			class VectorSubtraction : public VectorBase<T, N,
 				VectorSubtraction<T, N, LHS, RHS>> {
 			private:
 				const LHS& lhs;
@@ -50,8 +50,8 @@ namespace MathLib {
 		>
 
 		detail::VectorSubtraction<T, N, LHS, RHS> operator-(
-			const VectorExpression<T, N, LHS>& lhs, 
-			const VectorExpression<T, N, RHS>& rhs) 
+			const VectorBase<T, N, LHS>& lhs, 
+			const VectorBase<T, N, RHS>& rhs) 
 		{
 			return detail::VectorSubtraction<T, N, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}

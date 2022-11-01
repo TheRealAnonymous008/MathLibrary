@@ -8,7 +8,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		template<typename T, typename const unsigned _Rows, const unsigned _Columns>
-		class Matrix : public MatrixExpression<T, _Rows, _Columns, Matrix<T, _Rows, _Columns>>{
+		class Matrix : public MatrixBase<T, _Rows, _Columns, Matrix<T, _Rows, _Columns>>{
 		private:
 			std::vector<std::vector<T>>* body = new std::vector<std::vector<T>>(_Rows, std::vector<T>(_Columns));
 
@@ -70,7 +70,7 @@ namespace MathLib {
 			}
 
 			template<typename E>
-			Matrix(const MatrixExpression<T, _Rows, _Columns, E>& expr) {
+			Matrix(const MatrixBase<T, _Rows, _Columns, E>& expr) {
 				if (expr.Rows() != Rows() || expr.Columns() != Columns()) {
 					throw DimensionError();;
 				}
@@ -83,7 +83,7 @@ namespace MathLib {
 			}
 
 			template<typename E>
-			void operator=(const MatrixExpression<T, _Rows, _Columns, E>& expr) {
+			void operator=(const MatrixBase<T, _Rows, _Columns, E>& expr) {
 				if (expr.Rows() != Rows() || expr.Columns() != Columns()) {
 					throw DimensionError();;
 				}
@@ -122,7 +122,7 @@ namespace MathLib {
 
 
 			template<typename E>
-			const Matrix& operator+=(const MatrixExpression<T, _Rows, _Columns, E>& expr) {
+			const Matrix& operator+=(const MatrixBase<T, _Rows, _Columns, E>& expr) {
 				
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
@@ -134,7 +134,7 @@ namespace MathLib {
 			}
 
 			template<typename E>
-			const Matrix& operator-=(const MatrixExpression<T, _Rows, _Columns,  E>& expr) {
+			const Matrix& operator-=(const MatrixBase<T, _Rows, _Columns,  E>& expr) {
 
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {

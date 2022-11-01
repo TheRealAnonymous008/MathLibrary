@@ -7,7 +7,7 @@ namespace MathLib {
 
 		namespace detail {
 			template<typename T, const unsigned N, typename V>
-			class VectorScalarQuotient : public VectorExpression<T, N, 
+			class VectorScalarQuotient : public VectorBase<T, N, 
 				VectorScalarQuotient<T, N, V>> 
 			{
 			private:
@@ -51,7 +51,7 @@ namespace MathLib {
 		>
 
 		detail::VectorScalarQuotient<T, N, V> operator/(
-			const VectorExpression<T, N, V>& vec, 
+			const VectorBase<T, N, V>& vec, 
 			const T& c) 
 		{
 			return detail::VectorScalarQuotient<T, N, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));

@@ -13,9 +13,9 @@ namespace MathLib {
 		class Matrix;
 
 		template<typename T, const unsigned N, typename E>
-		class VectorExpression;
+		class VectorBase;
 
 		template<typename T, const unsigned Rows, const unsigned Columns, typename E>
-		class MatrixExpression;
+		class MatrixBase;
 	}
 }

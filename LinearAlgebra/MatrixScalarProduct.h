@@ -7,7 +7,7 @@ namespace MathLib {
 
 		namespace detail {
 			template<typename T, const unsigned _Rows, const unsigned _Columns, typename M>
-			class MatrixScalarProduct : public MatrixExpression<T, _Rows, _Columns, 
+			class MatrixScalarProduct : public MatrixBase<T, _Rows, _Columns, 
 				MatrixScalarProduct<T, _Rows, _Columns, M>> {
 			private:
 				const M& mat;
@@ -54,7 +54,7 @@ namespace MathLib {
 		>
 
 		detail::MatrixScalarProduct<T, _Rows, _Columns, M> operator*(
-			const MatrixExpression<T, _Rows, _Columns, M>& mat, 
+			const MatrixBase<T, _Rows, _Columns, M>& mat, 
 			const T& c) 
 		{
 			return detail::MatrixScalarProduct<T, _Rows, _Columns, M>(*static_cast<const M*>(&mat), *static_cast<const T*>(&c));
@@ -68,7 +68,7 @@ namespace MathLib {
 
 		detail::MatrixScalarProduct<T, _Rows, _Columns, M> operator*(
 			const T& c, 
-			const MatrixExpression<T, _Rows, _Columns, M>& mat) 
+			const MatrixBase<T, _Rows, _Columns, M>& mat) 
 		{
 			return detail::MatrixScalarProduct<T, _Rows, _Columns, M>(*static_cast<const M*>(&mat), *static_cast<const T*>(&c));
 		}

@@ -6,7 +6,7 @@ namespace MathLib {
 
 		namespace detail {
 			template<typename T, typename Expr, const unsigned _SliceRows, const unsigned _SliceColumns>
-			class MatrixSlice : public MatrixExpression<T, _SliceRows, _SliceColumns,
+			class MatrixSlice : public MatrixBase<T, _SliceRows, _SliceColumns,
 				MatrixSlice<T, Expr, _SliceRows, _SliceColumns>> {
 			private:
 				const Expr& expr;
@@ -53,7 +53,7 @@ namespace MathLib {
 		>
 
 		detail::MatrixSlice<T, Expr, _SliceRows, _SliceColumns> Slice(
-			const MatrixExpression<T, _Rows, _Columns, Expr>& expr, 
+			const MatrixBase<T, _Rows, _Columns, Expr>& expr, 
 			const unsigned row, 
 			const unsigned column) 
 		{

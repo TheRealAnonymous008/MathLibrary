@@ -14,8 +14,8 @@ namespace MathLib {
 				typename LHS, typename RHS>
 
 			Matrix<T, _Rows, _Columns> MatrixMultiply(
-				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
-				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
+				const MatrixBase<T, _Rows, _Inner, LHS>& lhs,
+				const MatrixBase<T, _Inner, _Columns, RHS>& rhs
 			) {
 				if (_Rows > STRASSEN_MATRIX_THRESHOLD || _Columns > STRASSEN_MATRIX_THRESHOLD || _Inner > STRASSEN_MATRIX_THRESHOLD)
 					return StrassenMatrixMultiplication(*static_cast<const LHS*>(&lhs),
@@ -31,8 +31,8 @@ namespace MathLib {
 				typename LHS, typename RHS>
 
 			Matrix<T, _Rows, _Columns> ElementaryMatrixMultiplication(
-				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
-				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
+				const MatrixBase<T, _Rows, _Inner, LHS>& lhs,
+				const MatrixBase<T, _Inner, _Columns, RHS>& rhs
 			) {
 
 				Matrix<T, _Rows, _Columns> result;
@@ -54,8 +54,8 @@ namespace MathLib {
 				typename LHS, typename RHS>
 
 			Matrix<T, _Rows, _Columns> StrassenMatrixMultiplication(
-				const MatrixExpression<T, _Rows, _Inner, LHS>& lhs,
-				const MatrixExpression<T, _Inner, _Columns, RHS>& rhs
+				const MatrixBase<T, _Rows, _Inner, LHS>& lhs,
+				const MatrixBase<T, _Inner, _Columns, RHS>& rhs
 			) {
 				const unsigned halfRow = _Rows / 2 + _Rows % 2;
 				const unsigned halfInner = _Inner / 2 + _Inner% 2;
@@ -118,7 +118,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename T, const unsigned _Rows, const unsigned _Columns, typename LHS, typename RHS>
-			class MatrixMultiplication : public MatrixExpression<T, _Rows, _Columns, 
+			class MatrixMultiplication : public MatrixBase<T, _Rows, _Columns, 
 				MatrixMultiplication<T, _Rows, _Columns, LHS, RHS>> {
 			private:
 				const LHS& lhs;
@@ -165,8 +165,8 @@ namespace MathLib {
 		>
 
 		detail::MatrixMultiplication<T, _Rows, _Columns, LHS, RHS> operator*(
-			const MatrixExpression<T, _Rows, _Inner, LHS>& lhs, 
-			const MatrixExpression<T, _Inner, _Columns, RHS>& rhs) 
+			const MatrixBase<T, _Rows, _Inner, LHS>& lhs, 
+			const MatrixBase<T, _Inner, _Columns, RHS>& rhs) 
 		{
 			return detail::MatrixMultiplication<T, _Rows, _Columns, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}

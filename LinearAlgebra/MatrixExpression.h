@@ -4,7 +4,7 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 		template<typename T, const unsigned Rows, const unsigned Columns, typename Derived>
-		class MatrixExpression {
+		class MatrixBase {
 		public:
 			T At(const unsigned& r, const unsigned& c) const {
 				return  static_cast<Derived const&>(*this).At(r, c);
@@ -29,8 +29,8 @@ namespace MathLib {
 			typename LHS, typename RHS
 		>
 		bool operator==(
-			const MatrixExpression<T, Rows, Columns, LHS>& lhs, 
-			const MatrixExpression<T, Rows, Columns, RHS>& rhs) 
+			const MatrixBase<T, Rows, Columns, LHS>& lhs, 
+			const MatrixBase<T, Rows, Columns, RHS>& rhs) 
 		{
 			if (lhs.Rows() != rhs.Rows()) 
 				return false;
@@ -52,8 +52,8 @@ namespace MathLib {
 			typename LHS, typename RHS
 		>
 		bool operator!=(
-			const MatrixExpression<T, Rows, Columns, LHS>& lhs, 
-			const MatrixExpression<T, Rows, Columns, RHS>& rhs) 
+			const MatrixBase<T, Rows, Columns, LHS>& lhs, 
+			const MatrixBase<T, Rows, Columns, RHS>& rhs) 
 		{
 			if (lhs.Rows() != rhs.Rows())
 				return false;
