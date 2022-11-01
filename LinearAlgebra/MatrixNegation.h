@@ -44,12 +44,7 @@ namespace MathLib {
 			};
 		}
 
-		template<
-			typename T, 
-			const unsigned _Rows, const unsigned _Columns, 
-			typename E
-		>
-
+		template< typename T, const unsigned _Rows, const unsigned _Columns, typename E>
 		detail::MatrixNegation<T, _Rows, _Columns, E> operator-(
 			const MatrixBase<T, _Rows, _Columns, E>& expr) 
 		{

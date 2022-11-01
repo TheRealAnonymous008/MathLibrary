@@ -1,6 +1,9 @@
 #pragma once
 #include "fwd.h"
+
 #include "Exceptions.h"
+#include "PlaceBlock.h"
+#include "Slice.h"
 
 #define STRASSEN_MATRIX_THRESHOLD 512
 
@@ -8,11 +11,18 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace implementation {
-			template<
-				typename T,
-				const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,
-				typename LHS, typename RHS>
+			template<typename T,const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,typename LHS, typename RHS>
+			Matrix<T, _Rows, _Columns> MatrixMultiply(const MatrixBase<T, _Rows, _Inner, LHS>& lhs, const MatrixBase<T, _Inner, _Columns, RHS>& rhs);
 
+			template<typename T,const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,typename LHS, typename RHS>
+			Matrix<T, _Rows, _Columns> ElementaryMatrixMultiplication(const MatrixBase<T, _Rows, _Inner, LHS>& lhs,const MatrixBase<T, _Inner, _Columns, RHS>& rhs);
+			
+			template<typename T, const unsigned _Rows, const unsigned _Inner, const unsigned _Columns, typename LHS, typename RHS>
+			Matrix<T, _Rows, _Columns> StrassenMatrixMultiplication(const MatrixBase<T, _Rows, _Inner, LHS>& lhs, const MatrixBase<T, _Inner, _Columns, RHS>& rhs);
+		}
+
+		namespace implementation {
+			template<typename T,const unsigned _Rows, const unsigned _Inner, const unsigned _Columns, typename LHS, typename RHS>
 			Matrix<T, _Rows, _Columns> MatrixMultiply(
 				const MatrixBase<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixBase<T, _Inner, _Columns, RHS>& rhs
@@ -25,11 +35,7 @@ namespace MathLib {
 					*static_cast<const RHS*>(&rhs));
 			}
 
-			template<
-				typename T,
-				const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,
-				typename LHS, typename RHS>
-
+			template<typename T, const unsigned _Rows, const unsigned _Inner, const unsigned _Columns, typename LHS, typename RHS>
 			Matrix<T, _Rows, _Columns> ElementaryMatrixMultiplication(
 				const MatrixBase<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixBase<T, _Inner, _Columns, RHS>& rhs
@@ -48,11 +54,7 @@ namespace MathLib {
 				return result;
 			}
 
-			template<
-				typename T,
-				const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,
-				typename LHS, typename RHS>
-
+			template<typename T, const unsigned _Rows, const unsigned _Inner, const unsigned _Columns, typename LHS, typename RHS >
 			Matrix<T, _Rows, _Columns> StrassenMatrixMultiplication(
 				const MatrixBase<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixBase<T, _Inner, _Columns, RHS>& rhs
@@ -113,11 +115,9 @@ namespace MathLib {
 			}
 		}
 
-
-
 		namespace detail {
 
-			template<typename T, const unsigned _Rows, const unsigned _Columns, typename LHS, typename RHS>
+			template<typename T, const unsigned _Rows, const unsigned _Columns, typename LHS, typename RHS >
 			class MatrixMultiplication : public MatrixBase<T, _Rows, _Columns, 
 				MatrixMultiplication<T, _Rows, _Columns, LHS, RHS>> {
 			private:
@@ -158,12 +158,7 @@ namespace MathLib {
 			};
 		}
 
-		template<
-			typename T, 
-			const unsigned _Rows, const unsigned _Inner, const unsigned _Columns, 
-			typename LHS, typename RHS
-		>
-
+		template<typename T, const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,  typename LHS, typename RHS>
 		detail::MatrixMultiplication<T, _Rows, _Columns, LHS, RHS> operator*(
 			const MatrixBase<T, _Rows, _Inner, LHS>& lhs, 
 			const MatrixBase<T, _Inner, _Columns, RHS>& rhs) 

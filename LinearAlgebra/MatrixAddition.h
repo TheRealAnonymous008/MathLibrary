@@ -47,12 +47,7 @@ namespace MathLib {
 			};
 		}
 
-		template<
-			typename T,
-			const unsigned _Rows, const unsigned _Columns, 
-			typename LHS, typename RHS
-		>
-
+		template<typename T,const unsigned _Rows, const unsigned _Columns,typename LHS, typename RHS>
 		detail::MatrixAddition<T, _Rows, _Columns, LHS, RHS> operator+(
 			const MatrixBase<T, _Rows, _Columns, LHS>& lhs, 
 			const MatrixBase<T, _Rows, _Columns, RHS>& rhs) 

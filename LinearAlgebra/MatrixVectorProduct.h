@@ -6,11 +6,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<
-				typename T, 
-				const unsigned M, const unsigned K, const unsigned N, 
-				typename LHS, typename RHS
-			>
+			template<typename T, const unsigned M, const unsigned K, const unsigned N, typename LHS, typename RHS>
 			class MatrixVectorProduct : public VectorBase<T, M,
 				MatrixVectorProduct<T, M, K, N, LHS, RHS>> {
 			private:
@@ -55,11 +51,7 @@ namespace MathLib {
 
 		
 
-		template<
-			typename T, 
-			const unsigned M, const unsigned K, const unsigned N, 
-			typename LHS, typename RHS
-		>
+		template<typename T, const unsigned M, const unsigned K, const unsigned N, typename LHS, typename RHS>
 
 		detail::MatrixVectorProduct<T, M, K, N, LHS, RHS> operator*(
 			const MatrixBase<T, M, K, LHS>& lhs, 

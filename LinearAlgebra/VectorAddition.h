@@ -43,12 +43,7 @@ namespace MathLib {
 
 		
 
-		template<
-			typename T, 
-			const unsigned N, 
-			typename LHS, typename RHS
-		>
-
+		template<typename T, const unsigned N, typename LHS, typename RHS>
 		detail::VectorAddition<T, N, LHS, RHS> operator+(
 			const VectorBase<T, N, LHS>& lhs, 
 			const VectorBase<T, N, RHS>& rhs) 

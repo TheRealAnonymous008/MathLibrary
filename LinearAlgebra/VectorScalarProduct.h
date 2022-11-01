@@ -41,12 +41,7 @@ namespace MathLib {
 
 		
 
-		template<
-			typename T,
-			const unsigned N, 
-			typename V
-		>
-
+		template<typename T,const unsigned N, typename V>
 		detail::VectorScalarProduct<T, N, V> operator*(
 			const VectorBase<T, N, V>& vec, 
 			const T& c) 
@@ -54,12 +49,7 @@ namespace MathLib {
 			return detail::VectorScalarProduct<T, N, V>(*static_cast<const V*>(&vec), *static_cast<const T*>(&c));
 		}
 
-		template<
-			typename T, 
-			const unsigned N, 
-			typename V
-		>
-
+		template<typename T, const unsigned N, typename V>
 		detail::VectorScalarProduct<T, N, V> operator*(
 			const T& c, 
 			const VectorBase<T, N, V>& vec) 

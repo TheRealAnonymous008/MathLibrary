@@ -44,12 +44,7 @@ namespace MathLib {
 			};
 		}
 
-		template<
-			typename T,
-			const unsigned _Rows, const unsigned _Columns, 
-			typename Expr
-		>
-
+		template<typename T, const unsigned _Rows, const unsigned _Columns,  typename Expr>
 		detail::MatrixTranspose<T, _Rows, _Columns, Expr> Transpose(
 			const MatrixBase<T, _Columns, _Rows, Expr>& expr) 
 		{

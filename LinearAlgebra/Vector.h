@@ -2,7 +2,9 @@
 #include <initializer_list>
 #include <array>
 #include <vector>
+
 #include "fwd.h"
+#include "Exceptions.h"
 
 namespace MathLib {
 	namespace LinearAlgebra {

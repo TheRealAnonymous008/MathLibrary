@@ -47,12 +47,7 @@ namespace MathLib {
 
 		
 
-		template<
-			typename T, 
-			const unsigned _Rows, const unsigned _Columns, 
-			typename M
-		>
-
+		template<typename T, const unsigned _Rows, const unsigned _Columns, typename M>
 		detail::MatrixScalarProduct<T, _Rows, _Columns, M> operator*(
 			const MatrixBase<T, _Rows, _Columns, M>& mat, 
 			const T& c) 
@@ -60,12 +55,7 @@ namespace MathLib {
 			return detail::MatrixScalarProduct<T, _Rows, _Columns, M>(*static_cast<const M*>(&mat), *static_cast<const T*>(&c));
 		}
 
-		template<
-			typename T, 
-			const unsigned _Rows, const unsigned _Columns, 
-			typename M
-		>
-
+		template<typename T, const unsigned _Rows, const unsigned _Columns, typename M>
 		detail::MatrixScalarProduct<T, _Rows, _Columns, M> operator*(
 			const T& c, 
 			const MatrixBase<T, _Rows, _Columns, M>& mat) 

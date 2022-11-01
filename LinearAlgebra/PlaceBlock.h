@@ -4,11 +4,7 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<
-			const unsigned _NRows, const unsigned _NCols,
-			typename T, typename Expr,
-			const unsigned _Rows, const unsigned _Columns
-		>
+		template<const unsigned _NRows, const unsigned _NCols, typename T, typename Expr, const unsigned _Rows, const unsigned _Columns>
 		Matrix<T, _NRows, _NCols> PlaceBlock(const MatrixBase<T, _Rows, _Columns, Expr>& M,
 			const unsigned x = 0,
 			const unsigned y = 0) {
@@ -24,15 +20,11 @@ namespace MathLib {
 			return result;
 		}
 
-		template<
-			const unsigned _NRows, const unsigned _NCols,
-			typename T, typename Expr,
-			const unsigned _Rows, const unsigned _Columns
-		>
+		template<const unsigned _NRows, const unsigned _NCols, typename T, typename Expr, const unsigned _Rows, const unsigned _Columns>
 		void PlaceBlock(Matrix<T, _NRows, _NCols>& result, const MatrixBase<T, _Rows, _Columns, Expr>& M,
 			const unsigned x = 0,
-			const unsigned y = 0) {
-
+			const unsigned y = 0) 
+		{
 			for (unsigned i = 0; i < _Rows; ++i) {
 				for (unsigned j = 0; j < _Columns; ++j) {
 					result.At(x + i, y + j) = M.At(i, j);

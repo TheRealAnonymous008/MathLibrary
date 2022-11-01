@@ -40,12 +40,7 @@ namespace MathLib {
 
 		
 
-		template<
-			typename T, 
-			const unsigned N, 
-			typename V
-		>
-
+		template<typename T, const unsigned N, typename V>
 		detail::VectorNegation<T, N, V> operator-(
 			const VectorBase<T, N, V>& vec) 
 		{

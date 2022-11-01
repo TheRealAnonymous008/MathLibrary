@@ -47,12 +47,7 @@ namespace MathLib {
 			};
 		}
 
-		template<
-			typename T, 
-			const unsigned _Rows, const unsigned _Columns, 
-			typename M
-		>
-
+		template<typename T, const unsigned _Rows, const unsigned _Columns, typename M>
 		detail::MatrixScalarQuotient<T, _Rows, _Columns, M> operator/(
 			const MatrixBase<T, _Rows, _Columns, M>& vec, 
 			const T& c) 

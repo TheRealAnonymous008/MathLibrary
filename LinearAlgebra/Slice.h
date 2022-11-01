@@ -45,13 +45,7 @@ namespace MathLib {
 			};
 		}
 
-		template< 
-			const unsigned _SliceRows, const unsigned _SliceColumns, 
-			const unsigned _Rows, const unsigned _Columns,
-			typename T, 
-			typename Expr
-		>
-
+		template< const unsigned _SliceRows, const unsigned _SliceColumns, const unsigned _Rows, const unsigned _Columns, typename T,  typename Expr>
 		detail::MatrixSlice<T, Expr, _SliceRows, _SliceColumns> Slice(
 			const MatrixBase<T, _Rows, _Columns, Expr>& expr, 
 			const unsigned row, 

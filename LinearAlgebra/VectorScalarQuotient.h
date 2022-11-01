@@ -44,12 +44,7 @@ namespace MathLib {
 
 		
 
-		template<
-			typename T, 
-			const unsigned N, 
-			typename V
-		>
-
+		template<typename T, const unsigned N, typename V>
 		detail::VectorScalarQuotient<T, N, V> operator/(
 			const VectorBase<T, N, V>& vec, 
 			const T& c) 
