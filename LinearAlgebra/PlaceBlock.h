@@ -11,8 +11,8 @@ namespace MathLib {
 
 			Matrix<T, _NRows, _NCols> result;
 
-			for (unsigned i = 0; i < M.Rows(); ++i) {
-				for (unsigned j = 0; j < M.Columns(); ++j) {
+			for (unsigned i = 0; i < _Rows; ++i) {
+				for (unsigned j = 0; j < _Columns; ++j) {
 					result.At(x + i, y + j) = M.At(i, j);
 				}
 			}

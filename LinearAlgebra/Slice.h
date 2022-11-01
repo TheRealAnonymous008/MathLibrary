@@ -34,8 +34,8 @@ namespace MathLib {
 
 					Matrix<T, _SliceRows, _SliceColumns> result;
 
-					for (unsigned i = 0; i < Rows(); ++i) {
-						for (unsigned j = 0; j < Columns(); ++j) {
+					for (unsigned i = 0; i < _SliceRows; ++i) {
+						for (unsigned j = 0; j < _SliceColumns; ++j) {
 							result.At(i, j) = expr.At(i + row, j + column);
 						}
 					}

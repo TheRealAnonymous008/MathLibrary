@@ -33,8 +33,8 @@ namespace MathLib {
 
 					Matrix<T, _Rows, _Columns> result;
 
-					for (unsigned i = 0; i < Rows(); ++i) {
-						for (unsigned j = 0; j < Columns(); ++j) {
+					for (unsigned i = 0; i < _Rows; ++i) {
+						for (unsigned j = 0; j < _Columns; ++j) {
 							result.At(i, j) = -expr.At(i, j);
 						}
 					}

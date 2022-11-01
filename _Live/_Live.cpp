@@ -23,6 +23,5 @@ int main()
 
 	std::cout << (end - start).count() / 1e9<<"s";
 
-	getchar();
 	return 0;
 }

@@ -107,16 +107,24 @@ namespace MathLib {
 				return _Columns;
 			}
 
-			T& At(const unsigned& r, const unsigned& c) {
-				if (r >= Rows() || r < 0 || c >= Columns() || c < 0)
+			T& SafeAt(const unsigned& r, const unsigned& c) {
+				if (r >= Rows() || c >= Columns())
 					throw InvalidAccess();
 				return (*body)[r][c];
 			}
 
-			T At(const unsigned& r, const unsigned& c) const {
-				if (r >= Rows() || r < 0 || c >= Columns() || c < 0)
+			T SafeAt(const unsigned& r, const unsigned& c) const {
+				if (r >= Rows() || c >= Columns())
 					throw InvalidAccess();
 
+				return (*body)[r][c];
+			}
+
+			T& At(const unsigned& r, const unsigned& c) {
+				return (*body)[r][c];
+			}
+
+			T At(const unsigned& r, const unsigned& c) const {
 				return (*body)[r][c];
 			}
 

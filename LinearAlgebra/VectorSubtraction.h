@@ -32,7 +32,7 @@ namespace MathLib {
 
 					Vector<T, N> result;
 
-					for (unsigned i = 0; i < Size(); ++i) {
+					for (unsigned i = 0; i < N; ++i) {
 						result[i] = lhs[i] - rhs[i];
 					}
 

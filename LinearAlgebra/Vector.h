@@ -87,13 +87,13 @@ namespace MathLib {
 			}
 
 			T& operator[](unsigned i) {
-				if (i >= Size() || i < 0)
+				if (i >= Size())
 					throw InvalidAccess();
 				return (*body)[i];
 			}
 
 			T operator[](unsigned i) const{
-				if (i >= Size() || i < 0)
+				if (i >= Size())
 					throw InvalidAccess();
 
 				return (*body)[i];

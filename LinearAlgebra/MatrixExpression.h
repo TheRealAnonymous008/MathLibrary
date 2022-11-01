@@ -3,7 +3,7 @@
 
 namespace MathLib {
 	namespace LinearAlgebra {
-		template<typename T, const unsigned Rows, const unsigned Columns, typename Derived>
+		template<typename T, const unsigned _Rows, const unsigned _Columns, typename Derived>
 		class MatrixBase {
 		public:
 			T At(const unsigned& r, const unsigned& c) const {

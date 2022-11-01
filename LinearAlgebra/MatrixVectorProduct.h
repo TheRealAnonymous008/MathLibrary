@@ -38,8 +38,8 @@ namespace MathLib {
 				auto Evaluate() const{
 					Vector<T, M> result;
 
-					for (unsigned i = 0; i < Size(); ++i) {
-						for (unsigned k = 0; k < rhs.Size(); ++k) {
+					for (unsigned i = 0; i < M; ++i) {
+						for (unsigned k = 0; k < N; ++k) {
 							result[i] += lhs.At(i, k) * rhs[k];
 						}
 					}

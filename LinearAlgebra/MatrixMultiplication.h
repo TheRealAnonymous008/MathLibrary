@@ -135,13 +135,7 @@ namespace MathLib {
 				}
 
 				T At(const unsigned& r, const unsigned& c) const {
-					T sum = T();
-
-					for (unsigned k = 0; k < lhs.Columns(); ++k) {
-						sum += lhs.At(r, k) * rhs.At(k, c);
-					}
-
-					return sum;
+					return result.At(r, c);
 				}
 
 				constexpr unsigned Rows() const {
