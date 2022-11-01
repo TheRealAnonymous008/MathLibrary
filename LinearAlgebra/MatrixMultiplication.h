@@ -43,9 +43,10 @@ namespace MathLib {
 
 				Matrix<T, _Rows, _Columns> result;
 
-				for (unsigned i = 0; i < _Rows; ++i) {
-					for (unsigned k = 0; k < _Inner; ++k) {
-						for (unsigned j = 0; j < _Columns; ++j) {
+#pragma omp parallel for
+				for (int i = 0; i < _Rows; ++i) {
+					for (int k = 0; k < _Inner; ++k) {
+						for (int j = 0; j < _Columns; ++j) {
 							result.At(i, j) += lhs.At(i, k) * rhs.At(k, j);
 						}
 					}
