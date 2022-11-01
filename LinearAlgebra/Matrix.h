@@ -10,7 +10,11 @@ namespace MathLib {
 		template<typename T, typename const unsigned _Rows, const unsigned _Columns>
 		class Matrix : public MatrixBase<T, _Rows, _Columns, Matrix<T, _Rows, _Columns>>{
 		private:
-			std::vector<std::vector<T>>* body = new std::vector<std::vector<T>>(_Rows, std::vector<T>(_Columns));
+			std::vector<T>* body = new std::vector<T>(_Rows * _Columns, T());
+
+			static unsigned GetIndex(unsigned row, unsigned column) {
+				return row * _Columns + column;
+			}
 
 		public:
 			Matrix() {
@@ -26,7 +30,7 @@ namespace MathLib {
 				for (auto x : list) {
 					unsigned j = 0;
 					for (auto y : x) {
-						(*body)[i][j] = y;
+						At(i, j) = y;
 						++j;
 					}
 					++i;
@@ -38,7 +42,7 @@ namespace MathLib {
 				for (auto x : list) {
 					unsigned j = 0;
 					for (auto y : x) {
-						(*body)[i][j] = y;
+						At(i, j) = y;
 						++j;
 					}
 					++i;
@@ -52,7 +56,7 @@ namespace MathLib {
 
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
-						(*body)[i][j] = expr.At(i, j);
+						At(i, j) = expr.At(i, j);
 					}
 				}
 			}
@@ -64,7 +68,7 @@ namespace MathLib {
 
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
-						(*body)[i][j] = expr.At(i, j);
+						At(i, j) = expr.At(i, j);
 					}
 				}
 			}
@@ -77,7 +81,7 @@ namespace MathLib {
 
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
-						(*body)[i][j] = expr.At(i, j);
+						At(i, j) = expr.At(i, j);
 					}
 				}
 			}
@@ -90,7 +94,7 @@ namespace MathLib {
 
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
-						(*body)[i][j] = expr.At(i, j);
+						At(i, j) = expr.At(i, j);
 					}
 				}
 			}			
@@ -110,22 +114,22 @@ namespace MathLib {
 			T& SafeAt(const unsigned& r, const unsigned& c) {
 				if (r >= Rows() || c >= Columns())
 					throw InvalidAccess();
-				return (*body)[r][c];
+				return body->at(GetIndex(r, c));
 			}
 
 			T SafeAt(const unsigned& r, const unsigned& c) const {
 				if (r >= Rows() || c >= Columns())
 					throw InvalidAccess();
 
-				return (*body)[r][c];
+				return body->at(GetIndex(r, c));
 			}
 
 			T& At(const unsigned& r, const unsigned& c) {
-				return (*body)[r][c];
+				return body->at(GetIndex(r, c));
 			}
 
 			T At(const unsigned& r, const unsigned& c) const {
-				return (*body)[r][c];
+				return body->at(GetIndex(r, c));
 			}
 
 
@@ -134,7 +138,7 @@ namespace MathLib {
 				
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
-						(*body)[i][j] += expr.At(i, j);
+						At(i, j) += expr.At(i, j);
 					}
 				}
 
@@ -146,7 +150,7 @@ namespace MathLib {
 
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
-						(*body)[i][j] -= expr.At(i, j);
+						At(i, j) -= expr.At(i, j);
 					}
 				}
 				return *this;
@@ -156,7 +160,7 @@ namespace MathLib {
 
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
-						(*body)[i][j] *= c;
+						At(i, j) *= c;
 					}
 				}
 				return *this;
@@ -168,7 +172,7 @@ namespace MathLib {
 
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
-						(*body)[i][j] /= c;
+						At(i, j) /= c;
 					}
 				}
 				return *this;
