@@ -25,6 +25,9 @@
     <Filter Include="Header Files\MatrixStructure">
       <UniqueIdentifier>{effe27ef-bab6-4824-b426-63d0f3ea5950}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\LU Decomposition">
+      <UniqueIdentifier>{2b2ebe5e-ba44-49d6-be83-a05e5f667ea1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Matrix.h">
@@ -107,6 +110,12 @@
     </ClInclude>
     <ClInclude Include="SquareOps.h">
       <Filter>Header Files\MatrixStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="LUDecomposition.h">
+      <Filter>Header Files\Core Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="LU.h">
+      <Filter>Header Files\LU Decomposition</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
