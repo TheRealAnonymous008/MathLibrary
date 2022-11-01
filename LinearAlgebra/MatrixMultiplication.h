@@ -5,6 +5,8 @@
 #include "PlaceBlock.h"
 #include "Slice.h"
 
+#include <omp.h>
+
 #define STRASSEN_MATRIX_THRESHOLD 512
 
 namespace MathLib {
@@ -43,10 +45,10 @@ namespace MathLib {
 
 				Matrix<T, _Rows, _Columns> result;
 
-#pragma omp parallel for
-				for (int i = 0; i < _Rows; ++i) {
-					for (int k = 0; k < _Inner; ++k) {
-						for (int j = 0; j < _Columns; ++j) {
+OPENMP_PARALLELIZE
+				for (unsigned i = 0; i < _Rows; ++i) {
+					for (unsigned k = 0; k < _Inner; ++k) {
+						for (unsigned j = 0; j < _Columns; ++j) {
 							result.At(i, j) += lhs.At(i, k) * rhs.At(k, j);
 						}
 					}
@@ -54,7 +56,7 @@ namespace MathLib {
 
 				return result;
 			}
-
+			
 			template<typename T, const unsigned _Rows, const unsigned _Inner, const unsigned _Columns, typename LHS, typename RHS >
 			Matrix<T, _Rows, _Columns> StrassenMatrixMultiplication(
 				const MatrixBase<T, _Rows, _Inner, LHS>& lhs,

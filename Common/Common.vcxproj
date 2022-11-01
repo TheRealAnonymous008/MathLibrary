@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="Core.h" />
     <ClInclude Include="Expression.h" />
+    <ClInclude Include="Options.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
