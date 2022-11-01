@@ -48,5 +48,17 @@ namespace MathLib {
 
 			return true;
 		}
+
+		template<typename T, const unsigned N, typename Exp>
+		bool IsSymmetric(const SquareMatrixExpression<T, N, Exp>& mat) {
+			for (unsigned i = 0; i < N; ++i) {
+				for (unsigned j = i + 1; j < N; ++j) {
+					if (mat.At(i, j) != mat.At(j, i)) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
 	}
 }

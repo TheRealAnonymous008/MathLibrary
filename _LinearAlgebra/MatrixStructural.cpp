@@ -179,6 +179,20 @@ TEST(SquareMat, DiagonalMat) {
 
 	ASSERT_TRUE(IsUpper(A));
 	ASSERT_TRUE(IsLower(A));
+	ASSERT_TRUE(IsSymmetric(A));
+}
+
+TEST(SqureMat, SymmetricMat){
+	SquareMatrix<int, 6> A;
+
+	for (unsigned i = 0; i < 6; ++i) {
+		for (unsigned j = 0; j < 6; ++j) {
+			A.At(i, j) = 2 * i - i * j + j * j;
+		}
+	}
+
+	ASSERT_TRUE(IsSymmetric(A * Transpose(A)));
+	ASSERT_TRUE(IsSymmetric(Transpose(A) * A));
 }
 
 TEST(SquareMat, EmptyMat) {
@@ -187,4 +201,5 @@ TEST(SquareMat, EmptyMat) {
 	ASSERT_TRUE(IsUpper(A));
 	ASSERT_TRUE(IsLower(A));
 	ASSERT_TRUE(IsDiagonal(A));
+	ASSERT_TRUE(IsSymmetric(A));
 }
