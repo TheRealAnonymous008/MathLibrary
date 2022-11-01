@@ -35,5 +35,18 @@ namespace MathLib {
 			}
 			return true;
 		}
+
+		template<typename T, const unsigned N, typename Exp>
+		bool IsDiagonal(const SquareMatrixExpression<T, N, Exp>& mat) {
+			for (unsigned i = 0; i < N; ++i) {
+				for (unsigned j = 0; j < N; ++j) {
+					if (i != j && mat.At(i, j) != T()) {
+						return false;
+					}
+				}
+			}
+
+			return true;
+		}
 	}
 }

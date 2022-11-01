@@ -163,3 +163,28 @@ TEST(SquareMat, LowerMat) {
 	ASSERT_TRUE(IsUpper(Transpose(A)));
 	ASSERT_TRUE(IsUpper(Transpose(B)));
 }
+
+TEST(SquareMat, DiagonalMat) {
+	SquareMatrix<int, 6> A;
+	SquareMatrix<int, 6> B;
+
+	for (unsigned i = 0; i < 6; ++i) {
+		A.At(i, i) = i * 2 + 1;
+		B.At(i, i) = i * i - 1;
+	}
+
+	ASSERT_TRUE(IsDiagonal(A));
+	ASSERT_TRUE(IsDiagonal(B));
+	ASSERT_TRUE(IsDiagonal(2 * A + 3 * B));
+
+	ASSERT_TRUE(IsUpper(A));
+	ASSERT_TRUE(IsLower(A));
+}
+
+TEST(SquareMat, EmptyMat) {
+	SquareMatrix<int, 143> A;
+
+	ASSERT_TRUE(IsUpper(A));
+	ASSERT_TRUE(IsLower(A));
+	ASSERT_TRUE(IsDiagonal(A));
+}
