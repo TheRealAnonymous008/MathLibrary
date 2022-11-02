@@ -5,11 +5,12 @@ using namespace MathLib;
 using namespace MathLib::LinearAlgebra;
 
 TEST(LUDecomposition, Simple) {
-	SquareMatrix<double, 10> M;
+	const unsigned N = 10;
+	SquareMatrix<double, N> M;
 
-	for (unsigned i = 0; i < 10; ++i) {
-		for (unsigned j = 0; j < 10; ++j) {
-			M.At(i, j) = i * sqrt(j) + j * sqrt(i + 1) + 1;
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j < N; ++j) {
+			M.At(i, j) = (i) * sqrt(j) + (j) * sqrt(i + 1) + 1;
 		}
 	}
 

@@ -1,27 +1,23 @@
 #pragma once
 
 namespace MathLib {
-	namespace LinearAlgebra {
-		namespace Types {
-			template<typename T>
-			constexpr T Identity() {
-				return T();
-			}
+	template<typename T>
+	constexpr T Identity() {
+		return T();
+	}
 
-			template<>
-			constexpr int Identity<int>() {
-				return 1;
-			}
+	template<>
+	constexpr int Identity<int>() {
+		return 1;
+	}
 
-			template<>
-			constexpr float Identity<float>() {
-				return 1.0f;
-			}
+	template<>
+	constexpr float Identity<float>() {
+		return 1.0f;
+	}
 
-			template<>
-			constexpr double Identity<double>() {
-				return 1.0;
-			}
-		}
+	template<>
+	constexpr double Identity<double>() {
+		return 1.0;
 	}
 }

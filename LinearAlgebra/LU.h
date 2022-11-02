@@ -29,7 +29,7 @@ namespace MathLib {
 						result.U.At(i, j) = M.At(i, j) - sum;
 					}
 
-					result.L.At(i, i) = Types::Identity<T>();
+					result.L.At(i, i) = Identity<T>();
 
 					for (unsigned j = i + 1; j < N; ++j) {
 

@@ -203,3 +203,17 @@ TEST(SquareMat, EmptyMat) {
 	ASSERT_TRUE(IsDiagonal(A));
 	ASSERT_TRUE(IsSymmetric(A));
 }
+
+TEST(SquareMat, IdentityMat) {
+	auto I = IdentityMatrix<int, 10>();
+
+	for (unsigned i = 0; i < 10; ++i) {
+		for (unsigned j = 0; j < 10; ++j) {
+			if (i != j) {
+				ASSERT_EQ(I.At(i, j), 0);
+			} else {
+				ASSERT_EQ(I.At(i, j), 1);
+			}
+		}
+	}
+}

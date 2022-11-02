@@ -133,6 +133,7 @@
     <ClInclude Include="EuclideanNorm.h" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="fwd.h" />
+    <ClInclude Include="IdentityMatrix.h" />
     <ClInclude Include="LU.h" />
     <ClInclude Include="LUDecomposition.h" />
     <ClInclude Include="MatOps.h" />

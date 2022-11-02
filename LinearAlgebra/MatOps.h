@@ -14,3 +14,4 @@
 #include "Slice.h"
 #include "PlaceBlock.h"
 #include "SquareOps.h"
+#include "IdentityMatrix.h"
