@@ -9,7 +9,7 @@
 #include <future>
 #include <thread>
 
-#define STRASSEN_MATRIX_THRESHOLD 512
+#define STRASSEN_MATRIX_THRESHOLD 1024
 
 namespace MathLib {
 	namespace LinearAlgebra {

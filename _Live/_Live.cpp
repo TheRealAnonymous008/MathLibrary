@@ -2,12 +2,12 @@
 #include <chrono>
 #include "../LinearAlgebra//Core.h"
 
-#define LOOPS 10
+#define LOOPS 1
 using namespace MathLib::LinearAlgebra;
 
 int main()
 {
-	const unsigned int N = 1000;
+	const unsigned int N = 2000;
 	SquareMatrix<int, N>* A = new SquareMatrix<int, N>();
 
 	for (unsigned i = 0; i < N; ++i) {
