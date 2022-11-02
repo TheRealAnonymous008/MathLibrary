@@ -4,9 +4,11 @@
 
 using namespace MathLib::LinearAlgebra;
 
+#define LOOPS 1
+
 int main()
 {
-	const unsigned int N = 1000;
+	const unsigned int N = 2000;
 	SquareMatrix<int, N>* A = new SquareMatrix<int, N>();
 
 	for (unsigned i = 0; i < N; ++i) {
@@ -15,13 +17,16 @@ int main()
 		}
 	}
 
-	auto start = std::chrono::high_resolution_clock::now();
+	double count = 0;
 
-	auto M = ((*A) * (*A)).Evaluate();
+	for (unsigned i = 0; i < LOOPS; ++i) {
+		auto start = std::chrono::high_resolution_clock::now();
+		auto M = ((*A) * (*A)).Evaluate();
+		auto end = std::chrono::high_resolution_clock::now();
 
-	auto end = std::chrono::high_resolution_clock::now();
-
-	std::cout << (end - start).count() / 1e9<<"s";
+		count += (end - start).count() / 1e9;
+	}
+	std::cout << count / LOOPS <<"s";
 
 	return 0;
 }
