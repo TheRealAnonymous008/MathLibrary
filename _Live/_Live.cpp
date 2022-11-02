@@ -7,12 +7,22 @@ using namespace MathLib::LinearAlgebra;
 
 int main()
 {
-	const unsigned int N = 2000;
-	SquareMatrix<int, N>* A = new SquareMatrix<int, N>();
+	const unsigned int N = 1000;
+	const unsigned int K = 1000;
+	const unsigned int M = 1000;
 
-	for (unsigned i = 0; i < N; ++i) {
-		for (unsigned j = 0; j < N; ++j) {
-			A->At(i, j) = i + j;
+	Matrix<float, N, K>* A = new Matrix<float, N, K>();
+	Matrix<float, K, M>* B = new Matrix<float, K, M>();
+
+	for (unsigned i = 0; i < A->Rows(); ++i) {
+		for (unsigned j = 0; j < A->Columns(); ++j) {
+			A->At(i, j) = i + j + 0.0f;
+		}
+	}
+
+	for (unsigned i = 0; i < B->Rows(); ++i) {
+		for (unsigned j = 0; j < B->Columns(); ++j) {
+			B->At(i, j) = i * j - 1.0f;
 		}
 	}
 
@@ -20,7 +30,7 @@ int main()
 
 	for (unsigned i = 0; i < LOOPS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		auto M = ((*A) * (*A)).Evaluate();
+		auto M = ((*A) * (*B)).Evaluate();
 		auto end = std::chrono::high_resolution_clock::now();
 
 		count += (end - start).count() / 1e9;

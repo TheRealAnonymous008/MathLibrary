@@ -31,7 +31,7 @@ namespace MathLib {
 				const MatrixBase<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixBase<T, _Inner, _Columns, RHS>& rhs
 			) {
-				if (_Rows > STRASSEN_MATRIX_THRESHOLD || _Columns > STRASSEN_MATRIX_THRESHOLD || _Inner > STRASSEN_MATRIX_THRESHOLD)
+				if (_Rows > STRASSEN_MATRIX_THRESHOLD && _Columns > STRASSEN_MATRIX_THRESHOLD && _Inner > STRASSEN_MATRIX_THRESHOLD)
 					return StrassenMatrixMultiplication(*static_cast<const LHS*>(&lhs),
 						*static_cast<const RHS*>(&rhs));
 
