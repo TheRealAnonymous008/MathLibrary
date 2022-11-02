@@ -50,8 +50,9 @@ namespace MathLib {
 				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned k = 0; k < _Inner; ++k) {
+						auto l = lhs.At(i, k);
 						for (unsigned j = 0; j < _Columns; ++j) {
-							result.At(i, j) += lhs.At(i, k) * rhs.At(k, j);
+							result.At(i, j) += l  *rhs.At(k, j);
 						}
 					}
 				}
