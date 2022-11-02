@@ -102,7 +102,7 @@ TEST(MatMat, Strassen) {
 
 TEST(MatMat, BigProduct) {
 
-	const unsigned int N = 2000;
+	const unsigned int N = 1000;
 	SquareMatrix<int, N> *A = new SquareMatrix<int, N>();
 
 	for (unsigned i = 0; i < N; ++i) {
