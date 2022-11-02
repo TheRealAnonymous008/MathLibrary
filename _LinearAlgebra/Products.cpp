@@ -102,7 +102,7 @@ TEST(MatMat, Strassen) {
 
 TEST(MatMat, BigProduct) {
 
-	const unsigned int N = 512;
+	const unsigned int N = 2000;
 	SquareMatrix<int, N> *A = new SquareMatrix<int, N>();
 
 	for (unsigned i = 0; i < N; ++i) {
@@ -113,4 +113,13 @@ TEST(MatMat, BigProduct) {
 
 	auto M = ((*A) * (*A)).Evaluate();
 	
+	unsigned row = 275;
+	unsigned column = 1542;
+
+	int sum = 0;
+	for (unsigned k = 0; k < N; k++) {
+		sum += A->At(row, k) * A->At(k, column);
+	}
+
+	ASSERT_TRUE(M.At(row, column), sum);
 }

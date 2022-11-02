@@ -14,14 +14,14 @@ namespace MathLib {
 
 		namespace implementation {
 			template<typename T, const unsigned N>
-			LUDecompositionResult<T, N> LUDoolittle(SquareMatrix<T, N> M) {
+			LUDecompositionResult<T, N> DoolittleLU(SquareMatrix<T, N> M) {
 				return LUDecompositionResult<T, N>{ M, M };
 			}
 		}
 
 		template<typename T, const unsigned N, typename Expr>
 		LUDecompositionResult<T, N> LUDecomposition(SquareMatrixBase<T, N, Expr>& expr) {
-			return implementation::LUDoolittle(expr.Evaluate());
+			return implementation::DoolittleLU(expr.Evaluate());
 		}
 
 	}
