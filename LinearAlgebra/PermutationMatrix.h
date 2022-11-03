@@ -9,7 +9,8 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		template<typename T, const unsigned N>
-		class PermutationMatrix : SquareMatrix<T, N> {
+		class PermutationMatrix : SquareMatrixBase<T, N,
+			PermutationMatrix<T, N> {
 		private:
 			std::vector<T>* body = new std::vector<T>(N);
 

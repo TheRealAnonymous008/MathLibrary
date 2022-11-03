@@ -204,7 +204,7 @@ TEST(SquareMat, EmptyMat) {
 	ASSERT_TRUE(IsSymmetric(A));
 }
 
-TEST(SquareMat, IdentityMat) {
+TEST(Identity, IdentityMat) {
 	auto I = IdentityMatrix<int, 10>();
 
 	for (unsigned i = 0; i < 10; ++i) {
@@ -216,6 +216,24 @@ TEST(SquareMat, IdentityMat) {
 			}
 		}
 	}
+}
+
+TEST(Identity, IdentityMatMul) {
+	const unsigned N = 10;
+
+	auto I = IdentityMatrix<int, N>();
+	auto A = SquareMatrix<int, N>();
+
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j < N; ++j) {
+			A.At(i, j) = 2 * i - i * j + j * j;
+		}
+	}
+	
+	ASSERT_EQ(A * I, A);
+	ASSERT_EQ(I * A, A);
+	ASSERT_EQ(I * I, I);
+	ASSERT_EQ(I * I * A, I * A * I);
 }
 
 TEST(Permutation, Permutation) {
