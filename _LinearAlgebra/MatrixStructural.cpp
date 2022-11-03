@@ -217,3 +217,15 @@ TEST(SquareMat, IdentityMat) {
 		}
 	}
 }
+
+TEST(Permutation, Permutation) {
+	auto P = PermutationMatrix<int, 6>();
+	ASSERT_EQ(P.At(3, 3), 1);
+
+	P.Permute(1, 2);
+
+	ASSERT_EQ(P.At(1, 1), 0);
+	ASSERT_EQ(P.At(2, 2), 0);
+	ASSERT_EQ(P.At(1, 2), 1);
+	ASSERT_EQ(P.At(2, 1), 1);
+}

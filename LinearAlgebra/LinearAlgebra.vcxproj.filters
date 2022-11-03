@@ -123,5 +123,8 @@
     <ClInclude Include="IdentityMatrix.h">
       <Filter>Header Files\Square Matrices</Filter>
     </ClInclude>
+    <ClInclude Include="PermutationMatrix.h">
+      <Filter>Header Files\Square Matrices</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,14 +11,9 @@ namespace MathLib {
 		private:
 
 		public:
-			T At(unsigned i, unsigned j) {
-				return (i != j) ? T() : Identity<T>();
-			}
-
 			T At(unsigned i, unsigned j) const {
 				return (i != j) ? T() : Identity<T>();
 			}
 		};
-
 	}
 }

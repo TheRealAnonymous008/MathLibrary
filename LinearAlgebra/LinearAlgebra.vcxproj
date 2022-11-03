@@ -145,6 +145,7 @@
     <ClInclude Include="MatrixScalarProduct.h" />
     <ClInclude Include="MatrixScalarQuotient.h" />
     <ClInclude Include="MatrixSubtraction.h" />
+    <ClInclude Include="PermutationMatrix.h" />
     <ClInclude Include="PlaceBlock.h" />
     <ClInclude Include="Slice.h" />
     <ClInclude Include="SquareOps.h" />

@@ -15,3 +15,4 @@
 #include "PlaceBlock.h"
 #include "SquareOps.h"
 #include "IdentityMatrix.h"
+#include "PermutationMatrix.h"

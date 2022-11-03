@@ -1,6 +1,7 @@
 #pragma once
 
 namespace MathLib {
+
 	template<typename T>
 	constexpr T Identity() {
 		return T();
