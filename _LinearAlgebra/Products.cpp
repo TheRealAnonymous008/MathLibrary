@@ -198,10 +198,25 @@ TEST(Permutation, ColumnPermutation) {
 	P.Permute(1, 3);
 	P.Permute(2, 0);
 
-	A = A * P;
+	A= A * P;
 
 	ASSERT_EQ(A.At(0, 0), 2);
 	ASSERT_EQ(A.At(0, 1), 3);
 	ASSERT_EQ(A.At(0, 2), 1);
 	ASSERT_EQ(A.At(0, 3), 0);
+}
+
+TEST(Permutation, IdentityPermutation) {
+	const unsigned N = 4;
+
+	auto P = PermutationMatrix<int, N>();
+	auto I = IdentityMatrix<int, N>();
+
+	ASSERT_EQ(P, I);
+	P.Permute(0, 1);
+	P.Permute(1, 3);
+	P.Permute(2, 0);
+
+	ASSERT_EQ(I * P, P);
+	ASSERT_EQ(P * I, P);
 }

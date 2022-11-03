@@ -2,6 +2,7 @@
 
 #include "fwd.h"
 #include "SquareOps.h"
+#include <concepts>
 
 namespace MathLib {
 	namespace LinearAlgebra {
@@ -10,7 +11,7 @@ namespace MathLib {
 		class IdentityMatrix : public SquareMatrixBase<T, N,
 			IdentityMatrix<T, N>> {
 		private:
-
+			
 		public:
 			T At(unsigned i, unsigned j) const {
 				return (i != j) ? T() : Identity<T>();
@@ -34,15 +35,10 @@ namespace MathLib {
 			}
 		};
 
-		template<typename T, const unsigned N>
-		const IdentityMatrix<T, N>& operator*(
-			const IdentityMatrix<T, N>& lhs,
-			const IdentityMatrix<T, N>& rhs)
-		{
-			return lhs;
-		}
+		template<typename Expr, typename T, const unsigned N>
+		concept IsNotIdentityMatrix = (std::_Not_same_as<Expr, IdentityMatrix<T, N>>);
 
-		template<typename T, const unsigned _Rows, const unsigned N, typename Expr>
+		template<typename T, const unsigned _Rows, const unsigned N, typename Expr> 
 		const MatrixBase<T, _Rows, N, Expr>& operator*(
 			const MatrixBase<T, _Rows, N, Expr>& lhs,
 			const IdentityMatrix<T, N>& rhs)
@@ -51,6 +47,7 @@ namespace MathLib {
 		}
 
 		template<typename T, const unsigned N, const unsigned _Columns, typename Expr>
+		requires IsNotIdentityMatrix<Expr, T, N>
 		const MatrixBase<T, N, _Columns, Expr>& operator*(
 			const IdentityMatrix<T, N>& lhs,
 			const MatrixBase<T, N, _Columns, Expr>& rhs)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "PermutationMatrix.h"
+#include <concepts>
 
 namespace MathLib {
 	namespace LinearAlgebra {
@@ -89,6 +90,7 @@ namespace MathLib {
 
 
 		template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr>
+		requires IsNotIdentityMatrix<Expr, T, _Columns>
 		detail::MatrixRowPermutation<T, _Rows, _Columns, Expr> operator*(
 			const PermutationMatrix<T, _Rows>& lhs,
 			const MatrixBase<T, _Rows, _Columns, Expr>& rhs)
@@ -96,7 +98,8 @@ namespace MathLib {
 			return  detail::MatrixRowPermutation<T, _Rows, _Columns, Expr>(lhs, *static_cast<const Expr*>(&rhs));;
 		}
 
-		template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr>
+		template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr>\
+		requires IsNotIdentityMatrix<Expr, T, _Columns>
 		detail::MatrixColumnPermutation<T, _Rows, _Columns, Expr> operator*(
 			const MatrixBase<T, _Rows, _Columns, Expr>& lhs,
 			const PermutationMatrix<T, _Columns>& rhs)
