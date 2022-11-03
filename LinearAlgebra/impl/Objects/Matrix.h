@@ -1,8 +1,10 @@
 #pragma once
-#include <initializer_list>
-#include "fwd.h"
-#include "Exceptions.h"
 
+#include "fwd.h"
+#include "../../Exceptions.h"
+
+#include <initializer_list>
+#include <vector>
 
 namespace MathLib {
 	namespace LinearAlgebra {

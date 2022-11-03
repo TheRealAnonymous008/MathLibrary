@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "../../MathLibrary//LinearAlgebra//LU.h"
+#include "../../MathLibrary/LinearAlgebra/impl/LU/LU.h"
 
 using namespace MathLib;
 using namespace MathLib::LinearAlgebra;

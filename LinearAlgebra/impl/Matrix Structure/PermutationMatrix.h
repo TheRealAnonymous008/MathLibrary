@@ -1,6 +1,7 @@
 #pragma once
 
-#include "fwd.h"
+#include "../Objects/MatrixBase.h"
+#include "../Objects/Matrix.h"
 #include "SquareOps.h"
 
 #include <vector>

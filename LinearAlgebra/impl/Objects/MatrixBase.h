@@ -1,4 +1,5 @@
 #pragma once
+
 #include "fwd.h"
 
 namespace MathLib {

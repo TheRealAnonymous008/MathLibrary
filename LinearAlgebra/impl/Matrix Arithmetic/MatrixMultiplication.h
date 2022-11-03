@@ -1,13 +1,12 @@
 #pragma once
-#include "fwd.h"
 
-#include "Exceptions.h"
-#include "PlaceBlock.h"
-#include "Slice.h"
+#include "../../Exceptions.h"
 
-#include <omp.h>
-#include <future>
-#include <thread>
+#include "../Objects/Matrix.h"
+#include "../Objects/MatrixBase.h"
+
+#include "../Matrix Structure/Slice.h"
+#include "../Matrix Structure/PlaceBlock.h"
 
 #define STRASSEN_MATRIX_THRESHOLD 1024
 

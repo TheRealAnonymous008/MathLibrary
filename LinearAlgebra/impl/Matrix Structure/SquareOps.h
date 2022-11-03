@@ -1,7 +1,7 @@
 #pragma once
 
-#pragma once
-#include "fwd.h"
+#include "../Objects/MatrixBase.h"
+#include "../Objects/Matrix.h"
 
 namespace MathLib {
 	namespace LinearAlgebra {

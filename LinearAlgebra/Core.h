@@ -1,13 +1,15 @@
 #pragma once
 #include "../Common/Core.h"
 
-#include "Vector.h"
-#include "Matrix.h"
+#include "impl/Objects/Vector.h"
+#include "impl/Objects/Matrix.h"
 
-#include "VectorExpression.h"
-#include "MatrixExpression.h"
+#include "impl/Objects/MatrixBase.h"
+#include "impl/Objects/MatrixBase.h"
 
-#include "VecOps.h"
-#include "MatOps.h"
+#include "impl/Vector Arithmetic/VecOps.h"
+#include "impl/Matrix Arithmetic/MatOps.h"
+
+#include "impl/Matrix Structure/MatrixStructure.h"
 
 #include "Exceptions.h"

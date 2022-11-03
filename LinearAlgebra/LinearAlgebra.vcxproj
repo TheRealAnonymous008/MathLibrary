@@ -128,43 +128,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Core.h" />
-    <ClInclude Include="DotProduct.h" />
-    <ClInclude Include="EuclideanNorm.h" />
-    <ClInclude Include="Exceptions.h" />
-    <ClInclude Include="fwd.h" />
-    <ClInclude Include="IdentityMatrix.h" />
-    <ClInclude Include="LU.h" />
-    <ClInclude Include="LUDecomposition.h" />
-    <ClInclude Include="MatOps.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="MatrixAddition.h" />
-    <ClInclude Include="MatrixExpression.h" />
-    <ClInclude Include="MatrixMultiplication.h" />
-    <ClInclude Include="MatrixNegation.h" />
-    <ClInclude Include="MatrixPermutation.h" />
-    <ClInclude Include="MatrixScalarProduct.h" />
-    <ClInclude Include="MatrixScalarQuotient.h" />
-    <ClInclude Include="MatrixSubtraction.h" />
-    <ClInclude Include="PermutationMatrix.h" />
-    <ClInclude Include="PlaceBlock.h" />
-    <ClInclude Include="Slice.h" />
-    <ClInclude Include="SquareOps.h" />
-    <ClInclude Include="Transpose.h" />
-    <ClInclude Include="MatrixVectorProduct.h" />
-    <ClInclude Include="VecOps.h" />
-    <ClInclude Include="Vector.h" />
-    <ClInclude Include="VectorAddition.h" />
-    <ClInclude Include="VectorExpression.h" />
-    <ClInclude Include="VectorNegation.h" />
-    <ClInclude Include="VectorScalarProduct.h" />
-    <ClInclude Include="VectorScalarQuotient.h" />
-    <ClInclude Include="VectorSubtraction.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Common\Common.vcxproj">
       <Project>{a6b11dc3-cd2a-4023-8d87-3fb3fe4f23ec}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core.h" />
+    <ClInclude Include="Exceptions.h" />
+    <ClInclude Include="impl\LU\LU.h" />
+    <ClInclude Include="impl\LU\LUDecomposition.h" />
+    <ClInclude Include="impl\Matrix Arithmetic\MatOps.h" />
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixAddition.h" />
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixMultiplication.h" />
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixNegation.h" />
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixScalarProduct.h" />
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixScalarQuotient.h" />
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixSubtraction.h" />
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixVectorProduct.h" />
+    <ClInclude Include="impl\Matrix Structure\IdentityMatrix.h" />
+    <ClInclude Include="impl\Matrix Structure\MatrixPermutation.h" />
+    <ClInclude Include="impl\Matrix Structure\MatrixStructure.h" />
+    <ClInclude Include="impl\Matrix Structure\PermutationMatrix.h" />
+    <ClInclude Include="impl\Matrix Structure\PlaceBlock.h" />
+    <ClInclude Include="impl\Matrix Structure\Slice.h" />
+    <ClInclude Include="impl\Matrix Structure\SquareOps.h" />
+    <ClInclude Include="impl\Matrix Structure\Transpose.h" />
+    <ClInclude Include="impl\Objects\fwd.h" />
+    <ClInclude Include="impl\Objects\Matrix.h" />
+    <ClInclude Include="impl\Objects\MatrixBase.h" />
+    <ClInclude Include="impl\Objects\Vector.h" />
+    <ClInclude Include="impl\Objects\VectorBase.h" />
+    <ClInclude Include="impl\Vector Arithmetic\DotProduct.h" />
+    <ClInclude Include="impl\Vector Arithmetic\EuclideanNorm.h" />
+    <ClInclude Include="impl\Vector Arithmetic\VecOps.h" />
+    <ClInclude Include="impl\Vector Arithmetic\VectorAddition.h" />
+    <ClInclude Include="impl\Vector Arithmetic\VectorNegation.h" />
+    <ClInclude Include="impl\Vector Arithmetic\VectorScalarProduct.h" />
+    <ClInclude Include="impl\Vector Arithmetic\VectorScalarQuotient.h" />
+    <ClInclude Include="impl\Vector Arithmetic\VectorSubtraction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,121 +13,121 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Core Headers">
-      <UniqueIdentifier>{fd2c51f3-a34d-440f-a5c9-f7d6c1d29515}</UniqueIdentifier>
+    <Filter Include="Vector Operations">
+      <UniqueIdentifier>{2198846b-33a1-4819-8c55-9e3bdbd12c48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\LU Decomposition">
-      <UniqueIdentifier>{2b2ebe5e-ba44-49d6-be83-a05e5f667ea1}</UniqueIdentifier>
+    <Filter Include="Matrix Operations">
+      <UniqueIdentifier>{b6a86eb4-1a2c-41bf-9ebd-59360d82438d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Matrix Operations">
-      <UniqueIdentifier>{284f37e0-3167-4c20-9963-8efa7dee5896}</UniqueIdentifier>
+    <Filter Include="Matrix Structure">
+      <UniqueIdentifier>{beea75e8-8179-4f8c-99f1-9a2b68a6ee40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Matrix Structure">
-      <UniqueIdentifier>{effe27ef-bab6-4824-b426-63d0f3ea5950}</UniqueIdentifier>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{bb5c97b6-226b-43b4-97f4-84fc9a97aa83}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Square Matrices">
-      <UniqueIdentifier>{68394f89-1e01-4b4a-ae9d-a10207c3aad2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Vector Operations">
-      <UniqueIdentifier>{37ed9495-e582-4c79-8b4e-137448e7a271}</UniqueIdentifier>
+    <Filter Include="LU Decomposition">
+      <UniqueIdentifier>{21cce888-f3fe-419f-b01d-891e44aeaf79}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Matrix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorAddition.h">
-      <Filter>Header Files\Vector Operations</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorSubtraction.h">
-      <Filter>Header Files\Vector Operations</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorNegation.h">
-      <Filter>Header Files\Vector Operations</Filter>
-    </ClInclude>
     <ClInclude Include="Core.h">
-      <Filter>Header Files\Core Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="fwd.h">
-      <Filter>Header Files\Core Headers</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions.h">
-      <Filter>Header Files\Core Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorExpression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VecOps.h">
-      <Filter>Header Files\Core Headers</Filter>
+    <ClInclude Include="impl\Vector Arithmetic\DotProduct.h">
+      <Filter>Vector Operations</Filter>
     </ClInclude>
-    <ClInclude Include="VectorScalarProduct.h">
-      <Filter>Header Files\Vector Operations</Filter>
+    <ClInclude Include="impl\Vector Arithmetic\EuclideanNorm.h">
+      <Filter>Vector Operations</Filter>
     </ClInclude>
-    <ClInclude Include="VectorScalarQuotient.h">
-      <Filter>Header Files\Vector Operations</Filter>
+    <ClInclude Include="impl\Vector Arithmetic\VecOps.h">
+      <Filter>Vector Operations</Filter>
     </ClInclude>
-    <ClInclude Include="DotProduct.h">
-      <Filter>Header Files\Vector Operations</Filter>
+    <ClInclude Include="impl\Vector Arithmetic\VectorAddition.h">
+      <Filter>Vector Operations</Filter>
     </ClInclude>
-    <ClInclude Include="EuclideanNorm.h">
-      <Filter>Header Files\Vector Operations</Filter>
+    <ClInclude Include="impl\Vector Arithmetic\VectorNegation.h">
+      <Filter>Vector Operations</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixAddition.h">
-      <Filter>Header Files\Matrix Operations</Filter>
+    <ClInclude Include="impl\Vector Arithmetic\VectorScalarProduct.h">
+      <Filter>Vector Operations</Filter>
     </ClInclude>
-    <ClInclude Include="MatOps.h">
-      <Filter>Header Files\Core Headers</Filter>
+    <ClInclude Include="impl\Vector Arithmetic\VectorScalarQuotient.h">
+      <Filter>Vector Operations</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixExpression.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="impl\Vector Arithmetic\VectorSubtraction.h">
+      <Filter>Vector Operations</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixSubtraction.h">
-      <Filter>Header Files\Matrix Operations</Filter>
+    <ClInclude Include="impl\Matrix Arithmetic\MatOps.h">
+      <Filter>Matrix Operations</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixNegation.h">
-      <Filter>Header Files\Matrix Operations</Filter>
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixAddition.h">
+      <Filter>Matrix Operations</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixScalarProduct.h">
-      <Filter>Header Files\Matrix Operations</Filter>
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixMultiplication.h">
+      <Filter>Matrix Operations</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixScalarQuotient.h">
-      <Filter>Header Files\Matrix Operations</Filter>
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixNegation.h">
+      <Filter>Matrix Operations</Filter>
     </ClInclude>
-    <ClInclude Include="Transpose.h">
-      <Filter>Header Files\Matrix Structure</Filter>
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixScalarProduct.h">
+      <Filter>Matrix Operations</Filter>
     </ClInclude>
-    <ClInclude Include="Slice.h">
-      <Filter>Header Files\Matrix Structure</Filter>
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixScalarQuotient.h">
+      <Filter>Matrix Operations</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixVectorProduct.h">
-      <Filter>Header Files\Vector Operations</Filter>
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixSubtraction.h">
+      <Filter>Matrix Operations</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixMultiplication.h">
-      <Filter>Header Files\Matrix Operations</Filter>
+    <ClInclude Include="impl\Matrix Arithmetic\MatrixVectorProduct.h">
+      <Filter>Matrix Operations</Filter>
     </ClInclude>
-    <ClInclude Include="PlaceBlock.h">
-      <Filter>Header Files\Matrix Structure</Filter>
+    <ClInclude Include="impl\Matrix Structure\IdentityMatrix.h">
+      <Filter>Matrix Structure</Filter>
     </ClInclude>
-    <ClInclude Include="LUDecomposition.h">
-      <Filter>Header Files\Core Headers</Filter>
+    <ClInclude Include="impl\Matrix Structure\MatrixPermutation.h">
+      <Filter>Matrix Structure</Filter>
     </ClInclude>
-    <ClInclude Include="LU.h">
-      <Filter>Header Files\LU Decomposition</Filter>
+    <ClInclude Include="impl\Matrix Structure\MatrixStructure.h">
+      <Filter>Matrix Structure</Filter>
     </ClInclude>
-    <ClInclude Include="SquareOps.h">
-      <Filter>Header Files\Square Matrices</Filter>
+    <ClInclude Include="impl\Matrix Structure\PermutationMatrix.h">
+      <Filter>Matrix Structure</Filter>
     </ClInclude>
-    <ClInclude Include="IdentityMatrix.h">
-      <Filter>Header Files\Square Matrices</Filter>
+    <ClInclude Include="impl\Matrix Structure\PlaceBlock.h">
+      <Filter>Matrix Structure</Filter>
     </ClInclude>
-    <ClInclude Include="PermutationMatrix.h">
-      <Filter>Header Files\Square Matrices</Filter>
+    <ClInclude Include="impl\Matrix Structure\Slice.h">
+      <Filter>Matrix Structure</Filter>
     </ClInclude>
-    <ClInclude Include="MatrixPermutation.h">
-      <Filter>Header Files\Matrix Structure</Filter>
+    <ClInclude Include="impl\Matrix Structure\SquareOps.h">
+      <Filter>Matrix Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Matrix Structure\Transpose.h">
+      <Filter>Matrix Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Objects\fwd.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Objects\Matrix.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Objects\MatrixBase.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Objects\Vector.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Objects\VectorBase.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\LU\LU.h">
+      <Filter>LU Decomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\LU\LUDecomposition.h">
+      <Filter>LU Decomposition</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

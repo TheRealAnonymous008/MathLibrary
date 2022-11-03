@@ -1,6 +1,9 @@
 #pragma once
-#include "fwd.h"
-#include "Exceptions.h"
+
+#include "../../Exceptions.h"
+
+#include "../Objects/Matrix.h"
+#include "../Objects/MatrixBase.h"
 
 namespace MathLib {
 	namespace LinearAlgebra {
