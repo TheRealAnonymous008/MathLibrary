@@ -42,18 +42,18 @@ namespace MathLib {
 			return lhs;
 		}
 
-		template<typename T, const unsigned N, typename Expr>
-		const SquareMatrixBase<T, N, Expr>& operator*(
-			const SquareMatrixBase<T, N, Expr>& lhs,
+		template<typename T, const unsigned _Rows, const unsigned N, typename Expr>
+		const MatrixBase<T, _Rows, N, Expr>& operator*(
+			const MatrixBase<T, _Rows, N, Expr>& lhs,
 			const IdentityMatrix<T, N>& rhs)
 		{
 			return lhs;
 		}
 
-		template<typename T, const unsigned N, typename Expr>
-		const SquareMatrixBase<T, N, Expr>& operator*(
+		template<typename T, const unsigned N, const unsigned _Columns, typename Expr>
+		const MatrixBase<T, N, _Columns, Expr>& operator*(
 			const IdentityMatrix<T, N>& lhs,
-			const SquareMatrixBase<T, N, Expr>& rhs)
+			const MatrixBase<T, N, _Columns, Expr>& rhs)
 		{
 			return rhs;
 		}

@@ -218,24 +218,6 @@ TEST(Identity, IdentityMat) {
 	}
 }
 
-TEST(Identity, IdentityMatMul) {
-	const unsigned N = 10;
-
-	auto I = IdentityMatrix<int, N>();
-	auto A = SquareMatrix<int, N>();
-
-	for (unsigned i = 0; i < N; ++i) {
-		for (unsigned j = 0; j < N; ++j) {
-			A.At(i, j) = 2 * i - i * j + j * j;
-		}
-	}
-	
-	ASSERT_EQ(A * I, A);
-	ASSERT_EQ(I * A, A);
-	ASSERT_EQ(I * I, I);
-	ASSERT_EQ(I * I * A, I * A * I);
-}
-
 TEST(Permutation, Permutation) {
 	auto P = PermutationMatrix<int, 6>();
 	ASSERT_EQ(P.At(3, 3), 1);
@@ -246,4 +228,26 @@ TEST(Permutation, Permutation) {
 	ASSERT_EQ(P.At(2, 2), 0);
 	ASSERT_EQ(P.At(1, 2), 1);
 	ASSERT_EQ(P.At(2, 1), 1);
+}
+
+TEST(Permutation, PermIdentity) {
+	auto P = PermutationMatrix<int, 10>();
+	auto I = IdentityMatrix<int, 10>();
+
+	ASSERT_EQ(P * I, P);
+}
+
+TEST(Permutation, PermMatMul) {
+	const unsigned N = 4;
+
+	auto P = PermutationMatrix<int, N>();
+	auto A = SquareMatrix<int, N>();
+
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j < N; ++j) {
+			A.At(i, j) = 2 * i - i * j + j * j;
+		}
+	}
+
+
 }

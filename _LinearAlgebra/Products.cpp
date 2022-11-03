@@ -123,3 +123,36 @@ TEST(MatMat, BigProduct) {
 
 	ASSERT_TRUE(M.At(row, column), sum);
 }
+
+TEST(Identity, SquareMatMul) {
+	const unsigned N = 10;
+
+	auto I = IdentityMatrix<int, N>();
+	auto A = SquareMatrix<int, N>();
+
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j < N; ++j) {
+			A.At(i, j) = 2 * i - i * j + j * j;
+		}
+	}
+
+	ASSERT_EQ(A * I, A);
+	ASSERT_EQ(I * A, A);
+	ASSERT_EQ(I * I, I);
+	ASSERT_EQ(I * I * A, I * A * I);
+}
+
+TEST(Identity, NonSquareMatmul) {
+	Matrix<int, 4, 3> A = {
+		{2, -3, 1},
+		{1, -2, -3},
+		{0, 0, 4},
+		{1, 3, -1}
+	};
+
+	auto Ir = IdentityMatrix<int, 4>();
+	auto Ic = IdentityMatrix<int, 3>();
+
+	ASSERT_EQ(Ir * A, A);
+	ASSERT_EQ(A * Ic, A);
+}
