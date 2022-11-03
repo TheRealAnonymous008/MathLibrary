@@ -81,10 +81,12 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
+				auto eval = expr.Evaluate();
+
 				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
-						this->At(i, j) = expr.At(i, j);
+						this->At(i, j) = eval.At(i, j);
 					}
 				}
 			}
@@ -95,10 +97,12 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
+				auto eval = expr.Evaluate();
+
 				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < _Rows; ++i) {
 					for (unsigned j = 0; j < _Columns; ++j) {
-						this->At(i, j) = expr.At(i, j);
+						this->At(i, j) = eval.At(i, j);
 					}
 				}
 			}			
@@ -140,10 +144,12 @@ namespace MathLib {
 			template<typename E>
 			const Matrix& operator+=(const MatrixBase<T, _Rows, _Columns, E>& expr) {
 				
+				auto eval = expr.Evaluate();
+
 				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
-						this->At(i, j) += expr.At(i, j);
+						this->At(i, j) += eval.At(i, j);
 					}
 				}
 
@@ -153,10 +159,12 @@ namespace MathLib {
 			template<typename E>
 			const Matrix& operator-=(const MatrixBase<T, _Rows, _Columns,  E>& expr) {
 
+				auto eval = expr.Evaluate();
+
 				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Rows(); ++i) {
 					for (unsigned j = 0; j < Columns(); ++j) {
-						this->At(i, j) -= expr.At(i, j);
+						this->At(i, j) -= eval.At(i, j);
 					}
 				}
 				return *this;

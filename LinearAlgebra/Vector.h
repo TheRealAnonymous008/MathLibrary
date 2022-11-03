@@ -68,9 +68,10 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
+				auto eval = expr.Evaluate();
 				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Size(); ++i) {
-					(*body)[i] = expr[i];
+					(*body)[i] = eval[i];
 				}
 			}
 
@@ -80,8 +81,9 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
+				auto eval = expr.Evaluate();
 				for (unsigned i = 0; i < Size(); ++i) {
-					(*body)[i] = expr[i];
+					(*body)[i] = eval[i];
 				}
 			}
 
@@ -105,19 +107,23 @@ namespace MathLib {
 			template<typename E>
 			Vector& operator+=(const VectorBase<T, N, E>& expr) {
 
+				auto eval = expr.Evaluate();
+
 				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Size(); ++i) {
-					(*body)[i] += expr[i];
+					(*body)[i] += eval[i];
 				}
 				return *this;
 			}
 
 			template<typename E>
 			Vector& operator-=(const VectorBase<T, N, E>& expr) {
-				
+
+				auto eval = expr.Evaluate();
+
 				OPENMP_PARALLELIZE
 				for (unsigned i = 0; i < Size(); ++i) {
-					(*body)[i] -= expr[i];
+					(*body)[i] -= eval[i];
 				}
 				return *this;
 			}

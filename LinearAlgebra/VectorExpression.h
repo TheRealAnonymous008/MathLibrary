@@ -32,9 +32,12 @@ namespace MathLib {
 		{
 			if (lhs.Size() != rhs.Size())
 				return false;
+			
+			auto left = lhs.Evaluate();
+			auto right = rhs.Evaluate();
 
 			for (unsigned i = 0; i < lhs.Size(); ++i) {
-				if (lhs[i] != rhs[i])
+				if (left[i] != right[i])
 					return false;
 			}
 			return true;
@@ -49,8 +52,11 @@ namespace MathLib {
 			if (lhs.Size() != rhs.Size())
 				return false;
 
+			auto left = lhs.Evaluate();
+			auto right = rhs.Evaluate();
+
 			for (unsigned i = 0; i < lhs.Size(); ++i) {
-				if (lhs[i] != rhs[i])
+				if (left[i] != right[i])
 					return true;
 			}
 			return false;

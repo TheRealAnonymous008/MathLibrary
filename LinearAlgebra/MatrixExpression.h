@@ -37,9 +37,12 @@ namespace MathLib {
 			if (lhs.Columns() != rhs.Columns())
 				return false;
 
+			auto left = lhs.Evaluate();
+			auto right = rhs.Evaluate();
+
 			for (unsigned i = 0; i < lhs.Rows(); ++i) {
 				for (unsigned j = 0; j < lhs.Columns(); ++j) {
-					if (lhs.At(i, j) != rhs.At(i, j))
+					if (left.At(i, j) != right.At(i, j))
 						return false;
 				}
 			}
@@ -60,12 +63,16 @@ namespace MathLib {
 			if (lhs.Columns() != rhs.Columns())
 				return false;
 
+			auto left = lhs.Evaluate();
+			auto right = rhs.Evaluate();
+
 			for (unsigned i = 0; i < lhs.Rows(); ++i) {
 				for (unsigned j = 0; j < lhs.Columns(); ++j) {
-					if (lhs.At(i, j) != rhs.At(i, j))
+					if (left.At(i, j) != right.At(i, j))
 						return true;
 				}
 			}
+
 			return false;
 		}
 	}
