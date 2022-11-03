@@ -156,3 +156,52 @@ TEST(Identity, NonSquareMatmul) {
 	ASSERT_EQ(Ir * A, A);
 	ASSERT_EQ(A * Ic, A);
 }
+
+TEST(Permutation, RowPermutation) {
+	const unsigned N = 4;
+
+	auto P = PermutationMatrix<int, N>();
+	auto A = SquareMatrix<int, N>();
+
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j < N; ++j) {
+			A.At(i, j) = i;
+		}
+	}
+	
+
+	P.Permute(0, 2);
+	P.Permute(1, 3);
+	P.Permute(2, 1);
+
+	A = P * A;
+
+	ASSERT_EQ(A.At(0, 0), 2);
+	ASSERT_EQ(A.At(1, 0), 0);
+	ASSERT_EQ(A.At(2, 0), 3);
+	ASSERT_EQ(A.At(3, 0), 1);
+}
+
+//TEST(Permutation, ColumnPermutation) {
+//	const unsigned N = 4;
+//
+//	auto P = PermutationMatrix<int, N>();
+//	auto A = SquareMatrix<int, N>();
+//
+//	for (unsigned i = 0; i < N; ++i) {
+//		for (unsigned j = 0; j < N; ++j) {
+//			A.At(i, j) = j;
+//		}
+//	}
+//
+//	P.Permute(0, 1);
+//	P.Permute(1, 3);
+//	P.Permute(2, 0);
+//
+//	A = A * P;
+//
+//	ASSERT_EQ(A.At(0, 0), 2);
+//	ASSERT_EQ(A.At(0, 1), 3);
+//	ASSERT_EQ(A.At(0, 2), 1);
+//	ASSERT_EQ(A.At(0, 3), 0);
+//}

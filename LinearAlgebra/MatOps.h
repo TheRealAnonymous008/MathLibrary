@@ -16,3 +16,4 @@
 #include "SquareOps.h"
 #include "IdentityMatrix.h"
 #include "PermutationMatrix.h"
+#include "MatrixPermutation.h"

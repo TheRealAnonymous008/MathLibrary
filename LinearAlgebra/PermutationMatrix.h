@@ -12,7 +12,7 @@ namespace MathLib {
 		class PermutationMatrix : public SquareMatrixBase<T, N,
 			PermutationMatrix<T, N>> {
 		private:
-			std::vector<T>* body = new std::vector<T>(N);
+			std::vector<unsigned>* body = new std::vector<unsigned>(N);
 
 		public:
 			PermutationMatrix() {
@@ -22,10 +22,15 @@ namespace MathLib {
 			}
 
 			const PermutationMatrix& Permute(unsigned x, unsigned y) {
-				(*body)[x] = y;
-				(*body)[y] = x;
+				unsigned temp = (*body)[x];
+				(*body)[x] = (*body)[y];
+				(*body)[y] = temp;
 
 				return *this;
+			}
+
+			const unsigned Map(unsigned x)  const{
+				return (*body)[x];
 			}
 
 			constexpr unsigned Rows() const {
@@ -49,13 +54,5 @@ namespace MathLib {
 				return result;
 			}
 		};
-
-		template<typename T, const unsigned N, typename Expr>
-		const SquareMatrixBase<T, N, Expr>& operator*(
-			const SquareMatrixBase<T, N, Expr>& lhs,
-			const PermutationMatrix<T, N>& rhs)
-		{
-			return lhs;
-		}
 	}
 }

@@ -229,25 +229,3 @@ TEST(Permutation, Permutation) {
 	ASSERT_EQ(P.At(1, 2), 1);
 	ASSERT_EQ(P.At(2, 1), 1);
 }
-
-TEST(Permutation, PermIdentity) {
-	auto P = PermutationMatrix<int, 10>();
-	auto I = IdentityMatrix<int, 10>();
-
-	ASSERT_EQ(P * I, P);
-}
-
-TEST(Permutation, PermMatMul) {
-	const unsigned N = 4;
-
-	auto P = PermutationMatrix<int, N>();
-	auto A = SquareMatrix<int, N>();
-
-	for (unsigned i = 0; i < N; ++i) {
-		for (unsigned j = 0; j < N; ++j) {
-			A.At(i, j) = 2 * i - i * j + j * j;
-		}
-	}
-
-
-}

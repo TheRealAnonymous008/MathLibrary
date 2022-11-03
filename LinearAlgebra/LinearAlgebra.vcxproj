@@ -142,6 +142,7 @@
     <ClInclude Include="MatrixExpression.h" />
     <ClInclude Include="MatrixMultiplication.h" />
     <ClInclude Include="MatrixNegation.h" />
+    <ClInclude Include="MatrixPermutation.h" />
     <ClInclude Include="MatrixScalarProduct.h" />
     <ClInclude Include="MatrixScalarQuotient.h" />
     <ClInclude Include="MatrixSubtraction.h" />
