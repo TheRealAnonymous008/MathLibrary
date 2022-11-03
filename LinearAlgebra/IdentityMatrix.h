@@ -26,7 +26,7 @@ namespace MathLib {
 
 			auto Evaluate() const {
 				SquareMatrix<T, N> result;
-				for (unsigned i = 0; i, N; ++i) {
+				for (unsigned i = 0; i < N; ++i) {
 					result.At(i, i) = Identity<T>();
 				}
 
