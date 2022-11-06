@@ -16,7 +16,16 @@ TEST(LUDecomposition, Simple) {
 
 	auto lu  =	PartialLU(M);
 
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j < N; ++j) {
+			double x = (lu.P * M).At(i, j);
+			double y = (lu.P * lu.L * lu.U).At(i, j);
+			std::cout << i << " " << j << ": " << (x - y) << "\n";
+		}
+	}
+
 	ASSERT_TRUE(IsLower(lu.L));
 	ASSERT_TRUE(IsUpper(lu.U));
-	ASSERT_EQ(M, lu.L * lu.U);
+	ASSERT_EQ(lu.P * M, lu.P * lu.L * lu.U);
+
 }
