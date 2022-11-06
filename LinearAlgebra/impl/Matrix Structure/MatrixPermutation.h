@@ -37,6 +37,7 @@ namespace MathLib {
 				auto Evaluate() const {
 					Matrix<T, _Rows, _Columns> result;
 
+					OPENMP_PARALLELIZE
 					for (unsigned i = 0; i < _Rows; ++i) {
 						for (unsigned j = 0; j < _Columns; ++j) {
 							result.At(i, j) = this->At(i, j);
@@ -77,6 +78,7 @@ namespace MathLib {
 				auto Evaluate() const {
 					Matrix<T, _Rows, _Columns> result;
 
+					OPENMP_PARALLELIZE
 					for (unsigned i = 0; i < _Rows; ++i) {
 						for (unsigned j = 0; j < _Columns; ++j) {
 							result.At(i, j) = this->At(i, j);
@@ -113,10 +115,11 @@ namespace MathLib {
 				}
 
 				auto Evaluate() const {
-					std::vector<unsigned> arr;
+					std::vector<unsigned> arr = std::vector<unsigned>(N);
 
+					OPENMP_PARALLELIZE
 					for (unsigned i = 0; i < N; ++i) {
-						arr.push_back( right.Map(left.Map(i)) );
+						arr[i] = right.Map(left.Map(i));
 					}
 
 					return PermutationMatrix<T, N>(arr);
