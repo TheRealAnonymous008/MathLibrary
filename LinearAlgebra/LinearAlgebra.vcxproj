@@ -136,7 +136,8 @@
     <ClInclude Include="Core.h" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="impl\LU\LU.h" />
-    <ClInclude Include="impl\LU\LUDecomposition.h" />
+    <ClInclude Include="impl\LU\LUCore.h" />
+    <ClInclude Include="impl\LU\LUResult.h" />
     <ClInclude Include="impl\Matrix Arithmetic\MatOps.h" />
     <ClInclude Include="impl\Matrix Arithmetic\MatrixAddition.h" />
     <ClInclude Include="impl\Matrix Arithmetic\MatrixMultiplication.h" />

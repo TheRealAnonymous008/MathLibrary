@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "../../MathLibrary/LinearAlgebra/impl/LU/LU.h"
+#include "../../MathLibrary/LinearAlgebra/impl/LU/LUCore.h"
 
 using namespace MathLib;
 using namespace MathLib::LinearAlgebra;
@@ -14,7 +14,7 @@ TEST(LUDecomposition, Simple) {
 		}
 	}
 
-	auto lu  =LUDecomposition(M);
+	auto lu  =	PartialLU(M);
 
 	ASSERT_TRUE(IsLower(lu.L));
 	ASSERT_TRUE(IsUpper(lu.U));

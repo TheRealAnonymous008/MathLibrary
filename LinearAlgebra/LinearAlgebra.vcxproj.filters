@@ -126,7 +126,10 @@
     <ClInclude Include="impl\LU\LU.h">
       <Filter>LU Decomposition</Filter>
     </ClInclude>
-    <ClInclude Include="impl\LU\LUDecomposition.h">
+    <ClInclude Include="impl\LU\LUCore.h">
+      <Filter>LU Decomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\LU\LUResult.h">
       <Filter>LU Decomposition</Filter>
     </ClInclude>
   </ItemGroup>
