@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include "../LinearAlgebra//Core.h"
+#include "../LinearAlgebra/impl/LU/LUCore.h"
 
 #define LOOPS 1
 using namespace MathLib::LinearAlgebra;
@@ -30,7 +31,7 @@ int main()
 
 	for (unsigned i = 0; i < LOOPS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		auto M = ((*A) * (*B)).Evaluate();
+		auto LU = PartialLU(*A);
 		auto end = std::chrono::high_resolution_clock::now();
 
 		count += (end - start).count() / 1e9;

@@ -25,15 +25,15 @@ namespace MathLib {
 			};
 
 			template<typename T, const unsigned _Rows, const unsigned _Columns>
-			PartialLUDecomposition<T, _Rows, _Columns> DoolittleLU(const Matrix<T, _Rows, _Columns>& M) {
-				PartialLUDecomposition<T, _Rows, _Columns> LU = PartialLUDecomposition<T, _Rows, _Columns>();
+			PartialLUResult<T, _Rows, _Columns> DoolittleLU(const Matrix<T, _Rows, _Columns>& M) {
+				PartialLUResult<T, _Rows, _Columns> LU = PartialLUResult<T, _Rows, _Columns>();
 				const unsigned size = std::min(_Rows, _Columns);
 				const T one = Identity<T>();
 
 				for (unsigned row = 0; row < size; ++row) {
 					
 					unsigned pivotIdx = LU::FindPivotRow(LU.P, M, row);
-					//LU.P.Permute(row, pivotIdx);
+					LU.P.Permute(row, pivotIdx);
 
 					for (unsigned column = row; column < _Columns; ++column) {
 						T sum = T();
@@ -62,7 +62,7 @@ namespace MathLib {
 		}
 
 		template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr>
-		PartialLUDecomposition<T, _Rows, _Columns> PartialLU(MatrixBase<T, _Rows, _Columns, Expr>& expr) {
+		PartialLUResult<T, _Rows, _Columns> PartialLU(MatrixBase<T, _Rows, _Columns, Expr>& expr) {
 			return implementation::DoolittleLU(expr.Evaluate());
 		}
 

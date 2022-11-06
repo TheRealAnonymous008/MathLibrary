@@ -8,7 +8,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		template<typename T, const unsigned _Rows, const unsigned _Columns>
-		struct PartialLUDecomposition {
+		struct PartialLUResult {
 			PermutationMatrix<T, _Rows> P;
 			SquareMatrix<T, _Rows> L;
 			Matrix<T, _Rows, _Columns> U;
