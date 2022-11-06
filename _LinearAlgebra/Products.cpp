@@ -220,3 +220,18 @@ TEST(Permutation, IdentityPermutation) {
 	ASSERT_EQ(I * P, P);
 	ASSERT_EQ(P * I, P);
 }
+
+TEST(Permutation, PermutationComposition) {
+	const unsigned N = 4;
+
+	auto P = PermutationMatrix<int, N>();
+	auto Q = PermutationMatrix<int, N>();
+	
+	P.Permute(1, 3);
+	P.Permute(2, 3);
+
+	Q.Permute(3, 1);
+	Q.Permute(0, 1);
+
+	ASSERT_EQ((P.Evaluate() * Q.Evaluate()).Evaluate(), (P * Q).Evaluate().Evaluate());
+}

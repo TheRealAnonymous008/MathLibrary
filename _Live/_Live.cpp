@@ -7,9 +7,9 @@ using namespace MathLib::LinearAlgebra;
 
 int main()
 {
-	const unsigned int N = 2000;
-	const unsigned int K = 2000;
-	const unsigned int M = 2000;
+	const unsigned int N = 1000;
+	const unsigned int K = 1000;
+	const unsigned int M = 1000;
 
 	Matrix<float, N, K>* A = new Matrix<float, N, K>();
 	Matrix<float, K, M>* B = new Matrix<float, K, M>();

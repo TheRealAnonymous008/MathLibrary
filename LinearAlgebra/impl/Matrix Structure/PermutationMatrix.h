@@ -3,8 +3,10 @@
 #include "../Objects/MatrixBase.h"
 #include "../Objects/Matrix.h"
 #include "SquareOps.h"
+#include "../../Exceptions.h"
 
 #include <vector>
+#include <set>
 
 namespace MathLib {
 	namespace LinearAlgebra {
@@ -15,6 +17,18 @@ namespace MathLib {
 		private:
 			std::vector<unsigned>* body = new std::vector<unsigned>(N);
 
+			bool IsPremutation(const std::vector<unsigned>& list) {
+				std::set<unsigned> set;
+				for (unsigned x : list) {
+					if (x < 0 || x >= N) {
+						return false;
+					}
+					set.insert(x);
+				}
+
+				return set.size() == N;
+			}
+
 		public:
 			PermutationMatrix() {
 				for (unsigned i = 0; i < N; ++i) {
@@ -22,7 +36,17 @@ namespace MathLib {
 				}
 			}
 
-			const PermutationMatrix& Permute(unsigned x, unsigned y) {
+			PermutationMatrix(const std::vector<unsigned>& list) {
+				if (!IsPremutation(list)) {
+					throw DimensionError();
+				}
+
+				for (unsigned i = 0; i < N; ++i) {
+					(*body)[i] = list[i];
+				}
+			}
+
+			PermutationMatrix& Permute(unsigned x, unsigned y) {
 				unsigned temp = (*body)[x];
 				(*body)[x] = (*body)[y];
 				(*body)[y] = temp;

@@ -86,6 +86,42 @@ namespace MathLib {
 					return result;
 				}
 			};
+
+			template<typename T, const unsigned N >
+			class PermutationComposition : public MatrixBase<T, N, N,
+				PermutationComposition<T, N>> {
+			private:
+				const PermutationMatrix<T, N>& left;
+				const PermutationMatrix<T, N>& right;
+
+			public:
+				PermutationComposition(const PermutationMatrix<T, N>& left, const PermutationMatrix<T, N>& right) : left(left), right(right)
+				{
+
+				}
+
+				T At(const unsigned& r, const unsigned& c) const {
+					return right.At(left.Map(r), c);
+				}
+
+				constexpr unsigned Rows() const {
+					return  N;
+				}
+
+				constexpr unsigned Columns() const {
+					return  N;
+				}
+
+				auto Evaluate() const {
+					std::vector<unsigned> arr;
+
+					for (unsigned i = 0; i < N; ++i) {
+						arr.push_back( right.Map(left.Map(i)) );
+					}
+
+					return PermutationMatrix<T, N>(arr);
+				}
+			};
 		}
 
 
@@ -105,6 +141,14 @@ namespace MathLib {
 			const PermutationMatrix<T, _Columns>& rhs)
 		{
 			return  detail::MatrixColumnPermutation<T, _Rows, _Columns, Expr>(*static_cast<const Expr*>(&lhs), rhs);;
+		}
+
+		template<typename T, const unsigned N>
+		detail::PermutationComposition<T, N> operator*(
+			const PermutationMatrix<T, N>& lhs,
+			const PermutationMatrix<T, N>& rhs)
+		{
+			return  detail::PermutationComposition<T, N>(lhs, rhs);;
 		}
 	}
 }
