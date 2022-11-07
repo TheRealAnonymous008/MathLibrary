@@ -17,6 +17,7 @@ namespace MathLib {
 				unsigned FindPivotRow(const Matrix<T, _Rows, _Columns>& M, const unsigned column) {
 					unsigned pivotIdx = column;
 					T max = M.At(pivotIdx, column);
+
 					for (unsigned i = column; i < _Rows; ++i) {
 
 						if (M.At(i, column) > max) {
@@ -31,12 +32,14 @@ namespace MathLib {
 				void PermutePivotRow(PartialLUResult<T, _Rows, _Columns>& LU, const unsigned row, const unsigned pivotIdx) {
 					if (pivotIdx != row) {
 
+						OPENMP_PARALLELIZE
 						for (unsigned column = row; column < _Columns; ++column) {
 							std::swap(LU.U.At(row, column), LU.U.At(pivotIdx, column));
 						}
 
 						LU.P.Permute(row, pivotIdx);
 
+						OPENMP_PARALLELIZE
 						for (unsigned column = 0; column < row; ++column) {
 							std::swap(LU.L.At(row, column), LU.L.At(pivotIdx, column));
 						}
@@ -52,6 +55,7 @@ namespace MathLib {
 
 				LU.U = M;
 
+				OPENMP_PARALLELIZE
 				for (unsigned row = 0; row < size; ++row) {
 					
 					unsigned pivotIdx = LU::FindPivotRow(LU.U, row);
