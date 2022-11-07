@@ -5,6 +5,8 @@
 #include "../Matrix Structure/SquareOps.h"
 #include "LUResult.h"
 
+#include <utility>
+
 namespace MathLib {
 	namespace LinearAlgebra{
 
@@ -12,15 +14,33 @@ namespace MathLib {
 
 			namespace LU {
 				template<typename T, const unsigned _Rows, const unsigned _Columns>
-				unsigned FindPivotRow(const PermutationMatrix<T, _Rows>& P, const Matrix<T, _Rows, _Columns>& M, const unsigned column) {
+				unsigned FindPivotRow(const Matrix<T, _Rows, _Columns>& M, const unsigned column) {
 					unsigned pivotIdx = column;
+					T max = M.At(pivotIdx, column);
 					for (unsigned i = column; i < _Rows; ++i) {
 
-						if ((P * M).At(i, column) > (P * M).At(pivotIdx, column)) {
+						if (M.At(i, column) > max) {
 							pivotIdx = i;
+							max = M.At(i, column);
 						}
 					}
 					return pivotIdx;
+				}
+
+				template<typename T, const unsigned _Rows ,const unsigned _Columns>
+				void PermutePivotRow(PartialLUResult<T, _Rows, _Columns>& LU, const unsigned row, const unsigned pivotIdx) {
+					if (pivotIdx != row) {
+
+						for (unsigned column = row; column < _Columns; ++column) {
+							std::swap(LU.U.At(row, column), LU.U.At(pivotIdx, column));
+						}
+
+						LU.P.Permute(row, pivotIdx);
+
+						for (unsigned column = 0; column < row; ++column) {
+							std::swap(LU.L.At(row, column), LU.L.At(pivotIdx, column));
+						}
+					}
 				}
 			};
 
@@ -30,31 +50,27 @@ namespace MathLib {
 				const unsigned size = std::min(_Rows, _Columns);
 				const T one = Identity<T>();
 
+				LU.U = M;
+
 				for (unsigned row = 0; row < size; ++row) {
 					
-					unsigned pivotIdx = LU::FindPivotRow(LU.P, M, row);
-					LU.P.Permute(row, pivotIdx);
+					unsigned pivotIdx = LU::FindPivotRow(LU.U, row);
+					LU::PermutePivotRow(LU, row, pivotIdx);
 
-					for (unsigned column = row; column < _Columns; ++column) {
-						T sum = T();
+					for (unsigned r = row + 1; r < _Rows; ++r) {
+						LU.L.At(r, row) = LU.U.At(r, row) / LU.U.At(row, row);
+					}
 
-						for (unsigned k = 0; k < row; ++k) {
-							sum += LU.L.At(row, k) * LU.U.At(k, column);
+					for (unsigned r = row + 1; r < _Rows; ++r) {
+						for (unsigned c = row + 1; c < _Columns; ++c) {
+							LU.U.At(r, c) -= LU.L.At(r, row) * LU.U.At(row, c);
 						}
-
-						LU.U.At(row, column) = (LU.P * M).At(row, column) - sum;
 					}
 
-
-					LU.L.At(row, row) = one;
-					for (unsigned j = row + 1; j < _Rows; ++j) {
-						T sum = T();
-
-						for (unsigned k = 0; k < row; k++)
-							sum += LU.L.At(j, k) * LU.U.At(k, row);
-
-						LU.L.At(j, row) = ((LU.P * M).At(j, row) - sum) * one / LU.U.At(row, row);
+					for (unsigned r = row + 1; r < _Rows; ++r) {
+						LU.U.At(r, row) = T();
 					}
+					LU.L.At(row, row) = Identity<T>();
 				}
 				
 				return LU;

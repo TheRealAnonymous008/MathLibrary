@@ -12,7 +12,18 @@ namespace MathLib {
 			PermutationMatrix<T, _Rows> P;
 			SquareMatrix<T, _Rows> L;
 			Matrix<T, _Rows, _Columns> U;
-		};
 
+			void Log() const {
+				std::cout << "P = " << "\n";
+				P.Evaluate().Log();
+
+				std::cout << "L = " << "\n";
+				L.Log();
+
+				std::cout << "U = " << "\n";
+				U.Log();
+				std::cout << "\n";
+			}
+		};
 	}
 }
