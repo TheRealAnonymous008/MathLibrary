@@ -6,6 +6,7 @@
 #include "../../Exceptions.h"
 
 #include <vector>
+#include <utility>
 #include <set>
 
 namespace MathLib {
@@ -47,9 +48,8 @@ namespace MathLib {
 			}
 
 			PermutationMatrix& Permute(unsigned x, unsigned y) {
-				unsigned temp = (*body)[x];
-				(*body)[x] = (*body)[y];
-				(*body)[y] = temp;
+
+				std::swap((*body)[x], (*body)[y]);
 
 				return *this;
 			}
