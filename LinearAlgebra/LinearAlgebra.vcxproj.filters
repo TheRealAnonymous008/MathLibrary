@@ -132,7 +132,7 @@
     <ClInclude Include="impl\LU\LUResult.h">
       <Filter>LU Decomposition</Filter>
     </ClInclude>
-    <ClInclude Include="impl\Matrix Structure\MatrixVectorConversions.h">
+    <ClInclude Include="impl\Matrix Structure\MatToVecConversions.h">
       <Filter>Matrix Structure</Filter>
     </ClInclude>
   </ItemGroup>

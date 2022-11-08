@@ -8,4 +8,4 @@
 #include "PermutationMatrix.h"
 #include "MatrixPermutation.h"
 
-#include "MatrixVectorConversions.h"
+#include "MatToVecConversions.h"
