@@ -106,3 +106,26 @@ TEST(LUDecomposition, Simple) {
 		}
 	}
 }
+
+
+TEST(LUDecomposition, Generated) {
+	const unsigned N = 100;
+	SquareMatrix<double, N> M;
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j <= N; ++j) {
+			M.At(i, j) = rand() % 2 * 1e10;
+		}
+	}
+
+	auto lu = PartialLU(M);
+
+	auto X = lu.P * M;
+	auto Y = lu.L * lu.U;
+
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j < N; ++j) {
+			if (abs(X.At(i, j) - Y.At(i, j)) >= TOLERABLE_DOUBLE_THRESHOLD)
+				EXPECT_TRUE(false);
+		}
+	}
+}
