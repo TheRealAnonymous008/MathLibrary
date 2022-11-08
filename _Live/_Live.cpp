@@ -10,7 +10,7 @@ int main()
 {
 	const unsigned int N = 1000;
 	const unsigned int K = 1000;
-	const unsigned int M = 1000;
+	const unsigned int M = 2000;
 
 	Matrix<float, N, K>* A = new Matrix<float, N, K>();
 	Matrix<float, K, M>* B = new Matrix<float, K, M>();
@@ -32,6 +32,7 @@ int main()
 	for (unsigned i = 0; i < LOOPS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
 		auto LU = PartialLU(*A);
+		//auto M = (*A * *B);
 		auto end = std::chrono::high_resolution_clock::now();
 
 		count += (end - start).count() / 1e9;

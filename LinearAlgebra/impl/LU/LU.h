@@ -55,16 +55,17 @@ namespace MathLib {
 
 				LU.U = M;
 
-				OPENMP_PARALLELIZE
 				for (unsigned row = 0; row < size; ++row) {
 					
 					unsigned pivotIdx = LU::FindPivotRow(LU.U, row);
 					LU::PermutePivotRow(LU, row, pivotIdx);
 
+					OPENMP_PARALLELIZE
 					for (unsigned r = row + 1; r < _Rows; ++r) {
 						LU.L.At(r, row) = LU.U.At(r, row) / LU.U.At(row, row);
 					}
 
+					OPENMP_PARALLELIZE
 					for (unsigned r = row + 1; r < _Rows; ++r) {
 						for (unsigned c = row + 1; c < _Columns; ++c) {
 							LU.U.At(r, c) -= LU.L.At(r, row) * LU.U.At(row, c);
