@@ -229,3 +229,70 @@ TEST(Permutation, Permutation) {
 	ASSERT_EQ(P.At(1, 2), 1);
 	ASSERT_EQ(P.At(2, 1), 1);
 }
+
+TEST(MatToVec, Row) {
+	const unsigned M = 1000;
+	const unsigned N = 512; 
+	
+	auto A = Matrix<int, M, N>();
+
+	for (unsigned i = 0; i < M; ++i) {
+		for (unsigned j = 0; j < N; ++j) {
+			A.At(i, j) = i * j + 1;
+		}
+	}
+
+	auto v = RowVectorDecomposition(A);
+
+	ASSERT_TRUE(v.Size() == M);
+	ASSERT_TRUE(v[0].Size() == N);
+
+	ASSERT_EQ(v[324][404], A.At(324, 404));
+}
+
+TEST(MatToVec, Columns) {
+	const unsigned M = 1000;
+	const unsigned N = 512;
+
+	auto A = Matrix<int, M, N>();
+
+	for (unsigned i = 0; i < M; ++i) {
+		for (unsigned j = 0; j < N; ++j) {
+			A.At(i, j) = i * j + 1;
+		}
+	}
+
+	auto v = ColumnVectorDecomposition(A);
+
+	ASSERT_TRUE(v.Size() == N);
+	ASSERT_TRUE(v[0].Size() == M);
+
+	ASSERT_EQ(v[324][404], A.At(404, 324));
+}
+
+TEST(MatToVec, Selecting) {
+	const unsigned M = 1000;
+	const unsigned N = 512;
+
+	auto A = Matrix<int, M, N>();
+
+	for (unsigned i = 0; i < M; ++i) {
+		for (unsigned j = 0; j < N; ++j) {
+			A.At(i, j) = i * j + 1;
+		}
+	}
+
+	auto row = SelectRowVector(A, 404);
+	auto column = SelectColumnVector(A, 319);
+
+	ASSERT_EQ(row.Size(), N);
+	ASSERT_EQ(column.Size(), M);
+
+	for (unsigned i = 0; i < N; ++i) {
+		ASSERT_EQ(row[i], A.At(404, i));
+	}
+
+	for (unsigned i = 0; i < M; ++i) {
+		ASSERT_EQ(column[i], A.At(i, 319));
+	}
+}

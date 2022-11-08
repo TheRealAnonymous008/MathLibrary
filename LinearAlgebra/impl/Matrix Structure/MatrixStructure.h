@@ -7,3 +7,5 @@
 #include "IdentityMatrix.h"
 #include "PermutationMatrix.h"
 #include "MatrixPermutation.h"
+
+#include "MatrixVectorConversions.h"

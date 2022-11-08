@@ -149,6 +149,7 @@
     <ClInclude Include="impl\Matrix Structure\IdentityMatrix.h" />
     <ClInclude Include="impl\Matrix Structure\MatrixPermutation.h" />
     <ClInclude Include="impl\Matrix Structure\MatrixStructure.h" />
+    <ClInclude Include="impl\Matrix Structure\MatrixVectorConversions.h" />
     <ClInclude Include="impl\Matrix Structure\PermutationMatrix.h" />
     <ClInclude Include="impl\Matrix Structure\PlaceBlock.h" />
     <ClInclude Include="impl\Matrix Structure\Slice.h" />
