@@ -70,11 +70,9 @@ namespace MathLib {
 						for (unsigned c = row + 1; c < _Columns; ++c) {
 							LU.U.At(r, c) -= LU.L.At(r, row) * LU.U.At(row, c);
 						}
-					}
-
-					for (unsigned r = row + 1; r < _Rows; ++r) {
 						LU.U.At(r, row) = T();
 					}
+
 					LU.L.At(row, row) = Identity<T>();
 				}
 				

@@ -151,6 +151,13 @@ namespace MathLib {
 			const Vector& Evaluate() const{
 				return *this;
 			}
+
+			void Log() const {
+				for (unsigned i = 0; i < N; ++i) {
+					std::cout << (*this)[i] << " ";
+				}
+				std::cout << "\n";
+			}
 		};
 	}
 }

@@ -10,10 +10,11 @@ int main()
 {
 	const unsigned int N = 1000;
 	const unsigned int K = 1000;
-	const unsigned int M = 2000;
+	const unsigned int M = 1000;
 
 	Matrix<float, N, K>* A = new Matrix<float, N, K>();
 	Matrix<float, K, M>* B = new Matrix<float, K, M>();
+	Vector<float, N>* v = new Vector<float, N>();
 
 	for (unsigned i = 0; i < A->Rows(); ++i) {
 		for (unsigned j = 0; j < A->Columns(); ++j) {
@@ -27,12 +28,15 @@ int main()
 		}
 	}
 
+	for (unsigned i = 0; i < v->Size(); ++i) {
+		(*v)[i] = i + 1;
+	}
+
 	double count = 0;
 
 	for (unsigned i = 0; i < LOOPS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		auto LU = PartialLU(*A);
-		//auto M = (*A * *B);
+		ForwardSolve(*A, *v);
 		auto end = std::chrono::high_resolution_clock::now();
 
 		count += (end - start).count() / 1e9;

@@ -129,3 +129,38 @@ TEST(LUDecomposition, Generated) {
 		}
 	}
 }
+
+TEST(SOLESolver, Forward) {
+	SquareMatrix<double, 3> A = {
+		{2, 0, 0},
+		{0, -1, 0},
+		{4, 1, 5}
+	};
+	Vector<double, 3> y = { 1, 2, 3 };
+
+	auto x = ForwardSolve(A, y);
+	ASSERT_EQ(A * x, y);
+}
+
+TEST(SOLESolver, ForwardBig) {
+	const unsigned N = 10;
+	SquareMatrix<double, N> M;
+
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j < i; ++j) {
+			M.At(i, j) = i * j + 1;
+		}
+		M.At(i, i) = 1;
+	}
+
+	Vector<double, N> y;
+
+	for (unsigned i = 0; i < N; ++i) {
+		y[i] = i + 1;
+	}
+
+	auto x = ForwardSolve(M, y);
+	(M * x).Evaluate().Log();
+
+	ASSERT_EQ(M * x, y);
+}
