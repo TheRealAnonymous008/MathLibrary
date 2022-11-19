@@ -125,6 +125,40 @@ namespace MathLib {
 					return PermutationMatrix<T, N>(arr);
 				}
 			};
+
+			template<typename T, const unsigned N >
+			class RowVectorPermutation : public VectorBase<T, N,
+				RowVectorPermutation<T, N>> {
+			private:
+				const PermutationMatrix<T, N>& left;
+				const Vector<T, N>& right;
+
+			public:
+				RowVectorPermutation(const PermutationMatrix<T, N>& left, const  Vector<T, N>& right) : left(left), right(right)
+				{
+
+				}
+
+				T operator[](const unsigned& i) const {
+					return right[left.Map(i)];
+				}
+
+				constexpr unsigned Size() const {
+					return right.Size();
+				}
+
+				auto Evaluate() const {
+
+					Vector<T, N> result;
+
+					OPENMP_PARALLELIZE
+					for (unsigned i = 0; i < N; ++i) {
+						result[i] = (*this)[i];
+					}
+
+					return result;
+				}
+			};
 		}
 
 
@@ -152,6 +186,14 @@ namespace MathLib {
 			const PermutationMatrix<T, N>& rhs)
 		{
 			return  detail::PermutationComposition<T, N>(lhs, rhs);;
+		}
+
+		template<typename T, const unsigned N, typename Expr>
+		detail::RowVectorPermutation<T, N> operator*(
+			const PermutationMatrix<T, N>& lhs,
+			const VectorBase<T, N, Expr>& rhs)
+		{
+			return  detail::RowVectorPermutation<T, N>(lhs, rhs);;
 		}
 	}
 }
