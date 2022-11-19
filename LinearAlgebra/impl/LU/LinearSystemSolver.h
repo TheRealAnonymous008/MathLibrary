@@ -21,5 +21,23 @@ namespace MathLib {
 
 			return x;
 		}
+
+		template<typename T, const unsigned N, typename MatExp, typename VecExp>
+		Vector<T, N> BackwardSolve(const SquareMatrixBase<T, N, MatExp>& A, const VectorBase<T, N, VecExp>& y) {
+			Vector<T, N> x;
+
+			for (int i = N - 1; i >= 0; --i) {
+				T total = 0;
+
+				for (int j = N - 1; j > i; --j) {
+					total += A.At(i, j) * x[j];
+				}
+
+				x.Log();
+				x[i] = (y[i] - total) / A.At(i, i);
+			}
+
+			return x;
+		}
 	}
 }

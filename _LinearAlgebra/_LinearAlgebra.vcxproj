@@ -36,6 +36,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LinearSystemSolver.cpp" />
     <ClCompile Include="LUDecomposition.cpp" />
     <ClCompile Include="MatrixArithmetic.cpp" />
     <ClCompile Include="MatrixStructural.cpp" />

@@ -9,6 +9,7 @@
     <ClCompile Include="MatrixStructural.cpp" />
     <ClCompile Include="Products.cpp" />
     <ClCompile Include="LUDecomposition.cpp" />
+    <ClCompile Include="LinearSystemSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BoilerPlate">
