@@ -41,11 +41,11 @@ namespace MathLib {
 			Vector<Vector<T, _Rows>, _Columns> v;
 
 			OPENMP_PARALLELIZE
-				for (unsigned row = 0; row < _Rows; ++row) {
-					for (unsigned column = 0; column < _Columns; ++column) {
-						v[column][row] = M.At(row, column);
-					}
+			for (unsigned row = 0; row < _Rows; ++row) {
+				for (unsigned column = 0; column < _Columns; ++column) {
+					v[column][row] = M.At(row, column);
 				}
+			}
 
 			return v;
 		}
@@ -55,9 +55,9 @@ namespace MathLib {
 			Vector<T, _Rows> v;
 
 			OPENMP_PARALLELIZE
-				for (unsigned row = 0; row < _Rows; ++row) {
-					v[row] = M.At(row, column);
-				}
+			for (unsigned row = 0; row < _Rows; ++row) {
+				v[row] = M.At(row, column);
+			}
 
 			return v;
 		}

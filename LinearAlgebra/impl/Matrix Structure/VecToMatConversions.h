@@ -11,6 +11,7 @@ namespace MathLib {
 		Matrix<T, _Rows, _Columns> ColumnsToMatrix(const Vector<Vector<T, _Rows>, _Columns>& v) {
 			Matrix<T, _Rows, _Columns> M = Matrix<T, _Rows, _Columns>();
 			
+			OPENMP_PARALLELIZE
 			for (unsigned j = 0; j < _Columns; ++j) {
 				for (unsigned i = 0; i < _Rows; ++i) {
 					//std::cout << i << " " << j << " " << &v[j][i] << "\n";
