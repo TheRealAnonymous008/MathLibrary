@@ -260,6 +260,8 @@ TEST(MatToVec, Row) {
 	ASSERT_TRUE(v[0].Size() == N);
 
 	ASSERT_EQ(v[324][404], A.At(324, 404));
+
+	
 }
 
 TEST(MatToVec, Columns) {
@@ -280,6 +282,38 @@ TEST(MatToVec, Columns) {
 	ASSERT_TRUE(v[0].Size() == M);
 
 	ASSERT_EQ(v[324][404], A.At(404, 324));
+}
+
+TEST(VecToMat, Columns) {
+	const unsigned M = 1000;
+	const unsigned N = 1000;
+
+	auto A = Vector<Vector<int, M>, N>();
+
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j < M; ++j) {
+			A[i][j] = i;
+		}
+	}
+
+	auto v = ColumnsToMatrix(A);
+	ASSERT_EQ(A[5][4], v.At(4, 5));
+}
+
+TEST(VecToMat, Rows) {
+	const unsigned M = 1000;
+	const unsigned N = 1000;
+
+	auto A = Vector<Vector<int, M>, N>();
+
+	for (unsigned i = 0; i < N; ++i) {
+		for (unsigned j = 0; j < M; ++j) {
+			A[i][j] = i;
+		}
+	}
+
+	//auto v = RowsToMatrix(A);
+	//ASSERT_EQ(A[4][5], v.At(4, 5));
 }
 
 TEST(MatToVec, Selecting) {

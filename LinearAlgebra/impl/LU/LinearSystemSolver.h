@@ -51,5 +51,21 @@ namespace MathLib {
 
 			return x;
 		}
+
+		template<typename T, const unsigned N, typename MatExp, typename VecExp>
+		Vector<T, N> SolveLinearSystem(const SquareMatrixBase<T, N, MatExp>& A, 
+			const std::vector<VectorBase<T, N, VecExp>> & ys
+		) {
+			PartialLUResult lu = PartialLU(A);
+			std::vector<VectorBase<T, N, VecExp>>& result;
+
+			for (unsigned i = 0; i < ys.size(); ++i) {
+				Vector<T, N> v = ForwardSolve(lu.L, lu.P * ys[i]);
+				Vector<T, N> x = BackwardSolve(lu.U, v);
+				result.push_back(x);
+			}
+
+			return result;
+		}
 	}
 }

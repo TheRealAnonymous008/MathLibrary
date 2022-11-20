@@ -9,3 +9,4 @@
 #include "MatrixPermutation.h"
 
 #include "MatToVecConversions.h"
+#include "VecToMatConversions.h"

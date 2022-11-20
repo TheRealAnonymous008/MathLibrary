@@ -141,5 +141,11 @@
     <ClInclude Include="impl\Vector Arithmetic\UnitVector.h">
       <Filter>Vector Operations</Filter>
     </ClInclude>
+    <ClInclude Include="impl\LU\MatrixInverse.h">
+      <Filter>LU Decomposition</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Matrix Structure\VecToMatConversions.h">
+      <Filter>Matrix Structure</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
