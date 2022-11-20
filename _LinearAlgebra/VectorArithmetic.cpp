@@ -8,7 +8,6 @@ TEST(VectorInit, WithConstructor) {
 	ASSERT_EQ(v1.Size() , 10);
 	ASSERT_EQ(v1[2] , 3);
 	ASSERT_EQ(v1[7] , 8);
-	ASSERT_THROW(v1[10], InvalidAccess);
 }
 
 TEST(VectorInit, WithAssignment) {
@@ -17,7 +16,6 @@ TEST(VectorInit, WithAssignment) {
 	ASSERT_EQ(v1.Size() , 10);
 	ASSERT_EQ(v1[2] , 3);
 	ASSERT_EQ(v1[7] , 8);
-	ASSERT_THROW(v1[10], InvalidAccess);
 }
 
 TEST(VectorInit, WithExpression) {
