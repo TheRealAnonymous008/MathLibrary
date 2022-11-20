@@ -3,15 +3,16 @@
 #include "../Objects/fwd.h"
 
 #include <vector>
+#include <array>
 
 namespace MathLib {
 	namespace LinearAlgebra {
 		
 
 		template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr> 
-		Vector<Vector<T, _Columns>, _Rows> RowVectorDecomposition(const MatrixBase<T, _Rows, _Columns, Expr>& M) {
+		std::array<Vector<T, _Columns>, _Rows> RowVectorDecomposition(const MatrixBase<T, _Rows, _Columns, Expr>& M) {
 			
-			Vector<Vector<T, _Columns>, _Rows> v;
+			std::array<Vector<T, _Columns>, _Rows> v;
 
 			OPENMP_PARALLELIZE
 			for (unsigned row = 0; row < _Rows; ++row) {
@@ -36,9 +37,9 @@ namespace MathLib {
 		}
 
 		template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr>
-		Vector<Vector<T, _Rows>, _Columns> ColumnVectorDecomposition(const MatrixBase<T, _Rows, _Columns, Expr>& M) {
+		std::array<Vector<T, _Rows>, _Columns> ColumnVectorDecomposition(const MatrixBase<T, _Rows, _Columns, Expr>& M) {
 
-			Vector<Vector<T, _Rows>, _Columns> v;
+			std::array<Vector<T, _Rows>, _Columns> v;
 
 			OPENMP_PARALLELIZE
 			for (unsigned row = 0; row < _Rows; ++row) {

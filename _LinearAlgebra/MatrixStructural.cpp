@@ -256,7 +256,6 @@ TEST(MatToVec, Row) {
 
 	auto v = RowVectorDecomposition(A);
 
-	ASSERT_TRUE(v.Size() == M);
 	ASSERT_TRUE(v[0].Size() == N);
 
 	ASSERT_EQ(v[324][404], A.At(324, 404));
@@ -278,7 +277,6 @@ TEST(MatToVec, Columns) {
 
 	auto v = ColumnVectorDecomposition(A);
 
-	ASSERT_TRUE(v.Size() == N);
 	ASSERT_TRUE(v[0].Size() == M);
 
 	ASSERT_EQ(v[324][404], A.At(404, 324));
