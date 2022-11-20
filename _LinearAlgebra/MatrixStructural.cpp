@@ -308,3 +308,16 @@ TEST(MatToVec, Selecting) {
 		ASSERT_EQ(column[i], A.At(i, 319));
 	}
 }
+
+TEST(UnitVec, UnitVec) {
+	auto e = UnitVector<int, 2, 10>();
+
+	for (unsigned i = 0; i < 10; ++i) {
+		if (i != 2) {
+			ASSERT_EQ(e[i], 0);
+		}
+		else {
+			ASSERT_EQ(e[i], 1);
+		}
+	}
+}

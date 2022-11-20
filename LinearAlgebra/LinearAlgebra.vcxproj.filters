@@ -138,5 +138,8 @@
     <ClInclude Include="impl\LU\LinearSystemSolver.h">
       <Filter>LU Decomposition</Filter>
     </ClInclude>
+    <ClInclude Include="impl\Vector Arithmetic\UnitVector.h">
+      <Filter>Vector Operations</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

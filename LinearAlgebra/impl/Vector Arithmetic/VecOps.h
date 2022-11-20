@@ -7,3 +7,5 @@
 #include "VectorScalarQuotient.h"
 #include "DotProduct.h"
 #include "EuclideanNorm.h"
+
+#include "UnitVector.h"

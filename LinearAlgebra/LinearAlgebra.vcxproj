@@ -163,6 +163,7 @@
     <ClInclude Include="impl\Objects\VectorBase.h" />
     <ClInclude Include="impl\Vector Arithmetic\DotProduct.h" />
     <ClInclude Include="impl\Vector Arithmetic\EuclideanNorm.h" />
+    <ClInclude Include="impl\Vector Arithmetic\UnitVector.h" />
     <ClInclude Include="impl\Vector Arithmetic\VecOps.h" />
     <ClInclude Include="impl\Vector Arithmetic\VectorAddition.h" />
     <ClInclude Include="impl\Vector Arithmetic\VectorNegation.h" />
