@@ -121,19 +121,6 @@ namespace MathLib {
 				return _Columns;
 			}
 
-			T& SafeAt(const unsigned& r, const unsigned& c) {
-				if (r >= Rows() || c >= Columns())
-					throw InvalidAccess();
-				return (*body)[GetIndex(r, c)];
-			}
-
-			T SafeAt(const unsigned& r, const unsigned& c) const {
-				if (r >= Rows() || c >= Columns())
-					throw InvalidAccess();
-
-				return (*body)[GetIndex(r, c)];
-			}
-
 			T& At(const unsigned& r, const unsigned& c) {
 				return (*body)[GetIndex(r, c)];
 			}
