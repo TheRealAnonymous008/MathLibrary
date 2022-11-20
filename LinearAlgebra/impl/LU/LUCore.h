@@ -3,3 +3,4 @@
 #include "LUResult.h"
 #include "LU.h"
 #include "LinearSystemSolver.h"
+#include "MatrixInverse.h"

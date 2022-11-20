@@ -342,7 +342,7 @@ TEST(MatToVec, Selecting) {
 }
 
 TEST(UnitVec, UnitVec) {
-	auto e = UnitVector<int, 2, 10>();
+	auto e = UnitVector<int, 10>(2);
 
 	for (unsigned i = 0; i < 10; ++i) {
 		if (i != 2) {

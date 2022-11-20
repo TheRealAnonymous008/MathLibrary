@@ -7,18 +7,20 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned Idx, const unsigned N>
+		template<typename T, const unsigned N>
 		class UnitVector : public VectorBase<T, N,
-			UnitVector<T, Idx, N>> {
+			UnitVector<T, N>> {
+		private:
+			const unsigned& idx;
 		public:
-			UnitVector() {
-				if (Idx >= N) {
+			UnitVector(const unsigned i) : idx(i) {
+				if (idx >= N) {
 					throw DimensionError();
 				}
 			}
 
 			T operator[](const unsigned& i) const {
-				return (i != Idx) ? T() : Identity<T>();
+				return (i != idx) ? T() : Identity<T>();
 			}
 
 			constexpr unsigned Size() const {

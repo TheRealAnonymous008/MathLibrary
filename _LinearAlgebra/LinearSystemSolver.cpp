@@ -96,3 +96,23 @@ TEST(SolveSystem, Basic) {
 			EXPECT_TRUE(false);
 	}
 }
+
+TEST(SolveSystem, Inverse) {
+	SquareMatrix<double, 3> A = {
+		{2, 3, 1},
+		{4, 1, 5},
+		{0, -1, 4},
+	};
+
+	auto AI = Inverse(A);
+	auto I = IdentityMatrix<double, 3>();
+	auto X = AI * A;
+
+	for (unsigned i = 0; i < 3; ++i) {
+		for (unsigned j = 0; j < 3; ++j) {
+			if (abs(X.At(i, j) - I.At(i, j)) >= TOLERABLE_DOUBLE_THRESHOLD) {
+				EXPECT_TRUE(false);
+			}
+		}
+	}
+}
