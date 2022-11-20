@@ -74,6 +74,23 @@ TEST(SOLESolver, BackwardBig) {
 	auto x = BackwardSolve(M, y);
 	auto v = M * x;
 
+	for (unsigned i = 0; i < N; ++i) {
+		if (abs(v[i] - y[i]) >= TOLERABLE_DOUBLE_THRESHOLD)
+			EXPECT_TRUE(false);
+	}
+}
+
+TEST(SolveSystem, Basic) {
+	SquareMatrix<double, 3> A = {
+		{2, 3, 1},
+		{4, 1, 5},
+		{0, -1, 4},
+	};
+	Vector<double, 3> y = { 1, 2, 3 };
+
+	auto x = SolveLinearSystem(A, y);
+	auto v = A * x;
+
 	for (unsigned i = 0; i < 3; ++i) {
 		if (abs(v[i] - y[i]) >= TOLERABLE_DOUBLE_THRESHOLD)
 			EXPECT_TRUE(false);

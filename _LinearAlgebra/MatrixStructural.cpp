@@ -230,6 +230,18 @@ TEST(Permutation, Permutation) {
 	ASSERT_EQ(P.At(2, 1), 1);
 }
 
+TEST(Permutation, RowVector) {
+	auto P = PermutationMatrix<int, 5>();
+	P.Permute(1, 2);
+	P.Permute(3, 4);
+	P.Permute(1, 4);
+
+	auto v = Vector<int, 5>({ 0, 1, 2, 3, 4 });
+	auto y = Vector<int, 5>({ 0, 3, 1, 4, 2 });
+
+	ASSERT_EQ(P * v, y);
+}
+
 TEST(MatToVec, Row) {
 	const unsigned M = 1000;
 	const unsigned N = 512; 

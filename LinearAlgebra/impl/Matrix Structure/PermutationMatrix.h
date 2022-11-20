@@ -67,6 +67,7 @@ namespace MathLib {
 			}
 
 			T At(unsigned i, unsigned j) const {
+
 				return ((*body)[i] != j) ? T() : Identity<T>();
 			}
 

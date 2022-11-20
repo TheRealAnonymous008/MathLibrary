@@ -81,7 +81,7 @@ namespace MathLib {
 		}
 
 		template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr>
-		PartialLUResult<T, _Rows, _Columns> PartialLU(MatrixBase<T, _Rows, _Columns, Expr>& expr) {
+		PartialLUResult<T, _Rows, _Columns> PartialLU(const MatrixBase<T, _Rows, _Columns, Expr>& expr) {
 			return implementation::DoolittleLU(expr.Evaluate());
 		}
 

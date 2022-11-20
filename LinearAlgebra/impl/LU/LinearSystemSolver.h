@@ -4,6 +4,9 @@
 #include "../Objects/VectorBase.h"
 #include "../Matrix Structure/SquareOps.h"
 
+#include "LUResult.h"
+#include "LU.h"
+
 namespace MathLib {
 	namespace LinearAlgebra {
 		template<typename T, const unsigned N, typename MatExp, typename VecExp>
@@ -33,9 +36,18 @@ namespace MathLib {
 					total += A.At(i, j) * x[j];
 				}
 
-				x.Log();
 				x[i] = (y[i] - total) / A.At(i, i);
 			}
+
+			return x;
+		}
+
+		template<typename T, const unsigned N, typename MatExp, typename VecExp>
+		Vector<T, N> SolveLinearSystem(const SquareMatrixBase<T, N, MatExp>& A, const VectorBase<T, N, VecExp>& y) {
+			PartialLUResult lu = PartialLU(A);
+
+			Vector<T, N> v = ForwardSolve(lu.L, lu.P * y);
+			Vector<T, N> x = BackwardSolve(lu.U, v);
 
 			return x;
 		}
