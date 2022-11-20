@@ -288,7 +288,7 @@ TEST(VecToMat, Columns) {
 	const unsigned M = 1000;
 	const unsigned N = 1000;
 
-	auto A = Vector<Vector<int, M>, N>();
+	auto A = std::array<Vector<int, M>, N>();
 
 	for (unsigned i = 0; i < N; ++i) {
 		for (unsigned j = 0; j < M; ++j) {
@@ -296,24 +296,24 @@ TEST(VecToMat, Columns) {
 		}
 	}
 
-	auto v = ColumnsToMatrix(A);
-	ASSERT_EQ(A[5][4], v.At(4, 5));
+	auto X = ColumnsToMatrix(A);
+	ASSERT_EQ(A[5][4], X.At(4, 5));
 }
 
 TEST(VecToMat, Rows) {
 	const unsigned M = 1000;
 	const unsigned N = 1000;
 
-	auto A = Vector<Vector<int, M>, N>();
+	auto A = std::array<Vector<int, M>, N>();
 
 	for (unsigned i = 0; i < N; ++i) {
 		for (unsigned j = 0; j < M; ++j) {
 			A[i][j] = i;
 		}
 	}
-
-	//auto v = RowsToMatrix(A);
-	//ASSERT_EQ(A[4][5], v.At(4, 5));
+	
+	auto X = RowsToMatrix(A);
+	ASSERT_EQ(A[4][5], X.At(4, 5));
 }
 
 TEST(MatToVec, Selecting) {
