@@ -8,6 +8,7 @@
 #include "impl/Objects/MatrixBase.h"
 
 #include "impl/Vector Arithmetic/VecOps.h"
+#include "impl/Inner Products/InnerProducts.h"
 #include "impl/Matrix Arithmetic/MatOps.h"
 
 #include "impl/Matrix Structure/MatrixStructure.h"
