@@ -123,7 +123,7 @@
     <ClInclude Include="impl\Objects\VectorBase.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="impl\LU\LU.h">
+    <ClInclude Include="impl\LU\PartialLU.h">
       <Filter>LU Decomposition</Filter>
     </ClInclude>
     <ClInclude Include="impl\LU\LUCore.h">
@@ -146,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="impl\Matrix Structure\VecToMatConversions.h">
       <Filter>Matrix Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\LU\FullLU.h">
+      <Filter>LU Decomposition</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

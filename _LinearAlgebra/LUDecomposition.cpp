@@ -129,3 +129,19 @@ TEST(LUDecomposition, Generated) {
 		}
 	}
 }
+
+TEST(PLUQDecomposition, Nongenerated) {
+
+	Matrix<double, 3, 3> M = {
+		{8, 3, 1},
+		{2, 5, 0},
+		{1, 6, 12},
+	};
+
+	auto lu = FullLU(M);
+
+	ASSERT_TRUE(IsLower(lu.L));
+	ASSERT_TRUE(IsUpper(lu.U));
+	ASSERT_EQ(lu.P * M * lu.Q, lu.L * lu.U);
+
+}

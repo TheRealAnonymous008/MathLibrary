@@ -135,8 +135,9 @@
   <ItemGroup>
     <ClInclude Include="Core.h" />
     <ClInclude Include="Exceptions.h" />
+    <ClInclude Include="impl\LU\FullLU.h" />
     <ClInclude Include="impl\LU\LinearSystemSolver.h" />
-    <ClInclude Include="impl\LU\LU.h" />
+    <ClInclude Include="impl\LU\PartialLU.h" />
     <ClInclude Include="impl\LU\LUCore.h" />
     <ClInclude Include="impl\LU\LUResult.h" />
     <ClInclude Include="impl\LU\MatrixInverse.h" />

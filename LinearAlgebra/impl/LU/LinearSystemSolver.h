@@ -5,7 +5,7 @@
 #include "../Matrix Structure/SquareOps.h"
 
 #include "LUResult.h"
-#include "LU.h"
+#include "PartialLU.h"
 
 namespace MathLib {
 	namespace LinearAlgebra {

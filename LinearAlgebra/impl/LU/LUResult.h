@@ -25,5 +25,29 @@ namespace MathLib {
 				std::cout << "\n";
 			}
 		};
+
+		template<typename T, const unsigned _Rows, const unsigned _Columns>
+		struct FullLUResult {
+			PermutationMatrix<T, _Rows> P;
+			SquareMatrix<T, _Rows> L;
+			Matrix<T, _Rows, _Columns> U;
+			PermutationMatrix<T, _Columns> Q;
+
+			void Log() const {
+				std::cout << "P = " << "\n";
+				P.Evaluate().Log();
+
+				std::cout << "L = " << "\n";
+				L.Log();
+
+				std::cout << "U = " << "\n";
+				U.Log();
+
+				std::cout << "Q = " << "\n";
+				Q.Log();
+
+				std::cout << "\n";
+			}
+		};
 	}
 }
