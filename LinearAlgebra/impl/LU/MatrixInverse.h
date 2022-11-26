@@ -2,7 +2,7 @@
 
 #include "../Objects/MatrixBase.h"
 #include "../Objects/VectorBase.h"
-#include "../Matrix Structure/SquareOps.h"
+#include "../Matrix Structure/Special Matrices/SquareOps.h"
 #include "../Vector Arithmetic/UnitVector.h"
 #include "../Matrix Structure/VecToMatConversions.h"
 

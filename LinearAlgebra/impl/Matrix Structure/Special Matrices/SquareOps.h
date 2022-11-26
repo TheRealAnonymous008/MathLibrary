@@ -1,16 +1,9 @@
 #pragma once
 
-#include "../Objects/MatrixBase.h"
-#include "../Objects/Matrix.h"
+#include "SquareMatrix.h"
 
 namespace MathLib {
 	namespace LinearAlgebra {
-
-		template<typename T, const unsigned N>
-		using SquareMatrix = Matrix<T, N, N>;
-
-		template<typename T, const unsigned N, typename Derived>
-		using SquareMatrixBase = MatrixBase<T, N, N, Derived>;
 
 		template<typename T, const unsigned N, typename Exp>
 		bool IsUpper(const SquareMatrixBase<T, N, Exp>& mat) {

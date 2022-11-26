@@ -23,6 +23,9 @@
     <Filter Include="Inner Products">
       <UniqueIdentifier>{3276a31b-84bd-476b-a9ca-af122a6aa8b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Matrix Structure\Special Matrices">
+      <UniqueIdentifier>{be4d8767-64ca-4332-9e7a-76ed044820a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -73,25 +76,16 @@
     <ClInclude Include="impl\Matrix Arithmetic\MatrixVectorProduct.h">
       <Filter>Matrix Operations</Filter>
     </ClInclude>
-    <ClInclude Include="impl\Matrix Structure\IdentityMatrix.h">
-      <Filter>Matrix Structure</Filter>
-    </ClInclude>
     <ClInclude Include="impl\Matrix Structure\MatrixPermutation.h">
       <Filter>Matrix Structure</Filter>
     </ClInclude>
     <ClInclude Include="impl\Matrix Structure\MatrixStructure.h">
       <Filter>Matrix Structure</Filter>
     </ClInclude>
-    <ClInclude Include="impl\Matrix Structure\PermutationMatrix.h">
-      <Filter>Matrix Structure</Filter>
-    </ClInclude>
     <ClInclude Include="impl\Matrix Structure\PlaceBlock.h">
       <Filter>Matrix Structure</Filter>
     </ClInclude>
     <ClInclude Include="impl\Matrix Structure\Slice.h">
-      <Filter>Matrix Structure</Filter>
-    </ClInclude>
-    <ClInclude Include="impl\Matrix Structure\SquareOps.h">
       <Filter>Matrix Structure</Filter>
     </ClInclude>
     <ClInclude Include="impl\Matrix Structure\Transpose.h">
@@ -147,6 +141,21 @@
     </ClInclude>
     <ClInclude Include="impl\Inner Products\InnerProductOperations.h">
       <Filter>Inner Products</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Matrix Structure\Trace.h">
+      <Filter>Matrix Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Matrix Structure\Special Matrices\IdentityMatrix.h">
+      <Filter>Matrix Structure\Special Matrices</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Matrix Structure\Special Matrices\PermutationMatrix.h">
+      <Filter>Matrix Structure\Special Matrices</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Matrix Structure\Special Matrices\SquareMatrix.h">
+      <Filter>Matrix Structure\Special Matrices</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Matrix Structure\Special Matrices\SquareOps.h">
+      <Filter>Matrix Structure\Special Matrices</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
