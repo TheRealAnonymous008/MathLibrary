@@ -27,5 +27,8 @@
     <ClInclude Include="Identity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Zero.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

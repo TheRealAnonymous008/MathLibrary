@@ -131,6 +131,7 @@
     <ClInclude Include="Expression.h" />
     <ClInclude Include="Identity.h" />
     <ClInclude Include="Options.h" />
+    <ClInclude Include="Zero.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

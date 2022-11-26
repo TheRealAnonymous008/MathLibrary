@@ -140,7 +140,7 @@ TEST(VectorOperations, SelfAssignment) {
 
 }
 
-TEST(VectorOperations, DotProduct) {
+TEST(InnerProduct, DotProduct) {
 	Vector<int, 5> v1 = { 1, 2, 5, 4, -2 };
 	Vector<int, 5> v2 = { -1, 3, 2, 4, 7 };
 	
@@ -148,16 +148,17 @@ TEST(VectorOperations, DotProduct) {
 	ASSERT_EQ(Dot(v1 + v2, v1 - v2) , Dot(v1, v1) - Dot(v2, v2));
 }
 
-TEST(VectorOperations, Norm) {
+TEST(InnerProduct, Norm) {
 	Vector<int, 5> v1 = { 1, 2, 5, 4, -2 };
 
 	ASSERT_EQ(SquareNorm(v1), 1 + 4 + 25 + 16 + 4);
 	ASSERT_EQ(SquareNorm(2 * v1), 4 * SquareNorm(v1));
 }
 
-TEST(VectorOperations, Normalize) {
-	Vector<int, 5> v1 = { 1, 2, 0, -2, -5 };
+TEST(InnerProduct, Normalize) {
+	Vector<double, 5> v1 = { 1, 2, 0, -2, -5 };
 
 	auto v2 = Normalize(v1);
+	std::cout<<Norm(v2);
 	ASSERT_TRUE(IsNormal(v2));
 }
