@@ -1,2 +1,2 @@
-#include "DotProduct.h"
-#include "EuclideanNorm.h"
+#include "StandardInnerProduct.h"
+#include "InnerProductOperations.h"

@@ -135,8 +135,8 @@
   <ItemGroup>
     <ClInclude Include="Core.h" />
     <ClInclude Include="Exceptions.h" />
-    <ClInclude Include="impl\Inner Products\DotProduct.h" />
-    <ClInclude Include="impl\Inner Products\EuclideanNorm.h" />
+    <ClInclude Include="impl\Inner Products\InnerProductOperations.h" />
+    <ClInclude Include="impl\Inner Products\StandardInnerProduct.h" />
     <ClInclude Include="impl\Inner Products\InnerProducts.h" />
     <ClInclude Include="impl\LU\FullLU.h" />
     <ClInclude Include="impl\LU\LinearSystemSolver.h" />

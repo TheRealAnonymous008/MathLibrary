@@ -139,13 +139,13 @@
     <ClInclude Include="impl\LU\FullLU.h">
       <Filter>LU Decomposition</Filter>
     </ClInclude>
-    <ClInclude Include="impl\Inner Products\DotProduct.h">
-      <Filter>Inner Products</Filter>
-    </ClInclude>
-    <ClInclude Include="impl\Inner Products\EuclideanNorm.h">
+    <ClInclude Include="impl\Inner Products\StandardInnerProduct.h">
       <Filter>Inner Products</Filter>
     </ClInclude>
     <ClInclude Include="impl\Inner Products\InnerProducts.h">
+      <Filter>Inner Products</Filter>
+    </ClInclude>
+    <ClInclude Include="impl\Inner Products\InnerProductOperations.h">
       <Filter>Inner Products</Filter>
     </ClInclude>
   </ItemGroup>

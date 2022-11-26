@@ -154,3 +154,10 @@ TEST(VectorOperations, Norm) {
 	ASSERT_EQ(SquareNorm(v1), 1 + 4 + 25 + 16 + 4);
 	ASSERT_EQ(SquareNorm(2 * v1), 4 * SquareNorm(v1));
 }
+
+TEST(VectorOperations, Normalize) {
+	Vector<int, 5> v1 = { 1, 2, 0, -2, -5 };
+
+	auto v2 = Normalize(v1);
+	ASSERT_TRUE(IsNormal(v2));
+}

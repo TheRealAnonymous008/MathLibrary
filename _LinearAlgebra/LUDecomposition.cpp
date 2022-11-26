@@ -143,8 +143,6 @@ TEST(PLUQDecomposition, Nongenerated) {
 	ASSERT_TRUE(IsLower(lu.L));
 	ASSERT_TRUE(IsUpper(lu.U));
 
-	lu.Log();
-
 	ASSERT_EQ(lu.P * M * lu.Q, lu.L * lu.U);
 
 }
