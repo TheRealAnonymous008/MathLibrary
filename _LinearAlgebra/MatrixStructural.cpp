@@ -353,3 +353,15 @@ TEST(UnitVec, UnitVec) {
 		}
 	}
 }
+
+TEST(Trace, Trace) {
+	SquareMatrix<int, 5> M = {
+		{1, 2, 3, 4, 5},
+		{2, 0, 1, 3,-1},
+		{3, 1,-7, 2, 0},
+		{0,-4,-3,-2, 6},
+		{1, 2, 3, 4, 5}
+	};
+
+	ASSERT_EQ(Trace(M), -3);
+}

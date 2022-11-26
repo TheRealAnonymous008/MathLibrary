@@ -12,3 +12,5 @@
 
 #include "MatToVecConversions.h"
 #include "VecToMatConversions.h"
+
+#include "Trace.h"
