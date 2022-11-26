@@ -56,7 +56,7 @@ namespace MathLib {
 							std::swap(LU.U.At(row, column), LU.U.At(pivotIdx, column));
 						}
 
-						LU.P.Permute(column, pivotIdx);
+						LU.Q.Permute(column, pivotIdx);
 
 						OPENMP_PARALLELIZE
 						for (unsigned row = 0; row < column; ++row) {

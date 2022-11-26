@@ -44,7 +44,7 @@ namespace MathLib {
 				U.Log();
 
 				std::cout << "Q = " << "\n";
-				Q.Log();
+				Q.Evaluate().Log();
 
 				std::cout << "\n";
 			}
