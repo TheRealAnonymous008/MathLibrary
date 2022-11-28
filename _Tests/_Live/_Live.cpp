@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
-#include "../LinearAlgebra//Core.h"
-#include "../LinearAlgebra/impl/LU/LUCore.h"
+#include "../../LinearAlgebra/Core.h"
+#include "../../LinearAlgebra/impl/LU/LUCore.h"
 
 #define LOOPS 1
 using namespace MathLib::LinearAlgebra;

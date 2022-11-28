@@ -50,12 +50,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LinearAlgebra\LinearAlgebra.vcxproj">
-      <Project>{6d839920-9084-4865-b568-460439b6dc33}</Project>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\..\LinearAlgebra\LinearAlgebra.vcxproj">
+      <Project>{6d839920-9084-4865-b568-460439b6dc33}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
