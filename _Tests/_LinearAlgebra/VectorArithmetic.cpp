@@ -83,7 +83,7 @@ TEST(VectorOperations, BigOps) {
 	Vector<int, N> v = *(new Vector<int, N>());
 	Vector<int, N> w = *(new Vector<int, N>());
 
-	for (unsigned i = 0; i < v.Size(); ++i) {
+	for (int i = 0; i < v.Size(); ++i) {
 		v[i] = 2 * i + 1;
 		w[i] = i * i;
 	}
@@ -159,6 +159,5 @@ TEST(InnerProduct, Normalize) {
 	Vector<double, 5> v1 = { 1, 2, 0, -2, -5 };
 
 	auto v2 = Normalize(v1);
-	std::cout<<Norm(v2);
 	ASSERT_TRUE(IsNormal(v2));
 }

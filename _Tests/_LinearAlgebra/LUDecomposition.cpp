@@ -17,7 +17,15 @@ TEST(LUDecomposition, Nongenerated) {
 
 	ASSERT_TRUE(IsLower(lu.L));
 	ASSERT_TRUE(IsUpper(lu.U));
-	ASSERT_EQ(lu.P * M, lu.L * lu.U);
+
+	auto X = lu.P * M;
+	auto Y = lu.L * lu.U;
+
+	for (int i = 0; i < 3; ++i) {
+		for (int j = 0; j < 3; ++j) {
+			ASSERT_DOUBLE_EQ(X.At(i, j), Y.At(i, j));
+		}
+	}
 
 }
 
@@ -143,6 +151,16 @@ TEST(PLUQDecomposition, Nongenerated) {
 	ASSERT_TRUE(IsLower(lu.L));
 	ASSERT_TRUE(IsUpper(lu.U));
 
-	ASSERT_EQ(lu.P * M * lu.Q, lu.L * lu.U);
+	auto X = lu.P * M * lu.Q;
+	auto Y = lu.L * lu.U;
+
+	X.Evaluate().Log();
+	Y.Evaluate().Log();
+
+	for (int i = 0; i < 3; ++i) {
+		for (int j = 0; j < 3; ++j) {
+			ASSERT_DOUBLE_EQ(X.At(i, j), Y.At(i, j));
+		}
+	}
 
 }

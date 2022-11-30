@@ -11,11 +11,12 @@ namespace MathLib {
 			class MatrixRowPermutation : public MatrixBase<T, _Rows, _Columns,
 				MatrixRowPermutation<T, _Rows, _Columns, Expr>> {
 			private:
-				const Expr& expr;
+				const Matrix<T, _Rows, _Columns>& expr;
 				const PermutationMatrix<T, _Rows>& permutation;
 
 			public:
-				MatrixRowPermutation(const PermutationMatrix<T, _Rows>& permutation, const Expr& expr) : expr(expr), permutation(permutation)
+				MatrixRowPermutation(const PermutationMatrix<T, _Rows>& permutation, const Expr& expr) : 
+					expr(expr.Evaluate()), permutation(permutation)
 				{
 					if (permutation.Columns() != expr.Rows()) {
 						throw InvalidTensorProduct();
@@ -52,11 +53,12 @@ namespace MathLib {
 			class MatrixColumnPermutation : public MatrixBase<T, _Rows, _Columns,
 				MatrixColumnPermutation<T, _Rows, _Columns, Expr>> {
 			private:
-				const Expr& expr;
+				const Matrix<T, _Rows, _Columns>& expr;
 				const PermutationMatrix<T, _Columns>& permutation;
 
 			public:
-				MatrixColumnPermutation(const Expr& expr, const PermutationMatrix<T, _Columns>& permutation) : expr(expr), permutation(permutation)
+				MatrixColumnPermutation(const Expr& expr, const PermutationMatrix<T, _Columns>& permutation) : 
+					expr(expr.Evaluate()), permutation(permutation)
 				{
 					if (expr.Columns() != permutation.Rows()) {
 						throw InvalidTensorProduct();

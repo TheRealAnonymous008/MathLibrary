@@ -6,7 +6,7 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		using size_type = const unsigned;
+		using size_type = const int;
 		using index_type = int;
 
 		template<typename T, size_type N>
