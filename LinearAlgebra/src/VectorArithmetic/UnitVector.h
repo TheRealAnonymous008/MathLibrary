@@ -7,23 +7,23 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned N>
+		template<typename T, size_type N>
 		class UnitVector : public VectorBase<T, N,
 			UnitVector<T, N>> {
 		private:
-			const unsigned& idx;
+			const index_type& idx;
 		public:
-			UnitVector(const unsigned i) : idx(i) {
+			UnitVector(const index_type i) : idx(i) {
 				if (idx >= N) {
 					throw DimensionError();
 				}
 			}
 
-			T operator[](const unsigned& i) const {
+			T operator[](const index_type& i) const {
 				return (i != idx) ? T() : Identity<T>();
 			}
 
-			constexpr unsigned Size() const {
+			constexpr size_type Size() const {
 				return N;
 			}
 
@@ -32,7 +32,7 @@ namespace MathLib {
 				Vector<T, N> result;
 
 				OPENMP_PARALLELIZE
-				for (unsigned i = 0; i < N; ++i) {
+				for (index_type i = 0; i < N; ++i) {
 					result[i] = (*this)[i];
 				}
 

@@ -6,10 +6,10 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned N>
+		template<typename T, size_type N>
 		using SquareMatrix = Matrix<T, N, N>;
 
-		template<typename T, const unsigned N, typename Derived>
+		template<typename T, size_type N, typename Derived>
 		using SquareMatrixBase = MatrixBase<T, N, N, Derived>;
 	}
 }

@@ -4,18 +4,18 @@
 
 namespace MathLib {
 	namespace LinearAlgebra {
-		template<typename T, const unsigned _Rows, const unsigned _Columns, typename Derived>
+		template<typename T, size_type _Rows, size_type _Columns, typename Derived>
 		class MatrixBase {
 		public:
-			T At(const unsigned& r, const unsigned& c) const {
+			T At(const index_type& r, const index_type& c) const {
 				return  static_cast<Derived const&>(*this).At(r, c);
 			}
 
-			constexpr unsigned Rows() const {
+			constexpr size_type Rows() const {
 				return  static_cast<Derived const&>(*this).Rows();
 			}
 
-			constexpr unsigned Columns() const {
+			constexpr size_type Columns() const {
 				return  static_cast<Derived const&>(*this).Columns();
 			}
 
@@ -26,7 +26,7 @@ namespace MathLib {
 
 		template<
 			typename T, 
-			const unsigned Rows, const unsigned Columns,
+			size_type Rows, size_type Columns,
 			typename LHS, typename RHS
 		>
 		bool operator==(
@@ -41,8 +41,8 @@ namespace MathLib {
 			auto left = lhs.Evaluate();
 			auto right = rhs.Evaluate();
 
-			for (unsigned i = 0; i < lhs.Rows(); ++i) {
-				for (unsigned j = 0; j < lhs.Columns(); ++j) {
+			for (index_type i = 0; i < lhs.Rows(); ++i) {
+				for (index_type j = 0; j < lhs.Columns(); ++j) {
 					if (left.At(i, j) != right.At(i, j))
 						return false;
 				}
@@ -52,7 +52,7 @@ namespace MathLib {
 
 		template<
 			typename T, 
-			const unsigned Rows, const unsigned Columns, 
+			size_type Rows, size_type Columns, 
 			typename LHS, typename RHS
 		>
 		bool operator!=(
@@ -67,8 +67,8 @@ namespace MathLib {
 			auto left = lhs.Evaluate();
 			auto right = rhs.Evaluate();
 
-			for (unsigned i = 0; i < lhs.Rows(); ++i) {
-				for (unsigned j = 0; j < lhs.Columns(); ++j) {
+			for (index_type i = 0; i < lhs.Rows(); ++i) {
+				for (index_type j = 0; j < lhs.Columns(); ++j) {
 					if (left.At(i, j) != right.At(i, j))
 						return true;
 				}

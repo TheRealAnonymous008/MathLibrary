@@ -11,12 +11,12 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned N, typename MatExp>
+		template<typename T, size_type N, typename MatExp>
 		SquareMatrix<T, N> Inverse(const SquareMatrixBase<T, N, MatExp>& A) {
 
 			std::array<Vector<T, N>, N> result; 
 
-			for (unsigned i = 0; i < N; ++i) {
+			for (index_type i = 0; i < N; ++i) {
 				auto x = SolveLinearSystem(A, UnitVector<T, N>(i));
 				result[i] = x;
 			}

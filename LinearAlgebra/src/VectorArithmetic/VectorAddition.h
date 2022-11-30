@@ -9,7 +9,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, const unsigned N, typename LHS, typename RHS>
+			template<typename T, size_type N, typename LHS, typename RHS>
 			class VectorAddition : public VectorBase<T, N,
 				VectorAddition<T, N, LHS, RHS>> {
 			private:
@@ -23,11 +23,11 @@ namespace MathLib {
 					}
 				}
 
-				T operator[](const unsigned& i) const {
+				T operator[](const index_type& i) const {
 					return lhs[i] + rhs[i];
 				}
 
-				constexpr unsigned Size() const {
+				constexpr size_type Size() const {
 					return  rhs.Size();
 				}
 
@@ -36,7 +36,7 @@ namespace MathLib {
 					Vector<T, N> result;
 
 					OPENMP_PARALLELIZE
-					for (unsigned i = 0; i < N; ++i) {
+					for (index_type i = 0; i < N; ++i) {
 						result[i] = lhs[i] + rhs[i];
 					}
 
@@ -47,7 +47,7 @@ namespace MathLib {
 
 		
 
-		template<typename T, const unsigned N, typename LHS, typename RHS>
+		template<typename T, size_type N, typename LHS, typename RHS>
 		detail::VectorAddition<T, N, LHS, RHS> operator+(
 			const VectorBase<T, N, LHS>& lhs, 
 			const VectorBase<T, N, RHS>& rhs) 

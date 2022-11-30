@@ -6,7 +6,7 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned N, typename LHS, typename RHS>
+		template<typename T, size_type N, typename LHS, typename RHS>
 		T Dot(const VectorBase<T, N, LHS>& lhs, const VectorBase<T, N, RHS>& rhs) 
 		{
 			if (lhs.Size() != rhs.Size())
@@ -14,7 +14,7 @@ namespace MathLib {
 
 			T dot = T();
 
-			for (unsigned i = 0; i < lhs.Size(); ++i) {
+			for (index_type i = 0; i < lhs.Size(); ++i) {
 				dot += lhs[i] * rhs[i];
 			}
 			return dot;

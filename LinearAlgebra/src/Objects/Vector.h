@@ -9,7 +9,7 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 		
-		template<typename T, const unsigned N>
+		template<typename T, size_type N>
 		class Vector : public VectorBase<T, N, Vector<T, N>>
 		{
 		private:
@@ -25,7 +25,7 @@ namespace MathLib {
 			}
 
 			Vector(const std::initializer_list<T>& list) {
-				unsigned i = 0;
+				index_type i = 0;
 				for (T obj : list) {
 					(*body)[i] = obj;
 					++i;
@@ -33,7 +33,7 @@ namespace MathLib {
 			}
 
 			void operator=(const std::initializer_list<T>& list) {
-				unsigned i = 0;
+				index_type i = 0;
 				for (T obj : list) {
 					(*body)[i] = obj;
 					++i;
@@ -46,7 +46,7 @@ namespace MathLib {
 				}
 
 				OPENMP_PARALLELIZE
-				for (unsigned i = 0; i < Size(); ++i) {
+				for (index_type i = 0; i < Size(); ++i) {
 					(*body)[i] = expr[i];
 				}
 			}
@@ -57,7 +57,7 @@ namespace MathLib {
 				}
 
 				OPENMP_PARALLELIZE
-				for (unsigned i = 0; i < Size(); ++i) {
+				for (index_type i = 0; i < Size(); ++i) {
 					(*body)[i] = expr[i];
 				}
 			}
@@ -70,7 +70,7 @@ namespace MathLib {
 
 				auto eval = expr.Evaluate();
 				OPENMP_PARALLELIZE
-				for (unsigned i = 0; i < Size(); ++i) {
+				for (index_type i = 0; i < Size(); ++i) {
 					(*body)[i] = eval[i];
 				}
 			}
@@ -82,20 +82,20 @@ namespace MathLib {
 				}
 
 				auto eval = expr.Evaluate();
-				for (unsigned i = 0; i < Size(); ++i) {
+				for (index_type i = 0; i < Size(); ++i) {
 					(*body)[i] = eval[i];
 				}
 			}
 
-			constexpr unsigned Size() const {
+			constexpr size_type Size() const {
 				return N;
 			}
 
-			T& operator[](unsigned i) {
+			T& operator[](index_type i) {
 				return (*body)[i];
 			}
 
-			T operator[](unsigned i) const{
+			T operator[](index_type i) const{
 				return (*body)[i];
 			}
 
@@ -105,7 +105,7 @@ namespace MathLib {
 				auto eval = expr.Evaluate();
 
 				OPENMP_PARALLELIZE
-				for (unsigned i = 0; i < Size(); ++i) {
+				for (index_type i = 0; i < Size(); ++i) {
 					(*body)[i] += eval[i];
 				}
 				return *this;
@@ -117,7 +117,7 @@ namespace MathLib {
 				auto eval = expr.Evaluate();
 
 				OPENMP_PARALLELIZE
-				for (unsigned i = 0; i < Size(); ++i) {
+				for (index_type i = 0; i < Size(); ++i) {
 					(*body)[i] -= eval[i];
 				}
 				return *this;
@@ -126,7 +126,7 @@ namespace MathLib {
 			Vector& operator*=(const T& c) {
 
 				OPENMP_PARALLELIZE
-				for (unsigned i = 0; i < Size(); ++i) {
+				for (index_type i = 0; i < Size(); ++i) {
 					(*body)[i] *= c;
 				}
 				return *this;
@@ -137,7 +137,7 @@ namespace MathLib {
 					throw DivisionByZero();
 
 				OPENMP_PARALLELIZE
-				for (unsigned i = 0; i < Size(); ++i) {
+				for (index_type i = 0; i < Size(); ++i) {
 					(*body)[i] /= c;
 				}
 				return *this;
@@ -148,7 +148,7 @@ namespace MathLib {
 			}
 
 			void Log() const {
-				for (unsigned i = 0; i < N; ++i) {
+				for (index_type i = 0; i < N; ++i) {
 					std::cout << (*this)[i] << " ";
 				}
 				std::cout << "\n";

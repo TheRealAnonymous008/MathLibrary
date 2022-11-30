@@ -9,7 +9,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, const unsigned M, const unsigned K, const unsigned N, typename LHS, typename RHS>
+			template<typename T, size_type M, size_type K, size_type N, typename LHS, typename RHS>
 			class MatrixVectorProduct : public VectorBase<T, M,
 				MatrixVectorProduct<T, M, K, N, LHS, RHS>> {
 			private:
@@ -24,16 +24,16 @@ namespace MathLib {
 					}
 				}
 
-				T operator[](const unsigned& i) const {
+				T operator[](const index_type& i) const {
 					T sum = T();
 
-					for (unsigned k = 0; k < rhs.Size(); ++k) {
+					for (index_type k = 0; k < rhs.Size(); ++k) {
 						sum += lhs.At(i, k) * rhs[k];
 					}
 					return sum;
 				}
 
-				constexpr unsigned Size() const {
+				constexpr size_type Size() const {
 					return M;
 				}
 
@@ -42,8 +42,8 @@ namespace MathLib {
 					Vector<T, M> result;
 
 					OPENMP_PARALLELIZE
-					for (unsigned i = 0; i < M; ++i) {
-						for (unsigned k = 0; k < N; ++k) {
+					for (index_type i = 0; i < M; ++i) {
+						for (index_type k = 0; k < N; ++k) {
 							result[i] += lhs.At(i, k) * rhs[k];
 						}
 					}
@@ -55,7 +55,7 @@ namespace MathLib {
 
 		
 
-		template<typename T, const unsigned M, const unsigned K, const unsigned N, typename LHS, typename RHS>
+		template<typename T, size_type M, size_type K, size_type N, typename LHS, typename RHS>
 
 		detail::MatrixVectorProduct<T, M, K, N, LHS, RHS> operator*(
 			const MatrixBase<T, M, K, LHS>& lhs, 

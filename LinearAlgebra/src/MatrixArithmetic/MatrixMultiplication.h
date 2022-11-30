@@ -14,18 +14,18 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace implementation {
-			template<typename T,const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,typename LHS, typename RHS>
+			template<typename T,size_type _Rows, size_type _Inner, size_type _Columns,typename LHS, typename RHS>
 			Matrix<T, _Rows, _Columns> MatrixMultiply(const MatrixBase<T, _Rows, _Inner, LHS>& lhs, const MatrixBase<T, _Inner, _Columns, RHS>& rhs);
 
-			template<typename T,const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,typename LHS, typename RHS>
+			template<typename T,size_type _Rows, size_type _Inner, size_type _Columns,typename LHS, typename RHS>
 			Matrix<T, _Rows, _Columns> ElementaryMatrixMultiplication(const MatrixBase<T, _Rows, _Inner, LHS>& lhs,const MatrixBase<T, _Inner, _Columns, RHS>& rhs);
 			
-			template<typename T, const unsigned _Rows, const unsigned _Inner, const unsigned _Columns, typename LHS, typename RHS>
+			template<typename T, size_type _Rows, size_type _Inner, size_type _Columns, typename LHS, typename RHS>
 			Matrix<T, _Rows, _Columns> StrassenMatrixMultiplication(const MatrixBase<T, _Rows, _Inner, LHS>& lhs, const MatrixBase<T, _Inner, _Columns, RHS>& rhs);
 		}
 
 		namespace implementation {
-			template<typename T,const unsigned _Rows, const unsigned _Inner, const unsigned _Columns, typename LHS, typename RHS>
+			template<typename T,size_type _Rows, size_type _Inner, size_type _Columns, typename LHS, typename RHS>
 			Matrix<T, _Rows, _Columns> MatrixMultiply(
 				const MatrixBase<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixBase<T, _Inner, _Columns, RHS>& rhs
@@ -38,7 +38,7 @@ namespace MathLib {
 					*static_cast<const RHS*>(&rhs));
 			}
 
-			template<typename T, const unsigned _Rows, const unsigned _Inner, const unsigned _Columns, typename LHS, typename RHS>
+			template<typename T, size_type _Rows, size_type _Inner, size_type _Columns, typename LHS, typename RHS>
 			Matrix<T, _Rows, _Columns> ElementaryMatrixMultiplication(
 				const MatrixBase<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixBase<T, _Inner, _Columns, RHS>& rhs
@@ -47,10 +47,10 @@ namespace MathLib {
 				Matrix<T, _Rows, _Columns> result;
 
 				OPENMP_PARALLELIZE
-				for (unsigned i = 0; i < _Rows; ++i) {
-					for (unsigned k = 0; k < _Inner; ++k) {
+				for (index_type i = 0; i < _Rows; ++i) {
+					for (index_type k = 0; k < _Inner; ++k) {
 						auto l = lhs.At(i, k);
-						for (unsigned j = 0; j < _Columns; ++j) {
+						for (index_type j = 0; j < _Columns; ++j) {
 							result.At(i, j) += l  *rhs.At(k, j);
 						}
 					}
@@ -59,14 +59,14 @@ namespace MathLib {
 				return result;
 			}
 			
-			template<typename T, const unsigned _Rows, const unsigned _Inner, const unsigned _Columns, typename LHS, typename RHS >
+			template<typename T, size_type _Rows, size_type _Inner, size_type _Columns, typename LHS, typename RHS >
 			Matrix<T, _Rows, _Columns> StrassenMatrixMultiplication(
 				const MatrixBase<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixBase<T, _Inner, _Columns, RHS>& rhs
 			) {
-				const unsigned halfRow = _Rows / 2 + _Rows % 2;
-				const unsigned halfInner = _Inner / 2 + _Inner% 2;
-				const unsigned halfColumn = _Columns / 2 + _Columns% 2;
+				size_type halfRow = _Rows / 2 + _Rows % 2;
+				size_type halfInner = _Inner / 2 + _Inner% 2;
+				size_type halfColumn = _Columns / 2 + _Columns% 2;
 
 				using AMatrix = Matrix<T, halfRow, halfInner>;
 				using BMatrix = Matrix<T, halfInner, halfColumn>;
@@ -122,7 +122,7 @@ namespace MathLib {
 
 		namespace detail {
 
-			template<typename T, const unsigned _Rows, const unsigned _Columns, typename LHS, typename RHS >
+			template<typename T, size_type _Rows, size_type _Columns, typename LHS, typename RHS >
 			class MatrixMultiplication : public MatrixBase<T, _Rows, _Columns, 
 				MatrixMultiplication<T, _Rows, _Columns, LHS, RHS>> {
 			private:
@@ -139,15 +139,15 @@ namespace MathLib {
 					}
 				}
 
-				T At(const unsigned& r, const unsigned& c) const {
+				T At(const index_type& r, const index_type& c) const {
 					return result.At(r, c);
 				}
 
-				constexpr unsigned Rows() const {
+				constexpr size_type Rows() const {
 					return  lhs.Rows();
 				}
 
-				constexpr unsigned Columns() const {
+				constexpr size_type Columns() const {
 					return  rhs.Columns();
 				}
 
@@ -157,7 +157,7 @@ namespace MathLib {
 			};
 		}
 
-		template<typename T, const unsigned _Rows, const unsigned _Inner, const unsigned _Columns,  typename LHS, typename RHS>
+		template<typename T, size_type _Rows, size_type _Inner, size_type _Columns,  typename LHS, typename RHS>
 		detail::MatrixMultiplication<T, _Rows, _Columns, LHS, RHS> operator*(
 			const MatrixBase<T, _Rows, _Inner, LHS>& lhs, 
 			const MatrixBase<T, _Inner, _Columns, RHS>& rhs) 

@@ -9,7 +9,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, const unsigned _Rows, const unsigned _Columns, typename E>
+			template<typename T, size_type _Rows, size_type _Columns, typename E>
 			class MatrixNegation : public MatrixBase<T, _Rows, _Columns, 
 				MatrixNegation<T, _Rows, _Columns, E>> {
 			private:
@@ -20,15 +20,15 @@ namespace MathLib {
 
 				}
 
-				T At(const unsigned& r, const unsigned& c) const {
+				T At(const index_type& r, const index_type& c) const {
 					return  -expr.At(r, c);
 				}
 
-				constexpr unsigned Rows() const {
+				constexpr size_type Rows() const {
 					return  _Rows;
 				}
 
-				constexpr unsigned Columns() const {
+				constexpr size_type Columns() const {
 					return  _Columns;
 				}
 
@@ -37,8 +37,8 @@ namespace MathLib {
 					Matrix<T, _Rows, _Columns> result;
 
 					OPENMP_PARALLELIZE
-					for (unsigned i = 0; i < _Rows; ++i) {
-						for (unsigned j = 0; j < _Columns; ++j) {
+					for (index_type i = 0; i < _Rows; ++i) {
+						for (index_type j = 0; j < _Columns; ++j) {
 							result.At(i, j) = -expr.At(i, j);
 						}
 					}
@@ -48,7 +48,7 @@ namespace MathLib {
 			};
 		}
 
-		template< typename T, const unsigned _Rows, const unsigned _Columns, typename E>
+		template< typename T, size_type _Rows, size_type _Columns, typename E>
 		detail::MatrixNegation<T, _Rows, _Columns, E> operator-(
 			const MatrixBase<T, _Rows, _Columns, E>& expr) 
 		{

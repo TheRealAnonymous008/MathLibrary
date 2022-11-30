@@ -10,14 +10,14 @@
 
 namespace MathLib {
 	namespace LinearAlgebra {
-		template<typename T, const unsigned N, typename MatExp, typename VecExp>
+		template<typename T, size_type N, typename MatExp, typename VecExp>
 		Vector<T, N> ForwardSolve(const SquareMatrixBase<T, N, MatExp>& A, const VectorBase<T, N, VecExp>& y) {
 			Vector<T, N> x;
 
-			for (unsigned i = 0; i < N; ++i) {
+			for (index_type i = 0; i < N; ++i) {
 				T total = 0;
 
-				for (unsigned j = 0; j < i; ++j) {
+				for (index_type j = 0; j < i; ++j) {
 					total += A.At(i, j) * x[j];
 				}
 				x[i] = (y[i] - total) / A.At(i, i);
@@ -26,7 +26,7 @@ namespace MathLib {
 			return x;
 		}
 
-		template<typename T, const unsigned N, typename MatExp, typename VecExp>
+		template<typename T, size_type N, typename MatExp, typename VecExp>
 		Vector<T, N> BackwardSolve(const SquareMatrixBase<T, N, MatExp>& A, const VectorBase<T, N, VecExp>& y) {
 			Vector<T, N> x;
 
@@ -43,7 +43,7 @@ namespace MathLib {
 			return x;
 		}
 
-		template<typename T, const unsigned N, typename MatExp, typename VecExp>
+		template<typename T, size_type N, typename MatExp, typename VecExp>
 		Vector<T, N> SolveLinearSystem(const SquareMatrixBase<T, N, MatExp>& A, const VectorBase<T, N, VecExp>& y) {
 			PartialLUResult lu = PartialLU(A);
 
@@ -53,14 +53,14 @@ namespace MathLib {
 			return x;
 		}
 
-		template<typename T, const unsigned N, typename MatExp, typename VecExp>
+		template<typename T, size_type N, typename MatExp, typename VecExp>
 		Vector<T, N> SolveLinearSystem(const SquareMatrixBase<T, N, MatExp>& A, 
 			const std::vector<VectorBase<T, N, VecExp>> & ys
 		) {
 			PartialLUResult lu = PartialLU(A);
 			std::vector<VectorBase<T, N, VecExp>>& result;
 
-			for (unsigned i = 0; i < ys.size(); ++i) {
+			for (index_type i = 0; i < ys.size(); ++i) {
 				Vector<T, N> v = ForwardSolve(lu.L, lu.P * ys[i]);
 				Vector<T, N> x = BackwardSolve(lu.U, v);
 				result.push_back(x);

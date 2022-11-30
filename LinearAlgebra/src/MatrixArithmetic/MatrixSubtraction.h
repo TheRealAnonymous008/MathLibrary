@@ -9,7 +9,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, const unsigned _Rows, const unsigned _Columns, typename LHS, typename RHS>
+			template<typename T, size_type _Rows, size_type _Columns, typename LHS, typename RHS>
 			class MatrixSubtraction : public MatrixBase<T, _Rows, _Columns, 
 				MatrixSubtraction<T, _Rows, _Columns, LHS, RHS>> {
 			private:
@@ -24,15 +24,15 @@ namespace MathLib {
 					}
 				}
 
-				T At(const unsigned& r, const unsigned& c) const {
+				T At(const index_type& r, const index_type& c) const {
 					return  lhs.At(r, c) - rhs.At(r, c);
 				}
 
-				constexpr unsigned Rows() const {
+				constexpr size_type Rows() const {
 					return  _Rows;
 				}
 
-				constexpr unsigned Columns() const {
+				constexpr size_type Columns() const {
 					return  _Columns;
 				}
 
@@ -41,8 +41,8 @@ namespace MathLib {
 					Matrix<T,  _Rows, _Columns> result;
 
 					OPENMP_PARALLELIZE
-					for (unsigned i = 0; i < _Rows; ++i) {
-						for (unsigned j = 0; j < _Columns; ++j) {
+					for (index_type i = 0; i < _Rows; ++i) {
+						for (index_type j = 0; j < _Columns; ++j) {
 							result.At(i, j) = lhs.At(i, j) - rhs.At(i, j);
 						}
 					}
@@ -53,7 +53,7 @@ namespace MathLib {
 		}
 
 		
-		template<typename T,  const unsigned _Rows, const unsigned _Columns, typename LHS, typename RHS>
+		template<typename T,  size_type _Rows, size_type _Columns, typename LHS, typename RHS>
 		detail::MatrixSubtraction<T, _Rows, _Columns, LHS, RHS> operator-(
 			const MatrixBase<T, _Rows, _Columns, LHS>& lhs, 
 			const MatrixBase<T, _Rows, _Columns, RHS>& rhs) 

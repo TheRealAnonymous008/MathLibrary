@@ -5,14 +5,14 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned N, typename Derived>
+		template<typename T, size_type N, typename Derived>
 		class VectorBase {
 		public:
-			T operator[](const unsigned& i) const {
+			T operator[](const index_type& i) const {
 				return  static_cast<Derived const&>(*this)[i];
 			}
 
-			constexpr unsigned Size() const {
+			constexpr size_type Size() const {
 				return  static_cast<Derived const&>(*this).Size();
 			}
 
@@ -23,7 +23,7 @@ namespace MathLib {
 
 		template<
 			typename T, 
-			const unsigned N,
+			size_type N,
 			typename LHS, typename RHS
 		>
 		bool operator==(
@@ -36,7 +36,7 @@ namespace MathLib {
 			auto left = lhs.Evaluate();
 			auto right = rhs.Evaluate();
 
-			for (unsigned i = 0; i < lhs.Size(); ++i) {
+			for (index_type i = 0; i < lhs.Size(); ++i) {
 				if (left[i] != right[i])
 					return false;
 			}
@@ -45,7 +45,7 @@ namespace MathLib {
 
 		template<
 			typename T, 
-			const unsigned N,
+			size_type N,
 			typename LHS, typename RHS
 		>
 		bool operator!=(const VectorBase<T, N, LHS>& lhs, const VectorBase<T, N, RHS>& rhs) {
@@ -55,7 +55,7 @@ namespace MathLib {
 			auto left = lhs.Evaluate();
 			auto right = rhs.Evaluate();
 
-			for (unsigned i = 0; i < lhs.Size(); ++i) {
+			for (index_type i = 0; i < lhs.Size(); ++i) {
 				if (left[i] != right[i])
 					return true;
 			}

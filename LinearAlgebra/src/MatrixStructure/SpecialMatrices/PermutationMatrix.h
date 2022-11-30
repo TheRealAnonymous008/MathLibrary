@@ -12,15 +12,15 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned N>
+		template<typename T, size_type N>
 		class PermutationMatrix : public SquareMatrixBase<T, N,
 			PermutationMatrix<T, N>> {
 		private:
-			std::vector<unsigned>* body = new std::vector<unsigned>(N);
+			std::vector<index_type>* body = new std::vector<index_type>(N);
 
-			bool IsPremutation(const std::vector<unsigned>& list) {
-				std::set<unsigned> set;
-				for (unsigned x : list) {
+			bool IsPremutation(const std::vector<index_type>& list) {
+				std::set<index_type> set;
+				for (index_type x : list) {
 					if (x < 0 || x >= N) {
 						return false;
 					}
@@ -32,48 +32,48 @@ namespace MathLib {
 
 		public:
 			PermutationMatrix() {
-				for (unsigned i = 0; i < N; ++i) {
+				for (index_type i = 0; i < N; ++i) {
 					(*body)[i] = i;
 				}
 			}
 
-			PermutationMatrix(const std::vector<unsigned>& list) {
+			PermutationMatrix(const std::vector<index_type>& list) {
 				if (!IsPremutation(list)) {
 					throw DimensionError();
 				}
 
-				for (unsigned i = 0; i < N; ++i) {
+				for (index_type i = 0; i < N; ++i) {
 					(*body)[i] = list[i];
 				}
 			}
 
-			PermutationMatrix& Permute(unsigned x, unsigned y) {
+			PermutationMatrix& Permute(index_type x, index_type y) {
 
 				std::swap((*body)[x], (*body)[y]);
 
 				return *this;
 			}
 
-			const unsigned Map(unsigned x)  const{
+			const index_type Map(index_type x)  const{
 				return (*body)[x];
 			}
 
-			constexpr unsigned Rows() const {
+			constexpr size_type Rows() const {
 				return N;
 			}
 
-			constexpr unsigned Columns() const {
+			constexpr size_type Columns() const {
 				return N;
 			}
 
-			T At(unsigned i, unsigned j) const {
+			T At(index_type i, index_type j) const {
 
 				return ((*body)[i] != j) ? T() : Identity<T>();
 			}
 
 			auto Evaluate() const {
 				SquareMatrix<T, N> result;
-				for (unsigned i = 0; i < N; ++i) {
+				for (index_type i = 0; i < N; ++i) {
 					result.At(i, (*body)[i]) = Identity<T>();
 				}
 

@@ -6,16 +6,19 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned N>
+		using size_type = const unsigned;
+		using index_type = int;
+
+		template<typename T, size_type N>
 		class Vector;
 
-		template<typename T, const unsigned Rows, const unsigned Columns>
+		template<typename T, size_type Rows, size_type Columns>
 		class Matrix;
 
-		template<typename T, const unsigned N, typename E>
+		template<typename T, size_type N, typename E>
 		class VectorBase;
 
-		template<typename T, const unsigned Rows, const unsigned Columns, typename E>
+		template<typename T, size_type Rows, size_type Columns, typename E>
 		class MatrixBase;
 	}
 }

@@ -9,7 +9,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, const unsigned N, typename V>
+			template<typename T, size_type N, typename V>
 			class VectorNegation : public VectorBase<T, N, 
 				VectorNegation<T, N, V>> {
 			private:
@@ -20,11 +20,11 @@ namespace MathLib {
 
 				}
 
-				T operator[](const unsigned& i) const {
+				T operator[](const index_type& i) const {
 					return -vec[i];
 				}
 
-				constexpr unsigned Size() const {
+				constexpr size_type Size() const {
 					return  vec.Size();
 				}
 				
@@ -33,7 +33,7 @@ namespace MathLib {
 					Vector<T, N> result;
 
 					OPENMP_PARALLELIZE
-					for (unsigned i = 0; i < N; ++i) {
+					for (index_type i = 0; i < N; ++i) {
 						result[i] = -vec[i];
 					}
 
@@ -44,7 +44,7 @@ namespace MathLib {
 
 		
 
-		template<typename T, const unsigned N, typename V>
+		template<typename T, size_type N, typename V>
 		detail::VectorNegation<T, N, V> operator-(
 			const VectorBase<T, N, V>& vec) 
 		{

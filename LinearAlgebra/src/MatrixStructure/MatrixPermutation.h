@@ -7,7 +7,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr >
+			template<typename T, size_type _Rows, size_type _Columns, typename Expr >
 			class MatrixRowPermutation : public MatrixBase<T, _Rows, _Columns,
 				MatrixRowPermutation<T, _Rows, _Columns, Expr>> {
 			private:
@@ -22,15 +22,15 @@ namespace MathLib {
 					}
 				}
 
-				T At(const unsigned& r, const unsigned& c) const {
+				T At(const index_type& r, const index_type& c) const {
 					return expr.At(permutation.Map(r), c);
 				}
 
-				constexpr unsigned Rows() const {
+				constexpr size_type Rows() const {
 					return  expr.Rows();
 				}
 
-				constexpr unsigned Columns() const {
+				constexpr size_type Columns() const {
 					return  expr.Columns();
 				}
 
@@ -38,8 +38,8 @@ namespace MathLib {
 					Matrix<T, _Rows, _Columns> result;
 
 					OPENMP_PARALLELIZE
-					for (unsigned i = 0; i < _Rows; ++i) {
-						for (unsigned j = 0; j < _Columns; ++j) {
+					for (index_type i = 0; i < _Rows; ++i) {
+						for (index_type j = 0; j < _Columns; ++j) {
 							result.At(i, j) = this->At(i, j);
 						}
 					}
@@ -48,7 +48,7 @@ namespace MathLib {
 				}
 			};
 
-			template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr >
+			template<typename T, size_type _Rows, size_type _Columns, typename Expr >
 			class MatrixColumnPermutation : public MatrixBase<T, _Rows, _Columns,
 				MatrixColumnPermutation<T, _Rows, _Columns, Expr>> {
 			private:
@@ -63,15 +63,15 @@ namespace MathLib {
 					}
 				}
 
-				T At(const unsigned& r, const unsigned& c) const {
+				T At(const index_type& r, const index_type& c) const {
 					return expr.At(r, permutation.Map(c));
 				}
 
-				constexpr unsigned Rows() const {
+				constexpr size_type Rows() const {
 					return  expr.Rows();
 				}
 
-				constexpr unsigned Columns() const {
+				constexpr size_type Columns() const {
 					return  expr.Columns();
 				}
 
@@ -79,8 +79,8 @@ namespace MathLib {
 					Matrix<T, _Rows, _Columns> result;
 
 					OPENMP_PARALLELIZE
-					for (unsigned i = 0; i < _Rows; ++i) {
-						for (unsigned j = 0; j < _Columns; ++j) {
+					for (index_type i = 0; i < _Rows; ++i) {
+						for (index_type j = 0; j < _Columns; ++j) {
 							result.At(i, j) = this->At(i, j);
 						}
 					}
@@ -89,7 +89,7 @@ namespace MathLib {
 				}
 			};
 
-			template<typename T, const unsigned N >
+			template<typename T, size_type N >
 			class PermutationComposition : public MatrixBase<T, N, N,
 				PermutationComposition<T, N>> {
 			private:
@@ -102,23 +102,23 @@ namespace MathLib {
 
 				}
 
-				T At(const unsigned& r, const unsigned& c) const {
+				T At(const index_type& r, const index_type& c) const {
 					return right.At(left.Map(r), c);
 				}
 
-				constexpr unsigned Rows() const {
+				constexpr size_type Rows() const {
 					return  N;
 				}
 
-				constexpr unsigned Columns() const {
+				constexpr size_type Columns() const {
 					return  N;
 				}
 
 				auto Evaluate() const {
-					std::vector<unsigned> arr = std::vector<unsigned>(N);
+					std::vector<index_type> arr = std::vector<index_type>(N);
 
 					OPENMP_PARALLELIZE
-					for (unsigned i = 0; i < N; ++i) {
+					for (index_type i = 0; i < N; ++i) {
 						arr[i] = right.Map(left.Map(i));
 					}
 
@@ -126,7 +126,7 @@ namespace MathLib {
 				}
 			};
 
-			template<typename T, const unsigned N >
+			template<typename T, size_type N >
 			class RowVectorPermutation : public VectorBase<T, N,
 				RowVectorPermutation<T, N>> {
 			private:
@@ -139,11 +139,11 @@ namespace MathLib {
 
 				}
 
-				T operator[](const unsigned& i) const {
+				T operator[](const index_type& i) const {
 					return right[left.Map(i)];
 				}
 
-				constexpr unsigned Size() const {
+				constexpr size_type Size() const {
 					return right.Size();
 				}
 
@@ -152,7 +152,7 @@ namespace MathLib {
 					Vector<T, N> result;
 
 					OPENMP_PARALLELIZE
-					for (unsigned i = 0; i < N; ++i) {
+					for (index_type i = 0; i < N; ++i) {
 						result[i] = (*this)[i];
 					}
 
@@ -162,7 +162,7 @@ namespace MathLib {
 		}
 
 
-		template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr>
+		template<typename T, size_type _Rows, size_type _Columns, typename Expr>
 		requires IsNotIdentityMatrix<Expr, T, _Columns>
 		detail::MatrixRowPermutation<T, _Rows, _Columns, Expr> operator*(
 			const PermutationMatrix<T, _Rows>& lhs,
@@ -171,7 +171,7 @@ namespace MathLib {
 			return  detail::MatrixRowPermutation<T, _Rows, _Columns, Expr>(lhs, *static_cast<const Expr*>(&rhs));;
 		}
 
-		template<typename T, const unsigned _Rows, const unsigned _Columns, typename Expr>\
+		template<typename T, size_type _Rows, size_type _Columns, typename Expr>\
 		requires IsNotIdentityMatrix<Expr, T, _Columns>
 		detail::MatrixColumnPermutation<T, _Rows, _Columns, Expr> operator*(
 			const MatrixBase<T, _Rows, _Columns, Expr>& lhs,
@@ -180,7 +180,7 @@ namespace MathLib {
 			return  detail::MatrixColumnPermutation<T, _Rows, _Columns, Expr>(*static_cast<const Expr*>(&lhs), rhs);;
 		}
 
-		template<typename T, const unsigned N>
+		template<typename T, size_type N>
 		detail::PermutationComposition<T, N> operator*(
 			const PermutationMatrix<T, N>& lhs,
 			const PermutationMatrix<T, N>& rhs)
@@ -188,7 +188,7 @@ namespace MathLib {
 			return  detail::PermutationComposition<T, N>(lhs, rhs);;
 		}
 
-		template<typename T, const unsigned N, typename Expr>
+		template<typename T, size_type N, typename Expr>
 		detail::RowVectorPermutation<T, N> operator*(
 			const PermutationMatrix<T, N>& lhs,
 			const VectorBase<T, N, Expr>& rhs)

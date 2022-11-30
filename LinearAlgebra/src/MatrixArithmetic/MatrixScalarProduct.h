@@ -9,7 +9,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, const unsigned _Rows, const unsigned _Columns, typename M>
+			template<typename T, size_type _Rows, size_type _Columns, typename M>
 			class MatrixScalarProduct : public MatrixBase<T, _Rows, _Columns, 
 				MatrixScalarProduct<T, _Rows, _Columns, M>> {
 			private:
@@ -21,15 +21,15 @@ namespace MathLib {
 
 				}
 
-				T At(const unsigned& r, const unsigned& c) const {
+				T At(const index_type& r, const index_type& c) const {
 					return  mat.At(r, c) * k;
 				}
 
-				constexpr unsigned Rows() const {
+				constexpr size_type Rows() const {
 					return  _Rows;
 				}
 
-				constexpr unsigned Columns() const {
+				constexpr size_type Columns() const {
 					return  _Columns;
 				}
 
@@ -38,8 +38,8 @@ namespace MathLib {
 					Matrix<T, _Rows, _Columns> result;
 
 					OPENMP_PARALLELIZE
-					for (unsigned i = 0; i < _Rows; ++i) {
-						for (unsigned j = 0; j < _Columns; ++j) {
+					for (index_type i = 0; i < _Rows; ++i) {
+						for (index_type j = 0; j < _Columns; ++j) {
 							result.At(i, j) = mat.At(i, j) * k;
 						}
 					}
@@ -51,7 +51,7 @@ namespace MathLib {
 
 		
 
-		template<typename T, const unsigned _Rows, const unsigned _Columns, typename M>
+		template<typename T, size_type _Rows, size_type _Columns, typename M>
 		detail::MatrixScalarProduct<T, _Rows, _Columns, M> operator*(
 			const MatrixBase<T, _Rows, _Columns, M>& mat, 
 			const T& c) 
@@ -59,7 +59,7 @@ namespace MathLib {
 			return detail::MatrixScalarProduct<T, _Rows, _Columns, M>(*static_cast<const M*>(&mat), *static_cast<const T*>(&c));
 		}
 
-		template<typename T, const unsigned _Rows, const unsigned _Columns, typename M>
+		template<typename T, size_type _Rows, size_type _Columns, typename M>
 		detail::MatrixScalarProduct<T, _Rows, _Columns, M> operator*(
 			const T& c, 
 			const MatrixBase<T, _Rows, _Columns, M>& mat) 

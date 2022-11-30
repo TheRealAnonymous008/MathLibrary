@@ -7,7 +7,7 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		template<typename T, const unsigned _Rows, const unsigned _Columns>
+		template<typename T, size_type _Rows, size_type _Columns>
 		struct PartialLUResult {
 			PermutationMatrix<T, _Rows> P;
 			SquareMatrix<T, _Rows> L;
@@ -26,7 +26,7 @@ namespace MathLib {
 			}
 		};
 
-		template<typename T, const unsigned _Rows, const unsigned _Columns>
+		template<typename T, size_type _Rows, size_type _Columns>
 		struct FullLUResult {
 			PermutationMatrix<T, _Rows> P;
 			SquareMatrix<T, _Rows> L;
