@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Natural.cpp" />
+    <ClCompile Include="pch.cpp">
+      <Filter>BoilerPlate</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="BoilerPlate">
+      <UniqueIdentifier>{4dc80d1c-3cca-4cee-9245-987ed5b365dc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <Filter>BoilerPlate</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>BoilerPlate</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
