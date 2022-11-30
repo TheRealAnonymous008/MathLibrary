@@ -1,3 +1,4 @@
+#pragma once
 #include "../../headers/Fwd.h"
 #include "../../Exceptions.h"
 
@@ -8,11 +9,15 @@
 namespace MathLib {
 	namespace NumberSystems {
 
-		class Natural : NaturalBase{
-		private:
-			std::vector<data_type>* body = new std::vector<unsigned>();
+		namespace detail {
 
-			std::vector<data_type> Parse(std::string str) {
+		}
+
+		class Natural : public NaturalBase<Natural>{
+		private:
+			std::vector<data_type>* body = new std::vector<data_type>();
+
+			std::vector<data_type> Parse(const string_type str) {
 				size_type N = str.size();
 				std::vector<data_type> result;
 
@@ -24,7 +29,7 @@ namespace MathLib {
 			}
 
 		public :
-			Natural(const string_type& value = "0") {
+			Natural(const string_type value = "0") {
 				*body = Parse(value);
 			}
 
@@ -39,6 +44,10 @@ namespace MathLib {
 
 			const std::vector<data_type> Digits() const {
 				return *this->body;
+			}
+
+			const Natural& Evaluate() const{
+				return *this;
 			}
 		};
 

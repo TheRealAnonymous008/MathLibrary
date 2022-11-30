@@ -1,8 +1,6 @@
 #pragma once 
 
 #include <iostream>
-#include "../Core.h"
-
 #include <math.h>
 
 namespace MathLib {
@@ -13,8 +11,13 @@ namespace MathLib {
 
 		using string_type = std::string;
 		using index_type = int;
-		using size_type = unsigned;
-		using data_type = unsigned;
+		using size_type = unsigned long long;
+		using data_type = unsigned long long;
+
+
+		namespace detail {
+			std::vector<data_type> Parse(const string_type str);
+		}
 
 		template<typename Derived>
 		class NumberBase;
