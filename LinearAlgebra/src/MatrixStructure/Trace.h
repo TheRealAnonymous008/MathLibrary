@@ -9,7 +9,6 @@ namespace MathLib {
 		T Trace(const SquareMatrixBase<T, N, Exp>& mat) {
 			T sum = T();
 
-			OPENMP_PARALLELIZE
 			for (unsigned i = 0; i < N; ++i) {
 				sum += mat.At(i, i);
 			}
