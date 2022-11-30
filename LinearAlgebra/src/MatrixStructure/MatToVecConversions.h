@@ -1,6 +1,7 @@
 #pragma once
 
-#include "../Objects/fwd.h"
+#include "../Objects/MatrixBase.h"
+#include "../Objects/VectorBase.h"
 
 #include <vector>
 #include <array>

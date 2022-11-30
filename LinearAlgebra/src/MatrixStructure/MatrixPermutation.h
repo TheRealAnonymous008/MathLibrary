@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Special Matrices/PermutationMatrix.h"
+#include "SpecialMatrices/PermutationMatrix.h"
 #include <concepts>
 
 namespace MathLib {

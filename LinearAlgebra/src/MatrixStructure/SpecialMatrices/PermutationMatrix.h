@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../Objects/MatrixBase.h"
-#include "../Objects/Matrix.h"
+#include "../../Objects/MatrixBase.h"
+#include "../../Objects/Matrix.h"
 #include "SquareOps.h"
-#include "../../Exceptions.h"
+#include "../../../Exceptions.h"
 
 #include <vector>
 #include <utility>

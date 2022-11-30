@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Special Matrices/SquareOps.h"
+#include "SpecialMatrices/SquareOps.h"
 
 namespace MathLib {
 	namespace LinearAlgebra {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "fwd.h"
+#include "../../headers/Fwd.h"
 
 namespace MathLib {
 	namespace LinearAlgebra {

@@ -5,8 +5,8 @@
 #include "../Objects/Matrix.h"
 #include "../Objects/MatrixBase.h"
 
-#include "../Matrix Structure/Slice.h"
-#include "../Matrix Structure/PlaceBlock.h"
+#include "../MatrixStructure/Slice.h"
+#include "../MatrixStructure/PlaceBlock.h"
 
 #define STRASSEN_MATRIX_THRESHOLD 1024
 

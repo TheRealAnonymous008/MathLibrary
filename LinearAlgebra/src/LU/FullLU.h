@@ -2,7 +2,7 @@
 
 #include "../Objects/MatrixBase.h"
 #include "../Objects/Matrix.h"
-#include "../Matrix Structure/Special Matrices/SquareOps.h"
+#include "../MatrixStructure/SpecialMatrices/SquareOps.h"
 #include "LUResult.h"
 
 #include <utility>

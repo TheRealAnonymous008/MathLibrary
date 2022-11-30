@@ -2,9 +2,9 @@
 
 #include "../Objects/MatrixBase.h"
 #include "../Objects/VectorBase.h"
-#include "../Matrix Structure/Special Matrices/SquareOps.h"
-#include "../Vector Arithmetic/UnitVector.h"
-#include "../Matrix Structure/VecToMatConversions.h"
+#include "../MatrixStructure/SpecialMatrices/SquareOps.h"
+#include "../VectorArithmetic/UnitVector.h"
+#include "../MatrixStructure/VecToMatConversions.h"
 
 #include "LinearSystemSolver.h"
 

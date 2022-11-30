@@ -1,5 +1,5 @@
 #pragma once
-#include "Exceptions.h"
+#include "../../Exceptions.h"
 
 #include "../Objects/VectorBase.h"
 

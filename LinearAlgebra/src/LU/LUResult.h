@@ -1,8 +1,8 @@
 #pragma once
 
 #include "../Objects/Matrix.h"
-#include "../Matrix Structure/Special Matrices/SquareOps.h"
-#include "../Matrix Structure/Special Matrices/PermutationMatrix.h"
+#include "../MatrixStructure/SpecialMatrices/SquareOps.h"
+#include "../MatrixStructure/SpecialMatrices/PermutationMatrix.h"
 
 namespace MathLib {
 	namespace LinearAlgebra {
