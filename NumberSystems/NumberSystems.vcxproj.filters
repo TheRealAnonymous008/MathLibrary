@@ -25,5 +25,8 @@
     <ClInclude Include="src\Natural\Natural.h">
       <Filter>Natural</Filter>
     </ClInclude>
+    <ClInclude Include="src\Natural\NaturalBase.h">
+      <Filter>Natural</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
