@@ -154,9 +154,6 @@ TEST(PLUQDecomposition, Nongenerated) {
 	auto X = lu.P * M * lu.Q;
 	auto Y = lu.L * lu.U;
 
-	X.Evaluate().Log();
-	Y.Evaluate().Log();
-
 	for (int i = 0; i < 3; ++i) {
 		for (int j = 0; j < 3; ++j) {
 			ASSERT_DOUBLE_EQ(X.At(i, j), Y.At(i, j));

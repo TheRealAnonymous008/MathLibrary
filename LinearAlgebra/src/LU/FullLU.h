@@ -52,14 +52,14 @@ namespace MathLib {
 					if (pivotIdx != column) {
 
 						OPENMP_PARALLELIZE
-						for (index_type row = column; row < _Rows; ++row) {
+						for (index_type row = 0; row < _Rows; ++row) {
 							std::swap(LU.U.At(row, column), LU.U.At(row, pivotIdx));
 						}
 
-						LU.Q.Permute(column, pivotIdx);
+						LU.Q.Permute(pivotIdx, column);
 
 						OPENMP_PARALLELIZE
-						for (index_type row = 0; row < column; ++row) {
+						for (index_type row = column; row < _Rows; ++row) {
 							std::swap(LU.L.At(row, column), LU.L.At(row, pivotIdx));
 						}
 					}
@@ -81,17 +81,17 @@ namespace MathLib {
 					LU::PermutePivotColumn(LU, row, pivot.second);
 
 					OPENMP_PARALLELIZE
-						for (index_type r = row + 1; r < _Rows; ++r) {
-							LU.L.At(r, row) = LU.U.At(r, row) / LU.U.At(row, row);
-						}
+					for (index_type r = row + 1; r < _Rows; ++r) {
+						LU.L.At(r, row) = LU.U.At(r, row) / LU.U.At(row, row);
+					}
 
 					OPENMP_PARALLELIZE
-						for (index_type r = row + 1; r < _Rows; ++r) {
-							for (index_type c = row + 1; c < _Columns; ++c) {
-								LU.U.At(r, c) -= LU.L.At(r, row) * LU.U.At(row, c);
-							}
-							LU.U.At(r, row) = T();
+					for (index_type r = row + 1; r < _Rows; ++r) {
+						for (index_type c = row + 1; c < _Columns; ++c) {
+							LU.U.At(r, c) -= LU.L.At(r, row) * LU.U.At(row, c);
 						}
+						LU.U.At(r, row) = T();
+					}
 
 					LU.L.At(row, row) = Identity<T>();
 				}
