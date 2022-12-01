@@ -8,6 +8,9 @@
     <Filter Include="Natural">
       <UniqueIdentifier>{3ca03602-440e-465d-a191-c93ed9add811}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{73ba5252-8155-4fb0-9c74-48d4ab6bb903}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -30,6 +33,9 @@
     </ClInclude>
     <ClInclude Include="src\Natural\NaturalAddition.h">
       <Filter>Natural</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\Parse.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
