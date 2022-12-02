@@ -1,5 +1,5 @@
 #pragma once
-#include "../Common/Core.h"
+
 
 #include "headers/Fwd.h"
 #include "headers/InnerProduct.h"

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "../Core.h"
+#include "Extern.h"
 
 namespace MathLib {
 	namespace LinearAlgebra {

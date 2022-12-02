@@ -157,5 +157,8 @@
     <ClInclude Include="src\VectorArithmetic\VectorSubtraction.h">
       <Filter>VectorArithmetic</Filter>
     </ClInclude>
+    <ClInclude Include="headers\Extern.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

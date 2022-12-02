@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="Core.h" />
     <ClInclude Include="Exceptions.h" />
+    <ClInclude Include="headers\Extern.h" />
     <ClInclude Include="headers\Fwd.h" />
     <ClInclude Include="headers\InnerProduct.h" />
     <ClInclude Include="headers\LU.h" />
