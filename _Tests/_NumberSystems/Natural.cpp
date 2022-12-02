@@ -11,3 +11,10 @@ TEST(NaturalNumbers, Basic) {
 
 	ASSERT_EQ(std::to_string(digits[0]), "123456789");
 }
+
+TEST(NaturalNumbers, Addition) {
+	Natural x = Natural("1245678901234567890");
+	Natural y = Natural("987654321987654321");
+
+	x + y;
+}

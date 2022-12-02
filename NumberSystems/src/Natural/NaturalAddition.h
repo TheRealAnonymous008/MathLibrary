@@ -8,7 +8,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class NaturalAddition : NaturalBase<NaturalAddition> {
+			class NaturalAddition : NaturalBase<NaturalAddition<LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -22,11 +22,12 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
+		requires IsNaturalNumber<LHS> && IsNaturalNumber<RHS>
 		detail::NaturalAddition<LHS, RHS> operator+(
-			const NaturalBase<LHS>& lhs,
-			const NaturalBase<RHS>& rhs)
+			const LHS& lhs,
+			const RHS& rhs)
 		{
-			return detail::NaturalAddition(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+			return detail::NaturalAddition(lhs, rhs);
 		}
 
 	}
