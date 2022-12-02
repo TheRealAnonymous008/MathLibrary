@@ -1,5 +1,7 @@
 #pragma once 
 
+#include "Extern.h"
+
 #include <iostream>
 #include <math.h>
 

@@ -11,10 +11,5 @@ namespace MathLib {
 		class NaturalBase {
 			
 		};
-
-		template<class T>
-		concept IsNaturalNumber = requires(T t) {
-			[] <typename X>(NaturalBase<X>&) {}(t);
-		};
 	}
 }

@@ -22,12 +22,11 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		requires IsNaturalNumber<LHS> && IsNaturalNumber<RHS>
 		detail::NaturalAddition<LHS, RHS> operator+(
-			const LHS& lhs,
-			const RHS& rhs)
+			const NaturalBase<LHS>& lhs,
+			const NaturalBase<RHS>& rhs)
 		{
-			return detail::NaturalAddition(lhs, rhs);
+			return detail::NaturalAddition(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

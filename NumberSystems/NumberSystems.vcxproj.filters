@@ -37,5 +37,11 @@
     <ClInclude Include="src\Utils\Parse.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="src\Utils\IsNumericString.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Extern.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
