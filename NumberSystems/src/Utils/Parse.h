@@ -18,9 +18,14 @@ namespace MathLib {
 				size_type N = str.size();
 				std::vector<data_type> result;
 
-				for (index_type i = 0; i < N; i += DIGIT_BASE_POWER) {
-					result.push_back(stoi(str.substr(i, DIGIT_BASE_POWER)));
+				index_type i = N - 1;
+				for (i = N - 1; i >= DIGIT_BASE_POWER; i -= DIGIT_BASE_POWER) {
+					result.push_back(stoi(str.substr(i - DIGIT_BASE_POWER + 1, DIGIT_BASE_POWER)));
 				}
+
+				result.push_back(stoi(str.substr(0, i + 1)));
+
+				std::reverse(result.begin(), result.end());
 
 				return result;
 			}

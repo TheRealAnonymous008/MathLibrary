@@ -9,7 +9,7 @@ TEST(NaturalNumbers, Basic) {
 
 	auto digits = x.Digits();
 
-	ASSERT_EQ(std::to_string(digits[0]), "123456789");
+	ASSERT_EQ(std::to_string(digits[0]), "12345");
 
 	ASSERT_THROW(Natural("abcd"), InvalidNumericString);
 	
