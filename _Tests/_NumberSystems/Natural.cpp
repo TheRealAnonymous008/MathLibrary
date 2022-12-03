@@ -66,4 +66,5 @@ TEST(NaturalNumbers, Ord) {
 	ASSERT_TRUE(z < y);
 	ASSERT_TRUE(x >= z);
 	ASSERT_TRUE(z <= y);
+	ASSERT_TRUE(x + y > y + z);
 }
