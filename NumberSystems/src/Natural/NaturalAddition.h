@@ -44,6 +44,10 @@ namespace MathLib {
 						digits[i] = digits[i] % DIGIT_BASE;
 					}
 
+					if (carry != 0) {
+						digits.push_back(carry);
+					}
+
 					return digits;
 				}
 
