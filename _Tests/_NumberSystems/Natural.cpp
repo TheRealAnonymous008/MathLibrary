@@ -16,10 +16,28 @@ TEST(NaturalNumbers, Basic) {
 }
 
 TEST(NaturalNumbers, Addition) {
-	Natural x = std::string("1234567890987654321");
-	Natural y = std::string("9876543210123456789");
+	Natural x = std::string("9999999999999999999999999999999999999");
+	Natural y = std::string("9999999999999999999999999999999999999");
 
 	Natural z = x + y;
 
-	std::cout<<z.Val()<<"\n";
+	ASSERT_EQ(z.Val(), "19999999999999999999999999999999999998");
+}
+
+TEST(NaturalNumbers, AdditionUnequalSizes) {
+	Natural x = std::string("9999999999999999999999999999999999999");
+	Natural y = std::string("1");
+
+	Natural z = x + y;
+
+	ASSERT_EQ(z.Val(), "10000000000000000000000000000000000000");
+}
+
+TEST(NaturalNumbers, Eager) {
+	Natural x = std::string("1292748172418241858125812871274128");
+	Natural y = std::string("112128912837121279414917241724174291");
+
+	Natural z = x + y;
+
+	ASSERT_EQ(z.Val(), z.Evaluate().Val());
 }

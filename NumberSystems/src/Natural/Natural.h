@@ -27,6 +27,14 @@ namespace MathLib {
 				*body = detail::Parse(value);
 			}
 
+			Natural(const vector_type vec) {
+				*body = vec;
+			}
+
+			void operator= (const vector_type vec) {
+				*body = vec;
+			}
+
 			void operator=(const Natural& expr) {
 				this->body = expr.body;
 			}

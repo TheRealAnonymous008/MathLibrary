@@ -36,17 +36,23 @@ namespace MathLib {
 
 					for (index_type i = minsize; i < lhs.Size(); ++i) {
 						result[i] = lvec[i] + carry;
-						carry = 0;
+						carry = result[i] / DIGIT_BASE;
+						result[i] = result[i] % DIGIT_BASE;
 					}
 
 					for (index_type i = minsize; i < rhs.Size(); ++i) {
-						result[i] = lvec[i] + carry;
-						carry = 0;
+						result[i] = rvec[i] + carry;
+						carry = result[i] / DIGIT_BASE;
+						result[i] = result[i] % DIGIT_BASE;
 					}
 				}
 
 				const vector_type Digits() const {
 					return result;
+				}
+
+				auto Evaluate() const {
+					return Natural(result);
 				}
 
 			};
