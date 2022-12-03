@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <math.h>
+#include <vector>
 
 namespace MathLib {
 	namespace NumberSystems {
@@ -15,7 +16,7 @@ namespace MathLib {
 		using index_type = int;
 		using size_type = unsigned long long;
 		using data_type = unsigned long long;
-
+		using vector_type = std::vector<data_type>;
 
 		template<typename Derived>
 		class NumberBase;

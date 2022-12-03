@@ -12,23 +12,36 @@ namespace MathLib {
 
 		class Natural : public NaturalBase<Natural>{
 		private:
-			std::vector<data_type>* body = new std::vector<data_type>();
+			vector_type* body = new vector_type();
 
 		public :
 			Natural(const string_type value = "0") {
 				*body = detail::Parse(value);
 			}
 
-			const string_type Val() const {
-				std::string result = "";
-				for (data_type data : *body) {
-					result += std::to_string(data);
-				}
+			~Natural() {
 
-				return result;
 			}
 
-			const std::vector<data_type> Digits() const {
+			void operator=(const string_type value) {
+				*body = detail::Parse(value)
+			}
+
+			void operator=(const Natural& expr) {
+				this->body = expr.body;
+			}
+
+			template<typename E>
+			Natural(const NaturalBase<E>& expr) {
+				*this->body = expr.Digits();
+			}
+
+			template<typename E>
+			void operator=(const NaturalBase<E>& expr) {
+				*this->body = expr.Digits();
+			}
+
+			const vector_type Digits() const {
 				return *this->body;
 			}
 

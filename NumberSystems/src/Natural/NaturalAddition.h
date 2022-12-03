@@ -18,6 +18,10 @@ namespace MathLib {
 					
 				}
 
+				const vector_type Digits() const {
+					return static_cast<Derived const&>(*this).Digits();
+				}
+
 			};
 		}
 
