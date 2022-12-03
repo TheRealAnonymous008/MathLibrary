@@ -15,10 +15,14 @@ namespace MathLib {
 			const string_type Val() const {
 				std::string result = "";
 				for (data_type data : Digits()) {
-					result += std::to_string(data);
+					result = std::to_string(data) + result;
 				}
 
 				return result;
+			}
+
+			const size_type Size() const {
+				return Digits().size();
 			}
 
 			const vector_type Digits() const {

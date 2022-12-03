@@ -25,8 +25,6 @@ namespace MathLib {
 
 				result.push_back(stoi(str.substr(0, i + 1)));
 
-				std::reverse(result.begin(), result.end());
-
 				return result;
 			}
 		}

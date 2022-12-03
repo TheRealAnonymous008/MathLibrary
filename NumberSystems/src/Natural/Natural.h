@@ -15,7 +15,7 @@ namespace MathLib {
 			vector_type* body = new vector_type();
 
 		public :
-			Natural(const string_type value = "0") {
+			Natural(const string_type& value = "0") {
 				*body = detail::Parse(value);
 			}
 
@@ -23,8 +23,8 @@ namespace MathLib {
 
 			}
 
-			void operator=(const string_type value) {
-				*body = detail::Parse(value)
+			void operator=(const string_type& value){
+				*body = detail::Parse(value);
 			}
 
 			void operator=(const Natural& expr) {
