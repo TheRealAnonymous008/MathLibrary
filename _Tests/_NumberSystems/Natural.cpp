@@ -41,3 +41,13 @@ TEST(NaturalNumbers, Eager) {
 
 	ASSERT_EQ(z.Val(), z.Evaluate().Val());
 }
+
+TEST(NaturalNumbers, PlusEqual) {
+	Natural x = std::string("1292748172418241858125812871274128");
+	Natural y = std::string("112128912837121279414917241724174291");
+
+	Natural z = x + y; 
+	x += y;
+
+	ASSERT_EQ(z.Val(), x.Val());
+}
