@@ -19,13 +19,18 @@ namespace MathLib {
 			}
 
 		public :
-			Natural(const string_type& value = "0") {
-				ClearDigits();
-				*body = detail::Parse(value);
+
+			Natural() {
+
 			}
 
 			~Natural() {
 
+			}			
+			
+			Natural(const string_type& value) {
+				ClearDigits();
+				*body = detail::Parse(value);
 			}
 
 			void operator=(const string_type& value){
@@ -90,6 +95,14 @@ namespace MathLib {
 				if (digit >= 0) {
 					this->body->insert(this->body->begin(), digit);
 				}
+			}
+
+			data_type operator[](index_type idx) const{
+				return (*this->body)[idx];
+			}
+
+			data_type& operator[](index_type idx) {
+				return (*this->body)[idx];
 			}
 
 			template<typename E>

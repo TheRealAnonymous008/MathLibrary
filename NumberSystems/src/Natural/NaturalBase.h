@@ -25,11 +25,15 @@ namespace MathLib {
 				return result;
 			}
 
+			data_type operator[](index_type idx) const {
+				return this->Digits()[idx];
+			}
+
 			const size_type Size() const {
 				return Digits().size();
 			}
 
-			const vector_type Digits() const {
+			const vector_type Digits() const{
 				return static_cast<Derived const&>(*this).Digits();
 			}
 

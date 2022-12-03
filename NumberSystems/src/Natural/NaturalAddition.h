@@ -13,57 +13,49 @@ namespace MathLib {
 				const LHS& lhs;
 				const RHS& rhs;
 
-				vector_type result;
+				Natural result;
 
-				const vector_type Calculate() const {
+				void Calculate() {
 					const size_type size = std::max(lhs.Size(), rhs.Size());
 					const size_type minsize = std::min(lhs.Size(), rhs.Size());
-
-					vector_type digits = vector_type(size);
-
-					auto lvec = lhs.Digits();
-					auto rvec = rhs.Digits();
 					data_type carry = 0;
 
-					for (index_type i = 0; i < minsize; ++i) {
-						digits[i] = lvec[i] + rvec[i] + carry;
 
-						carry = digits[i] / DIGIT_BASE;
-						digits[i] = digits[i] % DIGIT_BASE;
+					for (index_type i = 0; i < minsize; ++i) {
+						result.AddDigitLeft(lhs[i] + rhs[i] + carry);
+						carry = result[i] / DIGIT_BASE;
+						result[i] = result[i] % DIGIT_BASE;
 					}
 
 					for (index_type i = minsize; i < lhs.Size(); ++i) {
-						digits[i] = lvec[i] + carry;
-						carry = digits[i] / DIGIT_BASE;
-						digits[i] = digits[i] % DIGIT_BASE;
+						result.AddDigitLeft(lhs[i] +  carry);
+						carry = result[i] / DIGIT_BASE;
+						result[i] = result[i] % DIGIT_BASE;
 					}
 
 					for (index_type i = minsize; i < rhs.Size(); ++i) {
-						digits[i] = rvec[i] + carry;
-						carry = digits[i] / DIGIT_BASE;
-						digits[i] = digits[i] % DIGIT_BASE;
+						result.AddDigitLeft(rhs[i] + carry);
+						carry = result[i] / DIGIT_BASE;
+						result[i] = result[i] % DIGIT_BASE;
 					}
 
-					if (carry != 0) {
-						digits.push_back(carry);
-					}
-
-					return digits;
+					if (carry > 0)
+						result.AddDigitLeft(carry);
 				}
 
 
 			public: 
 				NaturalAddition(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
-					this->result = Calculate();
+					Calculate();
 					
 				}
 
 				const vector_type Digits() const {
-					return result;
+					return result.Digits();
 				}
 
 				auto Evaluate() const {
-					return Natural(result);
+					return result;
 				}
 
 			};
