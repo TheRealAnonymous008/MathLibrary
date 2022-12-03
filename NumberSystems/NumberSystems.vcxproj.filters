@@ -43,5 +43,14 @@
     <ClInclude Include="headers\Extern.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Natural\NaturalMultiplication.h">
+      <Filter>Natural</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Natural\NaturalOrder.h">
+      <Filter>Natural</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Natural\NaturalSubtraction.h">
+      <Filter>Natural</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

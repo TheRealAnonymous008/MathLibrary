@@ -51,3 +51,19 @@ TEST(NaturalNumbers, PlusEqual) {
 
 	ASSERT_EQ(z.Val(), x.Val());
 }
+
+TEST(NaturalNumbers, Ord) {
+	Natural p = std::string("1529489283429841241453295214");
+	Natural y = std::string("1529489283429941241453295214");
+	Natural x = std::string("1529489283429841241453295214");
+	Natural z = std::string( "321324352352352352532521231");
+
+	ASSERT_TRUE(x != y && y != z && x != z);
+	ASSERT_TRUE(y > x && x < y);
+	ASSERT_TRUE(p == x);
+	ASSERT_TRUE(p >= x && x <= p);
+	ASSERT_TRUE(x > z);
+	ASSERT_TRUE(z < y);
+	ASSERT_TRUE(x >= z);
+	ASSERT_TRUE(z <= y);
+}

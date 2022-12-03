@@ -5,66 +5,103 @@
 namespace MathLib {
 	namespace NumberSystems {
 
-		namespace detail {
+		template<typename LHS, typename RHS>
+		bool operator==(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			auto lvec = lhs.Digits();
+			auto rvec = rhs.Digits();
 
-			template<typename LHS, typename RHS>
-			class NaturalAddition : public NaturalBase<NaturalAddition<LHS, RHS>> {
-			private:
-				const LHS& lhs;
-				const RHS& rhs;
+			if (lvec.size() != rvec.size()) {
+				return false;
+			}
 
-				vector_type result;
+			size_type size = lvec.size();
 
-			public:
-				NaturalAddition(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+			OPENMP_PARALLELIZE
+			for (index_type i = 0; i < size; ++i) {
+				if (lvec[i] != rvec[i])
+					return false;
+			}
 
-					const size_type size = std::max(lhs.Size(), rhs.Size());
-					const size_type minsize = std::min(lhs.Size(), rhs.Size());
-
-					result = vector_type(size);
-
-					auto lvec = lhs.Digits();
-					auto rvec = rhs.Digits();
-					data_type carry = 0;
-
-					for (index_type i = 0; i < minsize; ++i) {
-						result[i] = lvec[i] + rvec[i] + carry;
-
-						carry = result[i] / DIGIT_BASE;
-						result[i] = result[i] % DIGIT_BASE;
-					}
-
-					for (index_type i = minsize; i < lhs.Size(); ++i) {
-						result[i] = lvec[i] + carry;
-						carry = result[i] / DIGIT_BASE;
-						result[i] = result[i] % DIGIT_BASE;
-					}
-
-					for (index_type i = minsize; i < rhs.Size(); ++i) {
-						result[i] = rvec[i] + carry;
-						carry = result[i] / DIGIT_BASE;
-						result[i] = result[i] % DIGIT_BASE;
-					}
-				}
-
-				const vector_type Digits() const {
-					return result;
-				}
-
-				auto Evaluate() const {
-					return Natural(result);
-				}
-
-			};
+			return true;
 		}
 
 		template<typename LHS, typename RHS>
-		detail::NaturalAddition<LHS, RHS> operator+(
-			const NaturalBase<LHS>& lhs,
-			const NaturalBase<RHS>& rhs)
-		{
-			return detail::NaturalAddition(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		bool operator!=(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			auto lvec = lhs.Digits();
+			auto rvec = rhs.Digits();
+
+			if (lvec.size() != rvec.size()) {
+				return true;
+			}
+
+			size_type size = lvec.size();
+
+			OPENMP_PARALLELIZE
+			for (index_type i = 0; i < size; ++i) {
+				if (lvec[i] != rvec[i])
+					return true;
+			}
+
+			return false;
 		}
 
+		template<typename LHS, typename RHS>
+		bool operator>(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			auto lvec = lhs.Digits();
+			auto rvec = rhs.Digits();
+
+			if (lvec.size() < rvec.size()) {
+				return false;
+			}
+			else if (lvec.size() > rvec.size()) {
+				return true;
+			}
+
+			size_type size = lvec.size();
+
+			for (index_type i = size - 1; i >= 0; --i) {
+				if (lvec[i] > rvec[i])
+					return true;
+				else if (lvec[i] < rvec[i]) {
+					return false;
+				}
+			}
+			return false;
+		}
+
+		template<typename LHS, typename RHS>
+		bool operator<(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			auto lvec = lhs.Digits();
+			auto rvec = rhs.Digits();
+
+			if (lvec.size() > rvec.size()) {
+				return false;
+			}
+			else if (lvec.size() < rvec.size()) {
+				return true;
+			}
+
+			size_type size = rvec.size();
+
+			for (index_type i = size - 1; i >= 0; --i) {
+				if (lvec[i] < rvec[i])
+					return true;
+				else if (lvec[i] > rvec[i]) {
+					return false;
+				}
+			}
+
+			return false;
+		}
+
+		template<typename LHS, typename RHS>
+		bool operator>=(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			return lhs > rhs || lhs == rhs;
+		}
+
+		template<typename LHS, typename RHS>
+		bool operator<=(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			return lhs < rhs || lhs == rhs;
+		}
 	}
 }

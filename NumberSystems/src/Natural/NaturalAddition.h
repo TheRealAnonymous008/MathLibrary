@@ -59,10 +59,7 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::NaturalAddition<LHS, RHS> operator+(
-			const NaturalBase<LHS>& lhs,
-			const NaturalBase<RHS>& rhs)
-		{
+		detail::NaturalAddition<LHS, RHS> operator+(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
 			return detail::NaturalAddition(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
