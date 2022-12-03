@@ -7,18 +7,15 @@ namespace MathLib {
 
 		template<typename LHS, typename RHS>
 		bool operator==(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			auto lvec = lhs.Digits();
-			auto rvec = rhs.Digits();
-
-			if (lvec.size() != rvec.size()) {
+			if (lhs.Size() != rhs.Size()) {
 				return false;
 			}
 
-			size_type size = lvec.size();
+			size_type size = lhs.Size();
 
 			OPENMP_PARALLELIZE
 			for (index_type i = 0; i < size; ++i) {
-				if (lvec[i] != rvec[i])
+				if (lhs[i] != rhs[i])
 					return false;
 			}
 
@@ -27,18 +24,15 @@ namespace MathLib {
 
 		template<typename LHS, typename RHS>
 		bool operator!=(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			auto lvec = lhs.Digits();
-			auto rvec = rhs.Digits();
-
-			if (lvec.size() != rvec.size()) {
+			if (lhs.Size() != rhs.Size()) {
 				return true;
 			}
 
-			size_type size = lvec.size();
+			size_type size = lhs.Size();
 
 			OPENMP_PARALLELIZE
 			for (index_type i = 0; i < size; ++i) {
-				if (lvec[i] != rvec[i])
+				if (lhs[i] != rhs[i])
 					return true;
 			}
 
@@ -47,22 +41,19 @@ namespace MathLib {
 
 		template<typename LHS, typename RHS>
 		bool operator>(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			auto lvec = lhs.Digits();
-			auto rvec = rhs.Digits();
-
-			if (lvec.size() < rvec.size()) {
+			if (lhs.Size() < rhs.Size()) {
 				return false;
 			}
-			else if (lvec.size() > rvec.size()) {
+			else if (lhs.Size() > rhs.Size()) {
 				return true;
 			}
 
-			size_type size = lvec.size();
+			size_type size = lhs.Size();
 
 			for (index_type i = size - 1; i >= 0; --i) {
-				if (lvec[i] > rvec[i])
+				if (lhs[i] > rhs[i])
 					return true;
-				else if (lvec[i] < rvec[i]) {
+				else if (lhs[i] < rhs[i]) {
 					return false;
 				}
 			}
@@ -71,22 +62,19 @@ namespace MathLib {
 
 		template<typename LHS, typename RHS>
 		bool operator<(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			auto lvec = lhs.Digits();
-			auto rvec = rhs.Digits();
-
-			if (lvec.size() > rvec.size()) {
+			if (lhs.Size() > rhs.Size()) {
 				return false;
 			}
-			else if (lvec.size() < rvec.size()) {
+			else if (lhs.Size() < rhs.Size()) {
 				return true;
 			}
 
-			size_type size = rvec.size();
+			size_type size = rhs.Size();
 
 			for (index_type i = size - 1; i >= 0; --i) {
-				if (lvec[i] < rvec[i])
+				if (lhs[i] < rhs[i])
 					return true;
-				else if (lvec[i] > rvec[i]) {
+				else if (lhs[i] > rhs[i]) {
 					return false;
 				}
 			}
