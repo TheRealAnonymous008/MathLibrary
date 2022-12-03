@@ -43,7 +43,7 @@ TEST(NaturalNumbers, Eager) {
 }
 
 TEST(NaturalNumbers, PlusEqual) {
-	Natural x = std::string("1292748172418241858125812871274128");
+	Natural x = std::string(  "1292748172418241858125812871274128");
 	Natural y = std::string("112128912837121279414917241724174291");
 
 	Natural z = x + y; 
