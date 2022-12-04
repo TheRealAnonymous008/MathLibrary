@@ -85,16 +85,32 @@ namespace MathLib {
 				return *this->body;
 			}
 
-			void AddDigitLeft(data_type digit) {
+			const Natural& AddDigitLeft(data_type digit) {
 				if (digit >= 0) {
 					this->body->push_back(digit);
 				}
+				return *this;
 			}
 
-			void AddDigitRight(data_type digit) {
+			const Natural& AddDigitRight(data_type digit) {
 				if (digit >= 0) {
 					this->body->insert(this->body->begin(), digit);
 				}
+				return *this;
+			}
+
+			const Natural& RemoveLeadingZeroes() {
+				index_type i = Size() - 1;;
+				for (i; i >= 0; --i) {
+					if (this->body->at(i) != 0) {
+						break;
+					}
+				}
+
+				if (i > 1)
+					this->body->resize(i + 1);
+
+				return *this;
 			}
 
 			data_type operator[](index_type idx) const{

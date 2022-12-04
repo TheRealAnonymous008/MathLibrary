@@ -15,6 +15,12 @@ TEST(NaturalNumbers, Basic) {
 	
 }
 
+TEST(NaturalNumbers, Zero) {
+	Natural x = Natural();
+
+	ASSERT_EQ(x.Val(), "0");
+}
+
 TEST(NaturalNumbers, Addition) {
 	Natural x = std::string("9999999999999999999999999999999999999");
 	Natural y = std::string("9999999999999999999999999999999999999");

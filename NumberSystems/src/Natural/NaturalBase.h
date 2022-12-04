@@ -13,9 +13,13 @@ namespace MathLib {
 
 		public:
 			const string_type Val() const {
-				std::string result = "";
-				
+
 				vector_type digits = Digits();
+				if (digits.size() == 0) {
+					return "0";
+				}
+
+				std::string result = "";
 				for (auto itr = digits.begin(); itr != digits.end() - 1; ++itr) {
 					result = detail::ToStringWithPad(*itr) + result;
 				}
