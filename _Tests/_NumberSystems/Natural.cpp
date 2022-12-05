@@ -74,3 +74,22 @@ TEST(NaturalNumbers, Ord) {
 	ASSERT_TRUE(z <= y);
 	ASSERT_TRUE(x + y > y + z);
 }
+
+TEST(NaturalNumbers, Subtraction) {
+	Natural x = std::string("99999999999999999999");
+	Natural y = std::string(         "12345678910");
+
+	ASSERT_THROW(y - x, InvalidSubtractionOperation);
+
+	ASSERT_EQ(x - y, Natural("99999999987654321089"));
+}
+
+TEST(NaturalNumbers, SubtractionWithBorrow) {
+	Natural x = std::string("100000000000000");
+	Natural y = std::string(    "12345678910");
+
+	auto z = x - y;
+
+	std::cout << z.Val();
+	ASSERT_EQ(z + y, x);
+}

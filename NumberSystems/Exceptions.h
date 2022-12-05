@@ -13,5 +13,11 @@ namespace MathLib{
 			}
 		};
 
+		class InvalidSubtractionOperation : public std::exception {
+		public:
+			std::string what() {
+				return "Trying to perform a subtaction operation will yield a result not in the number system.";
+			}
+		};
 	}
 }

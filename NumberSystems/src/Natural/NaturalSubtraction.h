@@ -1,6 +1,9 @@
 #pragma once
 
+#include "../../Exceptions.h"
+
 #include "Natural.h"
+#include "NaturalOrder.h"
 
 namespace MathLib {
 	namespace NumberSystems {
@@ -13,25 +16,41 @@ namespace MathLib {
 				const LHS& lhs;
 				const RHS& rhs;
 
-				vector_type result;
+				Natural result;
 
-				const vector_type Calculate() const {
-					vector_type digits = vector_type();
+				void Calculate() {
+					if (lhs < rhs) {
+						throw InvalidSubtractionOperation();
+					}
 
-					return digits;
+					result = lhs;
+
+					for (index_type i = 0; i < rhs.Size(); ++i) {
+						data_type left_digit = result[i];
+						data_type right_digit = rhs[i];
+
+						if (left_digit < right_digit) {
+							result[i + 1] -= 1;
+							left_digit += DIGIT_BASE;
+						}
+
+						result[i] = left_digit - right_digit;
+					}
+
+					result.RemoveLeadingZeroes();
 				}
 
 			public:
 				NaturalSubtraction(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
-					this->result = Calculate();
+					Calculate();
 				}
 
 				const vector_type Digits() const {
-					return result;
+					return result.Digits();
 				}
 
 				auto Evaluate() const {
-					return Natural(result);
+					return result;
 				}
 
 			};

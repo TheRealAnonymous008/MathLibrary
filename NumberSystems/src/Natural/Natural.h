@@ -86,9 +86,7 @@ namespace MathLib {
 			}
 
 			const Natural& AddDigitLeft(data_type digit) {
-				if (digit >= 0) {
-					this->body->push_back(digit);
-				}
+				this->body->push_back(digit);
 				return *this;
 			}
 
