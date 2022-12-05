@@ -9,7 +9,7 @@
 namespace MathLib {
 	namespace NumberSystems {
 
-		const unsigned DIGIT_BASE_POWER = 9;
+		const unsigned DIGIT_BASE_POWER = 10;
 		const unsigned long long DIGIT_BASE = static_cast<const unsigned long long>(pow(10, DIGIT_BASE_POWER));
 
 		using string_type = std::string;

@@ -52,5 +52,11 @@
     <ClInclude Include="src\Natural\NaturalSubtraction.h">
       <Filter>Natural</Filter>
     </ClInclude>
+    <ClInclude Include="src\Natural\Multiplication\Classical.h">
+      <Filter>Natural</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Natural\Multiplication\Karatsuba.h">
+      <Filter>Natural</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

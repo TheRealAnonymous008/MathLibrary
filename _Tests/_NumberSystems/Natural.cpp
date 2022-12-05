@@ -9,10 +9,7 @@ TEST(NaturalNumbers, Basic) {
 
 	auto digits = x.Digits();
 
-	ASSERT_EQ(std::to_string(digits[0]), "141516999");
-
 	ASSERT_THROW(Natural("abcd"), InvalidNumericString);
-	
 }
 
 TEST(NaturalNumbers, Zero) {
@@ -91,4 +88,6 @@ TEST(NaturalNumbers, SubtractionWithBorrow) {
 	auto z = x - y;
 
 	ASSERT_EQ(z + y, x);
+	ASSERT_EQ(x + y - y, x);
+
 }

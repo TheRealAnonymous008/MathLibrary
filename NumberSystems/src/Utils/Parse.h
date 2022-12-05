@@ -20,6 +20,10 @@ namespace MathLib {
 				return std::to_string(data);
 			}
 
+			inline data_type StringToDigit(const string_type& str) {
+				return strtoull(str.c_str(), NULL, 10);
+			}
+
 			inline vector_type Parse(const string_type str) {
 				if (!IsNumericString(str)) {
 					throw InvalidNumericString();
@@ -30,10 +34,10 @@ namespace MathLib {
 
 				index_type i = N - 1;
 				for (i = N - 1; i >= DIGIT_BASE_POWER; i -= DIGIT_BASE_POWER) {
-					result.push_back(stoi(str.substr(i - DIGIT_BASE_POWER + 1, DIGIT_BASE_POWER)));
+					result.push_back(StringToDigit(str.substr(i - DIGIT_BASE_POWER + 1, DIGIT_BASE_POWER)));
 				}
 
-				result.push_back(stoi(str.substr(0, i + 1)));
+				result.push_back(StringToDigit(str.substr(0, i + 1)));
 
 				return result;
 			}

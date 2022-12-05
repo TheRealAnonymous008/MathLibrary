@@ -134,6 +134,8 @@
     <ClInclude Include="headers\Extern.h" />
     <ClInclude Include="headers\Fwd.h" />
     <ClInclude Include="headers\Natural.h" />
+    <ClInclude Include="src\Natural\Multiplication\Classical.h" />
+    <ClInclude Include="src\Natural\Multiplication\Karatsuba.h" />
     <ClInclude Include="src\Natural\Natural.h" />
     <ClInclude Include="src\Natural\NaturalAddition.h" />
     <ClInclude Include="src\Natural\NaturalBase.h" />
