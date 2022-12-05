@@ -3,7 +3,6 @@
 #include "../../Exceptions.h"
 
 #include "Natural.h"
-#include "NaturalOrder.h"
 
 namespace MathLib {
 	namespace NumberSystems {
@@ -19,7 +18,7 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					// Implement Karatsuba.
+					
 				}
 
 			public:
