@@ -90,6 +90,5 @@ TEST(NaturalNumbers, SubtractionWithBorrow) {
 
 	auto z = x - y;
 
-	std::cout << z.Val();
 	ASSERT_EQ(z + y, x);
 }
