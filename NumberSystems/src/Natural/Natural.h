@@ -14,7 +14,7 @@ namespace MathLib {
 		private:
 			vector_type* body = new vector_type();
 
-			void ClearDigits() {
+			void ClearLimbs() {
 				body->clear();
 			}
 
@@ -29,55 +29,75 @@ namespace MathLib {
 			}			
 			
 			Natural(const string_type& value) {
-				ClearDigits();
+				ClearLimbs();
 				*body = detail::Parse(value);
 			}
 
 			void operator=(const string_type& value){
-				ClearDigits();
+				ClearLimbs();
 				auto digits = detail::Parse(value);
 
 				for (auto d : digits) {
-					AddDigitLeft(d);
+					AddLimbLeft(d);
 				}
 			}
 
+			Natural(limb_type value) {
+				ClearLimbs();
+
+				while (value > DIGIT_BASE) {
+					AddLimbLeft(value % DIGIT_BASE);
+					value = value / DIGIT_BASE;
+				}
+				AddLimbLeft(value);
+			}
+
+			void operator=(limb_type value) {
+				ClearLimbs();
+
+				while (value > DIGIT_BASE) {
+					AddLimbLeft(value % DIGIT_BASE);
+					value = value / DIGIT_BASE;
+				}
+				AddLimbLeft(value);
+			}
+
 			Natural(const vector_type vec) {
-				ClearDigits();
+				ClearLimbs();
 				for (auto d : vec) {
-					AddDigitLeft(d);
+					AddLimbLeft(d);
 				}
 			}
 
 			void operator= (const vector_type vec) {
-				ClearDigits();
+				ClearLimbs();
 				for (auto d : vec) {
-					AddDigitLeft(d);
+					AddLimbLeft(d);
 				}
 			}
 
 			void operator=(const Natural& expr) {
-				ClearDigits();
+				ClearLimbs();
 				for (auto d : *expr.body) {
-					AddDigitLeft(d);
+					AddLimbLeft(d);
 				}
 			}
 
 			template<typename E>
 			Natural(const NaturalBase<E>& expr) {
-				ClearDigits();
+				ClearLimbs();
 				auto digits = expr.Digits();
 				for (auto d : digits) {
-					AddDigitLeft(d);
+					AddLimbLeft(d);
 				}
 			}
 
 			template<typename E>
 			void operator=(const NaturalBase<E>& expr) {
-				ClearDigits();
+				ClearLimbs();
 				auto digits = expr.Digits();
 				for (auto d : digits) {
-					AddDigitLeft(d);
+					AddLimbLeft(d);
 				}
 			}
 
@@ -85,12 +105,12 @@ namespace MathLib {
 				return *this->body;
 			}
 
-			const Natural& AddDigitLeft(data_type digit) {
+			const Natural& AddLimbLeft(limb_type digit) {
 				this->body->push_back(digit);
 				return *this;
 			}
 
-			const Natural& AddDigitRight(data_type digit) {
+			const Natural& AddLimbRight(limb_type digit) {
 				if (digit >= 0) {
 					this->body->insert(this->body->begin(), digit);
 				}
@@ -111,11 +131,11 @@ namespace MathLib {
 				return *this;
 			}
 
-			data_type operator[](index_type idx) const{
+			limb_type operator[](index_type idx) const{
 				return (*this->body)[idx];
 			}
 
-			data_type& operator[](index_type idx) {
+			limb_type& operator[](index_type idx) {
 				return (*this->body)[idx];
 			}
 

@@ -18,29 +18,29 @@ namespace MathLib {
 				void Calculate() {
 					const size_type size = std::max(lhs.Size(), rhs.Size());
 					const size_type minsize = std::min(lhs.Size(), rhs.Size());
-					data_type carry = 0;
+					limb_type carry = 0;
 
 
 					for (index_type i = 0; i < minsize; ++i) {
-						result.AddDigitLeft(lhs[i] + rhs[i] + carry);
+						result.AddLimbLeft(lhs[i] + rhs[i] + carry);
 						carry = result[i] / DIGIT_BASE;
 						result[i] = result[i] % DIGIT_BASE;
 					}
 
 					for (index_type i = minsize; i < lhs.Size(); ++i) {
-						result.AddDigitLeft(lhs[i] +  carry);
+						result.AddLimbLeft(lhs[i] +  carry);
 						carry = result[i] / DIGIT_BASE;
 						result[i] = result[i] % DIGIT_BASE;
 					}
 
 					for (index_type i = minsize; i < rhs.Size(); ++i) {
-						result.AddDigitLeft(rhs[i] + carry);
+						result.AddLimbLeft(rhs[i] + carry);
 						carry = result[i] / DIGIT_BASE;
 						result[i] = result[i] % DIGIT_BASE;
 					}
 
 					if (carry > 0)
-						result.AddDigitLeft(carry);
+						result.AddLimbLeft(carry);
 				}
 
 

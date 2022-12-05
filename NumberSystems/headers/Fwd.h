@@ -9,14 +9,15 @@
 namespace MathLib {
 	namespace NumberSystems {
 
-		const unsigned DIGIT_BASE_POWER = 10;
-		const unsigned long long DIGIT_BASE = static_cast<const unsigned long long>(pow(10, DIGIT_BASE_POWER));
+		const unsigned LIMB_BASE_POWER = 10;
+		const unsigned LIMB_BASE_RADIX = 10;
+		const unsigned long long LIMB_BASE = static_cast<const unsigned long long>(pow(LIMB_BASE_RADIX, LIMB_BASE_POWER));
 
 		using string_type = std::string;
 		using index_type = unsigned long long;
 		using size_type = unsigned long long;
-		using data_type = unsigned long long;
-		using vector_type = std::vector<data_type>;
+		using limb_type = unsigned long long;
+		using vector_type = std::vector<limb_type>;
 
 		template<typename Derived>
 		class NumberBase;

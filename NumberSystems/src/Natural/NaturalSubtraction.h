@@ -26,8 +26,8 @@ namespace MathLib {
 					result = lhs;
 
 					for (index_type i = 0; i < rhs.Size(); ++i) {
-						data_type left_digit = result[i];
-						data_type right_digit = rhs[i];
+						limb_type left_digit = result[i];
+						limb_type right_digit = rhs[i];
 
 						if (left_digit < right_digit) {
 							result[i + 1] -= 1;

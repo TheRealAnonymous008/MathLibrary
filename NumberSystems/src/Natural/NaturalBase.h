@@ -29,7 +29,7 @@ namespace MathLib {
 				return result;
 			}
 
-			data_type operator[](index_type idx) const {
+			limb_type operator[](index_type idx) const {
 				return this->Digits()[idx];
 			}
 
