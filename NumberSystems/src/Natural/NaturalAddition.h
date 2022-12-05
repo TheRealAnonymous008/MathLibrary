@@ -23,20 +23,20 @@ namespace MathLib {
 
 					for (index_type i = 0; i < minsize; ++i) {
 						result.AddLimbLeft(lhs[i] + rhs[i] + carry);
-						carry = result[i] / DIGIT_BASE;
-						result[i] = result[i] % DIGIT_BASE;
+						carry = result[i] / LIMB_BASE;
+						result[i] = result[i] % LIMB_BASE;
 					}
 
 					for (index_type i = minsize; i < lhs.Size(); ++i) {
 						result.AddLimbLeft(lhs[i] +  carry);
-						carry = result[i] / DIGIT_BASE;
-						result[i] = result[i] % DIGIT_BASE;
+						carry = result[i] / LIMB_BASE;
+						result[i] = result[i] % LIMB_BASE;
 					}
 
 					for (index_type i = minsize; i < rhs.Size(); ++i) {
 						result.AddLimbLeft(rhs[i] + carry);
-						carry = result[i] / DIGIT_BASE;
-						result[i] = result[i] % DIGIT_BASE;
+						carry = result[i] / LIMB_BASE;
+						result[i] = result[i] % LIMB_BASE;
 					}
 
 					if (carry > 0)

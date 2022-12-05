@@ -45,9 +45,9 @@ namespace MathLib {
 			Natural(limb_type value) {
 				ClearLimbs();
 
-				while (value > DIGIT_BASE) {
-					AddLimbLeft(value % DIGIT_BASE);
-					value = value / DIGIT_BASE;
+				while (value > LIMB_BASE) {
+					AddLimbLeft(value % LIMB_BASE);
+					value = value / LIMB_BASE;
 				}
 				AddLimbLeft(value);
 			}
@@ -55,9 +55,9 @@ namespace MathLib {
 			void operator=(limb_type value) {
 				ClearLimbs();
 
-				while (value > DIGIT_BASE) {
-					AddLimbLeft(value % DIGIT_BASE);
-					value = value / DIGIT_BASE;
+				while (value > LIMB_BASE) {
+					AddLimbLeft(value % LIMB_BASE);
+					value = value / LIMB_BASE;
 				}
 				AddLimbLeft(value);
 			}

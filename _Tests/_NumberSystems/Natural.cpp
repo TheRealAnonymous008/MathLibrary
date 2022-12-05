@@ -18,7 +18,16 @@ TEST(NaturalNumbers, Zero) {
 	ASSERT_EQ(x.Val(), "0");
 }
 
-TEST(NaturalNumbers, Addition) {
+TEST(NaturalNumbers, ULL) {
+	Natural x = 123456;
+	ASSERT_EQ(x.Val(), "123456");
+
+	Natural y = ULLONG_MAX;
+	ASSERT_EQ(y.Val(), std::to_string(ULLONG_MAX));
+
+}
+
+TEST(NaturalArithmetic, Addition) {
 	Natural x = std::string("9999999999999999999999999999999999999");
 	Natural y = std::string("9999999999999999999999999999999999999");
 
@@ -27,7 +36,7 @@ TEST(NaturalNumbers, Addition) {
 	ASSERT_EQ(z.Val(), "19999999999999999999999999999999999998");
 }
 
-TEST(NaturalNumbers, AdditionUnequalSizes) {
+TEST(NaturalArithmetic, AdditionUnequalSizes) {
 	Natural x = std::string("9999999999999999999999999999999999999");
 	Natural y = std::string("1");
 
@@ -36,7 +45,7 @@ TEST(NaturalNumbers, AdditionUnequalSizes) {
 	ASSERT_EQ(z.Val(), "10000000000000000000000000000000000000");
 }
 
-TEST(NaturalNumbers, Eager) {
+TEST(NaturalArithmetic, Eager) {
 	Natural x = std::string("1292748172418241858125812871274128");
 	Natural y = std::string("112128912837121279414917241724174291");
 
@@ -45,7 +54,7 @@ TEST(NaturalNumbers, Eager) {
 	ASSERT_EQ(z.Val(), z.Evaluate().Val());
 }
 
-TEST(NaturalNumbers, PlusEqual) {
+TEST(NaturalArithmetic, PlusEqual) {
 	Natural x = std::string(  "1292748172418241858125812871274128");
 	Natural y = std::string("112128912837121279414917241724174291");
 
@@ -55,7 +64,7 @@ TEST(NaturalNumbers, PlusEqual) {
 	ASSERT_EQ(z.Val(), x.Val());
 }
 
-TEST(NaturalNumbers, Ord) {
+TEST(NaturalArithmetic, Ord) {
 	Natural p = std::string("1529489283429841241453295214");
 	Natural y = std::string("1529489283429941241453295214");
 	Natural x = std::string("1529489283429841241453295214");
@@ -72,7 +81,7 @@ TEST(NaturalNumbers, Ord) {
 	ASSERT_TRUE(x + y > y + z);
 }
 
-TEST(NaturalNumbers, Subtraction) {
+TEST(NaturalArithmetic, Subtraction) {
 	Natural x = std::string("99999999999999999999");
 	Natural y = std::string(         "12345678910");
 
@@ -81,7 +90,7 @@ TEST(NaturalNumbers, Subtraction) {
 	ASSERT_EQ(x - y, Natural("99999999987654321089"));
 }
 
-TEST(NaturalNumbers, SubtractionWithBorrow) {
+TEST(NaturalArithmetic, SubtractionWithBorrow) {
 	Natural x = std::string("100000000000000");
 	Natural y = std::string(    "12345678910");
 

@@ -12,7 +12,7 @@ namespace MathLib {
 		namespace detail {
 
 			inline string_type ToStringWithPad(limb_type data) {
-				data += DIGIT_BASE;
+				data += LIMB_BASE;
 				return std::to_string(data).substr(1);
 			}
 
@@ -36,8 +36,8 @@ namespace MathLib {
 				index_type i = N - 1;
 
 				// Warning! This implementation is dependent on the radix. It assumes base = 10.
-				for (i = N - 1; i >= DIGIT_BASE_POWER; i -= DIGIT_BASE_POWER) {
-					buffer = str.substr(i - DIGIT_BASE_POWER + 1, DIGIT_BASE_POWER);
+				for (i = N - 1; i >= LIMB_BASE_POWER; i -= LIMB_BASE_POWER) {
+					buffer = str.substr(i - LIMB_BASE_POWER + 1, LIMB_BASE_POWER);
 					result.push_back(StringToDigit(buffer));
 				}
 

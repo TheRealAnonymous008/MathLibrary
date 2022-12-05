@@ -31,7 +31,7 @@ namespace MathLib {
 
 						if (left_digit < right_digit) {
 							result[i + 1] -= 1;
-							left_digit += DIGIT_BASE;
+							left_digit += LIMB_BASE;
 						}
 
 						result[i] = left_digit - right_digit;
