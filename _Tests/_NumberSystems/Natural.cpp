@@ -16,6 +16,10 @@ TEST(NaturalNumbers, Zero) {
 	Natural x = Natural();
 
 	ASSERT_EQ(x.Val(), "0");
+	
+	Natural y = Natural("201221765421199947510");
+
+	ASSERT_EQ((x + y).Val(), y.Val());
 }
 
 TEST(NaturalNumbers, ULL) {
@@ -92,11 +96,26 @@ TEST(NaturalArithmetic, Subtraction) {
 
 TEST(NaturalArithmetic, SubtractionWithBorrow) {
 	Natural x = std::string("100000000000000");
-	Natural y = std::string(    "12345678910");
+	Natural y = std::string("12345678910");
 
 	auto z = x - y;
 
 	ASSERT_EQ(z + y, x);
 	ASSERT_EQ(x + y - y, x);
 
+}
+
+TEST(NaturalArithmetic, MultiplicationSmall) {
+	Natural x = std::string("1234123412341234");
+	Natural y = 2;
+
+	ASSERT_EQ((x * y).Val(), "2468246824682468");
+	ASSERT_EQ((x * Natural(3)).Val(), (x * y + x).Val());
+}
+
+TEST(NaturalArithmetic, MultiplicationLarge) {
+	Natural x = std::string("1291481248124155");
+	Natural y = std::string("8241255743525941");
+
+	ASSERT_EQ((x * y).Val(), "10643427253759243309891831204855");
 }

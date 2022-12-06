@@ -11,6 +11,9 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{73ba5252-8155-4fb0-9c74-48d4ab6bb903}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Natural\Multiplication">
+      <UniqueIdentifier>{0c21828c-6de2-4d80-a6ac-7ce8e48eb7bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -53,10 +56,13 @@
       <Filter>Natural</Filter>
     </ClInclude>
     <ClInclude Include="src\Natural\Multiplication\Classical.h">
-      <Filter>Natural</Filter>
+      <Filter>Natural\Multiplication</Filter>
     </ClInclude>
     <ClInclude Include="src\Natural\Multiplication\Karatsuba.h">
-      <Filter>Natural</Filter>
+      <Filter>Natural\Multiplication</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\AddLimbsWithCarry.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

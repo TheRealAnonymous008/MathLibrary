@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Natural.h"
+#include "../Utils/AddLimbsWithCarry.h"
 
 namespace MathLib {
 	namespace NumberSystems {
@@ -22,21 +23,21 @@ namespace MathLib {
 
 
 					for (index_type i = 0; i < minsize; ++i) {
-						result.AddMostLimb(lhs[i] + rhs[i] + carry);
-						carry = result[i] / LIMB_BASE;
-						result[i] = result[i] % LIMB_BASE;
+						auto addition = detail::AddLimbsWithCarry(lhs[i], rhs[i], carry);
+						result.AddMostLimb(addition.value);
+						carry = addition.carry;
 					}
 
 					for (index_type i = minsize; i < lhs.Size(); ++i) {
-						result.AddMostLimb(lhs[i] +  carry);
-						carry = result[i] / LIMB_BASE;
-						result[i] = result[i] % LIMB_BASE;
+						auto addition = detail::AddLimbsWithCarry(lhs[i], 0, carry);
+						result.AddMostLimb(addition.value);
+						carry = addition.carry;
 					}
 
 					for (index_type i = minsize; i < rhs.Size(); ++i) {
-						result.AddMostLimb(rhs[i] + carry);
-						carry = result[i] / LIMB_BASE;
-						result[i] = result[i] % LIMB_BASE;
+						auto addition = detail::AddLimbsWithCarry(0, rhs[i], carry);
+						result.AddMostLimb(addition.value);
+						carry = addition.carry;
 					}
 
 					if (carry > 0)
