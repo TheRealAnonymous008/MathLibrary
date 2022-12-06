@@ -4,8 +4,9 @@
 
 #include "IsNumericString.h"
 
-#include <vector>
+#include <algorithm>
 #include <string>
+#include <vector>
 
 namespace MathLib {
 	namespace NumberSystems {
@@ -24,7 +25,9 @@ namespace MathLib {
 				return strtoull(str.c_str(), NULL, 10);
 			}
 
-			inline vector_type Parse(const string_type str) {
+			inline vector_type Parse(string_type str) {
+				str.erase(std::remove(str.begin(), str.end(), ','), str.end());
+
 				if (!IsNumericString(str)) {
 					throw InvalidNumericString();
 				}
