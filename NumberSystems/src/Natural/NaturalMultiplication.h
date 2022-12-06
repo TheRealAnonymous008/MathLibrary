@@ -2,6 +2,7 @@
 
 #include "../../Exceptions.h"
 
+#include "Multiplication/Classical.h"
 #include "Natural.h"
 
 namespace MathLib {
@@ -18,7 +19,7 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					
+					result = implementation::ClassicalMultiplication(lhs, rhs);
 				}
 
 			public:

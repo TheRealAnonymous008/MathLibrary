@@ -9,8 +9,7 @@ namespace MathLib {
 			template<typename LHS, typename RHS>
 			Natural ClassicalMultiplication(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
 				Natural result;
-
-
+				
 				return result;
 			}
 		}
