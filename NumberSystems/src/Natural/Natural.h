@@ -38,7 +38,7 @@ namespace MathLib {
 				auto digits = detail::Parse(value);
 
 				for (auto d : digits) {
-					AddLimbLeft(d);
+					AddMostLimb(d);
 				}
 			}
 
@@ -46,40 +46,40 @@ namespace MathLib {
 				ClearLimbs();
 
 				while (value > LIMB_BASE) {
-					AddLimbLeft(value % LIMB_BASE);
+					AddMostLimb(value % LIMB_BASE);
 					value = value / LIMB_BASE;
 				}
-				AddLimbLeft(value);
+				AddMostLimb(value);
 			}
 
 			void operator=(limb_type value) {
 				ClearLimbs();
 
 				while (value > LIMB_BASE) {
-					AddLimbLeft(value % LIMB_BASE);
+					AddMostLimb(value % LIMB_BASE);
 					value = value / LIMB_BASE;
 				}
-				AddLimbLeft(value);
+				AddMostLimb(value);
 			}
 
 			Natural(const vector_type vec) {
 				ClearLimbs();
 				for (auto d : vec) {
-					AddLimbLeft(d);
+					AddMostLimb(d);
 				}
 			}
 
 			void operator= (const vector_type vec) {
 				ClearLimbs();
 				for (auto d : vec) {
-					AddLimbLeft(d);
+					AddMostLimb(d);
 				}
 			}
 
 			void operator=(const Natural& expr) {
 				ClearLimbs();
 				for (auto d : *expr.body) {
-					AddLimbLeft(d);
+					AddMostLimb(d);
 				}
 			}
 
@@ -88,7 +88,7 @@ namespace MathLib {
 				ClearLimbs();
 				auto digits = expr.Digits();
 				for (auto d : digits) {
-					AddLimbLeft(d);
+					AddMostLimb(d);
 				}
 			}
 
@@ -97,7 +97,7 @@ namespace MathLib {
 				ClearLimbs();
 				auto digits = expr.Digits();
 				for (auto d : digits) {
-					AddLimbLeft(d);
+					AddMostLimb(d);
 				}
 			}
 
@@ -105,15 +105,13 @@ namespace MathLib {
 				return *this->body;
 			}
 
-			const Natural& AddLimbLeft(limb_type digit) {
+			const Natural& AddMostLimb(limb_type digit) {
 				this->body->push_back(digit);
 				return *this;
 			}
 
-			const Natural& AddLimbRight(limb_type digit) {
-				if (digit >= 0) {
-					this->body->insert(this->body->begin(), digit);
-				}
+			const Natural& AddLeastLimb(limb_type digit) {
+				this->body->insert(this->body->begin(), digit);
 				return *this;
 			}
 
@@ -127,6 +125,14 @@ namespace MathLib {
 
 				if (i > 1)
 					this->body->resize(i + 1);
+
+				return *this;
+			}
+
+			const Natural& AddTrailingZeros(const size_type zeros) {
+				for (index_type i = 0; i < zeros; ++i) {
+					this->AddLeastLimb(0);
+				}
 
 				return *this;
 			}
