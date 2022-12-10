@@ -25,6 +25,39 @@ namespace MathLib {
 				return strtoull(str.c_str(), NULL, 10);
 			}
 
+			inline bool IsEven(const string_type& str) {
+				return str[str.length() - 1] % 2 == 0;
+			}
+
+			inline string_type DivideByTwo(const string_type& str) {
+				string_type result = "";
+
+
+				short next_additive = 0;
+				for (auto c : str) {
+					short additive = next_additive;
+
+					short cd = c - '0';
+					if (cd % 2 == 0) {
+						next_additive = 0;
+					}
+					else {
+						next_additive = 5;
+					}
+
+					short nd = cd / 2 + additive;
+					char rd = nd + '0';
+
+
+					if (result.length() == 0 && rd == '0')
+						continue;
+
+					result += rd;
+				}
+
+				return result;
+			}
+
 			inline vector_type Parse(string_type str) {
 				str.erase(std::remove(str.begin(), str.end(), ','), str.end());
 
@@ -32,20 +65,22 @@ namespace MathLib {
 					throw InvalidNumericString();
 				}
 
-				size_type N = str.size();
 				vector_type result;
+				string_type curr_str = str;
 				string_type buffer = "";
 
-				index_type i = N - 1;
+				while (curr_str.size() != 0) {
+					auto bit = !IsEven(curr_str);
+					curr_str = DivideByTwo(curr_str);
 
-				// Warning! This implementation is dependent on the radix. It assumes base = 10.
-				for (i = N - 1; i >= LIMB_BASE_POWER; i -= LIMB_BASE_POWER) {
-					buffer = str.substr(i - LIMB_BASE_POWER + 1, LIMB_BASE_POWER);
-					result.push_back(StringToDigit(buffer));
+					buffer = std::to_string(bit) + buffer;
+					if (buffer.length() >= LIMB_BASE_POWER) {
+						result.push_back(std::stoi(buffer, 0, 2));
+						buffer = "";
+					}
 				}
 
-				result.push_back(StringToDigit(str.substr(0, i + 1)));
-
+				result.push_back(std::stoi(buffer, 0, 2));
 				return result;
 			}
 		}

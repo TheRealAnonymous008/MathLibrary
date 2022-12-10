@@ -3,6 +3,10 @@
 using namespace MathLib::NumberSystems;
 
 TEST(NaturalNumbers, Basic) {
+
+	Natural a = Natural("1024");
+	std::cout<<a.Val();
+
 	Natural x = Natural("12345678910111213141516999");
 	
 	ASSERT_EQ(x.Val(), "12345678910111213141516999");
@@ -19,15 +23,15 @@ TEST(NaturalNumbers, Zero) {
 	
 	Natural y = Natural("201221765421199947510");
 
-	ASSERT_EQ((x + y).Val(), y.Val());
+	ASSERT_EQ((x + y), y);
 }
 
 TEST(NaturalNumbers, ULL) {
 	Natural x = 123456;
-	ASSERT_EQ(x.Val(), "123456");
+	ASSERT_EQ(x, Natural("123456"));
 
 	Natural y = ULLONG_MAX;
-	ASSERT_EQ(y.Val(), std::to_string(ULLONG_MAX));
+	ASSERT_EQ(y, Natural(std::to_string(ULLONG_MAX)));
 
 }
 
@@ -37,7 +41,7 @@ TEST(NaturalArithmetic, Addition) {
 
 	Natural z = x + y;
 
-	ASSERT_EQ(z.Val(), "19999999999999999999999999999999999998");
+	ASSERT_EQ(z, Natural("19999999999999999999999999999999999998"));
 }
 
 TEST(NaturalArithmetic, AdditionUnequalSizes) {
@@ -46,7 +50,7 @@ TEST(NaturalArithmetic, AdditionUnequalSizes) {
 
 	Natural z = x + y;
 
-	ASSERT_EQ(z.Val(), "10000000000000000000000000000000000000");
+	ASSERT_EQ(z, Natural("10000000000000000000000000000000000000"));
 }
 
 TEST(NaturalArithmetic, Eager) {
@@ -65,7 +69,7 @@ TEST(NaturalArithmetic, PlusEqual) {
 	Natural z = x + y; 
 	x += y;
 
-	ASSERT_EQ(z.Val(), x.Val());
+	ASSERT_EQ(z, x);
 }
 
 TEST(NaturalArithmetic, Ord) {
@@ -109,24 +113,24 @@ TEST(NaturalArithmetic, MultiplicationSmall) {
 	Natural x = std::string("1234123412341234");
 	Natural y = 2;
 
-	ASSERT_EQ((x * y).Val(), "2468246824682468");
-	ASSERT_EQ((x * Natural(3)).Val(), (x * y + x).Val());
+	ASSERT_EQ((x * y), Natural("2468246824682468"));
+	ASSERT_EQ((x * Natural(3)), (x * y + x));
 }
 
 TEST(NaturalArithmetic, MultiplicationLarge) {
 	Natural x = std::string("1291481248124155");
 	Natural y = std::string("8241255743525941");
 
-	ASSERT_EQ((x * y).Val(), "10643427253759243309891831204855");
+	ASSERT_EQ((x * y), Natural("10643427253759243309891831204855"));
 
 	auto x2 = x * x;
 	auto x3 = x * x * x;
 	auto y3 = y * y * y;
 	
-	ASSERT_EQ((x3).Val(), "2154092329411760158758784688638048092381023875");
-	ASSERT_EQ((x3).Val(), (x2 * x).Val());
+	ASSERT_EQ((x3), Natural("2154092329411760158758784688638048092381023875"));
+	ASSERT_EQ((x3), x2 * x);
 
-	ASSERT_EQ(y3.Val(), "559732048897626335341862485738274677761989812621");
+	ASSERT_EQ(y3, Natural("559732048897626335341862485738274677761989812621"));
 }
 
 TEST(NaturalArithmetic, MultiplicationStressTest) {
@@ -136,7 +140,7 @@ TEST(NaturalArithmetic, MultiplicationStressTest) {
 	auto z = x * y;
 
 	auto result = Natural("267,895,894,304,364,752,678,868,955,431,824,907,367,753,146,322,020,621,335,624,329,595,212,336,512,781,781,585,428,916,823,953,974,814,585,680,226,678,326,375,639,556,132,623,499,217,174,608,843,391,469,389,219,335,124,993,828,874,277,769,329,364,543,105,366,842");
-	ASSERT_EQ(z.Val(), result.Val());
-	ASSERT_EQ((x * y).Val(), (y * x).Val());
+	ASSERT_EQ(z, result);
+	ASSERT_EQ((x * y), (y * x));
 
 }
