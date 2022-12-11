@@ -14,7 +14,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace implementation {
-			template<typename T,size_type _Rows, size_type _Inner, size_type _Columns,typename LHS, typename RHS>
+			template<const unsigned THRESHOLD = STRASSEN_MATRIX_THRESHOLD, typename T,size_type _Rows, size_type _Inner, size_type _Columns,typename LHS, typename RHS>
 			Matrix<T, _Rows, _Columns> MatrixMultiply(const MatrixBase<T, _Rows, _Inner, LHS>& lhs, const MatrixBase<T, _Inner, _Columns, RHS>& rhs);
 
 			template<typename T,size_type _Rows, size_type _Inner, size_type _Columns,typename LHS, typename RHS>
@@ -25,12 +25,12 @@ namespace MathLib {
 		}
 
 		namespace implementation {
-			template<typename T,size_type _Rows, size_type _Inner, size_type _Columns, typename LHS, typename RHS>
+			template<const unsigned THRESHOLD, typename T,size_type _Rows, size_type _Inner, size_type _Columns, typename LHS, typename RHS>
 			Matrix<T, _Rows, _Columns> MatrixMultiply(
 				const MatrixBase<T, _Rows, _Inner, LHS>& lhs,
 				const MatrixBase<T, _Inner, _Columns, RHS>& rhs
 			) {
-				if (_Rows > STRASSEN_MATRIX_THRESHOLD && _Columns > STRASSEN_MATRIX_THRESHOLD && _Inner > STRASSEN_MATRIX_THRESHOLD)
+				if (_Rows > THRESHOLD && _Columns > THRESHOLD && _Inner > THRESHOLD)
 					return StrassenMatrixMultiplication(*static_cast<const LHS*>(&lhs),
 						*static_cast<const RHS*>(&rhs));
 
