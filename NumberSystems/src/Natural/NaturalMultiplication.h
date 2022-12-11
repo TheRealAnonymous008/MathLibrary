@@ -3,6 +3,7 @@
 #include "../../Exceptions.h"
 
 #include "Multiplication/Classical.h"
+#include "Multiplication/Karatsuba.h"
 #include "Natural.h"
 
 namespace MathLib {
@@ -19,7 +20,7 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					result = implementation::ClassicalMultiplication(lhs, rhs);
+					result = implementation::KaratsubaMultiplication(lhs, rhs);
 				}
 
 			public:
