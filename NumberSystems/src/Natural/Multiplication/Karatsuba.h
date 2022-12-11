@@ -8,14 +8,14 @@ namespace MathLib {
 	namespace NumberSystems {
 		namespace implementation {
 
-			const int KARATSUBA_THRESHOLD = 1;
+			const unsigned KARATSUBA_THRESHOLD = 15;
 
-			template<typename LHS, typename RHS>
+			template<const unsigned THRESHOLD = KARATSUBA_THRESHOLD, typename LHS, typename RHS>
 			Natural KaratsubaMultiplication(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
 				size_type size = std::min(lhs.Size(), rhs.Size());
 				size_type half_size = size / 2;
 
-				if (size <= KARATSUBA_THRESHOLD) {
+				if (size <= THRESHOLD) {
 					return ClassicalMultiplication(lhs, rhs);
 				}
 
