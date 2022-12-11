@@ -2,6 +2,8 @@
 
 #include "../../headers/Fwd.h"
 
+#include "../Utils/ReverseParse.h"
+
 #include <concepts>
 
 namespace MathLib {
@@ -10,23 +12,10 @@ namespace MathLib {
 		template<typename Derived>
 		class NaturalBase {
 		private:
-
+			
 		public:
 			const string_type Val() const {
-
-				vector_type digits = Digits();
-				if (digits.size() == 0) {
-					return "0";
-				}
-
-				std::string result = "";
-				for (auto itr = digits.begin(); itr != digits.end() - 1; ++itr) {
-					result = detail::ToStringWithPad(*itr) + result;
-				}
-
-				result = detail::ToStringNoPad(digits[digits.size() - 1]) + result;
-
-				return result;
+				return detail::ReverseParse(Digits());
 			}
 
 			limb_type operator[](index_type idx) const {

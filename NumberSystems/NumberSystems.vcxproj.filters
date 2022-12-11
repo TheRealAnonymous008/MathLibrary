@@ -67,5 +67,11 @@
     <ClInclude Include="src\Natural\NaturalDivision.h">
       <Filter>Natural</Filter>
     </ClInclude>
+    <ClInclude Include="src\Utils\RadixStrings.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\ReverseParse.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

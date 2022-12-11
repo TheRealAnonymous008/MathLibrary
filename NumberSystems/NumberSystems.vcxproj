@@ -146,6 +146,8 @@
     <ClInclude Include="src\Utils\AddLimbsWithCarry.h" />
     <ClInclude Include="src\Utils\IsNumericString.h" />
     <ClInclude Include="src\Utils\Parse.h" />
+    <ClInclude Include="src\Utils\RadixStrings.h" />
+    <ClInclude Include="src\Utils\ReverseParse.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

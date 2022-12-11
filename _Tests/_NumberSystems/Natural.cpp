@@ -4,9 +4,6 @@ using namespace MathLib::NumberSystems;
 
 TEST(NaturalNumbers, Basic) {
 
-	Natural a = Natural("1024");
-	std::cout<<a.Val();
-
 	Natural x = Natural("12345678910111213141516999");
 	
 	ASSERT_EQ(x.Val(), "12345678910111213141516999");
