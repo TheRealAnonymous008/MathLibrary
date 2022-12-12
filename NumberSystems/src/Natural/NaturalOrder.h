@@ -50,7 +50,7 @@ namespace MathLib {
 
 			size_type size = lhs.Size();
 
-			for (index_type i = size - 1; i >= 0; --i) {
+			for (index_type i = size - 1; i < size; --i) {
 				if (lhs[i] > rhs[i])
 					return true;
 				else if (lhs[i] < rhs[i]) {
@@ -71,7 +71,7 @@ namespace MathLib {
 
 			size_type size = rhs.Size();
 
-			for (index_type i = size - 1; i >= 0; --i) {
+			for (index_type i = size - 1; i < size; --i) {
 				if (lhs[i] < rhs[i])
 					return true;
 				else if (lhs[i] > rhs[i]) {

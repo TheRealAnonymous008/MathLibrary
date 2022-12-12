@@ -90,8 +90,6 @@ TEST(NaturalArithmetic, Subtraction) {
 	Natural x = std::string("99999999999999999999");
 	Natural y = std::string(         "12345678910");
 
-	ASSERT_THROW(y - x, InvalidSubtractionOperation);
-
 	ASSERT_EQ(x - y, Natural("99999999987654321089"));
 }
 
@@ -152,10 +150,38 @@ TEST(NaturalArithmetic, KaratsubaTest) {
 	ASSERT_EQ(z, result);
 }
 
-TEST(NaturalArithmetic, Division) {
-	Natural x = std::string("1234");
-	Natural y = 2;
+TEST(NaturalArithmetic, DivisionTiny) {
+	Natural x = Natural("1234");
+	Natural k = x / Natural("2");
+	
+	std::cout << k.Val() << "\n";
+	ASSERT_EQ(k, Natural("617"));
+}
+
+TEST(NaturalArithmetic, DivisionSmall) {
+	Natural x = Natural("766970544842443844");
+	Natural y = Natural(	     "862664913");
 
 	Natural z = x / y;
-	std::cout << z.Val();
+
+	ASSERT_TRUE(y * (z - Natural("1")) < x && x < y * (z + Natural("1")));
 }
+
+//
+//TEST(NaturalArithmetic, DivisionLarge) {
+//	Natural x = Natural("10643427253759243309891831204855");
+//	Natural y = Natural("8241255743525941");
+//
+//	Natural z = x / y;
+//
+//	for (auto d : z.Digits()) {
+//		std::cout << d << " ";
+//	}
+//}
+//
+//TEST(NaturalArithmetic, DivisionStresss) {
+//	Natural x = Natural("267,895,894,304,364,752,678,868,955,431,824,907,367,753,146,322,020,621,335,624,329,595,212,336,512,781,781,585,428,916,823,953,974,814,585,680,226,678,326,375,639,556,132,623,499,217,174,608,843,391,469,389,219,335,124,993,828,874,277,769,329,364,543,105,366,842");
+//	Natural y = Natural("293472749235728428357126940735827434810239242572935092398472871028038485776249124983758612483248394");
+//
+//	Natural z = x / y;
+//}

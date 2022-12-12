@@ -164,6 +164,13 @@ namespace MathLib {
 			const Natural& Evaluate() const{
 				return *this;
 			}
+
+			void Log() const {
+				for (auto d : *body) {
+					std::cout << d << " ";
+				}
+				std::cout << "\n";
+			}
 		};
 
 	}
