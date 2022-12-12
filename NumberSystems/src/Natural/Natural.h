@@ -76,6 +76,13 @@ namespace MathLib {
 				}
 			}
 
+			Natural(const Natural& expr) {
+				ClearLimbs();
+				for (auto d : *expr.body) {
+					AddMostLimb(d);
+				}
+			}
+
 			void operator=(const Natural& expr) {
 				ClearLimbs();
 				for (auto d : *expr.body) {
