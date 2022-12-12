@@ -6,8 +6,8 @@
 namespace MathLib {
 	namespace LinearAlgebra {
 
-		using size_type = const int;
-		using index_type = int;
+		using size_type = const unsigned long long;
+		using index_type = unsigned long long;
 
 		template<typename T, size_type N>
 		class Vector;
