@@ -105,7 +105,18 @@ TEST(NaturalArithmetic, Subtraction) {
 
 TEST(NaturalArithmetic, SubtractionWithBorrow) {
 	Natural x = std::string("100000000000000");
-	Natural y = std::string("12345678910");
+	Natural y = std::string(    "12345678910");
+
+	auto z = x - y;
+
+	ASSERT_EQ(z + y, x);
+	ASSERT_EQ(x + y - y, x);
+
+}
+
+TEST(NaturalArithmetic, SubtractionEqualLength) {
+	Natural x = std::string("82410293512432931023812");
+	Natural y = std::string("66940392833103219032431");
 
 	auto z = x - y;
 
