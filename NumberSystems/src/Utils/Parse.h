@@ -34,8 +34,9 @@ namespace MathLib {
 						buffer = "";
 					}
 				}
-
-				result.push_back(std::stoi(buffer, 0, 2));
+				if (buffer.length() != 0) {
+					result.push_back(std::stoi(buffer, 0, 2));
+				}
 				return result;
 			}
 		}
