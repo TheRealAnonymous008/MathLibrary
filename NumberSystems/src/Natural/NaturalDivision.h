@@ -25,6 +25,9 @@ namespace MathLib {
 
 			public:
 				NaturalDivision(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+					if (IsZero(rhs)) {
+						throw DivisionByZero();
+					}
 					Calculate();
 				}
 

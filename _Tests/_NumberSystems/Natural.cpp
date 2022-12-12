@@ -100,6 +100,7 @@ TEST(NaturalArithmetic, Subtraction) {
 	Natural y = std::string(         "12345678910");
 
 	ASSERT_EQ(x - y, Natural("99999999987654321089"));
+	ASSERT_THROW(y - x, InvalidSubtractionOperation);
 }
 
 TEST(NaturalArithmetic, SubtractionWithBorrow) {
@@ -201,4 +202,24 @@ TEST(NaturalArithmetic, DivisionStress) {
 	Natural expected = std::string("912847598293293742934928749827489172831423840248235601270583274623478124973519407342947283427342393");
 
 	ASSERT_EQ(z, expected);
+
+	x = Natural("128182418418242358791284923482734123305985724872935782347827482734");
+	y = Natural("99999999999999999");
+	expected = Natural("1,281,824,184,182,423,600,731,091,076,651,577,240,370,768,015,245");
+	z = x / y;
+
+	ASSERT_EQ(z, expected);
+}
+
+TEST(NaturalArithmetic, DivideByZero) {
+	Natural x = Natural("289735928359208938057903589082439028318273");
+	Natural y = 0;
+
+	ASSERT_THROW(x / y, DivisionByZero);
+
+	y = Natural();
+	ASSERT_THROW(x / y, DivisionByZero);
+
+	y = Natural("0");
+	ASSERT_THROW(x / y, DivisionByZero);
 }

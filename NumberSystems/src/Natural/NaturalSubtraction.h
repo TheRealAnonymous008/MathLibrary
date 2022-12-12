@@ -19,6 +19,9 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
+					if (rhs > lhs) {
+						throw InvalidSubtractionOperation();
+					}
 
 					result = lhs;
 

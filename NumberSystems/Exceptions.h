@@ -14,17 +14,16 @@ namespace MathLib{
 		};
 
 		class InvalidSubtractionOperation : public std::exception {
-		private:
-			const std::string& left;
-			const std::string& right;
-
 		public:
-			InvalidSubtractionOperation(const std::string& left, const std::string& right) : left(left), right(right) {
-
-			}
-
 			std::string what() {
-				return "Trying to perform a subtaction operation will yield a result not in the number system. " + left + " and " + right;
+				return "Trying to perform a subtaction operation will yield a result not in the number system. ";
+			}
+		};
+
+		class DivisionByZero : public std::exception {
+		public:
+			std::string what() {
+				return "Trying to divide by zero. ";
 			}
 		};
 	}
