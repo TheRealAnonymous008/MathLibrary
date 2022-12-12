@@ -124,7 +124,6 @@ namespace MathLib {
 			}
 
 			const Natural& RemoveLeadingZeroes() {
-
 				size_type N = Size();
 				index_type i = N - 1;
 				for (i; i < N; --i) {
@@ -133,7 +132,7 @@ namespace MathLib {
 					}
 				}
 
-				if (i > 0)
+				if (i + 1 > i)
 					this->body->resize(i + 1);
 
 				return *this;

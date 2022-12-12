@@ -22,15 +22,11 @@ namespace MathLib {
 				auto A = normalized.numerator;
 				auto B = normalized.denominator;
 
+				n = B.Size();
+				m = A.Size() - n;
+
 				Q.AddTrailingZeros(m + 1);
 				auto right_msl = B[n - 1];
-					
-				auto bshift = Natural(B).AddTrailingZeros(m);
-
-				if (A >= bshift) {
-					Q[m] = 1;
-					A = A - bshift;
-				}
 
 				for (index_type j = m - 1; j < m; --j) {
 					
@@ -50,7 +46,6 @@ namespace MathLib {
 					A = A - qb;
 
 				}
-
 				return Q.RemoveLeadingZeroes();
 			}
 		}
