@@ -78,6 +78,7 @@ namespace MathLib {
 
 			Natural(const Natural& expr) {
 				ClearLimbs();
+
 				for (auto d : *expr.body) {
 					AddMostLimb(d);
 				}
@@ -123,8 +124,9 @@ namespace MathLib {
 			}
 
 			const Natural& RemoveLeadingZeroes() {
-				index_type i = Size() - 1;;
-				for (i; i >= 0; --i) {
+				size_type N = Size();
+				index_type i = N - 1;
+				for (i; i < N; --i) {
 					if (this->body->at(i) != 0) {
 						break;
 					}
