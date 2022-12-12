@@ -19,18 +19,18 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					if (lhs < rhs) {
-						throw InvalidSubtractionOperation();
-					}
 
 					result = lhs;
 
 					for (index_type i = 0; i < rhs.Size(); ++i) {
+
 						limb_type left_digit = result[i];
 						limb_type right_digit = rhs[i];
 
 						if (left_digit < right_digit) {
-							result[i + 1] -= 1;
+							if (i + 1 < lhs.Size()) {
+								--result[i + 1];
+							}
 							left_digit += LIMB_BASE;
 						}
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Natural.h"
+#include "../NaturalSubtraction.h"
 #include "NormalizeDivisionArgs.h"
 
 namespace MathLib {
@@ -14,31 +15,43 @@ namespace MathLib {
 
 				size_type n = rhs.Size();
 				size_type m = lhs.Size() - n;
-
-				if (m < 0) {
+				
+				if (m < 0)
 					return Q;
-				}
 
 				auto A = normalized.numerator;
 				auto B = normalized.denominator;
 
-				Q.AddTrailingZeros(m);
+				Q.AddTrailingZeros(m + 1);
+				auto right_msl = B[n - 1];
+					
+				auto bshift = Natural(B).AddTrailingZeros(m);
 
-				for (index_type j = m - 1; j < m; --j) {
-					Q[j] = (A[n + j] * LIMB_BASE, +A[n + j - 1]) / B[n - 1];
-					Q[j] = std::min(Q[j], LIMB_BASE - 1);
-
-					Natural qb = Natural(Q[j]);
-					qb.AddTrailingZeros(j);
-
-
-					A = A - qb * B;
-
-					if (j == 0)
-						break;
+				if (A >= bshift) {
+					Q[m] = 1;
+					A = A - bshift;
 				}
 
-				return Q;
+				for (index_type j = m - 1; j < m; --j) {
+					
+					auto left_msl = A[n + j] * LIMB_BASE + A[n + j - 1];
+					auto q_estimate = left_msl / right_msl;
+
+					Q[j] = std::min(q_estimate, LIMB_BASE - 1);
+
+					Natural b = Natural(B).AddTrailingZeros(j);
+					Natural qb = Natural(Q[j]) * b;
+
+					if (A < qb) {
+						--Q[j];
+						qb = qb - b;
+					}
+
+					A = A - qb;
+
+				}
+
+				return Q.RemoveLeadingZeroes();
 			}
 		}
 	}
