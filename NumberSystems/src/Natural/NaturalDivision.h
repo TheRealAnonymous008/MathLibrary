@@ -4,6 +4,8 @@
 
 #include "Natural.h"
 
+#include "Division/KnuthDivision.h"
+
 namespace MathLib {
 	namespace NumberSystems {
 
@@ -18,7 +20,7 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-
+					result = implementation::KnuthDivision(lhs, rhs);
 				}
 
 			public:

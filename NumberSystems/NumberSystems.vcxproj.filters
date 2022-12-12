@@ -14,6 +14,9 @@
     <Filter Include="Natural\Multiplication">
       <UniqueIdentifier>{0c21828c-6de2-4d80-a6ac-7ce8e48eb7bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Natural\Division">
+      <UniqueIdentifier>{2f66754a-4554-4474-a0c8-0c6282a78533}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -72,6 +75,12 @@
     </ClInclude>
     <ClInclude Include="src\Utils\ReverseParse.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Natural\Division\NormalizeDivisionArgs.h">
+      <Filter>Natural\Division</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Natural\Division\KnuthDivision.h">
+      <Filter>Natural\Division</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
