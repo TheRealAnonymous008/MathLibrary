@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Natural.h"
-#include "../../Utils/AddLimbsWithCarry.h"
+#include "../../Utils/FitLimbToBase.h"
 
 namespace MathLib {
 	namespace NumberSystems {
@@ -21,7 +21,7 @@ namespace MathLib {
 					limb_type carry = 0;
 
 					for (index_type l = 0; l < lsize; ++l) {
-						auto addition = detail::AddLimbsWithCarry(lhs[l] * multiplier_limb, 0, carry);
+						auto addition = detail::FitLimbToBase(lhs[l] * multiplier_limb + carry);
 						carry = addition.carry;
 						limb_number.AddMostLimb(addition.value);
 					}

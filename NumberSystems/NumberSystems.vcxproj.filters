@@ -64,9 +64,6 @@
     <ClInclude Include="src\Natural\Multiplication\Karatsuba.h">
       <Filter>Natural\Multiplication</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\AddLimbsWithCarry.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
     <ClInclude Include="src\Natural\NaturalDivision.h">
       <Filter>Natural</Filter>
     </ClInclude>
@@ -81,6 +78,9 @@
     </ClInclude>
     <ClInclude Include="src\Natural\Division\KnuthDivision.h">
       <Filter>Natural\Division</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\FitLimbToBase.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

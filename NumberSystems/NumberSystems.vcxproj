@@ -145,7 +145,7 @@
     <ClInclude Include="src\Natural\NaturalMultiplication.h" />
     <ClInclude Include="src\Natural\NaturalOrder.h" />
     <ClInclude Include="src\Natural\NaturalSubtraction.h" />
-    <ClInclude Include="src\Utils\AddLimbsWithCarry.h" />
+    <ClInclude Include="src\Utils\FitLimbToBase.h" />
     <ClInclude Include="src\Utils\IsNumericString.h" />
     <ClInclude Include="src\Utils\Parse.h" />
     <ClInclude Include="src\Utils\RadixStrings.h" />
