@@ -103,5 +103,11 @@
     <ClInclude Include="src\Natural\Not.h">
       <Filter>Natural</Filter>
     </ClInclude>
+    <ClInclude Include="src\Natural\LeftShift.h">
+      <Filter>Natural</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Natural\ToULL.h">
+      <Filter>Natural</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

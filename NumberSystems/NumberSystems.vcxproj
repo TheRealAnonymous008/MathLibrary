@@ -139,6 +139,7 @@
     <ClInclude Include="src\Natural\Division\DivModResult.h" />
     <ClInclude Include="src\Natural\Division\NormalizeDivisionArgs.h" />
     <ClInclude Include="src\Natural\Division\KnuthDivision.h" />
+    <ClInclude Include="src\Natural\LeftShift.h" />
     <ClInclude Include="src\Natural\Multiplication\Classical.h" />
     <ClInclude Include="src\Natural\Multiplication\Karatsuba.h" />
     <ClInclude Include="src\Natural\Natural.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="src\Natural\Or.h" />
     <ClInclude Include="src\Natural\Ordering.h" />
     <ClInclude Include="src\Natural\Subtraction.h" />
+    <ClInclude Include="src\Natural\ToULL.h" />
     <ClInclude Include="src\Natural\Xor.h" />
     <ClInclude Include="src\Utils\FitLimbToBase.h" />
     <ClInclude Include="src\Utils\IsNumericString.h" />

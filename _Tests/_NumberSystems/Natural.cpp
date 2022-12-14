@@ -437,3 +437,11 @@ TEST(NaturalBitwise, SelfAssignment) {
 	ASSERT_EQ(x, base ^ y);
 
 }
+
+TEST(NaturalBitshifts, Left) {
+	Natural x = Natural("52091");
+	Natural y = Natural("123");
+	Natural expected = Natural("553,926,524,227,456,421,883,457,708,616,507,434,467,328");
+
+	ASSERT_EQ(x << y, expected);
+}

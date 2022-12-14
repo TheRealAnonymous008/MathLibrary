@@ -23,7 +23,14 @@ namespace MathLib{
 		class DivisionByZero : public std::exception {
 		public:
 			std::string what() {
-				return "Trying to divide by zero. ";
+				return "Trying to divide or take the modulo by zero. ";
+			}
+		};
+
+		class NarrowingConversionError : public std::exception {
+		public:
+			std::string what() {
+				return "Narrowing Conversion loses bits.";
 			}
 		};
 	}
