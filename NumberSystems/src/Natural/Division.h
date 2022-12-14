@@ -51,10 +51,5 @@ namespace MathLib {
 			return detail::NaturalDivision(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
-		template<typename Expr>
-		detail::NaturalDivision<Expr, Natural> operator/(const NaturalBase<Expr>& lhs, const limb_type& rhs) {
-			return lhs / Natural(rhs);
-		}
-
 	}
 }

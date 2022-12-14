@@ -134,6 +134,7 @@
     <ClInclude Include="headers\Extern.h" />
     <ClInclude Include="headers\Fwd.h" />
     <ClInclude Include="headers\Natural.h" />
+    <ClInclude Include="src\Natural\Bitwise.h" />
     <ClInclude Include="src\Natural\Division\DivImpl.h" />
     <ClInclude Include="src\Natural\Division\DivModResult.h" />
     <ClInclude Include="src\Natural\Division\NormalizeDivisionArgs.h" />

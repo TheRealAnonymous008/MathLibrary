@@ -9,7 +9,7 @@ namespace MathLib {
 			struct DivisionNormalizationResult {
 				Natural numerator;
 				Natural denominator;
-				limb_type D;
+				Natural D;
 			};
 
 			template<typename LHS, typename RHS>
@@ -18,7 +18,7 @@ namespace MathLib {
 				auto right_msl = rhs[rhs.Size() - 1];
 				DivisionNormalizationResult result; 
 
-				result.D = (LIMB_BASE) / (right_msl + 1);
+				result.D = Natural((LIMB_BASE) / (right_msl + 1));
 
 				result.numerator = lhs * result.D;
 				result.denominator = rhs * result.D;

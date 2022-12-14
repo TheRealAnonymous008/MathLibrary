@@ -9,7 +9,7 @@ namespace MathLib {
 			struct NormalizedDivModResult {
 				Natural div;
 				Natural mod;
-				limb_type D;
+				Natural D;
 			};
 		}
 	}
