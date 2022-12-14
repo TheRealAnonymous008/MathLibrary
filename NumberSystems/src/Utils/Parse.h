@@ -15,6 +15,7 @@ namespace MathLib {
 
 			inline vector_type Parse(string_type str) {
 				str.erase(std::remove(str.begin(), str.end(), ','), str.end());
+				str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
 
 				if (!IsNumericString(str)) {
 					throw InvalidNumericString();
