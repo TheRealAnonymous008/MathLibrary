@@ -278,6 +278,34 @@ TEST(NaturalArithmetic, ModuloLarge) {
 	ASSERT_EQ(x % y, expected);
 }
 
+TEST(NaturalArithmetic, SelfAssignment) {
+	Natural base = Natural("123019482348275406274839582349234242424264694857263894038738493749304812912313");
+	Natural y = Natural("987678092987552323124923512386486645231316946947762519563500121");
+
+	Natural x;
+
+	x = base;
+	x += y;
+	ASSERT_EQ(x, base + y);
+
+	x = base;
+	x -= y;
+	ASSERT_EQ(x, base - y);
+
+	x = base;
+	x *= y;
+	ASSERT_EQ(x, base * y);
+
+	x = base;
+	x /= y;
+	ASSERT_EQ(x, base / y);
+
+	x = base;
+	x %= y;
+	ASSERT_EQ(x, base % y);
+
+}
+
 TEST(NaturalBitwise, AND) {
 	Natural x = Natural("192387249827397413287294872148972647618294761971876182371982319412313");
 	Natural y = Natural("823742849201298312849123810231031");
@@ -388,4 +416,24 @@ TEST(NaturalBitwise, DeMorgansLaw) {
 	ASSERT_EQ(x.Size(), y.Size());
 	ASSERT_EQ(~(x | y), ~x & ~y);
 	ASSERT_EQ(~(x & y), ~x | ~y);
+}
+
+TEST(NaturalBitwise, SelfAssignment) {
+	Natural base = Natural("123019482348275406274839582349234242424264694857263894038738493749304812912313");
+	Natural y = Natural("987678092987552323124923512386486645231316946947762519563500121");
+
+	Natural x;
+
+	x = base;
+	x &= y;
+	ASSERT_EQ(x, base & y);
+
+	x = base;
+	x |= y;
+	ASSERT_EQ(x, base | y);
+
+	x = base;
+	x ^= y;
+	ASSERT_EQ(x, base ^ y);
+
 }

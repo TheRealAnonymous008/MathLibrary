@@ -203,6 +203,27 @@ namespace MathLib {
 				return *this;
 			}
 
+			template<typename E>
+			const Natural& operator&=(const NaturalBase<E>& expr) {
+				(*this) = (*this) & expr;
+
+				return *this;
+			}
+
+			template<typename E>
+			const Natural& operator|=(const NaturalBase<E>& expr) {
+				(*this) = (*this) | expr;
+
+				return *this;
+			}
+
+			template<typename E>
+			const Natural& operator^=(const NaturalBase<E>& expr) {
+				(*this) = (*this) ^ expr;
+
+				return *this;
+			}
+
 			const Natural& Evaluate() const{
 				return *this;
 			}
