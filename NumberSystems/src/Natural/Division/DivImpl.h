@@ -10,7 +10,7 @@ namespace MathLib {
 		namespace implementation {
 
 			template<typename LHS, typename RHS>
-			DivModResult Div(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			NormalizedDivModResult Div(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
 				return KnuthDivision(lhs, rhs);
 			}
 		}

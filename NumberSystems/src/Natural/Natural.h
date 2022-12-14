@@ -146,22 +146,6 @@ namespace MathLib {
 				return *this;
 			}
 
-			Natural& RemoveTrailingZeros(const size_type zeros = ULLONG_MAX) {
-				index_type idx = 0;
-				size_type size = this->body->size();
-
-				for (idx; idx < zeros && idx < size; ++idx) {
-					if (this->body->at(idx) != 0)
-						break;
-				}
-
-				if (idx > 0) {
-					this->body->erase(this->body->begin(), this->body->begin() + idx);
-				}
-
-				return *this;
-			}
-
 			limb_type operator[](index_type idx) const{
 				return (*this->body)[idx];
 			}

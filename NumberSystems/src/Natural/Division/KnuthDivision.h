@@ -11,10 +11,10 @@ namespace MathLib {
 		namespace implementation {
 
 			template<typename LHS, typename RHS>
-			DivModResult KnuthDivision(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			NormalizedDivModResult KnuthDivision(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
 				DivisionNormalizationResult normalized = NormalizeDivisionArgs(lhs, rhs);
 
-				DivModResult result{
+				NormalizedDivModResult result{
 					.div{Natural()},
 					.mod{lhs}
 				};
@@ -34,6 +34,7 @@ namespace MathLib {
 
 				result.div.AddTrailingZeros(m + 1);
 				result.mod = A;
+				result.D = normalized.D;
 
 				auto right_msl = B[n - 1];
 
@@ -57,7 +58,6 @@ namespace MathLib {
 				}
 
 				result.div.RemoveLeadingZeroes();
-				// TODO divide the modulo with D.
 
 				return result;
 			}

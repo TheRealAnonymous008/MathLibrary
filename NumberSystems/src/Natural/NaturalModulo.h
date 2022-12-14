@@ -21,7 +21,8 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					result = implementation::Div(lhs, rhs).mod;
+					auto normdiv = implementation::Div(lhs, rhs);
+					result = normdiv.mod / normdiv.D ;
 				}
 
 			public:

@@ -6,9 +6,10 @@ namespace MathLib {
 	namespace NumberSystems {
 		namespace implementation {
 			
-			struct DivModResult {
+			struct NormalizedDivModResult {
 				Natural div;
 				Natural mod;
+				limb_type D;
 			};
 		}
 	}
