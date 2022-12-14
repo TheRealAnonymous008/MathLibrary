@@ -22,7 +22,7 @@ namespace MathLib {
 
 				void Calculate() {
 					auto normdiv = implementation::Div(lhs, rhs);
-					result = normdiv.mod / normdiv.D ;
+					result = normdiv.mod / normdiv.D;
 				}
 
 			public:

@@ -41,6 +41,34 @@ TEST(NaturalNumbers, LeadingZeroes) {
 
 }
 
+TEST(NaturalOrd, Ord) {
+	Natural p = std::string("1529489283429841241453295214");
+	Natural y = std::string("1529489283429941241453295214");
+	Natural x = std::string("1529489283429841241453295214");
+	Natural z = std::string("321324352352352352532521231");
+
+	ASSERT_TRUE(x != y && y != z && x != z);
+	ASSERT_TRUE(y > x && x < y);
+	ASSERT_TRUE(p == x);
+	ASSERT_TRUE(p >= x && x <= p);
+	ASSERT_TRUE(x > z);
+	ASSERT_TRUE(z < y);
+	ASSERT_TRUE(x >= z);
+	ASSERT_TRUE(z <= y);
+	ASSERT_TRUE(x + y > y + z);
+}
+
+TEST(NaturalOrd, ZeroRepresentation) {
+	Natural z1 = Natural();
+	Natural z2 = Natural(0);
+	Natural z3 = Natural("0");
+	Natural z4 = Natural("00000000000000000000000000000000000000000000");
+
+	ASSERT_EQ(z1, z2);
+	ASSERT_EQ(z1, z3);
+	ASSERT_EQ(z1, z4);
+}
+
 TEST(NaturalArithmetic, Addition) {
 	Natural x = std::string("9999999999999999999999999999999999999");
 	Natural y = std::string("9999999999999999999999999999999999999");
@@ -78,22 +106,7 @@ TEST(NaturalArithmetic, PlusEqual) {
 	ASSERT_EQ(z, x);
 }
 
-TEST(NaturalArithmetic, Ord) {
-	Natural p = std::string("1529489283429841241453295214");
-	Natural y = std::string("1529489283429941241453295214");
-	Natural x = std::string("1529489283429841241453295214");
-	Natural z = std::string( "321324352352352352532521231");
 
-	ASSERT_TRUE(x != y && y != z && x != z);
-	ASSERT_TRUE(y > x && x < y);
-	ASSERT_TRUE(p == x);
-	ASSERT_TRUE(p >= x && x <= p);
-	ASSERT_TRUE(x > z);
-	ASSERT_TRUE(z < y);
-	ASSERT_TRUE(x >= z);
-	ASSERT_TRUE(z <= y);
-	ASSERT_TRUE(x + y > y + z);
-}
 
 TEST(NaturalArithmetic, Subtraction) {
 	Natural x = std::string("99999999999999999999");
@@ -180,7 +193,7 @@ TEST(NaturalArithmetic, DivisionEqualSizes) {
 	x = Natural("246824682468246824682468");
 	Natural y = Natural("12341234");
 	k = x / y;
-
+	
 	ASSERT_EQ(k * y, x);
 }
 
@@ -233,6 +246,14 @@ TEST(NaturalArithmetic, DivideByZero) {
 
 	y = Natural("0");
 	ASSERT_THROW(x / y, DivisionByZero);
+}
+
+TEST(NaturalArithmetic, ZeroArithmetic) {
+	Natural x = Natural();
+	Natural y = Natural("1243452824950349529048239412");
+
+	ASSERT_EQ(x / y, Natural());
+	ASSERT_EQ(x * y, Natural());
 }
 
 TEST(NaturalArithmetic, ModuloSimple) {

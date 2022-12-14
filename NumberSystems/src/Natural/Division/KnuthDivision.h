@@ -57,8 +57,6 @@ namespace MathLib {
 
 				}
 
-				result.div.RemoveLeadingZeroes();
-
 				return result;
 			}
 		}

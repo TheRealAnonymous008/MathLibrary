@@ -18,6 +18,7 @@ namespace MathLib {
 				body->clear();
 			}
 
+
 		public :
 
 			Natural() {
@@ -30,7 +31,11 @@ namespace MathLib {
 			
 			Natural(const string_type& value) {
 				ClearLimbs();
-				*body = detail::Parse(value);
+				auto digits = detail::Parse(value);
+
+				for (auto d : digits) {
+					AddMostLimb(d);
+				}
 			}
 
 			void operator=(const string_type& value){
@@ -45,6 +50,10 @@ namespace MathLib {
 			Natural(limb_type value) {
 				ClearLimbs();
 
+				if (value == 0) {
+					return;
+				}
+
 				while (value > LIMB_BASE) {
 					AddMostLimb(value % LIMB_BASE);
 					value = value / LIMB_BASE;
@@ -54,6 +63,10 @@ namespace MathLib {
 
 			void operator=(limb_type value) {
 				ClearLimbs();
+
+				if (value == 0) {
+					return;
+				}
 
 				while (value > LIMB_BASE) {
 					AddMostLimb(value % LIMB_BASE);
@@ -134,14 +147,15 @@ namespace MathLib {
 
 				if (i + 1 > i)
 					this->body->resize(i + 1);
+				else {
+					this->body->clear();
+				}
 
 				return *this;
 			}
 
 			Natural& AddTrailingZeros(const size_type zeros) {
-				for (index_type i = 0; i < zeros; ++i) {
-					this->AddLeastLimb(0);
-				}
+				this->body->insert(this->body->begin(), zeros, 0);
 
 				return *this;
 			}

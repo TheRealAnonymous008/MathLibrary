@@ -91,10 +91,5 @@ namespace MathLib {
 		bool operator<=(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
 			return lhs < rhs || lhs == rhs;
 		}
-
-		template<typename Expr>
-		bool IsZero(const NaturalBase<Expr>& expr) {
-			return expr.Val() == "0";
-		}
 	}
 }

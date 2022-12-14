@@ -20,6 +20,10 @@ namespace MathLib {
 					throw InvalidNumericString();
 				}
 
+				if (str.find_first_not_of("0") == std::string::npos) {
+					return vector_type();
+				}
+
 				vector_type result;
 				string_type curr_str = str;
 				string_type buffer = "";
@@ -37,6 +41,7 @@ namespace MathLib {
 				if (buffer.length() != 0) {
 					result.push_back(std::stoi(buffer, 0, 2));
 				}
+
 				return result;
 			}
 		}

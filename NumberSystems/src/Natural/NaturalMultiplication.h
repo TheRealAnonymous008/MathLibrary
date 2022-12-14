@@ -21,6 +21,7 @@ namespace MathLib {
 
 				void Calculate() {
 					result = implementation::KaratsubaMultiplication(lhs, rhs);
+					result.RemoveLeadingZeroes();
 				}
 
 			public:

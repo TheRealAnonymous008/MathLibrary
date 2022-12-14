@@ -22,14 +22,17 @@ namespace MathLib {
 
 				void Calculate() {
 					result = implementation::Div(lhs, rhs).div;
+					result.RemoveLeadingZeroes();
 				}
 
 			public:
 				NaturalDivision(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
-					if (IsZero(rhs)) {
+					if (rhs == Natural()) {
 						throw DivisionByZero();
 					}
-					Calculate();
+					if (lhs != Natural()) {
+						Calculate();
+					}
 				}
 
 				const vector_type Digits() const {
