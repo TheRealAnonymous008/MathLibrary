@@ -473,3 +473,23 @@ TEST(NaturalBitShifts, RightOnlyResidue) {
 
 	ASSERT_EQ(x >> y, expected);
 }
+
+TEST(NaturalBitShifts, SelfAssignment) {
+	Natural base = Natural("943872394837812930487123982049821702348924121");
+	Natural y = Natural("13");
+	Natural x;
+
+	x = base;
+	x <<= y;
+	ASSERT_EQ(x, base << y);
+
+	x = base;
+	x >>= y;
+	ASSERT_EQ(x, base >> y);
+
+	x = base;
+	x <<= y;
+	x >>= y;
+	ASSERT_EQ(x, base);
+	
+}
