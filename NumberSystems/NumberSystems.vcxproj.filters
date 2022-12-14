@@ -37,7 +37,7 @@
     <ClInclude Include="src\Natural\NaturalBase.h">
       <Filter>Natural</Filter>
     </ClInclude>
-    <ClInclude Include="src\Natural\NaturalAddition.h">
+    <ClInclude Include="src\Natural\Addition.h">
       <Filter>Natural</Filter>
     </ClInclude>
     <ClInclude Include="src\Utils\Parse.h">
@@ -49,13 +49,13 @@
     <ClInclude Include="headers\Extern.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Natural\NaturalMultiplication.h">
+    <ClInclude Include="src\Natural\Multiplication.h">
       <Filter>Natural</Filter>
     </ClInclude>
-    <ClInclude Include="src\Natural\NaturalOrder.h">
+    <ClInclude Include="src\Natural\Ordering.h">
       <Filter>Natural</Filter>
     </ClInclude>
-    <ClInclude Include="src\Natural\NaturalSubtraction.h">
+    <ClInclude Include="src\Natural\Subtraction.h">
       <Filter>Natural</Filter>
     </ClInclude>
     <ClInclude Include="src\Natural\Multiplication\Classical.h">
@@ -64,7 +64,7 @@
     <ClInclude Include="src\Natural\Multiplication\Karatsuba.h">
       <Filter>Natural\Multiplication</Filter>
     </ClInclude>
-    <ClInclude Include="src\Natural\NaturalDivision.h">
+    <ClInclude Include="src\Natural\Division.h">
       <Filter>Natural</Filter>
     </ClInclude>
     <ClInclude Include="src\Utils\RadixStrings.h">
@@ -88,7 +88,7 @@
     <ClInclude Include="src\Natural\Division\DivModResult.h">
       <Filter>Natural\Division</Filter>
     </ClInclude>
-    <ClInclude Include="src\Natural\NaturalModulo.h">
+    <ClInclude Include="src\Natural\Modulo.h">
       <Filter>Natural</Filter>
     </ClInclude>
   </ItemGroup>

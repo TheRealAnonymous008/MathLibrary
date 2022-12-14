@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Natural.h"
-#include "../NaturalSubtraction.h"
+#include "../Subtraction.h"
 
 #include "DivModResult.h"
 #include "NormalizeDivisionArgs.h"

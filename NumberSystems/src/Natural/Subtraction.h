@@ -3,7 +3,7 @@
 #include "../../Exceptions.h"
 
 #include "Natural.h"
-#include "NaturalOrder.h"
+#include "Ordering.h"
 
 namespace MathLib {
 	namespace NumberSystems {
