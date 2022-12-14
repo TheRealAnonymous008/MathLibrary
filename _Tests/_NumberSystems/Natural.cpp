@@ -269,3 +269,11 @@ TEST(NaturalArithmetic, ModuloExactLarge) {
 
 	ASSERT_EQ(x % y, Natural("0"));
 }
+
+TEST(NaturalArithmetic, ModuloLarge) {
+	Natural x = Natural("6729438910328437423723127312938713289723894837582194124829374397482138742");
+	Natural y = Natural("21381243724723422348374283189231");
+
+	Natural expected = Natural("17812059265469952713876488966778");
+	ASSERT_EQ(x % y, expected);
+}
