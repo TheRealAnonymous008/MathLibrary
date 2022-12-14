@@ -82,5 +82,11 @@
     <ClInclude Include="src\Utils\FitLimbToBase.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="src\Natural\Division\DivImpl.h">
+      <Filter>Natural\Division</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Natural\Division\DivModResult.h">
+      <Filter>Natural\Division</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,6 +2,8 @@
 
 #include "../Natural.h"
 #include "../NaturalSubtraction.h"
+
+#include "DivModResult.h"
 #include "NormalizeDivisionArgs.h"
 
 namespace MathLib {
@@ -9,15 +11,20 @@ namespace MathLib {
 		namespace implementation {
 
 			template<typename LHS, typename RHS>
-			Natural KnuthDivision(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			DivModResult KnuthDivision(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
 				DivisionNormalizationResult normalized = NormalizeDivisionArgs(lhs, rhs);
-				Natural Q;
+
+				DivModResult result{
+					.div{Natural()},
+					.mod{lhs}
+				};
 
 				size_type n = rhs.Size();
 				size_type m = lhs.Size() - n;
 				
-				if (m < 0)
-					return Q;
+				if (m < 0) {
+					return result;
+				}
 
 				auto A = normalized.numerator;
 				auto B = normalized.denominator;
@@ -25,28 +32,33 @@ namespace MathLib {
 				n = B.Size();
 				m = A.Size() - n;
 
-				Q.AddTrailingZeros(m + 1);
+				result.div.AddTrailingZeros(m + 1);
+				result.mod = A;
+
 				auto right_msl = B[n - 1];
 
 				for (index_type j = m - 1; j < m; --j) {
 					
-					auto left_msl = A[n + j] * LIMB_BASE + A[n + j - 1];
+					auto left_msl = result.mod[n + j] * LIMB_BASE + result.mod[n + j - 1];
 					auto q_estimate = left_msl / right_msl;
 
-					Q[j] = std::min(q_estimate, LIMB_BASE - 1);
+					result.div[j] = std::min(q_estimate, LIMB_BASE - 1);
 
 					Natural b = Natural(B).AddTrailingZeros(j);
-					Natural qb = Natural(Q[j]) * b;
+					Natural qb = Natural(result.div[j]) * b;
 
-					if (A < qb) {
-						--Q[j];
+					if (result.mod < qb) {
+						--result.div[j];
 						qb = qb - b;
 					}
 
-					A = A - qb;
+					result.mod -= qb;
 
 				}
-				return Q.RemoveLeadingZeroes();
+
+				result.div.RemoveLeadingZeroes();
+
+				return result;
 			}
 		}
 	}
