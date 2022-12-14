@@ -11,5 +11,6 @@
 #include "../src/Natural/Subtraction.h"
 
 #include "../src/Natural/And.h"
+#include "../src/Natural/Not.h"
 #include "../src/Natural/Or.h"
 #include "../src/Natural/Xor.h"

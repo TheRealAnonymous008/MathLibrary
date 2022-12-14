@@ -100,5 +100,8 @@
     <ClInclude Include="src\Natural\Xor.h">
       <Filter>Natural</Filter>
     </ClInclude>
+    <ClInclude Include="src\Natural\Not.h">
+      <Filter>Natural</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

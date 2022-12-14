@@ -353,3 +353,39 @@ TEST(NaturalBitwise, XORIdentities) {
 	ASSERT_EQ(x ^ x, Natural());
 	ASSERT_EQ(x ^ (y ^ y), x);
 }
+
+TEST(NaturalBitwise, NOT) {
+	Natural x = Natural("1239817423471293724781293035239572423589124174235651626124723041902382756732859648673653743940121354134131539629289348576866341253391");
+	Natural z = ~x;
+	
+	ASSERT_EQ(~~x, x);
+
+	for (index_type i = 0; i < z.Size(); ++i) {
+		ASSERT_EQ(z[i] + x[i], LIMB_BASE - 1);
+	}
+}
+
+TEST(NaturalBitwise, BooleanIdentities) {
+	Natural x = Natural("123019482348275406274839582349234242424264694857263894038738493749304812912313");
+	Natural y = Natural("987678092987552323124923512386486645231316946947762519563500121");
+	Natural z = Natural("987237549998127310012");
+
+	Natural a = ~(x | y);
+	Natural b = ~x & ~y;
+
+	ASSERT_EQ(x | (x & y), x);
+	ASSERT_EQ(x & (x | y), x);
+	ASSERT_EQ(x | (y & z), (x | y) & (x | z));
+	ASSERT_EQ(x & (y | z), (x & y) | (x & z));
+	ASSERT_EQ(x & (y ^ z), (x & y) ^ (x & z));
+	ASSERT_EQ(x - y, ~(~x + y));
+}
+
+TEST(NaturalBitwise, DeMorgansLaw) {
+	Natural x = Natural("893019482348275406274839582349234242424264694857263894038738493749304812912313");
+	Natural y = Natural("987678092987552323124923512386486645231316946947762519563123153512112324500121");
+
+	ASSERT_EQ(x.Size(), y.Size());
+	ASSERT_EQ(~(x | y), ~x & ~y);
+	ASSERT_EQ(~(x & y), ~x | ~y);
+}
