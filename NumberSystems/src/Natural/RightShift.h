@@ -29,12 +29,14 @@ namespace MathLib {
 					result.RemoveLeastLimbs(zeroes);
 					size_type size = result.Size();
 
-					for (index_type i = 0; i < size - 1; ++i) {
-						limb_type next_bits = result[i + 1] & ((1 << (shift)) - 1);
-						result[i] = (result[i] >> shift) + (next_bits << (LIMB_BASE_POWER - shift));
-					}
+					if (size != 0) {
+						for (index_type i = 0; i < size - 1; ++i) {
+							limb_type next_bits = result[i + 1] & ((1 << (shift)) - 1);
+							result[i] = (result[i] >> shift) + (next_bits << (LIMB_BASE_POWER - shift));
+						}
 
-					result[size - 1] >>= shift;
+						result[size - 1] >>= shift;
+					}
 
 					result.RemoveLeadingZeroes();
 

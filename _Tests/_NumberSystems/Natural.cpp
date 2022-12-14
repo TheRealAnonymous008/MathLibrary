@@ -476,7 +476,7 @@ TEST(NaturalBitShifts, RightOnlyResidue) {
 
 TEST(NaturalBitShifts, SelfAssignment) {
 	Natural base = Natural("943872394837812930487123982049821702348924121");
-	Natural y = Natural("13");
+	Natural y = Natural("612");
 	Natural x;
 
 	x = base;
