@@ -11,7 +11,7 @@ namespace MathLib {
 		
 		template<typename Derived>
 		class NaturalBase {
-		private:
+		protected:
 			
 		public:
 			const string_type Val() const {

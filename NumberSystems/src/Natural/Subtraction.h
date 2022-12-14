@@ -24,14 +24,16 @@ namespace MathLib {
 					}
 
 					result = lhs;
+					size_type l_size = lhs.Size();
+					size_type r_size = rhs.Size();
 
-					for (index_type i = 0; i < rhs.Size(); ++i) {
+					for (index_type i = 0; i < r_size; ++i) {
 
 						limb_type left_digit = result[i];
 						limb_type right_digit = rhs[i];
 
 						if (left_digit < right_digit) {
-							if (i + 1 < lhs.Size()) {
+							if (i + 1 < l_size) {
 								--result[i + 1];
 							}
 							left_digit += LIMB_BASE;

@@ -23,7 +23,6 @@ namespace MathLib {
 					auto zeroes = shift / LIMB_BASE_POWER;
 					shift = shift % LIMB_BASE_POWER;
 
-
 					result = lhs;
 					limb_type residue = 0;
 					size_type size = lhs.Size();

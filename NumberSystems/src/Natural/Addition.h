@@ -17,8 +17,12 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					const size_type size = std::max(lhs.Size(), rhs.Size());
-					const size_type minsize = std::min(lhs.Size(), rhs.Size());
+
+					const size_type l_size = lhs.Size();
+					const size_type r_size = rhs.Size();
+
+					const size_type size = std::max(l_size, r_size);
+					const size_type minsize = std::min(l_size, r_size);
 					limb_type carry = 0;
 
 
@@ -28,13 +32,13 @@ namespace MathLib {
 						carry = addition.carry;
 					}
 
-					for (index_type i = minsize; i < lhs.Size(); ++i) {
+					for (index_type i = minsize; i < l_size; ++i) {
 						auto addition = detail::FitLimbToBase(lhs[i] + carry);
 						result.AddMostLimb(addition.value);
 						carry = addition.carry;
 					}
 
-					for (index_type i = minsize; i < rhs.Size(); ++i) {
+					for (index_type i = minsize; i < r_size; ++i) {
 						auto addition = detail::FitLimbToBase(rhs[i] + carry);
 						result.AddMostLimb(addition.value);
 						carry = addition.carry;
@@ -48,7 +52,6 @@ namespace MathLib {
 			public: 
 				NaturalAddition(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
-					
 				}
 
 				const vector_type Digits() const {
