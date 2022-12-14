@@ -234,3 +234,10 @@ TEST(NaturalArithmetic, DivideByZero) {
 	y = Natural("0");
 	ASSERT_THROW(x / y, DivisionByZero);
 }
+
+TEST(NaturalArithmetic, ModuloSimple) {
+	Natural x = std::string("12334223543421892342");
+	Natural y = std::string(		   "100000000");
+
+	ASSERT_EQ(x % y, Natural("21892342"));
+}

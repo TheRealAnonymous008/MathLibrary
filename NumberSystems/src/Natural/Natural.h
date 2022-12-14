@@ -113,17 +113,17 @@ namespace MathLib {
 				return *this->body;
 			}
 
-			const Natural& AddMostLimb(limb_type digit) {
+			Natural& AddMostLimb(limb_type digit) {
 				this->body->push_back(digit);
 				return *this;
 			}
 
-			const Natural& AddLeastLimb(limb_type digit) {
+			Natural& AddLeastLimb(limb_type digit) {
 				this->body->insert(this->body->begin(), digit);
 				return *this;
 			}
 
-			const Natural& RemoveLeadingZeroes() {
+			Natural& RemoveLeadingZeroes() {
 				size_type N = Size();
 				index_type i = N - 1;
 				for (i; i < N; --i) {
@@ -138,9 +138,25 @@ namespace MathLib {
 				return *this;
 			}
 
-			const Natural& AddTrailingZeros(const size_type zeros) {
+			Natural& AddTrailingZeros(const size_type zeros) {
 				for (index_type i = 0; i < zeros; ++i) {
 					this->AddLeastLimb(0);
+				}
+
+				return *this;
+			}
+
+			Natural& RemoveTrailingZeros(const size_type zeros = ULLONG_MAX) {
+				index_type idx = 0;
+				size_type size = this->body->size();
+
+				for (idx; idx < zeros && idx < size; ++idx) {
+					if (this->body->at(idx) != 0)
+						break;
+				}
+
+				if (idx > 0) {
+					this->body->erase(this->body->begin(), this->body->begin() + idx);
 				}
 
 				return *this;

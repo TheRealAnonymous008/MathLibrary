@@ -57,6 +57,7 @@ namespace MathLib {
 				}
 
 				result.div.RemoveLeadingZeroes();
+				// TODO divide the modulo with D.
 
 				return result;
 			}

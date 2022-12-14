@@ -144,6 +144,7 @@
     <ClInclude Include="src\Natural\NaturalAddition.h" />
     <ClInclude Include="src\Natural\NaturalBase.h" />
     <ClInclude Include="src\Natural\NaturalDivision.h" />
+    <ClInclude Include="src\Natural\NaturalModulo.h" />
     <ClInclude Include="src\Natural\NaturalMultiplication.h" />
     <ClInclude Include="src\Natural\NaturalOrder.h" />
     <ClInclude Include="src\Natural\NaturalSubtraction.h" />

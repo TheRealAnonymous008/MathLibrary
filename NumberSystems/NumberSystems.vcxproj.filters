@@ -88,5 +88,8 @@
     <ClInclude Include="src\Natural\Division\DivModResult.h">
       <Filter>Natural\Division</Filter>
     </ClInclude>
+    <ClInclude Include="src\Natural\NaturalModulo.h">
+      <Filter>Natural</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
