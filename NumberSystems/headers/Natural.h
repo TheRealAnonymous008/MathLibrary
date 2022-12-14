@@ -12,3 +12,4 @@
 
 #include "../src/Natural/And.h"
 #include "../src/Natural/Or.h"
+#include "../src/Natural/Xor.h"

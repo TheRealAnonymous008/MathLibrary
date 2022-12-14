@@ -150,6 +150,7 @@
     <ClInclude Include="src\Natural\Or.h" />
     <ClInclude Include="src\Natural\Ordering.h" />
     <ClInclude Include="src\Natural\Subtraction.h" />
+    <ClInclude Include="src\Natural\Xor.h" />
     <ClInclude Include="src\Utils\FitLimbToBase.h" />
     <ClInclude Include="src\Utils\IsNumericString.h" />
     <ClInclude Include="src\Utils\Parse.h" />
