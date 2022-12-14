@@ -91,7 +91,7 @@
     <ClInclude Include="src\Natural\Modulo.h">
       <Filter>Natural</Filter>
     </ClInclude>
-    <ClInclude Include="src\Natural\Bitwise.h">
+    <ClInclude Include="src\Natural\And.h">
       <Filter>Natural</Filter>
     </ClInclude>
   </ItemGroup>

@@ -277,3 +277,24 @@ TEST(NaturalArithmetic, ModuloLarge) {
 	Natural expected = Natural("17812059265469952713876488966778");
 	ASSERT_EQ(x % y, expected);
 }
+
+TEST(NaturalBitwise, AND) {
+	Natural x = Natural("192387249827397413287294872148972647618294761971876182371982319412313");
+	Natural y = Natural("823742849201298312849123810231031");
+
+	Natural z = x & y;
+	for (index_type i = 0; i < z.Size(); ++i) {
+		ASSERT_EQ(z[i], x[i] & y[i]);
+	}
+}
+
+TEST(NaturalBitwise, ANDIdentities) {
+	Natural x = Natural("23132812847238172942385272374234092834923849");
+	Natural y = Natural("28313912748123712432513282572359912353523521");
+	Natural z = Natural("12310231029310321231");
+
+	ASSERT_EQ(x & x, x);
+	ASSERT_EQ(x & y, y & x);
+	ASSERT_EQ(x & (y & z), (x & y) & z);
+	ASSERT_EQ(x & Natural(), Natural());
+}
