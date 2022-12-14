@@ -11,3 +11,4 @@
 #include "../src/Natural/Subtraction.h"
 
 #include "../src/Natural/And.h"
+#include "../src/Natural/Or.h"

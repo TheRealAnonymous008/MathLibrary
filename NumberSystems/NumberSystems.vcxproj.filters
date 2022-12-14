@@ -94,5 +94,8 @@
     <ClInclude Include="src\Natural\And.h">
       <Filter>Natural</Filter>
     </ClInclude>
+    <ClInclude Include="src\Natural\Or.h">
+      <Filter>Natural</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
