@@ -438,10 +438,38 @@ TEST(NaturalBitwise, SelfAssignment) {
 
 }
 
-TEST(NaturalBitshifts, Left) {
+TEST(NaturalBitShifts, Left) {
 	Natural x = Natural("52091");
 	Natural y = Natural("123");
 	Natural expected = Natural("553,926,524,227,456,421,883,457,708,616,507,434,467,328");
 
 	ASSERT_EQ(x << y, expected);
+}
+
+TEST(NaturalBitShifts, Right) {
+	Natural x = Natural("553,926,524,227,456,421,883,457,708,616,507,434,467,328");
+	Natural y = Natural("123");
+
+	Natural expected = Natural("52091");
+	ASSERT_EQ(x >> y, expected);
+}
+
+TEST(NaturalBitShifts, LeftOnlyResidue) {
+	Natural x = Natural("395683471238923583940968724851724938627182120434");
+	Natural y = Natural("13");
+
+	Natural z = x << y;
+	Natural expected = x * Natural(8192);
+
+	ASSERT_EQ(z, expected);
+}
+
+TEST(NaturalBitShifts, RightOnlyResidue) {
+	Natural x = Natural("395683471238923583940968724851724938627182120434");
+	Natural y = Natural("13");
+
+	Natural z = x >> y;
+	Natural expected = x / Natural("8192");
+
+	ASSERT_EQ(x >> y, expected);
 }

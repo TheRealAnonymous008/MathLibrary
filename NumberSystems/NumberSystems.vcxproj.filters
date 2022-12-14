@@ -109,5 +109,8 @@
     <ClInclude Include="src\Natural\ToULL.h">
       <Filter>Natural</Filter>
     </ClInclude>
+    <ClInclude Include="src\Natural\RightShift.h">
+      <Filter>Natural</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

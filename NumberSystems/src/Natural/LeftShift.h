@@ -23,10 +23,10 @@ namespace MathLib {
 					auto zeroes = shift / LIMB_BASE_POWER;
 					shift = shift % LIMB_BASE_POWER;
 
-					size_type size = lhs.Size();
 
 					result = lhs;
 					limb_type residue = 0;
+					size_type size = lhs.Size();
 
 					for (index_type i = 0; i < size; ++i) {
 						FitLimb buffer = FitLimbToBase((result[i] << shift) + residue);

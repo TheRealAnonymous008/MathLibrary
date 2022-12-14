@@ -17,3 +17,4 @@
 #include "../src/Natural/Xor.h"
 
 #include "../src/Natural/LeftShift.h"
+#include "../src/Natural/RightShift.h"

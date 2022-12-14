@@ -148,7 +148,7 @@ namespace MathLib {
 				if (i + 1 > i)
 					this->body->resize(i + 1);
 				else {
-					this->body->clear();
+					ClearLimbs();
 				}
 
 				return *this;
@@ -156,6 +156,17 @@ namespace MathLib {
 
 			Natural& AddTrailingZeros(const size_type zeros) {
 				this->body->insert(this->body->begin(), zeros, 0);
+
+				return *this;
+			}
+
+			Natural& RemoveLeastLimbs(const size_type limbs) {
+				if (limbs > this->Size()) {
+					ClearLimbs();
+				}
+				else {
+					this->body->erase(this->body->begin(), this->body->begin() + limbs);
+				}
 
 				return *this;
 			}
