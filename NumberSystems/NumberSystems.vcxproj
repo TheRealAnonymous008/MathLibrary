@@ -140,6 +140,7 @@
     <ClInclude Include="src\Natural\Division\DivModResult.h" />
     <ClInclude Include="src\Natural\Division\NormalizeDivisionArgs.h" />
     <ClInclude Include="src\Natural\Division\KnuthDivision.h" />
+    <ClInclude Include="src\Natural\Division\RecursiveDivision.h" />
     <ClInclude Include="src\Natural\LeftShift.h" />
     <ClInclude Include="src\Natural\Multiplication\Classical.h" />
     <ClInclude Include="src\Natural\Multiplication\Karatsuba.h" />

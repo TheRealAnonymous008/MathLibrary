@@ -12,10 +12,8 @@ namespace MathLib {
 	namespace NumberSystems {
 		namespace implementation {
 
-			inline NormalizedDivModResult KnuthDivision(const Natural& lhs, const Natural& rhs) {
-				DivisionNormalizationResult normalized = NormalizeDivisionArgs(lhs, rhs);
-
-				NormalizedDivModResult result{
+			inline DivModResult KnuthDivision(const Natural& lhs, const Natural& rhs) {
+				DivModResult result{
 					.div{Natural()},
 					.mod{lhs}
 				};
@@ -24,6 +22,7 @@ namespace MathLib {
 					return result;
 				}
 
+				DivisionNormalizationResult normalized = NormalizeDivisionArgs(lhs, rhs);
 				auto A = normalized.numerator;
 				auto B = normalized.denominator;
 
@@ -32,7 +31,6 @@ namespace MathLib {
 
 				result.div.AddTrailingZeros(m + 1);
 				result.mod = A;
-				result.D = normalized.D;
 
 				auto right_msl = B[n - 1];
 

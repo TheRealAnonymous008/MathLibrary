@@ -11,6 +11,11 @@ namespace MathLib {
 				Natural mod;
 				Natural D;
 			};
+
+			struct DivModResult {
+				Natural div;
+				Natural mod;
+			};
 		}
 	}
 }

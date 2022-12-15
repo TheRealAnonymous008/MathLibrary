@@ -12,21 +12,21 @@ namespace MathLib {
 
 			template<const unsigned THRESHOLD = KARATSUBA_THRESHOLD>
 			Natural KaratsubaMultiplication(const Natural& lhs, const Natural& rhs) {
-				size_type size = std::min(lhs.Size(), rhs.Size());
+				size_type l_size = lhs.Size();
+				size_type r_size = rhs.Size();
+
+				size_type size = std::min(l_size, r_size);
 				size_type half_size = size / 2;
 
 				if (size <= THRESHOLD) {
 					return ClassicalMultiplication(lhs, rhs);
 				}
 
-				auto ld = lhs.Digits();
-				auto rd = rhs.Digits();
+				Natural left_lo = lhs.Slice(0, half_size);
+				Natural left_hi = lhs.Slice(half_size, l_size);
 
-				Natural left_lo = vector_type(ld.begin(), ld.begin() + half_size);
-				Natural left_hi = vector_type(ld.begin() + half_size, ld.end());
-
-				Natural right_lo = vector_type(rd.begin(), rd.begin() + half_size);
-				Natural right_hi = vector_type(rd.begin() + half_size, rd.end());
+				Natural right_lo = rhs.Slice(0, half_size);
+				Natural right_hi = rhs.Slice(half_size, r_size);
 
 				Natural z0 = KaratsubaMultiplication<THRESHOLD>(left_lo, right_lo);
 				Natural z1 = KaratsubaMultiplication<THRESHOLD>(left_lo + left_hi, right_lo + right_hi);
