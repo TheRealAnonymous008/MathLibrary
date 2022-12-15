@@ -19,17 +19,19 @@ namespace MathLib {
 					limb_type multiplier_limb = rhs[r];
 					limb_type carry = 0;
 
+					limb_number.AddTrailingZeros(lsize + r);
+
 					for (index_type l = 0; l < lsize; ++l) {
 						auto addition = detail::FitLimbToBase(lhs[l] * multiplier_limb + carry);
 						carry = addition.carry;
-						limb_number.AddMostLimb(addition.value);
+						limb_number[l + r] = addition.value;
 					}
 
 					if (carry > 0) {
 						limb_number.AddMostLimb(carry);
 					}
 
-					result += limb_number.AddTrailingZeros(r);
+					result += limb_number;
 				}
 
 				return result;

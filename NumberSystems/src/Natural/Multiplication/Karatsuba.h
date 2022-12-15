@@ -22,11 +22,11 @@ namespace MathLib {
 				auto ld = lhs.Digits();
 				auto rd = rhs.Digits();
 
-				auto left_lo = Natural(vector_type (ld.begin(), ld.begin() + half_size));
-				auto left_hi = Natural(vector_type (ld.begin() + half_size, ld.end()));
+				Natural left_lo = vector_type(ld.begin(), ld.begin() + half_size);
+				Natural left_hi = vector_type(ld.begin() + half_size, ld.end());
 
-				auto right_lo = Natural(vector_type(rd.begin(), rd.begin() + half_size));
-				auto right_hi = Natural(vector_type(rd.begin() + half_size, rd.end()));
+				Natural right_lo = vector_type(rd.begin(), rd.begin() + half_size);
+				Natural right_hi = vector_type(rd.begin() + half_size, rd.end());
 
 				Natural z0 = KaratsubaMultiplication<THRESHOLD>(left_lo, right_lo);
 				Natural z1 = KaratsubaMultiplication<THRESHOLD>(left_lo + left_hi, right_lo + right_hi);

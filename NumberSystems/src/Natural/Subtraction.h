@@ -19,12 +19,12 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					if (rhs > lhs) {
-						throw InvalidSubtractionOperation();
-					}
-
 					result = lhs.Evaluate();
 					Natural right = rhs.Evaluate();
+
+					if (right > result) {
+						throw InvalidSubtractionOperation();
+					}
 
 					size_type l_size = result.Size();
 					size_type r_size = right.Size();
