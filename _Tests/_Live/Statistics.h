@@ -26,5 +26,7 @@ inline void GenerateReport(std::vector<double> samples) {
 	std::cout << "Average:\t" << average << "\n";
 	std::cout << "Min:\t\t" << *min << "\n";
 	std::cout << "Max:\t\t" << *max << "\n";
-	std::cout << "Stddev:\t\t" << stddev << "\n";
+	std::cout << "Stddev:\t\t" << stddev << "\n\n";
+
+	std::cout << "| " << count << " | " << average << " | " << stddev << " | " << "\n";
 }
