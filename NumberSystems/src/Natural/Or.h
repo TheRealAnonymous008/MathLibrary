@@ -33,13 +33,13 @@ namespace MathLib {
 					}
 
 					OPENMP_PARALLELIZE
-					for (i; i < l_size; ++i) {
-						result[i] = left[i];
+					for (index_type idx = i; idx < l_size; ++idx) {
+						result[idx] = left[idx];
 					}
 
 					OPENMP_PARALLELIZE
-					for (i; i < r_size; ++i) {
-						result[i] = right[i];
+					for (index_type idx = i; idx < r_size; ++idx) {
+						result[idx] = right[idx];
 					}
 				}
 
