@@ -21,7 +21,10 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					result = implementation::Div(lhs, rhs).div;
+					Natural left = lhs.Evaluate();
+					Natural right = rhs.Evaluate();
+
+					result = implementation::Div(left, right).div;
 					result.RemoveLeadingZeroes();
 				}
 
@@ -33,10 +36,6 @@ namespace MathLib {
 					if (lhs != Natural()) {
 						Calculate();
 					}
-				}
-
-				const vector_type Digits() const {
-					return result.Digits();
 				}
 
 				auto Evaluate() const {

@@ -16,12 +16,15 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					size_type size = std::min(lhs.Size(), rhs.Size());
+					Natural left = lhs.Evaluate();
+					Natural right = rhs.Evaluate();
+
+					size_type size = std::min(left.Size(), right.Size());
 					result.AddTrailingZeros(size);
 
 					OPENMP_PARALLELIZE
 					for (index_type i = 0; i < size; ++i) {
-						result[i] = lhs[i] & rhs[i];
+						result[i] = left[i] & right[i];
 					}
 				}
 
@@ -30,10 +33,6 @@ namespace MathLib {
 				NaturalAnd(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 
-				}
-
-				const vector_type Digits() const {
-					return result.Digits();
 				}
 
 				auto Evaluate() const {

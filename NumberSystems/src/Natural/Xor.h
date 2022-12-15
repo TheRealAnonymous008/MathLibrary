@@ -16,8 +16,11 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					size_type l_size = lhs.Size();
-					size_type r_size = rhs.Size();
+					Natural left = lhs.Evaluate();
+					Natural right = rhs.Evaluate();
+
+					size_type l_size = left.Size();
+					size_type r_size = right.Size();
 
 					size_type size = std::min(l_size, r_size);
 					index_type i = 0;
@@ -26,17 +29,17 @@ namespace MathLib {
 
 					OPENMP_PARALLELIZE
 					for (i = 0; i < size; ++i) {
-						result[i] = lhs[i] ^ rhs[i];
+						result[i] = left[i] ^ right[i];
 					}
 
 					OPENMP_PARALLELIZE
 					for (i; i < l_size; ++i) {
-						result[i] = lhs[i];
+						result[i] = left[i];
 					}
 
 					OPENMP_PARALLELIZE
 					for (i; i < r_size; ++i) {
-						result[i] = rhs[i];
+						result[i] = right[i];
 					}
 
 					result.RemoveLeadingZeroes();
@@ -47,10 +50,6 @@ namespace MathLib {
 				NaturalXor(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 
-				}
-
-				const vector_type Digits() const {
-					return result.Digits();
 				}
 
 				auto Evaluate() const {

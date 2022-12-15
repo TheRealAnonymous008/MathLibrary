@@ -23,23 +23,25 @@ namespace MathLib {
 						throw InvalidSubtractionOperation();
 					}
 
-					result = lhs;
-					size_type l_size = lhs.Size();
-					size_type r_size = rhs.Size();
+					result = lhs.Evaluate();
+					Natural right = rhs.Evaluate();
+
+					size_type l_size = result.Size();
+					size_type r_size = right.Size();
 
 					for (index_type i = 0; i < r_size; ++i) {
 
-						limb_type left_digit = result[i];
-						limb_type right_digit = rhs[i];
+						limb_type left_limb = result[i];
+						limb_type right_limb = right[i];
 
-						if (left_digit < right_digit) {
+						if (left_limb < right_limb) {
 							if (i + 1 < l_size) {
 								--result[i + 1];
 							}
-							left_digit += LIMB_BASE;
+							left_limb += LIMB_BASE;
 						}
 
-						result[i] = left_digit - right_digit;
+						result[i] = left_limb - right_limb;
 					}
 
 					result.RemoveLeadingZeroes();
@@ -48,10 +50,6 @@ namespace MathLib {
 			public:
 				NaturalSubtraction(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
-				}
-
-				const vector_type Digits() const {
-					return result.Digits();
 				}
 
 				auto Evaluate() const {

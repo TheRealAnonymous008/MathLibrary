@@ -7,8 +7,7 @@ namespace MathLib {
 	namespace NumberSystems {
 		namespace implementation {
 
-			template<typename LHS, typename RHS>
-			Natural ClassicalMultiplication(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			inline Natural ClassicalMultiplication(const Natural& lhs, const Natural& rhs) {
 				Natural result;
 				
 				size_type lsize = lhs.Size();

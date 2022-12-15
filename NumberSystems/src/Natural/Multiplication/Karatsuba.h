@@ -10,8 +10,8 @@ namespace MathLib {
 
 			const unsigned KARATSUBA_THRESHOLD = 15;
 
-			template<const unsigned THRESHOLD = KARATSUBA_THRESHOLD, typename LHS, typename RHS>
-			Natural KaratsubaMultiplication(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			template<const unsigned THRESHOLD = KARATSUBA_THRESHOLD>
+			Natural KaratsubaMultiplication(const Natural& lhs, const Natural& rhs) {
 				size_type size = std::min(lhs.Size(), rhs.Size());
 				size_type half_size = size / 2;
 
@@ -28,9 +28,9 @@ namespace MathLib {
 				auto right_lo = Natural(vector_type(rd.begin(), rd.begin() + half_size));
 				auto right_hi = Natural(vector_type(rd.begin() + half_size, rd.end()));
 
-				Natural z0 = KaratsubaMultiplication(left_lo, right_lo);
-				Natural z1 = KaratsubaMultiplication(left_lo + left_hi, right_lo + right_hi);
-				Natural z2 = KaratsubaMultiplication(left_hi, right_hi);
+				Natural z0 = KaratsubaMultiplication<THRESHOLD>(left_lo, right_lo);
+				Natural z1 = KaratsubaMultiplication<THRESHOLD>(left_lo + left_hi, right_lo + right_hi);
+				Natural z2 = KaratsubaMultiplication<THRESHOLD>(left_hi, right_hi);
 
 				Natural middle = z1 - z2 - z0;
 

@@ -23,7 +23,7 @@ namespace MathLib {
 					auto zeroes = shift / LIMB_BASE_POWER;
 					shift = shift % LIMB_BASE_POWER;
 
-					result = lhs;
+					result = lhs.Evaluate();
 					limb_type residue = 0;
 
 					result.RemoveLeastLimbs(zeroes);
@@ -47,10 +47,6 @@ namespace MathLib {
 				NaturalRightShift(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 
-				}
-
-				const vector_type Digits() const {
-					return result.Digits();
 				}
 
 				auto Evaluate() const {

@@ -107,7 +107,7 @@ namespace MathLib {
 			template<typename E>
 			Natural(const NaturalBase<E>& expr) {
 				ClearLimbs();
-				auto digits = expr.Digits();
+				auto digits = expr.Evaluate().Digits();
 				for (auto d : digits) {
 					AddMostLimb(d);
 				}
@@ -116,7 +116,7 @@ namespace MathLib {
 			template<typename E>
 			void operator=(const NaturalBase<E>& expr) {
 				ClearLimbs();
-				auto digits = expr.Digits();
+				auto digits = expr.Evaluate().Digits();
 				for (auto d : digits) {
 					AddMostLimb(d);
 				}
@@ -124,6 +124,10 @@ namespace MathLib {
 
 			const vector_type Digits() const {
 				return *this->body;
+			}
+
+			const size_type Size() const {
+				return this->body->size();
 			}
 
 			Natural& AddMostLimb(limb_type digit) {
@@ -260,6 +264,10 @@ namespace MathLib {
 					std::cout << d << " ";
 				}
 				std::cout << "\n";
+			}
+
+			const string_type Val() const {
+				return detail::ReverseParse(Digits());
 			}
 		};
 

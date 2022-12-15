@@ -9,8 +9,7 @@ namespace MathLib {
 	namespace NumberSystems {
 		namespace implementation {
 
-			template<typename LHS, typename RHS>
-			NormalizedDivModResult Div(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			inline NormalizedDivModResult Div(const Natural& lhs, const Natural& rhs) {
 				return KnuthDivision(lhs, rhs);
 			}
 		}

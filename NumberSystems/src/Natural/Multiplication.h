@@ -20,17 +20,16 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					result = implementation::KaratsubaMultiplication(lhs, rhs);
+					Natural left = lhs.Evaluate();
+					Natural right = rhs.Evaluate();
+
+					result = implementation::KaratsubaMultiplication(left, right);
 					result.RemoveLeadingZeroes();
 				}
 
 			public:
 				NaturalMultiplication(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
-				}
-
-				const vector_type Digits() const {
-					return result.Digits();
 				}
 
 				auto Evaluate() const {

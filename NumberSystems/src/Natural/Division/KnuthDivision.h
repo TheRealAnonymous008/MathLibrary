@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../Natural.h"
+
+#include "../Multiplication.h"
 #include "../Subtraction.h"
 
 #include "DivModResult.h"
@@ -10,8 +12,7 @@ namespace MathLib {
 	namespace NumberSystems {
 		namespace implementation {
 
-			template<typename LHS, typename RHS>
-			NormalizedDivModResult KnuthDivision(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			inline NormalizedDivModResult KnuthDivision(const Natural& lhs, const Natural& rhs) {
 				DivisionNormalizationResult normalized = NormalizeDivisionArgs(lhs, rhs);
 
 				NormalizedDivModResult result{

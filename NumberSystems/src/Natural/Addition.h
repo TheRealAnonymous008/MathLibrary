@@ -17,9 +17,11 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
+					Natural left = lhs.Evaluate();
+					Natural right = rhs.Evaluate();
 
-					const size_type l_size = lhs.Size();
-					const size_type r_size = rhs.Size();
+					const size_type l_size = left.Size();
+					const size_type r_size = right.Size();
 
 					const size_type size = std::max(l_size, r_size);
 					const size_type minsize = std::min(l_size, r_size);
@@ -27,19 +29,19 @@ namespace MathLib {
 
 
 					for (index_type i = 0; i < minsize; ++i) {
-						auto addition = detail::FitLimbToBase(lhs[i] + rhs[i] + carry);
+						auto addition = detail::FitLimbToBase(left[i] + right[i] + carry);
 						result.AddMostLimb(addition.value);
 						carry = addition.carry;
 					}
 
 					for (index_type i = minsize; i < l_size; ++i) {
-						auto addition = detail::FitLimbToBase(lhs[i] + carry);
+						auto addition = detail::FitLimbToBase(left[i] + carry);
 						result.AddMostLimb(addition.value);
 						carry = addition.carry;
 					}
 
 					for (index_type i = minsize; i < r_size; ++i) {
-						auto addition = detail::FitLimbToBase(rhs[i] + carry);
+						auto addition = detail::FitLimbToBase(right[i] + carry);
 						result.AddMostLimb(addition.value);
 						carry = addition.carry;
 					}
@@ -52,10 +54,6 @@ namespace MathLib {
 			public: 
 				NaturalAddition(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
-				}
-
-				const vector_type Digits() const {
-					return result.Digits();
 				}
 
 				auto Evaluate() const {

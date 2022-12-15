@@ -19,13 +19,15 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
+					Natural left = lhs.Evaluate();
+
 					auto shift = ToULL(rhs);
 					auto zeroes = shift / LIMB_BASE_POWER;
 					shift = shift % LIMB_BASE_POWER;
 
-					result = lhs;
+					result = left;
 					limb_type residue = 0;
-					size_type size = lhs.Size();
+					size_type size = left.Size();
 
 					for (index_type i = 0; i < size; ++i) {
 						FitLimb buffer = FitLimbToBase((result[i] << shift) + residue);
@@ -44,10 +46,6 @@ namespace MathLib {
 				NaturalLeftShift(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 
-				}
-
-				const vector_type Digits() const {
-					return result.Digits();
 				}
 
 				auto Evaluate() const {

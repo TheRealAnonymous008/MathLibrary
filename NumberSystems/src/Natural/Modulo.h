@@ -21,7 +21,10 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					auto normdiv = implementation::Div(lhs, rhs);
+					Natural left = lhs.Evaluate();
+					Natural right = rhs.Evaluate();
+
+					auto normdiv = implementation::Div(left, right);
 					result = normdiv.mod / normdiv.D;
 				}
 
@@ -31,10 +34,6 @@ namespace MathLib {
 						throw DivisionByZero();
 					}
 					Calculate();
-				}
-
-				const vector_type Digits() const {
-					return result.Digits();
 				}
 
 				auto Evaluate() const {

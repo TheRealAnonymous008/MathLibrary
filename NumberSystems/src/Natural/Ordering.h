@@ -7,15 +7,18 @@ namespace MathLib {
 
 		template<typename LHS, typename RHS>
 		bool operator==(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			if (lhs.Size() != rhs.Size()) {
+			Natural left = lhs.Evaluate();
+			Natural right = rhs.Evaluate();
+
+			if (left.Size() != right.Size()) {
 				return false;
 			}
 
-			size_type size = lhs.Size();
+			size_type size = left.Size();
 
 			OPENMP_PARALLELIZE
 			for (index_type i = 0; i < size; ++i) {
-				if (lhs[i] != rhs[i])
+				if (left[i] != right[i])
 					return false;
 			}
 
@@ -24,15 +27,18 @@ namespace MathLib {
 
 		template<typename LHS, typename RHS>
 		bool operator!=(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			if (lhs.Size() != rhs.Size()) {
+			Natural left = lhs.Evaluate();
+			Natural right = rhs.Evaluate();
+
+			if (left.Size() != right.Size()) {
 				return true;
 			}
 
-			size_type size = lhs.Size();
+			size_type size = left.Size();
 
 			OPENMP_PARALLELIZE
 			for (index_type i = 0; i < size; ++i) {
-				if (lhs[i] != rhs[i])
+				if (left[i] != right[i])
 					return true;
 			}
 
@@ -41,8 +47,11 @@ namespace MathLib {
 
 		template<typename LHS, typename RHS>
 		bool operator>(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			size_type l_size = lhs.Size();
-			size_type r_size = rhs.Size();
+			Natural left = lhs.Evaluate();
+			Natural right = rhs.Evaluate();
+
+			size_type l_size = left.Size();
+			size_type r_size = right.Size();
 
 			if (l_size < r_size) {
 				return false;
@@ -54,9 +63,9 @@ namespace MathLib {
 			size_type size = l_size;
 
 			for (index_type i = size - 1; i < size; --i) {
-				if (lhs[i] > rhs[i])
+				if (left[i] > right[i])
 					return true;
-				else if (lhs[i] < rhs[i]) {
+				else if (left[i] < right[i]) {
 					return false;
 				}
 			}
@@ -65,8 +74,11 @@ namespace MathLib {
 
 		template<typename LHS, typename RHS>
 		bool operator<(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			size_type l_size = lhs.Size();
-			size_type r_size = rhs.Size();
+			Natural left = lhs.Evaluate();
+			Natural right = rhs.Evaluate();
+
+			size_type l_size = left.Size();
+			size_type r_size = right.Size();
 
 			if (l_size > r_size) {
 				return false;
@@ -78,9 +90,9 @@ namespace MathLib {
 			size_type size = r_size;
 
 			for (index_type i = size - 1; i < size; --i) {
-				if (lhs[i] < rhs[i])
+				if (left[i] < right[i])
 					return true;
-				else if (lhs[i] > rhs[i]) {
+				else if (left[i] > right[i]) {
 					return false;
 				}
 			}

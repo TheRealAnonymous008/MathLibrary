@@ -2,6 +2,8 @@
 
 #include "../Natural.h"
 
+#include "../Multiplication.h"
+
 namespace MathLib {
 	namespace NumberSystems {
 		namespace implementation {
@@ -12,8 +14,7 @@ namespace MathLib {
 				Natural D;
 			};
 
-			template<typename LHS, typename RHS>
-			DivisionNormalizationResult NormalizeDivisionArgs(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			inline DivisionNormalizationResult NormalizeDivisionArgs(const Natural& lhs, const Natural& rhs) {
 
 				auto right_msl = rhs[rhs.Size() - 1];
 				DivisionNormalizationResult result; 

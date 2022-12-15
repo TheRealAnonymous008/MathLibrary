@@ -8,7 +8,7 @@ namespace MathLib {
 
 		template<typename Expr>
 		unsigned long long ToULL(const NaturalBase<Expr>& expr) {
-			auto digits = expr.Digits();
+			auto digits = expr.Evaluate().Digits();
 			unsigned long long result = 0; 
 			
 			for (auto d : digits) {
