@@ -38,7 +38,7 @@ namespace MathLib {
 					auto left_msl = result.mod[n + j] * LIMB_BASE + result.mod[n + j - 1];
 					auto q_estimate = left_msl / right_msl;
 
-					result.div[j] = std::min(q_estimate, LIMB_BASE - 1);
+					result.div[j] = std::min(q_estimate, MAX_LIMB_VALUE);
 
 					Natural b = Natural(B).AddTrailingZeros(j);
 					Natural qb = Natural(result.div[j]) * b;

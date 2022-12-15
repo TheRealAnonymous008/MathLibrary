@@ -246,7 +246,7 @@ namespace MathLib {
 
 				for (index_type i = 0; i < size; ++i) {
 					if ((*body)[i] == 0) {
-						(*body)[i] = LIMB_BASE - 1;
+						(*body)[i] = MAX_LIMB_VALUE;
 					}
 					else {
 						--(*body)[i];
@@ -267,8 +267,8 @@ namespace MathLib {
 				}
 
 				for (index_type i = 0; i < size; ++i) {
-					if ((*body)[i] == LIMB_BASE - 1) {
-						(*body)[i] = LIMB_BASE - 1;
+					if ((*body)[i] == MAX_LIMB_VALUE) {
+						(*body)[i] = 0;
 					}
 					else {
 						++(*body)[i];
