@@ -24,6 +24,7 @@
     <ProjectGuid>{9d1039d3-55df-40ce-858d-c848487fbe67}</ProjectGuid>
     <RootNamespace>Live</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>__Benchmark</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -145,6 +146,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BenchmarkTemplate.cpp" />
+    <ClCompile Include="LU.cpp" />
     <ClCompile Include="_Live.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

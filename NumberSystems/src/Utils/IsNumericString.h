@@ -8,7 +8,6 @@ namespace MathLib {
 		namespace detail {
 			inline bool IsNumericString(const string_type str) {
 				
-				OPENMP_PARALLELIZE
 				for (auto x : str) {
 					if (!std::isdigit(x)) {
 						return false;

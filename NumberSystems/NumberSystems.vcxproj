@@ -134,6 +134,7 @@
     <ClInclude Include="headers\Extern.h" />
     <ClInclude Include="headers\Fwd.h" />
     <ClInclude Include="headers\Natural.h" />
+    <ClInclude Include="headers\Utils.h" />
     <ClInclude Include="src\Natural\And.h" />
     <ClInclude Include="src\Natural\Division\DivImpl.h" />
     <ClInclude Include="src\Natural\Division\DivModResult.h" />
@@ -160,6 +161,11 @@
     <ClInclude Include="src\Utils\Parse.h" />
     <ClInclude Include="src\Utils\RadixStrings.h" />
     <ClInclude Include="src\Utils\ReverseParse.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vcxproj">
+      <Project>{a6b11dc3-cd2a-4023-8d87-3fb3fe4f23ec}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

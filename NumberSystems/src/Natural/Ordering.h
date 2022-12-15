@@ -16,7 +16,6 @@ namespace MathLib {
 
 			size_type size = left.Size();
 
-			OPENMP_PARALLELIZE
 			for (index_type i = 0; i < size; ++i) {
 				if (left[i] != right[i])
 					return false;
@@ -36,7 +35,6 @@ namespace MathLib {
 
 			size_type size = left.Size();
 
-			OPENMP_PARALLELIZE
 			for (index_type i = 0; i < size; ++i) {
 				if (left[i] != right[i])
 					return true;

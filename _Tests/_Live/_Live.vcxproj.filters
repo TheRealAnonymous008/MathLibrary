@@ -18,5 +18,11 @@
     <ClCompile Include="_Live.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LU.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BenchmarkTemplate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
