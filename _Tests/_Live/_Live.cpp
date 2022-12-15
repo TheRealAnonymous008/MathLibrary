@@ -3,7 +3,7 @@
 
 #include "../../NumberSystems/Core.h"
 
-#define LOOPS 100
+#define LOOPS 10000
 
 // Add scopes here for simplifications
 using namespace MathLib::NumberSystems;
@@ -19,7 +19,7 @@ int main()
 		auto start = std::chrono::high_resolution_clock::now();
 
 		// Insert your code here
-		x % y;
+		x + x;
 
 		auto end = std::chrono::high_resolution_clock::now();
 

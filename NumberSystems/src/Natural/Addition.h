@@ -27,22 +27,23 @@ namespace MathLib {
 					const size_type minsize = std::min(l_size, r_size);
 					limb_type carry = 0;
 
+					result.AddTrailingZeros(size);
 
 					for (index_type i = 0; i < minsize; ++i) {
 						auto addition = detail::FitLimbToBase(left[i] + right[i] + carry);
-						result.AddMostLimb(addition.value);
+						result[i] = addition.value;
 						carry = addition.carry;
 					}
 
 					for (index_type i = minsize; i < l_size; ++i) {
 						auto addition = detail::FitLimbToBase(left[i] + carry);
-						result.AddMostLimb(addition.value);
+						result[i] = addition.value;
 						carry = addition.carry;
 					}
 
 					for (index_type i = minsize; i < r_size; ++i) {
 						auto addition = detail::FitLimbToBase(right[i] + carry);
-						result.AddMostLimb(addition.value);
+						result[i] = addition.value;
 						carry = addition.carry;
 					}
 
