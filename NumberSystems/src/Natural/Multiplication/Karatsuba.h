@@ -32,7 +32,7 @@ namespace MathLib {
 				Natural z1 = KaratsubaMultiplication<THRESHOLD>(left_lo + left_hi, right_lo + right_hi);
 				Natural z2 = KaratsubaMultiplication<THRESHOLD>(left_hi, right_hi);
 
-				Natural middle = z1 - z2 - z0;
+				Natural middle = z1 - (z2 + z0);
 
 				Natural result = z0 + middle.AddTrailingZeros(half_size) + z2.AddTrailingZeros(half_size * 2);
 				return result;

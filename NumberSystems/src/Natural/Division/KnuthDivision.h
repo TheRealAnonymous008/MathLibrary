@@ -19,19 +19,16 @@ namespace MathLib {
 					.div{Natural()},
 					.mod{lhs}
 				};
-
-				size_type n = rhs.Size();
-				size_type m = lhs.Size() - n;
 				
-				if (m < 0) {
+				if (lhs.Size() < rhs.Size()) {
 					return result;
 				}
 
 				auto A = normalized.numerator;
 				auto B = normalized.denominator;
 
-				n = B.Size();
-				m = A.Size() - n;
+				size_type n = B.Size();
+				size_type m = A.Size() - n;
 
 				result.div.AddTrailingZeros(m + 1);
 				result.mod = A;
@@ -51,7 +48,7 @@ namespace MathLib {
 
 					if (result.mod < qb) {
 						--result.div[j];
-						qb = qb - b;
+						qb -= b;
 					}
 
 					result.mod -= qb;

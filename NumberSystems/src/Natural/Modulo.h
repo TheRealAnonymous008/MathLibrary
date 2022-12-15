@@ -21,10 +21,8 @@ namespace MathLib {
 				Natural result;
 
 				void Calculate() {
-					Natural left = lhs.Evaluate();
-					Natural right = rhs.Evaluate();
-
-					auto normdiv = implementation::Div(left, right);
+					
+					auto normdiv = implementation::Div(lhs.Evaluate() , rhs.Evaluate());
 					result = normdiv.mod / normdiv.D;
 				}
 
