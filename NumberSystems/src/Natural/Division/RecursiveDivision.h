@@ -13,7 +13,7 @@ namespace MathLib {
 	namespace NumberSystems {
 		namespace implementation {
 
-			const unsigned RECURSIVE_THRESHOLD = 10;
+			const unsigned RECURSIVE_THRESHOLD = 100;
 			
 			template<const unsigned THRESHOLD = RECURSIVE_THRESHOLD>
 			DivModResult RecursiveDivision(const Natural& lhs, const Natural& rhs) {
@@ -21,7 +21,6 @@ namespace MathLib {
 					.div{Natural()},
 					.mod{lhs},
 				};
-
 				Natural A = lhs;
 				Natural B = rhs;
 

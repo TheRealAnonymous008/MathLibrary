@@ -136,6 +136,7 @@
     <ClInclude Include="headers\Natural.h" />
     <ClInclude Include="headers\Utils.h" />
     <ClInclude Include="src\Natural\And.h" />
+    <ClInclude Include="src\Natural\Decrement.h" />
     <ClInclude Include="src\Natural\Division\DivImpl.h" />
     <ClInclude Include="src\Natural\Division\DivModResult.h" />
     <ClInclude Include="src\Natural\Division\NormalizeDivisionArgs.h" />

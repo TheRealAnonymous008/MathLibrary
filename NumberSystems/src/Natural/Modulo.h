@@ -28,7 +28,7 @@ namespace MathLib {
 
 			public:
 				NaturalModulo(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
-					if (IsZero(rhs)) {
+					if (rhs == constants::ZERO) {
 						throw DivisionByZero();
 					}
 					Calculate();

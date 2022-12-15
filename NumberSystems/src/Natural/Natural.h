@@ -253,6 +253,10 @@ namespace MathLib {
 				return detail::ReverseParse(Digits());
 			}
 		};
-
+		
+		namespace constants {
+			static const Natural ZERO = Natural();
+			static const Natural ONE = Natural("1");
+		}
 	}
 }
