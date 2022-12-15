@@ -236,6 +236,20 @@ TEST(NaturalArithmetic, DivisionStress) {
 	ASSERT_EQ(z, expected);
 }
 
+TEST(NaturalArithmetic, RecursiveTest) {
+	Natural x = Natural("267,895,894,304,364,752,678,868,955,431,824,907,367,753,146,322,020,621,335,624,329,595,212,336,512,781,781,585,428,916,823,953,974,814,585,680,226,678,326,375,639,556,132,623,499,217,174,608,843,391,469,389,219,335,124,993,828,874,277,769,329,364,543,105,366,842");
+	Natural y = Natural("744235346246734730463047112");
+
+	auto normalized = implementation::NormalizeDivisionArgs(x, y);
+	x = normalized.denominator;
+	y = normalized.numerator;
+
+	auto knuth = implementation::KnuthDivision(x, y);
+	auto recursive = implementation::RecursiveDivision<3>(x, y);
+	ASSERT_EQ(knuth.div, recursive.div);
+	ASSERT_EQ(knuth.mod, recursive.mod);
+}
+
 TEST(NaturalArithmetic, DivideByZero) {
 	Natural x = Natural("289735928359208938057903589082439028318273");
 	Natural y = 0;

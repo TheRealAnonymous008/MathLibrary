@@ -22,9 +22,8 @@ namespace MathLib {
 					return result;
 				}
 
-				DivisionNormalizationResult normalized = NormalizeDivisionArgs(lhs, rhs);
-				auto A = normalized.numerator;
-				auto B = normalized.denominator;
+				Natural A = lhs;
+				Natural B = rhs;
 
 				size_type n = B.Size();
 				size_type m = A.Size() - n;

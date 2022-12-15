@@ -153,7 +153,7 @@ namespace MathLib {
 				return *this;
 			}
 
-			Natural Slice(const index_type left, const index_type right) const{
+			Natural Slice(const index_type left, const index_type right) const {
 				Natural slice = vector_type(body->begin() + left, body->begin() + right);
 				return slice;
 			}

@@ -14,7 +14,7 @@ namespace MathLib {
 
 			inline NormalizedDivModResult Div(const Natural& lhs, const Natural& rhs) {
 				auto normalized = NormalizeDivisionArgs(lhs, rhs);
-				DivModResult result = KnuthDivision(normalized.numerator, normalized.denominator);
+				DivModResult result = RecursiveDivision(normalized.numerator, normalized.denominator);
 
 				NormalizedDivModResult ans{
 					.div{result.div},
