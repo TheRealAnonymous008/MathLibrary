@@ -7,3 +7,4 @@
 #include "headers/Fwd.h"
 #include "headers/Utils.h"
 #include "headers/Natural.h"
+#include "headers/Integer.h"

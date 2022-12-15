@@ -17,6 +17,9 @@
     <Filter Include="Natural\Division">
       <UniqueIdentifier>{2f66754a-4554-4474-a0c8-0c6282a78533}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Integer">
+      <UniqueIdentifier>{316025d3-485f-4c15-98e0-04bfa60fa40d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -117,6 +120,15 @@
     </ClInclude>
     <ClInclude Include="src\Natural\Division\RecursiveDivision.h">
       <Filter>Natural\Division</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Integer\Integer.h">
+      <Filter>Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Integer\IntegerBase.h">
+      <Filter>Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Integer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -24,5 +24,10 @@ namespace MathLib {
 		class NumberBase;
 
 		class Natural;
+
+		template<typename Derived>
+		class IntegerBase;
+
+		class Integer;
 	}
 }
