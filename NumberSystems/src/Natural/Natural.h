@@ -19,7 +19,6 @@ namespace MathLib {
 			}
 
 			void SetBody(const vector_type& digits) {
-				ClearLimbs();
 				this->body->resize(digits.size());
 				std::copy(digits.begin(), digits.end(), this->body->begin());
 			}
@@ -74,13 +73,11 @@ namespace MathLib {
 			}
 
 			Natural(const vector_type& vec) {
-				delete this->body;
-				this->body = new vector_type(vec.begin(), vec.end());
+				SetBody(vec);
 			}
 
 			void operator= (const vector_type& vec) {
-				delete this->body;
-				this->body = new vector_type(vec.begin(), vec.end());
+				SetBody(vec);
 			}
 
 			Natural(const Natural& expr) {
