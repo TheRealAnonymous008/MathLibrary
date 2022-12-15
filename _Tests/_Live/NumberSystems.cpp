@@ -8,7 +8,7 @@
 // Add scopes here for simplifications
 using namespace MathLib::NumberSystems;
 
-int main()
+int NumberSystems_Benchmark_Test()
 {
 	// Insert declarations here
 	Natural x = Natural("267895894304364752678868955431824907367753146322020621335624329595212336512781781585428916823953974814585680226678326375639556132623499217174608843391469389219335124993828874277769329364543105366842");
@@ -23,7 +23,7 @@ int main()
 		auto start = std::chrono::high_resolution_clock::now();
 
 		// Insert your code here
-		x + y
+		x + y;
 
 		auto end = std::chrono::high_resolution_clock::now();
 
