@@ -26,7 +26,7 @@ namespace MathLib {
 			}
 
 			~Natural() {
-
+				delete body;
 			}			
 			
 			Natural(const string_type& value) {
