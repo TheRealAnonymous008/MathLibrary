@@ -1,9 +1,11 @@
 #include <iostream>
 #include <chrono>
 
+#include "Statistics.h"
+
 #include "../../NumberSystems/Core.h"
 
-#define LOOPS 10000
+#define LOOPS 1000000
 
 // Add scopes here for simplifications
 using namespace MathLib::NumberSystems;
@@ -15,29 +17,21 @@ int main()
 	Natural y = Natural("123891283128439248174320582841273598395882475048372462483812489102301243959359102010230503692851923811752304012402350239187328382337777123819021492857375287351249182498527417291129938375637642654341");
 	Natural z = Natural("123891283128439248174320582841273598395882475048372462483812489102301243959359102010230503692851923811752304012402350239187328382");
 
-	double count = 0;
-	double min = FLT_MAX;
-	double max = FLT_MIN;
+	std::vector<double> samples;
 
 	for (unsigned i = 0; i < LOOPS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
 
 		// Insert your code here
-		x + y
+		x + y;
 
 		auto end = std::chrono::high_resolution_clock::now();
 
 		auto time = (end - start).count() / 1e9;
-		min = std::min(time, min);
-		max = std::max(time, max);
-
-		count += time;
+		samples.push_back(time);
 	}
 
-	std::cout << "Loops: " << LOOPS << "\n";
-	std::cout << "Mean: " << count / LOOPS << "s\n";
-	std::cout << "Min: " << min << "s\n";
-	std::cout << "Max: " << max << "s\n";
+	GenerateReport(samples);
 
 	_CrtDumpMemoryLeaks();
 	return 0;

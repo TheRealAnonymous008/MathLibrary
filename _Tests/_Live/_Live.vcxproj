@@ -151,6 +151,9 @@
     <ClCompile Include="NumberSystems.cpp" />
     <ClCompile Include="_Live.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Statistics.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
