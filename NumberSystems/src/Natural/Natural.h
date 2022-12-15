@@ -237,6 +237,46 @@ namespace MathLib {
 				return *this;
 			}
 
+			Natural operator--(int) {
+				size_type size = this->Size();
+
+				if (size == 0) {
+					throw InvalidSubtractionOperation();
+				}
+
+				for (index_type i = 0; i < size; ++i) {
+					if ((*body)[i] == 0) {
+						(*body)[i] = LIMB_BASE - 1;
+					}
+					else {
+						--(*body)[i];
+						break;
+					}
+				}
+
+				this->RemoveLeadingZeroes();
+				return *this;
+			}
+
+			Natural operator++(int) {;
+				size_type size = this->Size();
+
+				if (size == 0) {
+					AddMostLimb(1);
+					return *this;
+				}
+
+				for (index_type i = 0; i < size; ++i) {
+					if ((*body)[i] == LIMB_BASE - 1) {
+						(*body)[i] = LIMB_BASE - 1;
+					}
+					else {
+						++(*body)[i];
+						break;
+					}
+				}
+				return *this;
+			}
 
 			const Natural& Evaluate() const{
 				return *this;

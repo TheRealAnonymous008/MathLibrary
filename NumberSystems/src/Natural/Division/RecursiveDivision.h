@@ -45,7 +45,7 @@ namespace MathLib {
 
 				Natural bk = B.AddTrailingZeros(k);
 				while (A1 < qb) {
-					D1.div-=Natural("1");
+					D1.div--;
 					A1 += bk;
 				}
 				A1 -= qb;
@@ -55,7 +55,7 @@ namespace MathLib {
 				Natural A2 = D0.mod.AddTrailingZeros(k) + A.Slice(0, k);
 
 				while (A2 < q0b0) {
-					D0.div -= Natural("1");
+					D0.div--;
 					A2 += B;
 				}
 

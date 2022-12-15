@@ -118,8 +118,5 @@
     <ClInclude Include="src\Natural\Division\RecursiveDivision.h">
       <Filter>Natural\Division</Filter>
     </ClInclude>
-    <ClInclude Include="src\Natural\Decrement.h">
-      <Filter>Natural</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

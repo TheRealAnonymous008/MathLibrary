@@ -107,8 +107,6 @@ TEST(NaturalArithmetic, PlusEqual) {
 	ASSERT_EQ(z, x);
 }
 
-
-
 TEST(NaturalArithmetic, Subtraction) {
 	Natural x = std::string("99999999999999999999");
 	Natural y = std::string(         "12345678910");
@@ -137,6 +135,29 @@ TEST(NaturalArithmetic, SubtractionEqualLength) {
 	ASSERT_EQ(z + y, x);
 	ASSERT_EQ(x + y - y, x);
 
+}
+
+TEST(NaturalArithmetic, Increment) {
+	Natural x = Natural();
+	x++;
+
+	ASSERT_EQ(x, Natural("1"));
+
+	x = Natural("203498729402759012847021587102481");
+	Natural y = x;
+
+	x++;
+	ASSERT_EQ(x, y + Natural("1"));
+}
+
+TEST(NaturalArithmetic, Decrement) {
+	Natural x = Natural("1");
+	x--;
+
+	x = Natural("203498729402759012847021587102481");
+	Natural y = x;
+	x--;
+	ASSERT_EQ(x, y - Natural("1"));
 }
 
 TEST(NaturalArithmetic, MultiplicationSmall) {

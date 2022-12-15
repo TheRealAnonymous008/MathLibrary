@@ -28,7 +28,7 @@ int main()
 		auto start = std::chrono::high_resolution_clock::now();
 
 		// Insert your code here
-		x / r;
+		x / z;
 
 		auto end = std::chrono::high_resolution_clock::now();
 
