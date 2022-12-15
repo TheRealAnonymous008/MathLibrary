@@ -75,33 +75,26 @@ namespace MathLib {
 				AddMostLimb(value);
 			}
 
-			Natural(const vector_type vec) {
-				ClearLimbs();
-				for (auto d : vec) {
-					AddMostLimb(d);
-				}
+			Natural(const vector_type& vec) {
+				delete this->body;
+				this->body = new vector_type(vec.begin(), vec.end());
 			}
 
-			void operator= (const vector_type vec) {
-				ClearLimbs();
-				for (auto d : vec) {
-					AddMostLimb(d);
-				}
+			void operator= (const vector_type& vec) {
+				delete this->body;
+				this->body = new vector_type(vec.begin(), vec.end());
 			}
 
 			Natural(const Natural& expr) {
 				ClearLimbs();
-
-				for (auto d : *expr.body) {
-					AddMostLimb(d);
-				}
+				this->body->resize(expr.Size());
+				std::copy(expr.body->begin(), expr.body->end(), this->body->begin());
 			}
 
 			void operator=(const Natural& expr) {
 				ClearLimbs();
-				for (auto d : *expr.body) {
-					AddMostLimb(d);
-				}
+				this->body->resize(expr.Size());
+				std::copy(expr.body->begin(), expr.body->end(), this->body->begin());
 			}
 
 			template<typename E>
