@@ -30,5 +30,8 @@
     <ClInclude Include="Zero.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Stringable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@
 namespace MathLib {
 	namespace NumberSystems {
 
-		class Natural : public NaturalBase<Natural>{
+		class Natural : public NaturalBase<Natural>, public Stringable{
 		private:
 			vector_type* body = new vector_type();
 
@@ -289,7 +289,7 @@ namespace MathLib {
 				std::cout << "\n";
 			}
 
-			const string_type Val() const {
+			string_type Str() const {
 				return detail::ReverseParse(Digits());
 			}
 		};

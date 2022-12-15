@@ -10,7 +10,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 		
 		template<typename T, size_type N>
-		class Vector : public VectorBase<T, N, Vector<T, N>>
+		class Vector : public VectorBase<T, N, Vector<T, N>>, public Stringable
 		{
 		private:
 			std::vector<T>* body = (new std::vector<T>(N));
@@ -147,11 +147,14 @@ namespace MathLib {
 				return *this;
 			}
 
-			void Log() const {
+			std::string Str() const {
+
+				std::ostringstream oss;
+
 				for (index_type i = 0; i < N; ++i) {
-					std::cout << (*this)[i] << " ";
+					oss << (*this)[i] << " ";
 				}
-				std::cout << "\n";
+				return oss.str();
 			}
 		};
 	}

@@ -10,7 +10,7 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		template<typename T, typename size_type _Rows, size_type _Columns>
-		class Matrix : public MatrixBase<T, _Rows, _Columns, Matrix<T, _Rows, _Columns>>{
+		class Matrix : public MatrixBase<T, _Rows, _Columns, Matrix<T, _Rows, _Columns>>, public Stringable{
 		private:
 			std::vector<T>* body = new std::vector<T>(_Rows * _Columns);
 
@@ -187,13 +187,18 @@ namespace MathLib {
 				return (*this);
 			}
 
-			void Log() const {
+			std::string Str() const {
+
+				std::ostringstream oss;
+
 				for (index_type i = 0; i < _Rows; ++i) {
 					for (index_type j = 0; j < _Columns; ++j) {
-						std::cout << this->At(i, j) << " ";
+						oss << this->At(i, j) << " ";
 					}
-					std::cout << "\n";
+					oss << "\n";
 				}
+
+				return oss.str();
 			}
 		};
 

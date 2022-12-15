@@ -6,7 +6,7 @@ TEST(NaturalNumbers, Basic) {
 
 	Natural x = Natural("12345678910111213141516999");
 	
-	ASSERT_EQ(x.Val(), "12345678910111213141516999");
+	ASSERT_EQ(x.Str(), "12345678910111213141516999");
 
 	auto digits = x.Digits();
 
@@ -16,7 +16,7 @@ TEST(NaturalNumbers, Basic) {
 TEST(NaturalNumbers, Zero) {
 	Natural x = Natural();
 
-	ASSERT_EQ(x.Val(), "0");
+	ASSERT_EQ(x.Str(), "0");
 	
 	Natural y = Natural("201221765421199947510");
 
@@ -94,7 +94,7 @@ TEST(NaturalArithmetic, Eager) {
 
 	Natural z = x + y;
 
-	ASSERT_EQ(z.Val(), z.Evaluate().Val());
+	ASSERT_EQ(z.Str(), z.Evaluate().Str());
 }
 
 TEST(NaturalArithmetic, PlusEqual) {
