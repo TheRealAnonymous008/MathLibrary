@@ -18,6 +18,12 @@ namespace MathLib {
 				body->clear();
 			}
 
+			void SetBody(const vector_type& digits) {
+				ClearLimbs();
+				this->body->resize(digits.size());
+				std::copy(digits.begin(), digits.end(), this->body->begin());
+			}
+
 
 		public :
 
@@ -30,21 +36,13 @@ namespace MathLib {
 			}			
 			
 			Natural(const string_type& value) {
-				ClearLimbs();
-				auto digits = detail::Parse(value);
-
-				for (auto d : digits) {
-					AddMostLimb(d);
-				}
+				vector_type digits = detail::Parse(value);
+				SetBody(digits);
 			}
 
 			void operator=(const string_type& value){
-				ClearLimbs();
-				auto digits = detail::Parse(value);
-
-				for (auto d : digits) {
-					AddMostLimb(d);
-				}
+				vector_type digits = detail::Parse(value);
+				SetBody(digits);
 			}
 
 			Natural(limb_type value) {
@@ -86,33 +84,23 @@ namespace MathLib {
 			}
 
 			Natural(const Natural& expr) {
-				ClearLimbs();
-				this->body->resize(expr.Size());
-				std::copy(expr.body->begin(), expr.body->end(), this->body->begin());
+				SetBody(*expr.body);
 			}
 
 			void operator=(const Natural& expr) {
-				ClearLimbs();
-				this->body->resize(expr.Size());
-				std::copy(expr.body->begin(), expr.body->end(), this->body->begin());
+				SetBody(*expr.body);
 			}
 
 			template<typename E>
 			Natural(const NaturalBase<E>& expr) {
-				ClearLimbs();
-				auto digits = expr.Evaluate().Digits();
-				for (auto d : digits) {
-					AddMostLimb(d);
-				}
+				vector_type digits = expr.Evaluate().Digits();
+				SetBody(digits);
 			}
 
 			template<typename E>
 			void operator=(const NaturalBase<E>& expr) {
-				ClearLimbs();
-				auto digits = expr.Evaluate().Digits();
-				for (auto d : digits) {
-					AddMostLimb(d);
-				}
+				vector_type digits = expr.Evaluate().Digits();
+				SetBody(digits);
 			}
 
 			const vector_type Digits() const {
