@@ -18,6 +18,15 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="generators\NumberSystems.h" />
+    <ClInclude Include="headers\Benchmarker.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="NumberSystems.cpp" />
+    <ClCompile Include="Template.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -145,15 +154,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="BenchmarkTemplate.cpp" />
-    <ClCompile Include="LU.cpp" />
-    <ClCompile Include="NumberSystems.cpp" />
-    <ClCompile Include="_Live.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Statistics.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

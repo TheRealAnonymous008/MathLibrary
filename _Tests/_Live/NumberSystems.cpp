@@ -1,43 +1,23 @@
-//#include <iostream>
-//#include <chrono>
-//
-//#include "Statistics.h"
+//#include "headers/Benchmarker.h"
 //
 //#include "../../NumberSystems/Core.h"
 //
-//#define LOOPS 10000
-//
-//// Add scopes here for simplifications
+//using namespace Benchmarking;
 //using namespace MathLib::NumberSystems;
 //
-//int main()
-//{
-//	// Insert declarations here
-//	Natural x = Natural("267895894304364752678868955431824907367753146322020621335624329595212336512781781585428916823953974814585680226678326375639556132623499217174608843391469389219335124993828874277769329364543105366842");
-//	Natural y = Natural("123891283128439248174320582841273598395882475048372462483812489102301243959359102010230503692851923811752304012402350239187328382337777123819021492857375287351249182498527417291129938375637642654341");
-//	// Use this for division
-//	Natural z = Natural("123891283128439248174320582841273598395882475048372462483812489102301243959359102010230503692851923811752304012402350239187328382");
+//// Declare all setup code here.
+//Natural x = Natural("267895894304364752674886895543182349046088433914695389219335124993828874277760919329364543105366842");
 //
-//	// For right shift and leftshift respectively
-//	Natural r = Natural(45);
-//	Natural l = Natural(1000000);
+//void Addition(Benchmark& b) {
 //
-//	std::vector<double> samples;
+//	b.Start();
+//	x + x;
+//	b.Stop();
+//}
 //
-//	for (unsigned i = 0; i < LOOPS; ++i) {
-//		auto start = std::chrono::high_resolution_clock::now();
+//int main() {
 //
-//		// Insert your code here
-//		x + y;
+//	Benchmark("Addition", Addition).Run(100000).ShowReport();
 //
-//		auto end = std::chrono::high_resolution_clock::now();
-//
-//		auto time = (end - start).count() / 1e9;
-//		samples.push_back(time);
-//	}
-//
-//	GenerateReport(samples);
-//
-//	_CrtDumpMemoryLeaks();
 //	return 0;
 //}

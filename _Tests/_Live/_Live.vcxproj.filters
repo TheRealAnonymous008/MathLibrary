@@ -16,24 +16,27 @@
     <Filter Include="Behchmarks">
       <UniqueIdentifier>{f4906a6a-f8ca-4f9b-a4ac-fb790d9913f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Generators">
+      <UniqueIdentifier>{4f297069-c278-475e-800f-d88225e2e348}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="_Live.cpp">
+    <ClInclude Include="headers\Benchmarker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="generators\NumberSystems.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BenchmarkTemplate.cpp">
+    <ClCompile Include="Template.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NumberSystems.cpp">
-      <Filter>Behchmarks</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LU.cpp">
-      <Filter>Behchmarks</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Statistics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
