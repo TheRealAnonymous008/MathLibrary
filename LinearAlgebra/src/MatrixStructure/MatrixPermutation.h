@@ -133,7 +133,7 @@ namespace MathLib {
 				RowVectorPermutation<T, N>> {
 			private:
 				const PermutationMatrix<T, N>& left;
-				const Vector<T, N>& right;
+				const Vector<T, N> right;
 
 			public:
 				RowVectorPermutation(const PermutationMatrix<T, N>& left, const  Vector<T, N>& right) : left(left), right(right)
@@ -155,7 +155,7 @@ namespace MathLib {
 
 					OPENMP_PARALLELIZE
 					for (index_type i = 0; i < N; ++i) {
-						result[i] = (*this)[i];
+						result[i] = right[left.Map(i)];
 					}
 
 					return result;
@@ -195,7 +195,7 @@ namespace MathLib {
 			const PermutationMatrix<T, N>& lhs,
 			const VectorBase<T, N, Expr>& rhs)
 		{
-			return  detail::RowVectorPermutation<T, N>(lhs, rhs);;
+			return  detail::RowVectorPermutation<T, N>(lhs, *static_cast<const Expr*>(&rhs));;
 		}
 	}
 }

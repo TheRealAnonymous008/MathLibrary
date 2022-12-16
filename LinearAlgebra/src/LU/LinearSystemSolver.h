@@ -13,7 +13,6 @@ namespace MathLib {
 		template<typename T, size_type N, typename MatExp, typename VecExp>
 		Vector<T, N> ForwardSolve(const SquareMatrixBase<T, N, MatExp>& A, const VectorBase<T, N, VecExp>& y) {
 			Vector<T, N> x;
-
 			for (index_type i = 0; i < N; ++i) {
 				T total = 0;
 

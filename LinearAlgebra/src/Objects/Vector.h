@@ -5,6 +5,7 @@
 
 #include <execution>
 #include <initializer_list>
+#include <memory>
 #include <vector>
 
 namespace MathLib {
@@ -14,7 +15,7 @@ namespace MathLib {
 		class Vector : public VectorBase<T, N, Vector<T, N>>, public Stringable
 		{
 		private:
-			std::vector<T>* body = (new std::vector<T>(N));
+			std::shared_ptr<std::vector<T>> body = std::make_shared<std::vector<T>>(std::vector<T>(N));
 
 			void CopyBody(const std::vector<T>& other) {
 				std::copy(std::execution::par_unseq, other.begin(),other.end(), this->body->begin());
