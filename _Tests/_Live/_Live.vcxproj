@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="generators\LinearAlgebra.h" />
     <ClInclude Include="generators\NumberSystems.h" />
     <ClInclude Include="headers\Benchmarker.h" />
   </ItemGroup>

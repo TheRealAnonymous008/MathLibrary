@@ -16,9 +16,6 @@ namespace Benchmarking {
 			std::string result = "";
 			std::uniform_int_distribution<std::mt19937::result_type> dist(0, 9);
 
-			//std::uniform_int_distribution<std::mt19937::result_type> size_dist(0, N);
-			//auto size = size_dist(rng);
-
 			for (unsigned i = 0; i < N; ++i) {
 				auto digit = dist(rng);
 				result += std::to_string(digit);

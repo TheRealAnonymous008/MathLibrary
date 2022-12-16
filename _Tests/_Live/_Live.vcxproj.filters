@@ -27,6 +27,9 @@
     <ClInclude Include="generators\NumberSystems.h">
       <Filter>Generators</Filter>
     </ClInclude>
+    <ClInclude Include="generators\LinearAlgebra.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
