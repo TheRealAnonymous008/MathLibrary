@@ -3,6 +3,7 @@
 #include "../../headers/Fwd.h"
 #include "../../Exceptions.h"
 
+#include <execution>
 #include <initializer_list>
 #include <vector>
 
@@ -16,6 +17,10 @@ namespace MathLib {
 
 			index_type GetIndex(index_type i, index_type j) const {
 				return i * _Columns + j;
+			}
+
+			void CopyBody(const std::vector<T>& other) {
+				std::copy(std::execution::par_unseq, other.begin(), other.end(), this->body->begin());
 			}
 
 		public:
@@ -52,11 +57,11 @@ namespace MathLib {
 			}
 
 			Matrix(const Matrix& expr) {
-				std::copy(expr.body->begin(), expr.body->end(), this->body->begin());
+				CopyBody(*(expr.body));
 			}
 
 			void operator=(const Matrix& expr) {
-				std::copy(expr.body->begin(), expr.body->end(), this->body->begin());
+				CopyBody(*(expr.body));
 			}
 
 			template<typename E>
@@ -66,7 +71,7 @@ namespace MathLib {
 				}
 
 				Matrix eval = expr.Evaluate();
-				std::copy(eval.body->begin(), eval.body->end(), this->body->begin());
+				CopyBody(*(eval.body));
 			}
 
 			template<typename E>
@@ -76,7 +81,7 @@ namespace MathLib {
 				}
 
 				Matrix eval = expr.Evaluate();
-				std::copy(eval.body->begin(), eval.body->end(), this->body->begin());
+				CopyBody(*(eval.body));
 			}			
 
 			constexpr size_type Size() const{

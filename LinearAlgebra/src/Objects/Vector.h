@@ -3,6 +3,7 @@
 #include "../../headers/Fwd.h"
 #include "../../Exceptions.h"
 
+#include <execution>
 #include <initializer_list>
 #include <vector>
 
@@ -14,6 +15,10 @@ namespace MathLib {
 		{
 		private:
 			std::vector<T>* body = (new std::vector<T>(N));
+
+			void CopyBody(const std::vector<T>& other) {
+				std::copy(std::execution::par_unseq, other.begin(),other.end(), this->body->begin());
+			}
 
 		public:
 			Vector() {
@@ -41,11 +46,11 @@ namespace MathLib {
 			}
 			
 			Vector(const Vector& expr) {
-				std::copy(expr.body->begin(), expr.body->end(), this->body->begin());
+				CopyBody(*(expr->body));
 			}
 
 			void operator=(const Vector& expr) {
-				std::copy(expr.body->begin(), expr.body->end(), this->body->begin());
+				CopyBody(*(expr->body));
 			}
 
 			template<typename E>
@@ -55,7 +60,7 @@ namespace MathLib {
 				}
 
 				Vector eval = expr.Evaluate();
-				std::copy(eval.body->begin(), eval.body->end(), this->body->begin());
+				CopyBody(*(eval.body));
 			}
 
 			template<typename E>
@@ -65,7 +70,7 @@ namespace MathLib {
 				}
 
 				Vector eval = expr.Evaluate();
-				std::copy(eval.body->begin(), eval.body->end(), this->body->begin());
+				CopyBody(*(eval.body));
 			}
 
 			constexpr size_type Size() const {
