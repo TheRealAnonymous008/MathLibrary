@@ -46,11 +46,11 @@ namespace MathLib {
 			}
 			
 			Vector(const Vector& expr) {
-				CopyBody(*(expr->body));
+				CopyBody(*(expr.body));
 			}
 
 			void operator=(const Vector& expr) {
-				CopyBody(*(expr->body));
+				CopyBody(*(expr.body));
 			}
 
 			template<typename E>
