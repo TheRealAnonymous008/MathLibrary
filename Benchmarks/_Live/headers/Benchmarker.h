@@ -50,6 +50,7 @@ namespace Benchmarking {
 		std::vector<double> samples;
 		std::chrono::high_resolution_clock::time_point time_start;
 
+		std::string suite_name = "";
 		std::string output = "";
 
 		void UpdateReport(std::string name) {
@@ -59,7 +60,8 @@ namespace Benchmarking {
 
 	public:
 
-		Benchmark() {
+		Benchmark(std::string suite_name) {
+			this->suite_name = suite_name;
 			AddHeaders();
 			AddEmptyRow();
 		}
@@ -110,6 +112,10 @@ namespace Benchmarking {
 
 		std::string Out() const {
 			return output;
+		}
+
+		std::string Name() const {
+			return suite_name;
 		}
 	};
 }

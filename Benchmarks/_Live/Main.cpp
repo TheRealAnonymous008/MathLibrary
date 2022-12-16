@@ -1,3 +1,5 @@
+#include <fstream>
+
 #include "headers/Benchmarker.h"
 #include "generators/NumberSystems.h"
 #include "../../NumberSystems/Core.h"
@@ -175,7 +177,7 @@ void LEQ(Benchmark& b) {
 }
 int main() {
 
-	Benchmark benchmark = Benchmark();
+	Benchmark benchmark = Benchmark("NumberSystems");
 
 	benchmark
 		.Run("Addition", Addition, 1000)
@@ -198,7 +200,11 @@ int main() {
 		.Run(">=", GREQ, 1000)
 		.Run("<=", LEQ, 1000);
 
-	std::cout << benchmark.Out();
+
+	std::ofstream report;
+	report.open(benchmark.Name() + ".md");
+	report << benchmark.Out();
+	report.close();
 
 	return 0;
 }
