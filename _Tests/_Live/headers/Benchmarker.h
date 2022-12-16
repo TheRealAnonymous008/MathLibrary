@@ -62,9 +62,17 @@ namespace Benchmarking {
 
 		Benchmark& Run(unsigned loops = 1) {
 
-			#pragma omp parallel for
-			for (int i = 0; i < loops; ++i) {
-				this->func(*this);
+			unsigned i = 0;
+
+			#pragma omp parallel
+			while(i < loops) {
+				try {
+					this->func(*this);
+					++i;
+				}
+				catch (std::exception) {
+
+				}
 			}
 			return *this;
 		}
