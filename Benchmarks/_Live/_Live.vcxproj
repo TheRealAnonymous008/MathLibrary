@@ -24,9 +24,7 @@
     <ClInclude Include="headers\Benchmarker.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="NumberSystems.cpp" />
-    <ClCompile Include="Template.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
