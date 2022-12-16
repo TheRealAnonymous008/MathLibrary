@@ -52,17 +52,17 @@ namespace MathLib {
 			return x;
 		}
 
-		template<typename T, size_type N, typename MatExp, typename VecExp>
-		Vector<T, N> SolveLinearSystem(const SquareMatrixBase<T, N, MatExp>& A, 
-			const std::vector<VectorBase<T, N, VecExp>> & ys
-		) {
+		template<typename T, size_type N, size_t Cols, typename MatExp, typename YExp>
+		std::array<Vector<T, N>, Cols> SolveLinearSystem(const SquareMatrixBase<T, N, MatExp>& A, const SquareMatrixBase<T, Cols, YExp> & Y) {
 			PartialLUResult lu = PartialLU(A);
-			std::vector<VectorBase<T, N, VecExp>>& result;
+			std::array<Vector<T, N>, Cols> result;
+
+			auto ys = ColumnVectorDecomposition(Y);
 
 			for (index_type i = 0; i < ys.size(); ++i) {
 				Vector<T, N> v = ForwardSolve(lu.L, lu.P * ys[i]);
 				Vector<T, N> x = BackwardSolve(lu.U, v);
-				result.push_back(x);
+				result[i] = x;
 			}
 
 			return result;
