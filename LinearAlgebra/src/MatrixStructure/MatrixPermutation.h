@@ -27,14 +27,6 @@ namespace MathLib {
 					return expr.At(permutation.Map(r), c);
 				}
 
-				constexpr size_type Rows() const {
-					return  expr.Rows();
-				}
-
-				constexpr size_type Columns() const {
-					return  expr.Columns();
-				}
-
 				auto Evaluate() const {
 					Matrix<T, _Rows, _Columns> result;
 

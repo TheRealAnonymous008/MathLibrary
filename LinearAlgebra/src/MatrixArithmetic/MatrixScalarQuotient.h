@@ -27,14 +27,6 @@ namespace MathLib {
 					return  mat.At(r, c) / k;
 				}
 
-				constexpr size_type Rows() const {
-					return  _Rows;
-				}
-
-				constexpr size_type Columns() const {
-					return  _Columns;
-				}
-
 				auto Evaluate() const{
 
 					Matrix<T, _Rows, _Columns> result;

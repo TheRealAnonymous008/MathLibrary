@@ -66,10 +66,6 @@ namespace MathLib {
 				CopyBody(*(eval.body));
 			}
 
-			constexpr size_type Size() const {
-				return N;
-			}
-
 			T& operator[](index_type i) {
 				return (*body)[i];
 			}
@@ -84,7 +80,7 @@ namespace MathLib {
 				auto eval = expr.Evaluate();
 
 				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < Size(); ++i) {
+				for (index_type i = 0; i < N; ++i) {
 					(*body)[i] += eval[i];
 				}
 				return *this;
@@ -96,7 +92,7 @@ namespace MathLib {
 				auto eval = expr.Evaluate();
 
 				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < Size(); ++i) {
+				for (index_type i = 0; i < N; ++i) {
 					(*body)[i] -= eval[i];
 				}
 				return *this;
@@ -105,7 +101,7 @@ namespace MathLib {
 			Vector& operator*=(const T& c) {
 
 				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < Size(); ++i) {
+				for (index_type i = 0; i < N; ++i) {
 					(*body)[i] *= c;
 				}
 				return *this;
@@ -116,7 +112,7 @@ namespace MathLib {
 					throw DivisionByZero();
 
 				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < Size(); ++i) {
+				for (index_type i = 0; i < N; ++i) {
 					(*body)[i] /= c;
 				}
 				return *this;

@@ -143,14 +143,6 @@ namespace MathLib {
 					return result.At(r, c);
 				}
 
-				constexpr size_type Rows() const {
-					return  lhs.Rows();
-				}
-
-				constexpr size_type Columns() const {
-					return  rhs.Columns();
-				}
-
 				auto Evaluate() const {
 					return result;
 				}

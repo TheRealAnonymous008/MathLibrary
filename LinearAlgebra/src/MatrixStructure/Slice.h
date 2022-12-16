@@ -24,14 +24,6 @@ namespace MathLib {
 					return  expr.At(r + row, c + column);
 				}
 
-				constexpr size_type Rows() const {
-					return  _SliceRows;
-				}
-
-				constexpr size_type Columns() const {
-					return _SliceColumns;
-				}
-
 				auto Evaluate() const {
 
 					Matrix<T, _SliceRows, _SliceColumns> result;

@@ -33,11 +33,6 @@ namespace MathLib {
 					return sum;
 				}
 
-				constexpr size_type Size() const {
-					return M;
-				}
-
-
 				auto Evaluate() const{
 					Vector<T, M> result;
 

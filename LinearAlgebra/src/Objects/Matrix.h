@@ -76,18 +76,6 @@ namespace MathLib {
 				CopyBody(*(eval.body));
 			}			
 
-			constexpr size_type Size() const{
-				return _Rows * _Columns;
-			}
-
-			constexpr size_type Rows() const{
-				return _Rows;
-			}
-
-			constexpr size_type Columns() const{
-				return _Columns;
-			}
-
 			T& At(const index_type& r, const index_type& c) {
 				return (*body)[GetIndex(r, c)];
 			}
@@ -103,8 +91,8 @@ namespace MathLib {
 				auto eval = expr.Evaluate();
 
 				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < Rows(); ++i) {
-					for (index_type j = 0; j < Columns(); ++j) {
+				for (index_type i = 0; i < _Rows; ++i) {
+					for (index_type j = 0; j < _Columns; ++j) {
 						this->At(i, j) += eval.At(i, j);
 					}
 				}
@@ -118,8 +106,8 @@ namespace MathLib {
 				auto eval = expr.Evaluate();
 
 				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < Rows(); ++i) {
-					for (index_type j = 0; j < Columns(); ++j) {
+				for (index_type i = 0; i < _Rows; ++i) {
+					for (index_type j = 0; j < _Columns; ++j) {
 						this->At(i, j) -= eval.At(i, j);
 					}
 				}
@@ -129,8 +117,8 @@ namespace MathLib {
 			const Matrix& operator*=(const T& c) {
 
 				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < Rows(); ++i) {
-					for (index_type j = 0; j < Columns(); ++j) {
+				for (index_type i = 0; i < _Rows; ++i) {
+					for (index_type j = 0; j < _Columns; ++j) {
 						this->At(i, j) *= c;
 					}
 				}
@@ -142,8 +130,8 @@ namespace MathLib {
 					throw DivisionByZero();
 
 				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < Rows(); ++i) {
-					for (index_type j = 0; j < Columns(); ++j) {
+				for (index_type i = 0; i < _Rows; ++i) {
+					for (index_type j = 0; j < _Columns; ++j) {
 						this->At(i, j) /= c;
 					}
 				}

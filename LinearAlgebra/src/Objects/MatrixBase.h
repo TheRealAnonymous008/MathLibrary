@@ -12,11 +12,15 @@ namespace MathLib {
 			}
 
 			constexpr size_type Rows() const {
-				return  static_cast<Derived const&>(*this).Rows();
+				return _Rows;
 			}
 
 			constexpr size_type Columns() const {
-				return  static_cast<Derived const&>(*this).Columns();
+				return _Columns;
+			}
+
+			constexpr size_type Size() const {
+				return _Rows * _Columns;
 			}
 
 			auto Evaluate() const{

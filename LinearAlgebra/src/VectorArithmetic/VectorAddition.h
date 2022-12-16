@@ -27,10 +27,6 @@ namespace MathLib {
 					return lhs[i] + rhs[i];
 				}
 
-				constexpr size_type Size() const {
-					return  rhs.Size();
-				}
-
 				auto Evaluate() const{
 
 					Vector<T, N> result;

@@ -13,7 +13,7 @@ namespace MathLib {
 			}
 
 			constexpr size_type Size() const {
-				return  static_cast<Derived const&>(*this).Size();
+				return  N;
 			}
 
 			auto Evaluate() const{

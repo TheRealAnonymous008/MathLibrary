@@ -23,10 +23,6 @@ namespace MathLib {
 				return (i != idx) ? T() : Identity<T>();
 			}
 
-			constexpr size_type Size() const {
-				return N;
-			}
-
 			auto Evaluate() const {
 
 				Vector<T, N> result;

@@ -24,10 +24,6 @@ namespace MathLib {
 					return -vec[i];
 				}
 
-				constexpr size_type Size() const {
-					return  vec.Size();
-				}
-				
 				auto Evaluate() const{
 
 					Vector<T, N> result;

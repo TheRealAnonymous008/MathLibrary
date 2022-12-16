@@ -23,14 +23,6 @@ namespace MathLib {
 					return  expr.At(c, r);
 				}
 
-				constexpr size_type Rows() const {
-					return  expr.Columns();
-				}
-
-				constexpr size_type Columns() const {
-					return  expr.Rows();
-				}
-
 				auto Evaluate() const{
 
 					Matrix<T, _Rows, _Columns> result;

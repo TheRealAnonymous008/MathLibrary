@@ -71,7 +71,7 @@ TEST(MatMat, MatrixMatrixProduct) {
 	ASSERT_EQ((A * B).Evaluate(), C);
 	ASSERT_EQ((A * B), C);
 	ASSERT_EQ(2 * A * B, 2 * C);
-	ASSERT_EQ(A * 3 * B, 3 * C);
+	ASSERT_EQ(A * (3 * B), 3 * C);
 }
 
 TEST(MatMat, Strassen) {
