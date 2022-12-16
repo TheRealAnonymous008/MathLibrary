@@ -1,41 +1,50 @@
 #include <iostream>
 #include <chrono>
-
 #include "Statistics.h"
 
-#include "../../NumberSystems/Core.h"
+#include "../../LinearAlgebra/Core.h"
+#include "../../LinearAlgebra/headers/LU.h"
 
-#define LOOPS 10000
-
-// Add scopes here for simplifications
-using namespace MathLib::NumberSystems;
+#define LOOPS 10
+using namespace MathLib::LinearAlgebra;
 
 int main()
 {
-	// Insert declarations here
-	Natural x = Natural("267895894304364752678868955431824907367753146322020621335624329595212336512781781585428916823953974814585680226678326375639556132623499217174608843391469389219335124993828874277769329364543105366842");
-	Natural y = Natural("123891283128439248174320582841273598395882475048372462483812489102301243959359102010230503692851923811752304012402350239187328382337777123819021492857375287351249182498527417291129938375637642654341");
-	// Use this for division
-	Natural z = Natural("123891283128439248174320582841273598395882475048372462483812489102301243959359102010230503692851923811752304012402350239187328382");
+	const unsigned int N = 1000;
+	const unsigned int K = 1000;
+	const unsigned int M = 1000;
 
-	// For right shift and leftshift respectively
-	Natural r = Natural(45);
-	Natural l = Natural(1000000);
+	Matrix<float, N, K>* A = new Matrix<float, N, K>();
+	Matrix<float, K, M>* B = new Matrix<float, K, M>();
+	Vector<float, N>* v = new Vector<float, N>();
+
+	for (unsigned i = 0; i < A->Rows(); ++i) {
+		for (unsigned j = 0; j < A->Columns(); ++j) {
+			A->At(i, j) = i + j + 0.0f;
+		}
+	}
+
+	for (unsigned i = 0; i < B->Rows(); ++i) {
+		for (unsigned j = 0; j < B->Columns(); ++j) {
+			B->At(i, j) = i * j - 1.0f;
+		}
+	}
+
+	for (unsigned i = 0; i < v->Size(); ++i) {
+		(*v)[i] = i + 1;
+	}
 
 	std::vector<double> samples;
 
 	for (unsigned i = 0; i < LOOPS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-
-		// Insert your code here
-		x + y;
-
+		*A* *B;
 		auto end = std::chrono::high_resolution_clock::now();
 
 		auto time = (end - start).count() / 1e9;
 		samples.push_back(time);
 	}
-
+ 
 	GenerateReport(samples);
 
 	_CrtDumpMemoryLeaks();

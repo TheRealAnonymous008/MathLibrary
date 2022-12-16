@@ -41,25 +41,11 @@ namespace MathLib {
 			}
 			
 			Vector(const Vector& expr) {
-				if (expr.Size() != Size()) {
-					throw DimensionError();;
-				}
-
-				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < Size(); ++i) {
-					(*body)[i] = expr[i];
-				}
+				std::copy(expr.body->begin(), expr.body->end(), this->body->begin());
 			}
 
 			void operator=(const Vector& expr) {
-				if (expr.Size() != Size()) {
-					throw DimensionError();;
-				}
-
-				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < Size(); ++i) {
-					(*body)[i] = expr[i];
-				}
+				std::copy(expr.body->begin(), expr.body->end(), this->body->begin());
 			}
 
 			template<typename E>
@@ -68,11 +54,8 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
-				auto eval = expr.Evaluate();
-				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < Size(); ++i) {
-					(*body)[i] = eval[i];
-				}
+				Vector eval = expr.Evaluate();
+				std::copy(eval.body->begin(), eval.body->end(), this->body->begin());
 			}
 
 			template<typename E>
@@ -81,10 +64,8 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
-				auto eval = expr.Evaluate();
-				for (index_type i = 0; i < Size(); ++i) {
-					(*body)[i] = eval[i];
-				}
+				Vector eval = expr.Evaluate();
+				std::copy(eval.body->begin(), eval.body->end(), this->body->begin());
 			}
 
 			constexpr size_type Size() const {

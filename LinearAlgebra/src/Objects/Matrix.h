@@ -52,29 +52,11 @@ namespace MathLib {
 			}
 
 			Matrix(const Matrix& expr) {
-				if (expr.Rows() != Rows() || expr.Columns() != Columns()) {
-					throw DimensionError();;
-				}
-
-				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < _Rows; ++i) {
-					for (index_type j = 0; j < _Columns; ++j) {
-						this->At(i, j) = expr.At(i, j);
-					}
-				}
+				std::copy(expr.body->begin(), expr.body->end(), this->body->begin());
 			}
 
 			void operator=(const Matrix& expr) {
-				if (expr.Rows() != Rows() || expr.Columns() != Columns()) {
-					throw DimensionError();;
-				}
-
-				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < _Rows; ++i) {
-					for (index_type j = 0; j < _Columns; ++j) {
-						this->At(i, j) = expr.At(i, j);
-					}
-				}
+				std::copy(expr.body->begin(), expr.body->end(), this->body->begin());
 			}
 
 			template<typename E>
@@ -83,14 +65,8 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
-				auto eval = expr.Evaluate();
-
-				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < _Rows; ++i) {
-					for (index_type j = 0; j < _Columns; ++j) {
-						this->At(i, j) = eval.At(i, j);
-					}
-				}
+				Matrix eval = expr.Evaluate();
+				std::copy(eval.body->begin(), eval.body->end(), this->body->begin());
 			}
 
 			template<typename E>
@@ -99,14 +75,8 @@ namespace MathLib {
 					throw DimensionError();;
 				}
 
-				auto eval = expr.Evaluate();
-
-				OPENMP_PARALLELIZE
-				for (index_type i = 0; i < _Rows; ++i) {
-					for (index_type j = 0; j < _Columns; ++j) {
-						this->At(i, j) = eval.At(i, j);
-					}
-				}
+				Matrix eval = expr.Evaluate();
+				std::copy(eval.body->begin(), eval.body->end(), this->body->begin());
 			}			
 
 			constexpr size_type Size() const{
