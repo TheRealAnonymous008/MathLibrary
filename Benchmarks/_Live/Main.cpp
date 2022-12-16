@@ -19,8 +19,8 @@ void Addition(Benchmark& b) {
 
 void Subtraction(Benchmark& b) {
 
-	auto x = Generator::NaturalNumber<200>();
-	auto y = Generator::NaturalNumber<200>();
+	auto x = Generator::NaturalNumber<1000>();
+	auto y = Generator::NaturalNumber<1000>();
 
 	b.Start();
 	x - y;
