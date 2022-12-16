@@ -202,7 +202,7 @@ int main() {
 
 
 	std::ofstream report;
-	report.open(benchmark.Name() + ".md");
+	report.open("../" + benchmark.Name() + ".md");
 	report << benchmark.Out();
 	report.close();
 
