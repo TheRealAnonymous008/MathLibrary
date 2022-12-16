@@ -66,20 +66,12 @@ namespace MathLib {
 
 			template<typename E>
 			Matrix(const MatrixBase<T, _Rows, _Columns, E>& expr) {
-				if (expr.Rows() != Rows() || expr.Columns() != Columns()) {
-					throw DimensionError();;
-				}
-
 				Matrix eval = expr.Evaluate();
 				CopyBody(*(eval.body));
 			}
 
 			template<typename E>
 			void operator=(const MatrixBase<T, _Rows, _Columns, E>& expr) {
-				if (expr.Rows() != Rows() || expr.Columns() != Columns()) {
-					throw DimensionError();;
-				}
-
 				Matrix eval = expr.Evaluate();
 				CopyBody(*(eval.body));
 			}			

@@ -56,20 +56,12 @@ namespace MathLib {
 
 			template<typename E>
 			Vector(const VectorBase<T, N, E>& expr) {
-				if (expr.Size() != Size()) {
-					throw DimensionError();;
-				}
-
 				Vector eval = expr.Evaluate();
 				CopyBody(*(eval.body));
 			}
 
 			template<typename E>
 			void operator=(const VectorBase<T, N, E>& expr) {
-				if (expr.Size() != Size()) {
-					throw DimensionError();;
-				}
-
 				Vector eval = expr.Evaluate();
 				CopyBody(*(eval.body));
 			}

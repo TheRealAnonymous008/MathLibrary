@@ -5,7 +5,7 @@
 #include "../../LinearAlgebra/Core.h"
 #include "../../LinearAlgebra/headers/LU.h"
 
-#define LOOPS 1
+#define LOOPS 100
 using namespace MathLib::LinearAlgebra;
 
 int main()
@@ -38,7 +38,7 @@ int main()
 
 	for (unsigned i = 0; i < LOOPS; ++i) {
 		auto start = std::chrono::high_resolution_clock::now();
-		Inverse(A);
+		(A + A).Evaluate();
 		auto end = std::chrono::high_resolution_clock::now();
 
 		auto time = (end - start).count() / 1e9;
