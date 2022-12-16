@@ -133,7 +133,7 @@ namespace MathLib {
 				RowVectorPermutation<T, N>> {
 			private:
 				const PermutationMatrix<T, N>& left;
-				const Vector<T, N> right;
+				const Vector<T, N> right;			// TODO: This needs to be a reference, but when it is, it throws an error because it tries to modify a non-copy.
 
 			public:
 				RowVectorPermutation(const PermutationMatrix<T, N>& left, const  Vector<T, N>& right) : left(left), right(right)

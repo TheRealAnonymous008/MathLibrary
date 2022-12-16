@@ -37,6 +37,10 @@ namespace MathLib {
 				}
 			}
 
+			~PermutationMatrix() {
+				delete body;
+			}
+
 			PermutationMatrix(const std::vector<index_type>& list) {
 				if (!IsPremutation(list)) {
 					throw DimensionError();

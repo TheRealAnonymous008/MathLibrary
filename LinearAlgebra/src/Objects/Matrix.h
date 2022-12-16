@@ -29,7 +29,7 @@ namespace MathLib {
 			}
 
 			~Matrix() {
-
+				delete body;
 			}
 
 			Matrix(const std::initializer_list<std::initializer_list<T>>& list) {

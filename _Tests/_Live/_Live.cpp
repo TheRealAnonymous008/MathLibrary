@@ -5,7 +5,7 @@
 #include "../../LinearAlgebra/Core.h"
 #include "../../LinearAlgebra/headers/LU.h"
 
-#define LOOPS 100
+#define LOOPS 10
 using namespace MathLib::LinearAlgebra;
 
 int main()
