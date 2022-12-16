@@ -40,7 +40,7 @@ namespace Benchmarking {
 
 		std::string operator() () {
 			std::stringstream ss;
-			ss << this->name << " | " << count << " | " << mean << " | " << stddev;
+			ss << "| " << this->name << " | " << count << " | " << mean << " | " << stddev << " |";
 			return ss.str();
 		}
 	};
