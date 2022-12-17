@@ -113,6 +113,49 @@ void VectorIsOrthonormal(Benchmark& b) {
 	b.Stop();
 }
 
+void MatrixAddition(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+	auto N = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	(M + N).Evaluate();
+	b.Stop();
+}
+
+void MatrixSubtraction(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+	auto N = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	(M - N).Evaluate();
+	b.Stop();
+}
+
+void MatrixNegation(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	(-M).Evaluate();
+	b.Stop();
+}
+
+void MatrixScalarProduct(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+	auto c = Generator::Scalar();
+
+	b.Start();
+	(M * c).Evaluate();
+	b.Stop();
+}
+
+void MatrixScalarQuotient(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+	auto c = Generator::Scalar();
+
+	b.Start();
+	(M / c).Evaluate();
+	b.Stop();
+}
 
 int main() {
 		Benchmark benchmark = Benchmark("LinearAlgebra");
@@ -132,7 +175,14 @@ int main() {
 			.Run("Vector Normalize", VectorNormalize, 1000)
 			.Run("Vector IsNormal", VectorIsNormal, 1000)
 			.Run("Vector IsOrthogonal", VectorIsOrthogonal, 1000)
-			.Run("Vector IsOrthonormal", VectorIsOrthonormal, 1000);
+			.Run("Vector IsOrthonormal", VectorIsOrthonormal, 1000)
+			.AddEmptyRow()
+			.Run("Matrix Addition", MatrixAddition, 1000)
+			.Run("Matrix Subtraction", MatrixSubtraction, 1000)
+			.Run("Matrix Negation", MatrixNegation, 1000)
+			.Run("Matrix Scalar Multiplication", MatrixScalarProduct, 1000)
+			.Run("Matrix Scalar Division", MatrixScalarQuotient, 1000);
+
 		std::ofstream report;
 		report.open(benchmark.Name() + ".md");
 		report << benchmark.Out();
