@@ -179,6 +179,7 @@ int main() {
 
 	Benchmark benchmark = Benchmark("NumberSystems");
 
+	std::cout << "\n";
 	benchmark
 		.Run("Addition", Addition, 1000)
 		.Run("Subtraction", Subtraction, 1000)
@@ -202,7 +203,7 @@ int main() {
 
 
 	std::ofstream report;
-	report.open("../" + benchmark.Name() + ".md");
+	report.open(benchmark.Name() + ".md");
 	report << benchmark.Out();
 	report.close();
 
