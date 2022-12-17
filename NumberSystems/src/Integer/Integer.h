@@ -129,6 +129,65 @@ namespace MathLib {
 				SetBody(eval);
 			}
 
+			const vector_type Digits() const {
+				return this->body->Digits();
+			}
+
+			const size_type Size() const {
+				return this->body->Size();
+			}
+
+			const bool Sign() const {
+				return this->sign;
+			}
+
+			Integer& AddMostLimb(limb_type digit) {
+				this->body->AddMostLimb(digit);
+				return *this;
+			}
+
+			Integer& AddLeastLimb(limb_type digit) {
+				this->body->AddLeastLimb(digit);
+				return *this;
+			}
+
+			Integer& RemoveLeadingZeroes() {
+				this->body->RemoveLeadingZeroes();
+
+				if (this->Size() == 0) {
+					ClearLimbs();
+				}
+
+				return *this;
+			}
+
+			Integer& AddTrailingZeroes(const size_type zeroes) {
+				this->AddTrailingZeroes(zeroes);
+				return *this;
+			}
+
+			Integer& RemoveLeastLimbs(const size_type limbs) {
+				this->body->RemoveLeastLimbs(limbs);
+
+				if (this->Size() == 0) {
+					ClearLimbs();
+				}
+
+				return *this;
+			}
+
+			Natural Slice(const index_type left, const index_type right) const {
+				return this->body->Slice(left, right);
+			}
+
+			limb_type operator[](index_type idx) const {
+				return (*this->body)[idx];
+			}
+
+			limb_type operator[](index_type idx) {
+				return (*this->body)[idx];
+			}
+
 			string_type Str() const {
 				auto s = (this->sign == POSITIVE) ? "" : "-";
 				return s + body->Str();
