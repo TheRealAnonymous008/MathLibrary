@@ -175,6 +175,125 @@ void MatrixMultiplication(Benchmark& b) {
 	b.Stop();
 }
 
+void MatrixTranspose(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	Transpose(M).Evaluate();
+	b.Stop();
+}
+
+void MatrixPlaceBlock(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+	auto B = Generator::Matrix<100, 100>();
+
+	b.Start();
+	PlaceBlock(M, B, 100, 100);
+	b.Stop();
+}
+
+void MatrixSlice(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	Slice<500, 500>(M, 100, 100);
+	b.Stop();
+}
+
+void MatrixTrace(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	Trace (M);
+	b.Stop();
+}
+
+void MatrixColumnPermutation (Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+	auto P = PermutationMatrix<double, 1000>(Generator::Permutation<1000>());
+
+	b.Start();
+	P * M;
+	b.Stop();
+}
+
+void MatrixRowPermutation(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+	auto P = PermutationMatrix<double, 1000>(Generator::Permutation<1000>());
+
+	b.Start();
+	(P * M).Evaluate();
+	b.Stop();
+}
+
+void UpperTriangularTest(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	IsUpper(M);
+	b.Stop();
+}
+
+
+void LowerTriangularTest(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	IsLower(M);
+	b.Stop();
+}
+
+
+void DiagonalTest(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	IsDiagonal(M);
+	b.Stop();
+}
+
+void SymmetricTest(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	IsSymmetric(M);
+	b.Stop();
+}
+
+
+void LUPartial(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	PartialLU(M);
+	b.Stop();
+}
+
+void LUFull(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	FullLU(M);
+	b.Stop();
+}
+
+void LUSolve(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+	auto v = Generator::Vector<1000>();
+
+	b.Start();
+	SolveLinearSystem(M, v);
+	b.Stop();
+}
+
+void LUMatrixInverse(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+
+	b.Start();
+	Inverse(M);
+	b.Stop();
+}
+
 int main() {
 		Benchmark benchmark = Benchmark("LinearAlgebra");
 	
@@ -201,7 +320,25 @@ int main() {
 			.Run("Matrix Scalar Multiplication", MatrixScalarProduct, 1000)
 			.Run("Matrix Scalar Division", MatrixScalarQuotient, 1000)
 			.Run("Matrix Vector Multiplication", MatrixVectorProduct, 1000)
-			.Run("Matrix Multiplication", MatrixMultiplication, 100);
+			.Run("Matrix Multiplication", MatrixMultiplication, 100)
+			.AddEmptyRow()
+			.Run("Matrix Transpose", MatrixTranspose, 1000)
+			.Run("Matrix PlaceBlock", MatrixPlaceBlock, 1000)
+			.Run("Matrix Slice", MatrixSlice, 1000)
+			.Run("Matrix Trace", MatrixTrace, 1000)
+			.Run("Matrix Column Permutation", MatrixColumnPermutation, 1000)
+			.Run("Matrix Row Permutation", MatrixRowPermutation, 1000)
+			.AddEmptyRow()
+			.Run("Upper Triangular Test", UpperTriangularTest, 1000)
+			.Run("Lower Triangular Test", LowerTriangularTest, 1000)
+			.Run("Diagonal Test", DiagonalTest, 1000)
+			.Run("Symmetric Test", SymmetricTest, 1000)
+			.AddEmptyRow()
+			.Run("Partial LU Decomposition", LUPartial)
+			.Run("Full LU Decomposition", LUFull)
+			.Run("Solver", LUSolve)
+			.Run("Matrix Inverse", LUMatrixInverse)
+			;
 
 		std::ofstream report;
 		report.open(benchmark.Name() + ".md");

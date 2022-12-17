@@ -2,6 +2,7 @@
 
 #include "../../../LinearAlgebra/Core.h"
 
+#include <algorithm>  
 #include <limits>
 #include <random>
 
@@ -43,6 +44,18 @@ namespace Benchmarking {
 		inline double Scalar() {
 			std::uniform_real_distribution<double> dist(std::numeric_limits<double>::min(), std::numeric_limits<double>::max());
 			return dist(rng);
+		}
+
+		template<const unsigned N>
+		std::vector<unsigned long long> Permutation() {
+			std::vector<unsigned long long> arr = std::vector<unsigned long long>(N);
+			
+			for (auto i = 0; i < N; ++i) {
+				arr[i] = i;
+			}
+
+			std::shuffle(arr.begin(), arr.end(), rng);
+			return arr;
 		}
 	}
 }
