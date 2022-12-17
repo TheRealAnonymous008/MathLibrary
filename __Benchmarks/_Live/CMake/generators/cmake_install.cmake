@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/JOAQUIN DELA ROSA/OneDrive/Desktop/Personal/MathLibrary/MathLibrary/Benchmarks/_Live/generators
+# Install script for directory: C:/Users/JOAQUIN DELA ROSA/OneDrive/Desktop/Personal/MathLibrary/MathLibrary/__Benchmarks/_Live/generators
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

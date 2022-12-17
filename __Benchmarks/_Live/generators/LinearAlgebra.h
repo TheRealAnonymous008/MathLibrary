@@ -13,15 +13,20 @@ namespace Benchmarking {
 
 		template<const unsigned N>
 		MathLib::LinearAlgebra::Vector<double, N> Vector() {
-			std::uniform_real_distribution<std::mt19937::result_type> dist;
+			std::uniform_real_distribution<double> dist;
 
 			MathLib::LinearAlgebra::Vector<double, N> vector;
 
 			for (unsigned i = 0; i < N; ++i) {
-				vector[i] = dis(rng);
+				vector[i] = dist(rng);
 			}
 
 			return vector;
+		}
+
+		inline double Scalar() {
+			std::uniform_real_distribution<double> dist;
+			return dist(rng);
 		}
 	}
 }

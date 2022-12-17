@@ -8,3 +8,4 @@ add_subdirectory("headers")
 
 add_compile_options(/permissive /openmp:llvm  /Qpar- /GL /W3 /Gy /Zc:wchar /Zi /Gm- /O2 /Ob2 /sdl /arch:AVX2 /nologo)
 add_executable(NumberSystems NumberSystems.cpp)
+add_executable(LinearAlgebra LinearAlgebra.cpp)

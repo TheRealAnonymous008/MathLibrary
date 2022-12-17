@@ -24,7 +24,9 @@
     <ClInclude Include="headers\Benchmarker.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LinearAlgebra.cpp" />
     <ClCompile Include="NumberSystems.cpp" />
+    <ClCompile Include="__Template.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
