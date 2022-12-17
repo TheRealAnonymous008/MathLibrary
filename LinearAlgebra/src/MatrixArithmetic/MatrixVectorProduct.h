@@ -9,9 +9,9 @@ namespace MathLib {
 	namespace LinearAlgebra {
 
 		namespace detail {
-			template<typename T, size_type M, size_type K, size_type N, typename LHS, typename RHS>
+			template<typename T, size_type M, size_type N, typename LHS, typename RHS>
 			class MatrixVectorProduct : public VectorBase<T, M,
-				MatrixVectorProduct<T, M, K, N, LHS, RHS>> {
+				MatrixVectorProduct<T, M, N, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -48,13 +48,13 @@ namespace MathLib {
 
 		
 
-		template<typename T, size_type M, size_type K, size_type N, typename LHS, typename RHS>
+		template<typename T, size_type M, size_type N, typename LHS, typename RHS>
 
-		detail::MatrixVectorProduct<T, M, K, N, LHS, RHS> operator*(
-			const MatrixBase<T, M, K, LHS>& lhs, 
+		detail::MatrixVectorProduct<T, M, N, LHS, RHS> operator*(
+			const MatrixBase<T, M, N, LHS>& lhs, 
 			const VectorBase<T, N, RHS>& rhs) 
 		{
-			return detail::MatrixVectorProduct<T, M, K, N, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+			return detail::MatrixVectorProduct<T, M, N, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}
