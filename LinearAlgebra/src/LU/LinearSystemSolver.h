@@ -59,6 +59,7 @@ namespace MathLib {
 
 			auto ys = ColumnVectorDecomposition(Y);
 
+			OPENMP_PARALLELIZE
 			for (index_type i = 0; i < ys.size(); ++i) {
 				Vector<T, N> v = ForwardSolve(lu.L, lu.P * ys[i]);
 				Vector<T, N> x = BackwardSolve(lu.U, v);
