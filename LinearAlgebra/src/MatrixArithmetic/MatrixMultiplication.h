@@ -134,9 +134,7 @@ namespace MathLib {
 				MatrixMultiplication(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs), 
 					result(implementation::MatrixMultiply(lhs.Evaluate(), rhs.Evaluate()))
 				{
-					if (lhs.Columns() != rhs.Rows()) {
-						throw InvalidTensorProduct();
-					}
+
 				}
 
 				T At(const index_type& r, const index_type& c) const {

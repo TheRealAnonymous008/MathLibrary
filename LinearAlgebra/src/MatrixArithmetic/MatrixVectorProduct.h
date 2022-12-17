@@ -19,9 +19,7 @@ namespace MathLib {
 
 			public:
 				MatrixVectorProduct(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
-					if (lhs.Columns() != rhs.Size()) {
-						throw InvalidTensorProduct();
-					}
+
 				}
 
 				T operator[](const index_type& i) const {

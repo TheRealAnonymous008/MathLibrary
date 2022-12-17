@@ -19,9 +19,7 @@ namespace MathLib {
 
 			public:
 				MatrixSubtraction(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
-					if (lhs.Rows() != rhs.Rows() || lhs.Columns() != rhs.Columns()) {
-						throw InvalidBinaryOperation();
-					}
+
 				}
 
 				T At(const index_type& r, const index_type& c) const {
