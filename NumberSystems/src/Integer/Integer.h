@@ -21,7 +21,11 @@ namespace MathLib {
 			}
 
 			void SetBody(const IntegerSign& sign, const Natural& body) {
-				*(this->body) = body;
+				if (sign == POSITIVE)
+					*(this->body) = body;
+				else
+					*(this->body) = (~body).Evaluate()++;
+
 				this->sign = sign;
 			}
 
@@ -42,14 +46,12 @@ namespace MathLib {
 						
 			Integer(const string_type& value) {
 				auto parsed = detail::ParseInteger(value);
-				*body = Natural(parsed.body);
-				sign = parsed.sign;
+				SetBody(parsed.sign, Natural(parsed.body));
 			}
 
 			void operator=(const string_type& value){
 				auto parsed = detail::ParseInteger(value);
-				*body = Natural(parsed.body);
-				sign = parsed.sign;
+				SetBody(parsed.sign, Natural(parsed.body));
 			}
 
 			template<std::integral T>
@@ -60,13 +62,17 @@ namespace MathLib {
 					return;
 				}
 
-				sign = (value < 0);
+				auto s = (value < 0) ? NEGATIVE : POSITIVE;
 
-				while (value > LIMB_BASE) {
-					body->AddMostLimb(value % LIMB_BASE);
-					value = value = value / LIMB_BASE;
+				limb_type abs_val = abs(value);
+				vector_type limbs;
+
+				while (abs_val > LIMB_BASE) {
+					limbs.push_back(abs_val % LIMB_BASE);
+					abs_val = abs_val / LIMB_BASE;
 				}
-				body->AddMostLimb(value);
+				limbs.push_back(abs_val);
+				SetBody(s, Natural(limbs));
 			}
 			
 			template<std::integral T>
@@ -77,13 +83,17 @@ namespace MathLib {
 					return;
 				}
 
-				sign = (value < 0);
+				auto s = (value < 0) ? NEGATIVE : POSITIVE;
 
-				while (value > LIMB_BASE) {
-					body->AddMostLimb(value % LIMB_BASE);
-					value = value = value / LIMB_BASE;
+				limb_type abs_val = abs(value);
+				vector_type limbs;
+
+				while (abs_val > LIMB_BASE) {
+					limbs.push_back(abs_val % LIMB_BASE);
+					abs_val = abs_val / LIMB_BASE;
 				}
-				body->AddMostLimb(value);
+				limbs.push_back(abs_val);
+				SetBody(s, Natural(limbs));
 			}
 
 			Integer(const IntegerSign& sign, const vector_type& vec) {
@@ -190,7 +200,9 @@ namespace MathLib {
 
 			string_type Str() const {
 				auto s = (this->sign == POSITIVE) ? "" : "-";
-				return s + body->Str();
+				string_type str = (this->sign == POSITIVE) ? body->Str() : (~(*body)--).Evaluate().Str();
+				
+				return s + str;
 			}
 
 			const Integer& Evaluate() const {
