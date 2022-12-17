@@ -157,6 +157,24 @@ void MatrixScalarQuotient(Benchmark& b) {
 	b.Stop();
 }
 
+void MatrixVectorProduct(Benchmark& b) {
+	auto M = Generator::Matrix<1000, 1000>();
+	auto v = Generator::Vector<1000>();
+
+	b.Start();
+	(M * v).Evaluate();
+	b.Stop();
+}
+
+void MatrixMultiplication(Benchmark& b) {
+	auto M = Generator::Matrix<1024, 1024>();
+	auto N = Generator::Matrix<1024, 1024>();
+
+	b.Start();
+	(M * N).Evaluate();
+	b.Stop();
+}
+
 int main() {
 		Benchmark benchmark = Benchmark("LinearAlgebra");
 	
@@ -181,7 +199,9 @@ int main() {
 			.Run("Matrix Subtraction", MatrixSubtraction, 1000)
 			.Run("Matrix Negation", MatrixNegation, 1000)
 			.Run("Matrix Scalar Multiplication", MatrixScalarProduct, 1000)
-			.Run("Matrix Scalar Division", MatrixScalarQuotient, 1000);
+			.Run("Matrix Scalar Division", MatrixScalarQuotient, 1000)
+			.Run("Matrix Vector Multiplication", MatrixVectorProduct, 1000)
+			.Run("Matrix Multiplication", MatrixMultiplication, 100);
 
 		std::ofstream report;
 		report.open(benchmark.Name() + ".md");
