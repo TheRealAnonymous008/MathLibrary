@@ -1,15 +1,15 @@
 Operation | Samples | Mean (s) | Stddev (s) |
  ---| --- | --- | --- |
-| Vector Addition | 1026 | 1.85906e-06 | 1.30881e-06 |
-| Vector Subtraction | 1026 | 1.73528e-06 | 6.2578e-07 |
-| Vector Scalar Multiplication | 1012 | 1.46542e-06 | 6.16225e-07 |
-| Vector Scalar Division | 1011 | 1.65786e-06 | 6.08549e-07 |
-| Vector Negation | 1011 | 1.72067e-06 | 6.56714e-07 |
+| Vector Addition | 1021 | 1.82135e-06 | 9.19968e-07 |
+| Vector Subtraction | 1010 | 2.01436e-06 | 6.90961e-07 |
+| Vector Scalar Multiplication | 1010 | 1.62386e-06 | 7.07047e-07 |
+| Vector Scalar Division | 1012 | 1.95553e-06 | 7.71157e-07 |
+| Vector Negation | 1007 | 1.36038e-06 | 4.22422e-07 |
  ---| --- | --- | --- |
-| Vector Dot Product | 1011 | 1.55391e-07 | 1.49109e-07 |
-| Vector Square Norm | 1011 | 1.53412e-07 | 1.54061e-07 |
-| Vector Norm | 1013 | 9.84008e-07 | 2.32674e-07 |
-| Vector Normalize | 1012 | 2.49022e-06 | 1.16402e-06 |
-| Vector IsNormal | 1011 | 9.53709e-07 | 2.34244e-07 |
-| Vector IsOrthogonal | 1012 | 1.08676e-06 | 2.89989e-07 |
-| Vector IsOrthonormal | 1011 | 1.08872e-06 | 3.46341e-07 |
+| Vector Dot Product | 1014 | 1.86095e-07 | 1.46605e-07 |
+| Vector Square Norm | 1012 | 1.87648e-07 | 1.49953e-07 |
+| Vector Norm | 1012 | 9.57213e-07 | 2.34936e-07 |
+| Vector Normalize | 1012 | 2.7249e-06 | 1.25337e-06 |
+| Vector IsNormal | 1012 | 9.79743e-07 | 2.12259e-07 |
+| Vector IsOrthogonal | 1013 | 1.11451e-06 | 3.86516e-07 |
+| Vector IsOrthonormal | 1011 | 1.03403e-06 | 1.86565e-07 |

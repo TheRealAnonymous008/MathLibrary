@@ -2,6 +2,7 @@
 
 #include "../../../LinearAlgebra/Core.h"
 
+#include <limits>
 #include <random>
 
 namespace Benchmarking {
@@ -13,7 +14,7 @@ namespace Benchmarking {
 
 		template<const unsigned N>
 		MathLib::LinearAlgebra::Vector<double, N> Vector() {
-			std::uniform_real_distribution<double> dist;
+			std::uniform_real_distribution<double> dist(std::numeric_limits<double>::min(), std::numeric_limits<double>::max());
 
 			MathLib::LinearAlgebra::Vector<double, N> vector;
 
@@ -25,7 +26,7 @@ namespace Benchmarking {
 		}
 
 		inline double Scalar() {
-			std::uniform_real_distribution<double> dist;
+			std::uniform_real_distribution<double> dist(std::numeric_limits<double>::min(), std::numeric_limits<double>::max());
 			return dist(rng);
 		}
 	}
