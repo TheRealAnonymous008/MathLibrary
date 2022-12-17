@@ -18,9 +18,7 @@ namespace MathLib {
 
 			public:
 				VectorAddition(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
-					if (lhs.Size() != rhs.Size()) {
-						throw InvalidBinaryOperation();
-					}
+
 				}
 
 				T operator[](const index_type& i) const {
