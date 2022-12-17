@@ -13,7 +13,7 @@ namespace MathLib {
 	namespace NumberSystems {
 		namespace detail {
 
-			inline vector_type Parse(string_type str) {
+			inline vector_type ParseNatural(string_type str) {
 				str.erase(std::remove(str.begin(), str.end(), ','), str.end());
 				str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
 
