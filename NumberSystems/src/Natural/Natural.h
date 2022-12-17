@@ -35,12 +35,12 @@ namespace MathLib {
 			}			
 			
 			Natural(const string_type& value) {
-				vector_type digits = detail::Parse(value);
+				vector_type digits = detail::ParseNatural(value);
 				SetBody(digits);
 			}
 
 			void operator=(const string_type& value){
-				vector_type digits = detail::Parse(value);
+				vector_type digits = detail::ParseNatural(value);
 				SetBody(digits);
 			}
 

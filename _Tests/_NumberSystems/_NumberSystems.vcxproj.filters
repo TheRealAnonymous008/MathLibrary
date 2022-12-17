@@ -5,6 +5,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>BoilerPlate</Filter>
     </ClCompile>
+    <ClCompile Include="Integer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BoilerPlate">
