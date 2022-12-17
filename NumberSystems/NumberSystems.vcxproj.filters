@@ -43,9 +43,6 @@
     <ClInclude Include="src\Natural\Addition.h">
       <Filter>Natural</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utils\Parse.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
     <ClInclude Include="src\Utils\IsNumericString.h">
       <Filter>Utils</Filter>
     </ClInclude>
@@ -129,6 +126,9 @@
     </ClInclude>
     <ClInclude Include="headers\Integer.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Natural\Parse.h">
+      <Filter>Natural</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../src/Natural/Parse.h"
 #include "../src/Natural/Natural.h"
 
 #include "../src/Natural/Ordering.h"

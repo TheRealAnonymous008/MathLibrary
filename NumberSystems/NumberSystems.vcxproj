@@ -156,13 +156,13 @@
     <ClInclude Include="src\Natural\Not.h" />
     <ClInclude Include="src\Natural\Or.h" />
     <ClInclude Include="src\Natural\Ordering.h" />
+    <ClInclude Include="src\Natural\Parse.h" />
     <ClInclude Include="src\Natural\RightShift.h" />
     <ClInclude Include="src\Natural\Subtraction.h" />
     <ClInclude Include="src\Natural\ToULL.h" />
     <ClInclude Include="src\Natural\Xor.h" />
     <ClInclude Include="src\Utils\FitLimbToBase.h" />
     <ClInclude Include="src\Utils\IsNumericString.h" />
-    <ClInclude Include="src\Utils\Parse.h" />
     <ClInclude Include="src\Utils\RadixStrings.h" />
     <ClInclude Include="src\Utils\ReverseParse.h" />
   </ItemGroup>

@@ -1,7 +1,7 @@
 #pragma once
 #include "../../headers/Fwd.h"
 #include "../../Exceptions.h"
-#include "../Utils/Parse.h"
+#include "Parse.h"
 
 #include "NaturalBase.h"
 

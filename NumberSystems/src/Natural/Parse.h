@@ -2,8 +2,8 @@
 
 #include "../../../NumberSystems/headers/Fwd.h"
 
-#include "IsNumericString.h"
-#include "RadixStrings.h"
+#include "../Utils/IsNumericString.h"
+#include "../Utils/RadixStrings.h"
 
 #include <algorithm>
 #include <string>
