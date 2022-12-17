@@ -64,6 +64,13 @@ void VectorDotProduct(Benchmark& b) {
 	b.Stop();
 }
 
+void VectorSquareNorm(Benchmark& b) {
+	auto v = Generator::Vector<1000>();
+
+	b.Start();
+	SquareNorm(v);
+	b.Stop();
+}
 void VectorNorm(Benchmark& b) {
 	auto v = Generator::Vector<1000>();
 
@@ -71,6 +78,41 @@ void VectorNorm(Benchmark& b) {
 	Norm(v);
 	b.Stop();
 }
+
+void VectorNormalize(Benchmark& b) {
+	auto v = Generator::Vector<1000>();
+
+	b.Start();
+	Normalize(v);
+	b.Stop();
+}
+
+void VectorIsNormal(Benchmark& b) {
+	auto v = Generator::Vector<1000>();
+
+	b.Start();
+	IsNormal(v);
+	b.Stop();
+}
+
+void VectorIsOrthogonal(Benchmark& b) {
+	auto v = Generator::Vector<1000>();
+	auto w = Generator::Vector<1000>();
+
+	b.Start();
+	IsOrthogonal(v, w);
+	b.Stop();
+}
+
+void VectorIsOrthonormal(Benchmark& b) {
+	auto v = Generator::Vector<1000>();
+	auto w = Generator::Vector<1000>();
+
+	b.Start();
+	IsOrthonormal(v, w);
+	b.Stop();
+}
+
 
 int main() {
 		Benchmark benchmark = Benchmark("LinearAlgebra");
@@ -85,7 +127,12 @@ int main() {
 			.Run("Vector Negation", VectorNegation, 1000)
 			.AddEmptyRow()
 			.Run("Vector Dot Product", VectorDotProduct, 1000)
-			.Run("Vector Norm", VectorNorm, 1000);
+			.Run("Vector Square Norm", VectorSquareNorm, 1000)
+			.Run("Vector Norm", VectorNorm, 1000)
+			.Run("Vector Normalize", VectorNormalize, 1000)
+			.Run("Vector IsNormal", VectorIsNormal, 1000)
+			.Run("Vector IsOrthogonal", VectorIsOrthogonal, 1000)
+			.Run("Vector IsOrthonormal", VectorIsOrthonormal, 1000);
 		std::ofstream report;
 		report.open(benchmark.Name() + ".md");
 		report << benchmark.Out();
