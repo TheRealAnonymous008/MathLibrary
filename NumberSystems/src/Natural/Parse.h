@@ -1,6 +1,7 @@
 #pragma once 
 
 #include "../../../NumberSystems/headers/Fwd.h"
+#include "../../../NumberSystems/Exceptions.h"
 
 #include "../Utils/IsNumericString.h"
 #include "../Utils/RadixStrings.h"

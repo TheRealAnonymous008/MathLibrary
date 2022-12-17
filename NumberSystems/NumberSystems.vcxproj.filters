@@ -130,5 +130,11 @@
     <ClInclude Include="src\Natural\Parse.h">
       <Filter>Natural</Filter>
     </ClInclude>
+    <ClInclude Include="src\Integer\Parse.h">
+      <Filter>Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Integer\Signs.h">
+      <Filter>Integer</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
