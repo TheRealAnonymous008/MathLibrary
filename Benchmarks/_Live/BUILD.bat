@@ -1,2 +1,3 @@
 cd CMake 
 cmake ../
+cd ../
