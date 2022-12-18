@@ -177,7 +177,7 @@ void LEQ(Benchmark& b) {
 }
 int main() {
 
-	Benchmark benchmark = Benchmark("NumberSystems");
+	Benchmark benchmark = Benchmark("Natural Numbers");
 
 	std::cout << "\n";
 	benchmark

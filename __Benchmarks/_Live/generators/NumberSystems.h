@@ -28,5 +28,21 @@ namespace Benchmarking {
 		MathLib::NumberSystems::Natural NaturalNumber() {
 			return MathLib::NumberSystems::Natural(NumericString<N>());
 		}
+
+		template<const unsigned N>
+		MathLib::NumberSystems::Integer Integer() {
+			std::uniform_int_distribution<std::mt19937::result_type> dist(0, 1);
+			auto x = dist(rng);
+			MathLib::NumberSystems::IntegerSign sign; 
+			if (x == 0) {
+				sign = MathLib::NumberSystems::IntegerSign::POSITIVE;
+			}
+			else {
+				sign = MathLib::NumberSystems::IntegerSign::NEGATIVE;
+			}
+
+			return MathLib::NumberSystems::Integer(sign, NaturalNumber<N>());
+
+		}
 	}
 }
