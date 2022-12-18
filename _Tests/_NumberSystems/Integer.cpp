@@ -142,3 +142,20 @@ TEST(IntegerArithmetic, Modulo) {
 	ASSERT_EQ((b / x) * x + b % x , b);
 	ASSERT_EQ((x / y) * y + x % y , x);
 }
+
+TEST(IntegerArithmetic, PerfectRemainder) {
+	Integer a = Integer("24682468246824682468246824682468");
+	Integer na = Integer("-24682468246824682468246824682468");
+	Integer b = Integer("12341234");
+	Integer nb = Integer("-12341234");
+
+	ASSERT_EQ((a % b), Integer());
+	ASSERT_EQ((a % nb), Integer());
+	ASSERT_EQ((na % b), Integer());
+	ASSERT_EQ((na % nb), Integer());
+	
+	ASSERT_EQ((a / b) * b + a % b, a);
+	ASSERT_EQ((a / nb) * nb + a % nb, a);
+	ASSERT_EQ((na / b) * b + na % b, na);
+	ASSERT_EQ((na / nb) * nb + na % nb, na);
+}
