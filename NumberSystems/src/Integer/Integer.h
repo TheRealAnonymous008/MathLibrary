@@ -144,7 +144,11 @@ namespace MathLib {
 				return this->sign;
 			}
 
-			const signed_size_type Size() const {
+			const size_type Size() const {
+				return this->body->Size();
+			}
+
+			const signed_size_type SignedSize() const {
 				return (this->sign == POSITIVE) ? this->body->Size() : -1 * this->body->Size();
 			}
 

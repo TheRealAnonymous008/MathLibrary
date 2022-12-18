@@ -11,11 +11,11 @@ namespace MathLib {
 			Integer left = lhs.Evaluate();
 			Integer right = rhs.Evaluate();
 
-			if (left.Size() != right.Size() || left.Sign() != right.Sign()) {
+			if (left.SignedSize() != right.SignedSize()) {
 				return false;
 			}
 
-			auto size = abs(left.Size());
+			auto size = left.Size();
 
 			for (signed_index_type i = 0; i < size; ++i) {
 				if (left[i] != right[i])
@@ -30,11 +30,11 @@ namespace MathLib {
 			Integer left = lhs.Evaluate();
 			Integer right = rhs.Evaluate();
 
-			if (left.Size() != right.Size() || left.Sign() != right.Sign()) {
+			if (left.SignedSize() != right.SignedSize()) {
 				return true;
 			}
 
-			auto size = abs(left.Size());
+			auto size = left.Size();
 
 			for (signed_index_type i = 0; i < size; ++i) {
 				if (left[i] != right[i])
@@ -49,8 +49,8 @@ namespace MathLib {
 			Integer left = lhs.Evaluate();
 			Integer right = rhs.Evaluate();
 
-			auto l_size = left.Size();
-			auto r_size = right.Size();
+			auto l_size = left.SignedSize();
+			auto r_size = right.SignedSize();
 
 			if (l_size < r_size) {
 				return false;
@@ -59,9 +59,9 @@ namespace MathLib {
 				return true;
 			}
 
-			auto size = abs(l_size);
+			auto size = left.Size();
 
-			for (signed_index_type i = 0; i < size; ++i) {
+			for (index_type i = size - 1; i < size; --i) {
 				if (left[i] > right[i])
 					return true;
 				else if (left[i] < right[i]) {
@@ -76,8 +76,8 @@ namespace MathLib {
 			Integer left = lhs.Evaluate();
 			Integer right = rhs.Evaluate();
 
-			auto l_size = left.Size();
-			auto r_size = right.Size();
+			auto l_size = left.SignedSize();
+			auto r_size = right.SignedSize();
 
 			if (l_size > r_size) {
 				return false;
@@ -86,9 +86,9 @@ namespace MathLib {
 				return true;
 			}
 
-			auto size = abs(r_size);
+			auto size = right.Size();
 
-			for (signed_index_type i = 0; i < size; ++i) {
+			for (index_type i = size - 1; i < size; --i) {
 				if (left[i] < right[i])
 					return true;
 				else if (left[i] > right[i]) {
