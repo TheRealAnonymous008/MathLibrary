@@ -182,7 +182,6 @@ TEST(IntegerBitwise, XOR) {
 	Integer x = -16;
 	Integer y = 99;
 
-	std::cout<<(Integer() ^ Integer()).Evaluate().Str();
 	ASSERT_EQ(x ^ y, Integer(-16 ^ 99));
 	ASSERT_EQ(x ^ x, Integer());
 	ASSERT_EQ(x ^ Integer(), x);
@@ -200,4 +199,20 @@ TEST(IntegerBitwise, NOT) {
 	ASSERT_EQ(~y, Integer(~99));
 	ASSERT_EQ(~~y, y);
 	ASSERT_EQ(~zero, Integer(-1));
+}
+
+TEST(IntegerBitwise, LeftShift) {
+	Integer x = -16;
+	Integer y = 3;
+
+	ASSERT_EQ(x << y, Integer(-16 << 3));
+	ASSERT_THROW(y << x, UndefinedBitshift);
+}
+
+TEST(IntegerBitwise, RightShift) {
+	Integer x = -16;
+	Integer y = 3;
+
+	ASSERT_EQ(x >> y, Integer(-16 >> 3));
+	ASSERT_THROW(y >> x, UndefinedBitshift);
 }

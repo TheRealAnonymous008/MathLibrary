@@ -33,5 +33,12 @@ namespace MathLib{
 				return "Narrowing Conversion loses bits.";
 			}
 		};
+
+		class UndefinedBitshift : public std::exception {
+		public:
+			std::string what() {
+				return "Performing bitshift results in undefined behavior.";
+			}
+		};
 	}
 }
