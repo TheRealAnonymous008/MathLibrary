@@ -334,10 +334,10 @@ int main() {
 			.Run("Diagonal Test", DiagonalTest, 1000)
 			.Run("Symmetric Test", SymmetricTest, 1000)
 			.AddEmptyRow()
-			.Run("Partial LU Decomposition", LUPartial)
-			.Run("Full LU Decomposition", LUFull)
-			.Run("Solver", LUSolve)
-			.Run("Matrix Inverse", LUMatrixInverse)
+			.Run("Partial LU Decomposition", LUPartial, 100)
+			.Run("Full LU Decomposition", LUFull, 100)
+			.Run("Solver", LUSolve, 100)
+			.Run("Matrix Inverse", LUMatrixInverse, 100)
 			;
 
 		std::ofstream report;
