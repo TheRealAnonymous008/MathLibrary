@@ -217,9 +217,9 @@ namespace MathLib {
 
 		namespace constants {
 			namespace integers {
-				static const Integer ZERO = Natural();
-				static const Integer ONE = Natural(1);
-				static const Integer NEG_ONE = Natural(-1);
+				static const Integer ZERO = Integer();
+				static const Integer ONE = Integer(1);
+				static const Integer NEG_ONE = Integer(-1);
 			}
 		}
 	}

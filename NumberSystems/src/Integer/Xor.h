@@ -20,13 +20,17 @@ namespace MathLib {
 					Integer left = Complement(lhs.Evaluate());
 					Integer right = Complement(rhs.Evaluate());
 
+					if (left == constants::integers::ZERO && right == constants::integers::ZERO) {
+						result = constants::integers::NEG_ONE;
+						return;
+					}
+
 					IntegerSign sign = (left.Sign() != right.Sign()) ? NEGATIVE : POSITIVE;
 
 					Natural left_m = left.Magnitude();
 					Natural right_m = right.Magnitude();
 
 					Natural nat = left_m ^ right_m;
-
 					result = Decomplement(Integer(sign, nat));
 
 				}
