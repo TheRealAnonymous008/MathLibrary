@@ -17,7 +17,7 @@ namespace MathLib {
 
 			auto size = left.Size();
 
-			for (signed_index_type i = 0; i < size; ++i) {
+			for (index_type i = 0; i < size; ++i) {
 				if (left[i] != right[i])
 					return false;
 			}
@@ -36,7 +36,7 @@ namespace MathLib {
 
 			auto size = left.Size();
 
-			for (signed_index_type i = 0; i < size; ++i) {
+			for (index_type i = 0; i < size; ++i) {
 				if (left[i] != right[i])
 					return true;
 			}

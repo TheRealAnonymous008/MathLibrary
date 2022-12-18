@@ -12,7 +12,7 @@ namespace MathLib {
 	namespace NumberSystems {
 		class Integer : public IntegerBase<Integer>, public Stringable {
 		private:
-			bool sign = POSITIVE;
+			IntegerSign sign = POSITIVE;
 			Natural* body = new Natural();
 
 			void ClearLimbs() {
@@ -140,8 +140,12 @@ namespace MathLib {
 				return this->body->Digits();
 			}
 
-			const bool Sign() const {
+			const IntegerSign Sign() const {
 				return this->sign;
+			}
+
+			Natural Magnitude() const {
+				return *(this->body);
 			}
 
 			const size_type Size() const {
