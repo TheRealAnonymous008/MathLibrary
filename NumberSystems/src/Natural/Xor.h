@@ -19,6 +19,11 @@ namespace MathLib {
 					Natural left = lhs.Evaluate();
 					Natural right = rhs.Evaluate();
 
+					if (left == constants::naturals::ZERO && right == constants::naturals::ZERO) {
+						result = constants::naturals::ONE;
+						return;
+					}
+
 					size_type l_size = left.Size();
 					size_type r_size = right.Size();
 

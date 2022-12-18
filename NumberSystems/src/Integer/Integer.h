@@ -214,5 +214,13 @@ namespace MathLib {
 				return *this;
 			}
 		};
+
+		namespace constants {
+			namespace integers {
+				static const Integer ZERO = Natural();
+				static const Integer ONE = Natural(1);
+				static const Integer NEG_ONE = Natural(-1);
+			}
+		}
 	}
 }

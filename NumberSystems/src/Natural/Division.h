@@ -30,10 +30,10 @@ namespace MathLib {
 
 			public:
 				NaturalDivision(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
-					if (rhs == constants::ZERO) {
+					if (rhs == constants::naturals::ZERO) {
 						throw DivisionByZero();
 					}
-					if (lhs != constants::ZERO) {
+					if (lhs != constants::naturals::ZERO) {
 						Calculate();
 					}
 				}

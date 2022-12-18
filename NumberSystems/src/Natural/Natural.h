@@ -295,8 +295,10 @@ namespace MathLib {
 		};
 		
 		namespace constants {
-			static const Natural ZERO = Natural();
-			static const Natural ONE = Natural("1");
+			namespace naturals {
+				static const Natural ZERO = Natural();
+				static const Natural ONE = Natural("1");
+			}
 		}
 	}
 }

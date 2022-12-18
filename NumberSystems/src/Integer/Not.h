@@ -17,8 +17,8 @@ namespace MathLib {
 				Integer result;
 
 				void Calculate() {
-					if (expr == Integer()) {
-						result = Integer(-1);				// Intentional as the regular result is equivalent to -1
+					if (expr == constants::integers::ZERO) {
+						result = constants::integers::NEG_ONE;				// Intentional as the regular result is equivalent to -1
 						return;
 					}
 					Integer eval = Complement(expr.Evaluate());
