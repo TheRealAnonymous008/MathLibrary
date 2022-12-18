@@ -105,3 +105,23 @@ TEST(IntegerArithmetic, Division) {
 	ASSERT_EQ(x / a, Integer(NEGATIVE, x.Magnitude() / a.Magnitude()));
 	ASSERT_EQ(b / y, Integer(NEGATIVE, b.Magnitude() / y.Magnitude()));
 }
+
+TEST(IntegerArithmetic, ZeroArithmetic) {
+	Integer x = Integer("984728394738973894205305732968738294087324902741472498172428760294");
+	Integer y = Integer("-984728394738973894205305732968738294087324902741472498172428760294");
+
+	ASSERT_EQ(x + y, Integer());
+	ASSERT_EQ(y + x, Integer());
+
+	ASSERT_EQ(x - x, Integer());
+	ASSERT_EQ(y - y, Integer());
+
+	ASSERT_EQ(x * Integer(), Integer());
+	ASSERT_EQ(y * Integer(), Integer());
+	ASSERT_EQ(Integer() * x, Integer());
+	ASSERT_EQ(Integer() * y, Integer());
+	ASSERT_EQ(Integer() / x, Integer());
+	ASSERT_EQ(Integer() / y, Integer());
+
+	ASSERT_NE(x, y);
+}
