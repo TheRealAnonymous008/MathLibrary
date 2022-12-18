@@ -166,3 +166,21 @@ TEST(IntegerBitwise, AND) {
 	ASSERT_EQ(x & x, x);
 	ASSERT_EQ(x & Integer(), Integer());
 }
+
+TEST(IntegerBitwise, OR) {
+	Integer x = -16;
+	Integer y = 99;
+
+	ASSERT_EQ(x | y, Integer(-16 | 99));
+	ASSERT_EQ(x | x, x);
+	ASSERT_EQ(x | Integer(), x);
+}
+
+TEST(IntegerBitwise, XOR) {
+	Integer x = -16;
+	Integer y = 99;
+
+	ASSERT_EQ(x ^ y, Integer(-16 ^ 99));
+	ASSERT_EQ(x ^ x, Integer());
+	ASSERT_EQ(x ^ Integer(), x);
+}

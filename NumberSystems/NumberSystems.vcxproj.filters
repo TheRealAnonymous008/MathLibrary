@@ -160,5 +160,11 @@
     <ClInclude Include="src\Integer\Complement.h">
       <Filter>Integer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Integer\Or.h">
+      <Filter>Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Integer\Xor.h">
+      <Filter>Integer</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

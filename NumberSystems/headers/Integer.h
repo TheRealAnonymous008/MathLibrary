@@ -8,5 +8,7 @@
 #include "../src/Integer/Division.h"
 #include "../src/Integer/Modulo.h"
 #include "../src/Integer/Multiplication.h"
+#include "../src/Integer/Or.h"
 #include "../src/Integer/Ordering.h"
 #include "../src/Integer/Subtraction.h"
+#include "../src/Integer/Xor.h"
