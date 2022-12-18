@@ -138,6 +138,7 @@
     <ClInclude Include="headers\Utils.h" />
     <ClInclude Include="src\Integer\Integer.h" />
     <ClInclude Include="src\Integer\IntegerBase.h" />
+    <ClInclude Include="src\Integer\Ordering.h" />
     <ClInclude Include="src\Integer\Parse.h" />
     <ClInclude Include="src\Integer\Signs.h" />
     <ClInclude Include="src\Natural\And.h" />

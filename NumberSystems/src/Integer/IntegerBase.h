@@ -11,7 +11,7 @@ namespace MathLib {
 
 		public:
 			auto Evaluate() const {
-				return  static_cast<Derived const&>(*this).Evaluate();
+				return static_cast<Derived const&>(*this).Evaluate();
 			}
 		};
 	}

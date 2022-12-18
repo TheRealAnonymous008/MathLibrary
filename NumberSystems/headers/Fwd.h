@@ -17,6 +17,8 @@ namespace MathLib {
 		using string_type = std::string;
 		using index_type = unsigned long long;
 		using size_type = size_t;
+		using signed_size_type = long long;
+		using signed_index_type = long long;
 		using limb_type = unsigned long long;
 		using vector_type = std::vector<limb_type>;
 

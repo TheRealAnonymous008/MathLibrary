@@ -1,5 +1,6 @@
 #pragma once
 
+#include "NaturalBase.h"
 #include "Natural.h"
 
 namespace MathLib {

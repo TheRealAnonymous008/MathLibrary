@@ -21,11 +21,7 @@ namespace MathLib {
 			}
 
 			void SetBody(const IntegerSign& sign, const Natural& body) {
-				if (sign == POSITIVE)
-					*(this->body) = body;
-				else
-					*(this->body) = (~body).Evaluate()++;
-
+				*(this->body) = body;
 				this->sign = sign;
 			}
 
@@ -92,6 +88,7 @@ namespace MathLib {
 					limbs.push_back(abs_val % LIMB_BASE);
 					abs_val = abs_val / LIMB_BASE;
 				}
+
 				limbs.push_back(abs_val);
 				SetBody(s, Natural(limbs));
 			}
@@ -143,12 +140,12 @@ namespace MathLib {
 				return this->body->Digits();
 			}
 
-			const size_type Size() const {
-				return this->body->Size();
-			}
-
 			const bool Sign() const {
 				return this->sign;
+			}
+
+			const signed_size_type Size() const {
+				return (this->sign == POSITIVE) ? this->body->Size() : -1 * this->body->Size();
 			}
 
 			Integer& AddMostLimb(limb_type digit) {
@@ -200,7 +197,7 @@ namespace MathLib {
 
 			string_type Str() const {
 				auto s = (this->sign == POSITIVE) ? "" : "-";
-				string_type str = (this->sign == POSITIVE) ? body->Str() : (~(*body)--).Evaluate().Str();
+				string_type str = body->Str();
 				
 				return s + str;
 			}
