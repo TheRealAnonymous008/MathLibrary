@@ -9,7 +9,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class IntegerAddition : public IntegerBase<IntegerAddition<LHS, RHS>> {
+			class IntegerSubtraction : public IntegerBase<IntegerSubtraction<LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -31,19 +31,20 @@ namespace MathLib {
 
 					if (left_m > right_m) {
 						sign = left_s;
-						if (left_s == right_s) {
-							nat = left_m + right_m;
-						} else {
+						if (right_s == left_s) {
 							nat = left_m - right_m;
+						}
+						else {
+							nat = left_m + right_m;
 						}
 					}
 					else {
-						sign = right_s;
-						if (left_s == right_s) {
-							nat = left_m + right_m;
+						sign = NegateSign(right_s);
+						if (right_s == left_s) {
+							nat = right_m - left_m;
 						}
 						else {
-							nat = right_m - left_m;
+							nat = right_m + left_m;
 						}
 					}
 
@@ -52,7 +53,7 @@ namespace MathLib {
 
 
 			public:
-				IntegerAddition(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				IntegerSubtraction(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 				}
 
@@ -64,8 +65,8 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::IntegerAddition<LHS, RHS> operator+(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
-			return detail::IntegerAddition(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::IntegerSubtraction<LHS, RHS> operator-(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
+			return detail::IntegerSubtraction(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

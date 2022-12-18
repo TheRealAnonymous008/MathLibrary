@@ -142,6 +142,7 @@
     <ClInclude Include="src\Integer\Ordering.h" />
     <ClInclude Include="src\Integer\Parse.h" />
     <ClInclude Include="src\Integer\Signs.h" />
+    <ClInclude Include="src\Integer\Subtraction.h" />
     <ClInclude Include="src\Natural\And.h" />
     <ClInclude Include="src\Natural\Division\DivImpl.h" />
     <ClInclude Include="src\Natural\Division\DivModResult.h" />

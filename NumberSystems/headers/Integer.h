@@ -5,3 +5,4 @@
 
 #include "../src/Integer/Addition.h"
 #include "../src/Integer/Ordering.h"
+#include "../src/Integer/Subtraction.h"

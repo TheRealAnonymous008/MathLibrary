@@ -7,5 +7,9 @@ namespace MathLib {
 			POSITIVE = 0,
 			NEGATIVE = 1
 		};
+
+		inline IntegerSign NegateSign(IntegerSign sign) {
+			return (sign == POSITIVE) ? NEGATIVE : POSITIVE;
+		}
 	}
 }
