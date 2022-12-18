@@ -165,6 +165,7 @@ TEST(IntegerBitwise, AND) {
 	ASSERT_EQ(x & y, Integer(96));
 	ASSERT_EQ(x & x, x);
 	ASSERT_EQ(x & Integer(), Integer());
+	ASSERT_EQ(Integer() & Integer(), Integer());
 }
 
 TEST(IntegerBitwise, OR) {
@@ -174,6 +175,7 @@ TEST(IntegerBitwise, OR) {
 	ASSERT_EQ(x | y, Integer(-16 | 99));
 	ASSERT_EQ(x | x, x);
 	ASSERT_EQ(x | Integer(), x);
+	ASSERT_EQ(Integer() | Integer(), Integer());
 }
 
 TEST(IntegerBitwise, XOR) {
@@ -183,4 +185,18 @@ TEST(IntegerBitwise, XOR) {
 	ASSERT_EQ(x ^ y, Integer(-16 ^ 99));
 	ASSERT_EQ(x ^ x, Integer());
 	ASSERT_EQ(x ^ Integer(), x);
+	ASSERT_EQ(Integer() ^ Integer(), Integer(-1));
+}
+
+TEST(IntegerBitwise, NOT) {
+	Integer x = -16;
+	Integer y = 99;
+	
+	Integer zero = Integer();
+
+	ASSERT_EQ(~x, Integer(~(-16)));
+	ASSERT_EQ(~~x, x);
+	ASSERT_EQ(~y, Integer(~99));
+	ASSERT_EQ(~~y, y);
+	ASSERT_EQ(~zero, Integer(-1));
 }
