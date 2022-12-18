@@ -151,5 +151,8 @@
     <ClInclude Include="src\Integer\Division.h">
       <Filter>Integer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Integer\Modulo.h">
+      <Filter>Integer</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
