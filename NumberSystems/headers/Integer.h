@@ -4,6 +4,7 @@
 #include "../src/Integer/Integer.h"
 
 #include "../src/Integer/Addition.h"
+#include "../src/Integer/And.h"
 #include "../src/Integer/Division.h"
 #include "../src/Integer/Modulo.h"
 #include "../src/Integer/Multiplication.h"

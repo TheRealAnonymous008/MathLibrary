@@ -135,8 +135,6 @@ TEST(IntegerArithmetic, Modulo) {
 	Integer z = (x / y) * y;
 	Integer r = x % y;
 
-	std::cout << (z + r - x).Evaluate().Str();
-
 	ASSERT_EQ((a / b) * b + a % b , a);
 	ASSERT_EQ((x / a) * a + x % a , x);
 	ASSERT_EQ((b / x) * x + b % x , b);
@@ -158,4 +156,13 @@ TEST(IntegerArithmetic, PerfectRemainder) {
 	ASSERT_EQ((a / nb) * nb + a % nb, a);
 	ASSERT_EQ((na / b) * b + na % b, na);
 	ASSERT_EQ((na / nb) * nb + na % nb, na);
+}
+
+TEST(IntegerBitwise, AND) {
+	Integer x = -16;
+	Integer y = 99;
+	
+	ASSERT_EQ(x & y, Integer(96));
+	ASSERT_EQ(x & x, x);
+	ASSERT_EQ(x & Integer(), Integer());
 }
