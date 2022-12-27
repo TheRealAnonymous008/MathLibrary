@@ -29,21 +29,18 @@ namespace MathLib {
 					IntegerSign sign;
 					Natural nat;
 
-					if (left_m > right_m) {
+					if (left_s == right_s) {
+						nat = left_m + right_m;
 						sign = left_s;
-						if (left_s == right_s) {
-							nat = left_m + right_m;
-						} else {
-							nat = left_m - right_m;
-						}
 					}
 					else {
-						sign = right_s;
-						if (left_s == right_s) {
-							nat = left_m + right_m;
+						if (left_m > right_m) {
+							nat = left_m - right_m;
+							sign = left_s;
 						}
 						else {
 							nat = right_m - left_m;
+							sign = right_s;
 						}
 					}
 
