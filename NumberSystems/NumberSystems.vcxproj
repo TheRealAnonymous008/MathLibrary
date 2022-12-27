@@ -145,6 +145,7 @@
     <ClInclude Include="src\Integer\LeftShift.h" />
     <ClInclude Include="src\Integer\Modulo.h" />
     <ClInclude Include="src\Integer\Multiplication.h" />
+    <ClInclude Include="src\Integer\Negation.h" />
     <ClInclude Include="src\Integer\Not.h" />
     <ClInclude Include="src\Integer\Or.h" />
     <ClInclude Include="src\Integer\Ordering.h" />

@@ -31,5 +31,7 @@ namespace MathLib {
 		class IntegerBase;
 
 		class Integer;
+
+		
 	}
 }
