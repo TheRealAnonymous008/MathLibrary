@@ -258,7 +258,7 @@ namespace MathLib {
 				return *this;
 			}
 
-			Natural operator++(int) {;
+			Natural operator++(int) {
 				size_type size = this->Size();
 
 				if (size == 0) {

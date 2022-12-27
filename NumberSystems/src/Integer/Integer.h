@@ -203,6 +203,97 @@ namespace MathLib {
 				return (*this->body)[idx];
 			}
 
+			template<typename E>
+			const Integer& operator+=(const IntegerBase<E>& expr) {
+				(*this) = (*this) + expr;
+
+				return *this;
+			}
+
+			template<typename E>
+			const Integer& operator-=(const IntegerBase<E>& expr) {
+				(*this) = (*this) - expr;
+
+				return *this;
+			}
+
+			template<typename E>
+			const Integer& operator*=(const IntegerBase<E>& expr) {
+				(*this) = (*this) * expr;
+
+				return *this;
+			}
+
+			template<typename E>
+			const Integer& operator/=(const IntegerBase<E>& expr) {
+				(*this) = (*this) / expr;
+
+				return *this;
+			}
+
+			template<typename E>
+			const Integer& operator%=(const IntegerBase<E>& expr) {
+				(*this) = (*this) % expr;
+
+				return *this;
+			}
+
+			template<typename E>
+			const Integer& operator&=(const IntegerBase<E>& expr) {
+				(*this) = (*this) & expr;
+
+				return *this;
+			}
+
+			template<typename E>
+			const Integer& operator|=(const IntegerBase<E>& expr) {
+				(*this) = (*this) | expr;
+
+				return *this;
+			}
+
+			template<typename E>
+			const Integer& operator^=(const IntegerBase<E>& expr) {
+				(*this) = (*this) ^ expr;
+
+				return *this;
+			}
+
+			template<typename E>
+			const Integer& operator<<=(const IntegerBase<E>& expr) {
+				(*this) = (*this) << expr;
+
+				return *this;
+			}
+
+			template<typename E>
+			const Integer& operator>>=(const IntegerBase<E>& expr) {
+				(*this) = (*this) >> expr;
+
+				return *this;
+			}
+
+			Integer operator--(int) {
+				if (this->sign == NEGATIVE) {
+					*this->body = (*this->body)++;
+				}
+				else {
+					*this->body = (*this->body)--;
+				}
+
+				return *this;
+			}
+
+			Integer operator++(int) {
+				if (this->sign == NEGATIVE) {
+					*this->body = (*this->body)--;
+				}
+				else {
+					*this->body = (*this->body)++;
+				}
+				return *this;
+			}
+
 			string_type Str() const {
 				auto s = (this->sign == POSITIVE) ? "" : "-";
 				string_type str = body->Str();

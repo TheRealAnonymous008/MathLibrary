@@ -51,6 +51,31 @@ TEST(IntegerNumber, Ordering) {
 	ASSERT_TRUE(z != b && z != y);
 }
 
+TEST(IntegerNumber, ZeroRepresentation) {
+	Integer x = Integer(0);
+	Integer y = Integer("-0");
+	Integer z = Integer(1234354355);
+	ASSERT_EQ(x, y);
+	ASSERT_EQ(x + y, x);
+	ASSERT_EQ(y + z, z);
+	ASSERT_EQ(z - y, z);
+	ASSERT_EQ(z * y, x);
+}
+
+TEST(IntegerArtihmetic, Increment) {
+	Integer x = Integer(-1);
+	ASSERT_EQ(x++, Integer(0));
+
+	ASSERT_EQ(x + Integer(1), Integer(1));
+}
+
+TEST(IntegerArtihmetic, Decrement) {
+	Integer x = Integer(1);
+	ASSERT_EQ(x--, Integer(0));
+
+	ASSERT_EQ(x + Integer(-1), Integer(-1));
+}
+
 TEST(IntegerArithmetic, Addition) {
 	Integer x = Integer("-234598203408920482930458123903582908231593421945039682139815923794937479239574929912492346991292906204234023402412916393479043938418494785823682480223981");
 	Integer y = Integer("-79021391923109241024932639548360934204354069481020130123024953520002394979469242938238289382130128512039123");
