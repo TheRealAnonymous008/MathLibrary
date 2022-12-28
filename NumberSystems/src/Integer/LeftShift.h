@@ -9,7 +9,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class IntegerLeftShift : public IntegerBase<IntegerLeftShift<LHS, RHS>> {
+			class LeftShift<Integer, LHS, RHS> : public IntegerBase<LeftShift<Integer, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -33,7 +33,7 @@ namespace MathLib {
 
 
 			public:
-				IntegerLeftShift(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				LeftShift<Integer, LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 				}
 
@@ -45,8 +45,8 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::IntegerLeftShift<LHS, RHS> operator<<(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
-			return detail::IntegerLeftShift(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::LeftShift<Integer, LHS, RHS> operator<<(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
+			return detail::LeftShift<Integer, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}
