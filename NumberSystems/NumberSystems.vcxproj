@@ -135,6 +135,7 @@
     <ClInclude Include="headers\Fwd.h" />
     <ClInclude Include="headers\Integer.h" />
     <ClInclude Include="headers\Natural.h" />
+    <ClInclude Include="headers\Real.h" />
     <ClInclude Include="headers\Utils.h" />
     <ClInclude Include="src\Integer\Addition.h" />
     <ClInclude Include="src\Integer\And.h" />
@@ -177,6 +178,8 @@
     <ClInclude Include="src\Natural\Subtraction.h" />
     <ClInclude Include="src\Natural\ToULL.h" />
     <ClInclude Include="src\Natural\Xor.h" />
+    <ClInclude Include="src\Real\Real.h" />
+    <ClInclude Include="src\Real\RealBase.h" />
     <ClInclude Include="src\Utils\FitLimbToBase.h" />
     <ClInclude Include="src\Utils\IsNumericString.h" />
     <ClInclude Include="src\Utils\RadixStrings.h" />

@@ -6,6 +6,7 @@
       <Filter>BoilerPlate</Filter>
     </ClCompile>
     <ClCompile Include="Integer.cpp" />
+    <ClCompile Include="Real.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BoilerPlate">

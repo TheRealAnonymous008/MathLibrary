@@ -8,3 +8,4 @@
 #include "headers/Utils.h"
 #include "headers/Natural.h"
 #include "headers/Integer.h"
+#include "headers/Real.h"

@@ -20,6 +20,9 @@
     <Filter Include="Integer">
       <UniqueIdentifier>{316025d3-485f-4c15-98e0-04bfa60fa40d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Real">
+      <UniqueIdentifier>{ed6d245b-0e27-49b7-ab5a-0e3529af0b02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -177,6 +180,15 @@
     </ClInclude>
     <ClInclude Include="src\Integer\Negation.h">
       <Filter>Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Real\Real.h">
+      <Filter>Real</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Real\RealBase.h">
+      <Filter>Real</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Real.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

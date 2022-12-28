@@ -32,6 +32,11 @@ namespace MathLib {
 
 		class Integer;
 
+		template<typename Derived>
+		class RealBase;
+
+		class Real;
+
 		namespace detail {
 			template<typename F, typename LHS, typename RHS> class Addition {};
 			template<typename F, typename LHS, typename RHS> class Subtraction {};
