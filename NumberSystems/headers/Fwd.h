@@ -31,9 +31,7 @@ namespace MathLib {
 		class IntegerBase;
 
 		class Integer;
-<<<<<<< Updated upstream
-=======
-		
+
 		namespace detail {
 			template<typename F, typename LHS, typename RHS> class Addition {};
 			template<typename F, typename LHS, typename RHS> class Subtraction {};
@@ -63,6 +61,5 @@ namespace MathLib {
 
 			template<typename F, typename Base, typename Power> class Pow {};
 		}
->>>>>>> Stashed changes
 	}
 }
