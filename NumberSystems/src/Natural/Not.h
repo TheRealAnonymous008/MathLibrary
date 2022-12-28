@@ -8,7 +8,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename Expr>
-			class NaturalNot : public NaturalBase<NaturalNot<Expr>> {
+			class Not<Natural, Expr> : public NaturalBase<Not<Natural, Expr>> {
 			private:
 				const Expr& expr;
 
@@ -27,7 +27,7 @@ namespace MathLib {
 
 
 			public:
-				NaturalNot(const Expr& expr) : expr(expr) {
+				Not<Natural, Expr>(const Expr& expr) : expr(expr) {
 					Calculate();
 				}
 
@@ -39,8 +39,8 @@ namespace MathLib {
 		}
 
 		template<typename Expr>
-		detail::NaturalNot<Expr> operator~(const NaturalBase<Expr>& expr) {
-			return detail::NaturalNot(*static_cast<const Expr*>(&expr));
+		detail::Not<Natural, Expr> operator~(const NaturalBase<Expr>& expr) {
+			return detail::Not<Natural, Expr>(*static_cast<const Expr*>(&expr));
 		}
 
 	}

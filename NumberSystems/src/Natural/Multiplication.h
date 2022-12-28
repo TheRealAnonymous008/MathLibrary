@@ -12,7 +12,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class NaturalMultiplication : public NaturalBase<NaturalMultiplication<LHS, RHS>> {
+			class Multiplication<Natural, LHS, RHS> : public NaturalBase<Multiplication<Natural, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -28,7 +28,7 @@ namespace MathLib {
 				}
 
 			public:
-				NaturalMultiplication(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				Multiplication<Natural, LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 				}
 
@@ -41,8 +41,8 @@ namespace MathLib {
 
 
 		template<typename LHS, typename RHS>
-		detail::NaturalMultiplication<LHS, RHS> operator*(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			return detail::NaturalMultiplication(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::Multiplication<Natural, LHS, RHS> operator*(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			return detail::Multiplication<Natural, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 	}
 }

@@ -8,7 +8,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class NaturalOr : public NaturalBase<NaturalOr<LHS, RHS>> {
+			class Or<Natural, LHS, RHS> : public NaturalBase<Or<Natural, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -45,7 +45,7 @@ namespace MathLib {
 
 
 			public:
-				NaturalOr(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				Or<Natural, LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 
 				}
@@ -58,8 +58,8 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::NaturalOr<LHS, RHS> operator|(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			return detail::NaturalOr(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::Or<Natural, LHS, RHS> operator|(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			return detail::Or<Natural, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}
