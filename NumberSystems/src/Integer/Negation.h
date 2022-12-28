@@ -10,7 +10,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename Expr>
-			class IntegerNegation : public IntegerBase<IntegerNegation<Expr>> {
+			class Negation<Integer, Expr> : public IntegerBase<Negation<Integer, Expr>> {
 			private:
 				const Expr& expr;
 
@@ -23,7 +23,7 @@ namespace MathLib {
 
 
 			public:
-				IntegerNegation(const Expr& expr) : expr(expr) {
+				Negation<Integer, Expr>(const Expr& expr) : expr(expr) {
 					Calculate();
 				}
 
@@ -35,8 +35,8 @@ namespace MathLib {
 		}
 
 		template<typename Expr>
-		detail::IntegerNegation<Expr> operator-(const IntegerBase<Expr>& expr) {
-			return detail::IntegerNegation(*static_cast<const Expr*>(&expr));
+		detail::Negation<Integer, Expr> operator-(const IntegerBase<Expr>& expr) {
+			return detail::Negation<Integer, Expr>(*static_cast<const Expr*>(&expr));
 		}
 
 	}

@@ -39,7 +39,7 @@ namespace MathLib {
 			template<typename F, typename LHS, typename RHS> class Division {};
 			template<typename F, typename LHS, typename RHS> class Modulo {};
 
-			template<typename F, typename Expr> class Negate {};
+			template<typename F, typename Expr> class Negation {};
 			template<typename F, typename Expr> class Not {};
 
 			template<typename F, typename LHS, typename RHS> class And {};
