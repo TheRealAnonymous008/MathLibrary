@@ -11,7 +11,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class NaturalLeftShift : public NaturalBase<NaturalLeftShift<LHS, RHS>> {
+			class LeftShift<Natural, LHS, RHS> : public NaturalBase<LeftShift<Natural, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -43,7 +43,7 @@ namespace MathLib {
 
 
 			public:
-				NaturalLeftShift(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				LeftShift<Natural, LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 
 				}
@@ -56,8 +56,8 @@ namespace MathLib {
 		}
 		
 		template<typename LHS, typename RHS>
-		detail::NaturalLeftShift<LHS, RHS> operator<<(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			return detail::NaturalLeftShift(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::LeftShift<Natural, LHS, RHS> operator<<(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			return detail::LeftShift<Natural, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

@@ -31,31 +31,35 @@ namespace MathLib {
 		class IntegerBase;
 
 		class Integer;
-		
-		template<typename F> class Addition{};
-		template<typename F> class Subtraction{};
-		template<typename F> class Multiplication{};
-		template<typename F> class Division{};
-		template<typename F> class Modulo{};
-		template<typename F> class Negate{};
 
-		template<typename F> class And {};
-		template<typename F> class Or {};
-		template<typename F> class Not{};
-		template<typename F> class Xor{};
-		template<typename F> class LeftShift{};
-		template<typename F> class RightShift{};
+		namespace detail {
+			template<typename F, typename LHS, typename RHS> class Addition {};
+			template<typename F, typename LHS, typename RHS> class Subtraction {};
+			template<typename F, typename LHS, typename RHS> class Multiplication {};
+			template<typename F, typename LHS, typename RHS> class Division {};
+			template<typename F, typename LHS, typename RHS> class Modulo {};
 
-		template<typename F> class Sin{};
-		template<typename F> class Cos{};
-		template<typename F> class Tan{};
-		template<typename F> class Csc{};
-		template<typename F> class Sec{};
-		template<typename F> class Cot{};
+			template<typename F, typename Expr> class Negate {};
+			template<typename F, typename Expr> class Not {};
 
-		template<typename F> class Pow{};
-		template<typename F> class Sqrt{};
-		template<typename F> class Square{};
-		template<typename F> class Factorial{};
+			template<typename F, typename LHS, typename RHS> class And {};
+			template<typename F, typename LHS, typename RHS> class Or {};
+			template<typename F, typename LHS, typename RHS> class Xor {};
+			template<typename F, typename LHS, typename RHS> class LeftShift {};
+			template<typename F, typename LHS, typename RHS> class RightShift {};
+
+			template<typename F, typename Expr> class Sin {};
+			template<typename F, typename Expr> class Cos {};
+			template<typename F, typename Expr> class Tan {};
+			template<typename F, typename Expr> class Csc {};
+			template<typename F, typename Expr> class Sec {};
+			template<typename F, typename Expr> class Cot {};
+
+			template<typename F, typename Expr> class Sqrt {};
+			template<typename F, typename Expr> class Square {};
+			template<typename F, typename Expr> class Factorial {};
+
+			template<typename F, typename Base, typename Power> class Pow {};
+		}
 	}
 }

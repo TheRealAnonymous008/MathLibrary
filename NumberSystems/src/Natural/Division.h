@@ -13,7 +13,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class NaturalDivision : public NaturalBase<NaturalDivision<LHS, RHS>> {
+			class Division<Natural, LHS, RHS> : public NaturalBase<Division<Natural, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -29,7 +29,7 @@ namespace MathLib {
 				}
 
 			public:
-				NaturalDivision(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				Division<Natural, LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					if (rhs == constants::naturals::ZERO) {
 						throw DivisionByZero();
 					}
@@ -46,8 +46,8 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::NaturalDivision<LHS, RHS> operator/(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			return detail::NaturalDivision(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::Division<Natural, LHS, RHS>operator/(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			return detail::Division<Natural, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

@@ -8,7 +8,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class NaturalAnd : public NaturalBase<NaturalAnd<LHS, RHS>> {
+			class And<Natural, LHS, RHS> : public NaturalBase<And<Natural, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -30,7 +30,7 @@ namespace MathLib {
 
 
 			public:
-				NaturalAnd(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				And<Natural, LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 
 				}
@@ -43,8 +43,8 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::NaturalAnd<LHS, RHS> operator&(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			return detail::NaturalAnd(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::And<Natural, LHS, RHS> operator&(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			return detail::And<Natural, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

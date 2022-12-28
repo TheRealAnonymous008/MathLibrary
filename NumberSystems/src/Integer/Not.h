@@ -10,7 +10,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename Expr>
-			class IntegerNot : public IntegerBase<IntegerNot<Expr>> {
+			class Not<Integer,Expr> : public IntegerBase<Not<Integer,Expr>> {
 			private:
 				const Expr& expr;
 
@@ -33,7 +33,7 @@ namespace MathLib {
 
 
 			public:
-				IntegerNot(const Expr& expr) : expr(expr) {
+				Not<Integer,Expr>(const Expr& expr) : expr(expr) {
 					Calculate();
 				}
 
@@ -45,8 +45,8 @@ namespace MathLib {
 		}
 
 		template<typename Expr>
-		detail::IntegerNot<Expr> operator~(const IntegerBase<Expr>& expr) {
-			return detail::IntegerNot(*static_cast<const Expr*>(&expr));
+		detail::Not<Integer,Expr> operator~(const IntegerBase<Expr>& expr) {
+			return detail::Not<Integer,Expr>(*static_cast<const Expr*>(&expr));
 		}
 
 	}

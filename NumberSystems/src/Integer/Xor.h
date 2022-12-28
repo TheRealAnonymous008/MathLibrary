@@ -9,7 +9,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class IntegerXor : public IntegerBase<IntegerXor<LHS, RHS>> {
+			class Xor<Integer,LHS, RHS> : public IntegerBase<Xor<Integer,LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -37,7 +37,7 @@ namespace MathLib {
 
 
 			public:
-				IntegerXor(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				Xor<Integer,LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 				}
 
@@ -49,8 +49,8 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::IntegerXor<LHS, RHS> operator^(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
-			return detail::IntegerXor(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::Xor<Integer,LHS, RHS> operator^(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
+			return detail::Xor<Integer,LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

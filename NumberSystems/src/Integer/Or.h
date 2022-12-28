@@ -9,7 +9,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class IntegerOr : public IntegerBase<IntegerOr<LHS, RHS>> {
+			class Or<Integer,LHS, RHS> : public IntegerBase<Or<Integer,LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -33,7 +33,7 @@ namespace MathLib {
 
 
 			public:
-				IntegerOr(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				Or<Integer,LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 				}
 
@@ -45,8 +45,8 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::IntegerOr<LHS, RHS> operator|(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
-			return detail::IntegerOr(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::Or<Integer,LHS, RHS> operator|(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
+			return detail::Or<Integer,LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

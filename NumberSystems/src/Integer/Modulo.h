@@ -8,7 +8,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class IntegerModulo : public IntegerBase<IntegerModulo<LHS, RHS>> {
+			class Modulo<Integer, LHS, RHS> : public IntegerBase<Modulo<Integer, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -34,7 +34,7 @@ namespace MathLib {
 
 
 			public:
-				IntegerModulo(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				Modulo<Integer, LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 				}
 
@@ -46,8 +46,8 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::IntegerModulo<LHS, RHS> operator%(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
-			return detail::IntegerModulo(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::Modulo<Integer, LHS, RHS> operator%(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
+			return detail::Modulo<Integer, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

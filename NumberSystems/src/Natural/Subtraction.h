@@ -11,7 +11,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class NaturalSubtraction : public NaturalBase<NaturalSubtraction<LHS, RHS>> {
+			class Subtraction<Natural, LHS, RHS> : public NaturalBase<Subtraction<Natural, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -48,7 +48,7 @@ namespace MathLib {
 				}
 
 			public:
-				NaturalSubtraction(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				Subtraction<Natural, LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 				}
 
@@ -60,8 +60,8 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::NaturalSubtraction<LHS, RHS> operator-(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
-			return detail::NaturalSubtraction(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::Subtraction<Natural, LHS, RHS> operator-(const NaturalBase<LHS>& lhs, const NaturalBase<RHS>& rhs) {
+			return detail::Subtraction<Natural, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

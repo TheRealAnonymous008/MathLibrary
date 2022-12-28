@@ -9,7 +9,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class IntegerAnd : public IntegerBase<IntegerAnd<LHS, RHS>> {
+			class And<Integer, LHS, RHS> : public IntegerBase<And<Integer, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -33,7 +33,7 @@ namespace MathLib {
 
 
 			public:
-				IntegerAnd(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				And<Integer, LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 				}
 
@@ -45,8 +45,8 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::IntegerAnd<LHS, RHS> operator&(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
-			return detail::IntegerAnd(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::And<Integer, LHS, RHS> operator&(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
+			return detail::And<Integer, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

@@ -8,7 +8,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class IntegerMultiplication : public IntegerBase<IntegerMultiplication<LHS, RHS>> {
+			class Multiplication<Integer, LHS, RHS> : public IntegerBase<Multiplication<Integer, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -27,7 +27,7 @@ namespace MathLib {
 
 
 			public:
-				IntegerMultiplication(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				Multiplication<Integer, LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 				}
 
@@ -39,8 +39,8 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::IntegerMultiplication<LHS, RHS> operator*(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
-			return detail::IntegerMultiplication(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::Multiplication<Integer, LHS, RHS> operator*(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
+			return detail::Multiplication<Integer, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}

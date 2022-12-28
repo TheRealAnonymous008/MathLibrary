@@ -9,7 +9,7 @@ namespace MathLib {
 		namespace detail {
 
 			template<typename LHS, typename RHS>
-			class IntegerAddition : public IntegerBase<IntegerAddition<LHS, RHS>> {
+			class Addition<Integer, LHS, RHS> : public IntegerBase<Addition<Integer, LHS, RHS>> {
 			private:
 				const LHS& lhs;
 				const RHS& rhs;
@@ -49,7 +49,7 @@ namespace MathLib {
 
 
 			public:
-				IntegerAddition(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
+				Addition<Integer, LHS, RHS>(const LHS& lhs, const RHS& rhs) : lhs(lhs), rhs(rhs) {
 					Calculate();
 				}
 
@@ -61,8 +61,8 @@ namespace MathLib {
 		}
 
 		template<typename LHS, typename RHS>
-		detail::IntegerAddition<LHS, RHS> operator+(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
-			return detail::IntegerAddition(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
+		detail::Addition<Integer, LHS, RHS> operator+(const IntegerBase<LHS>& lhs, const IntegerBase<RHS>& rhs) {
+			return detail::Addition<Integer, LHS, RHS>(*static_cast<const LHS*>(&lhs), *static_cast<const RHS*>(&rhs));
 		}
 
 	}
